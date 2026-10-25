@@ -10,9 +10,25 @@ public struct ComponentGallery: View {
     @State private var playing = true
     @State private var progress = 0.38
 
-    public init() {}
+    /// Section index to scroll to on launch (used by CI to screenshot each section).
+    private let initialSection: Int
+
+    public init(initialSection: Int = 0) {
+        self.initialSection = initialSection
+    }
 
     public var body: some View {
+        ScrollViewReader { proxy in
+            content
+                .task {
+                    guard initialSection > 0 else { return }
+                    try? await Task.sleep(nanoseconds: 400_000_000)
+                    proxy.scrollTo(initialSection, anchor: .top)
+                }
+        }
+    }
+
+    private var content: some View {
         ZStack {
             MurmurTheme.Colors.background.ignoresSafeArea()
             ScrollView {
@@ -109,6 +125,7 @@ public struct ComponentGallery: View {
             content()
         }
         .murmurEntrance(index: index)
+        .id(index)
     }
 }
 

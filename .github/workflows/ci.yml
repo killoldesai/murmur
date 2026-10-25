@@ -2,8 +2,12 @@ name: CI
 
 on:
   push:
+    branches-ignore: [ci-results]
   pull_request:
   workflow_dispatch:
+
+permissions:
+  contents: write   # lets the last step publish logs and screenshots to the ci-results branch
 
 jobs:
   build-and-test:
@@ -14,13 +18,12 @@ jobs:
 
       - name: Toolchain info
         run: |
-          xcodebuild -version
-          swift --version
+          mkdir -p build
+          { xcodebuild -version; swift --version; } | tee build/toolchain.log
           xcrun simctl list devices available | head -40
 
       - name: Test packages (MurmurCore, MurmurUI)
         run: |
-          mkdir -p build
           set -o pipefail
           swift test 2>&1 | tee build/swift-test.log | tail -60
 
@@ -51,7 +54,7 @@ jobs:
             -derivedDataPath DerivedData \
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee build/xcodebuild.log | tail -60
 
-      - name: Run in simulator and screenshot
+      - name: Run in simulator and screenshot each gallery section
         run: |
           UDID="${{ steps.sim.outputs.udid }}"
           xcrun simctl boot "$UDID" || true
@@ -59,15 +62,26 @@ jobs:
           APP=$(find DerivedData -name Murmur.app -path "*iphonesimulator*" | head -1)
           echo "App: $APP"
           xcrun simctl install "$UDID" "$APP"
-          xcrun simctl launch "$UDID" app.murmur.Murmur
-          sleep 6
-          xcrun simctl io "$UDID" screenshot build/gallery-top.png
-          xcrun simctl terminate "$UDID" app.murmur.Murmur || true
+          for n in 0 1 2 3 4 5 6 7 8; do
+            xcrun simctl launch "$UDID" app.murmur.Murmur -gallerySection $n
+            sleep 5
+            xcrun simctl io "$UDID" screenshot "build/gallery-$n.png"
+            xcrun simctl terminate "$UDID" app.murmur.Murmur || true
+          done
 
-      - name: Upload results
+      - name: Publish results to ci-results branch
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-results
-          path: build/
-          if-no-files-found: ignore
+        run: |
+          rm -rf /tmp/results && mkdir /tmp/results
+          cp build/*.png /tmp/results/ 2>/dev/null || true
+          for f in build/*.log; do [ -f "$f" ] && tail -n 600 "$f" > "/tmp/results/$(basename "$f")"; done
+          grep -hE "error:|warning:|Executed [0-9]+ tests|with [0-9]+ failure" build/*.log > /tmp/results/summary.txt 2>/dev/null || true
+          echo "commit $GITHUB_SHA" >> /tmp/results/summary.txt
+          cd /tmp/results
+          git init -q
+          git config user.name "ci"
+          git config user.email "ci@users.noreply.github.com"
+          git checkout -q -b ci-results
+          git add -A
+          git commit -q -m "CI results for $GITHUB_SHA"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" ci-results
