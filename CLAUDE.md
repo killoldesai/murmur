@@ -4,7 +4,13 @@ On-device speech-to-text app (Whisper) for iPhone, iPad, Mac and Apple Watch. US
 
 ## Status
 
-Design and specs are done. **No app code is written yet.** Do not start coding until the owner says to. When they do, follow the build order in the specs.
+Design and specs are done. Coding started on the owner's go-ahead.
+
+- **Done: build step 0.** `MurmurTheme` (tokens), `MurmurMotion` (entrance, press), shared components (PrimaryButton, SecondaryButton, Chip, NoteCard, TranscriptRow, PlaybackBar, Waveform, ProgressRing, PlanCard, SettingsRow) and `ComponentGallery`, in `Sources/MurmurUI`. `MurmurCore` has `Timecode`. Unit tests pass in CI and the screenshots match the design.
+- **Next:** spec "Build order" step 1 (SwiftData models), then step 2 (AudioRecorder and the record screen).
+- The root screen of the app is still the component gallery. Replace it as real screens land.
+
+Project layout: `Package.swift` (MurmurCore, MurmurUI), `project.yml` (XcodeGen spec for the iOS app; the `.xcodeproj` is generated, never committed), `App/Murmur/` (app target sources).
 
 ## Where things are
 
@@ -41,6 +47,10 @@ The specs were written under an earlier working name. Use:
 
 Development happens in a Linux cloud session with no Xcode. Code cannot be compiled or run locally. Verification is done by GitHub Actions on a macOS runner (`.github/workflows/ci.yml`): read the run logs and simulator screenshots, fix, push again.
 
+- **Reading CI results from the cloud session:** Actions logs and artifacts are NOT downloadable here (the sandbox blocks GitHub's blob storage). Instead the last CI step force-pushes logs, a `summary.txt` and simulator screenshots to the `ci-results` branch. To read them:
+  `git fetch origin ci-results && mkdir -p /tmp/claude-0/ci && git --work-tree=/tmp/claude-0/ci checkout FETCH_HEAD -- . && git reset -q`
+  then read `summary.txt`, `swift-test.log`, `xcodebuild.log` and view `gallery-N.png` with the Read tool. Poll run status with `gh api repos/killoldesai/murmur/actions/runs/<id> --jq '"\(.status) \(.conclusion)"'` (a run takes about 5 minutes).
+- The app accepts a `-gallerySection N` launch argument (scrolls the component gallery); CI uses it to screenshot each section. Extend this pattern (launch arguments that jump to a screen) so CI can screenshot every new screen.
 - Only a physical device can verify: real microphone, Whisper speed on the Neural Engine, background recording, battery, Watch-to-iPhone transfer. Say so explicitly and list what to test by hand; never claim these work.
 - Simulators are too slow for large Whisper; use the Small model in CI.
 - Secrets (signing certificates, App Store Connect keys) go in GitHub Secrets only. The repo is public: never commit credentials.

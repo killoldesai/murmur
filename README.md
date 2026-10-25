@@ -2,7 +2,7 @@
 
 Private, on-device speech-to-text for iPhone, iPad, Mac and Apple Watch, powered by Whisper. No account, no server: audio and text never leave your device.
 
-**Status:** design and specs complete; app code not started.
+**Status:** design and specs complete; build step 0 (theme and shared components) done.
 
 - Product specs: [`docs/specs/`](docs/specs)
 - Clickable design: [`docs/design/`](docs/design) (published at https://claude.ai/artifact/CfxNqHbNuKs3RusaMefkKn)
