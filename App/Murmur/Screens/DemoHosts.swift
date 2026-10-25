@@ -173,6 +173,7 @@ enum DemoData {
         return LibraryDependencies(
             models: models,
             queue: TranscriptionQueue(context: container.mainContext, files: files, engineProvider: { nil }),
+            importer: ImportQueue(context: container.mainContext, files: files, converter: DemoConverter()),
             files: files,
             makeRecorder: { DemoRecorderEngine() },
             makePlayer: { player }
@@ -239,5 +240,74 @@ struct DemoNoteHost: View {
                 playback.tick()
             }
         }
+    }
+}
+
+// MARK: - Import and export demos (CI screenshots)
+
+/// First file finishes at once, the second stalls at 46%, the rest wait.
+private struct DemoConverter: AudioConverting {
+    func convert(from source: URL, to destination: URL, onProgress: @escaping @Sendable (Double) -> Void) async throws -> TimeInterval {
+        if source.lastPathComponent.hasPrefix("Customer") {
+            FileManager.default.createFile(atPath: destination.path, contents: Data([0]))
+            return 18 * 60 + 22
+        }
+        onProgress(0.46)
+        try await Task.sleep(nanoseconds: 3_600_000_000_000)
+        return 0
+    }
+}
+
+@MainActor
+struct DemoImportHost: View {
+    private let container: ModelContainer
+    private let deps: LibraryDependencies
+
+    init() {
+        let container = DemoData.makeContainer(seeded: false)
+        self.container = container
+        let deps = DemoData.dependencies(container: container)
+        self.deps = deps
+        deps.importer.enqueue([
+            URL(fileURLWithPath: "/tmp/Customer interview — Maria.mp4"),
+            URL(fileURLWithPath: "/tmp/Voice memo 14.m4a"),
+            URL(fileURLWithPath: "/tmp/Podcast ep 12 raw.mp3"),
+        ])
+    }
+
+    var body: some View {
+        ImportScreen(importer: deps.importer)
+            .modelContainer(container)
+    }
+}
+
+@MainActor
+struct DemoExportHost: View {
+    private let container: ModelContainer
+    private let note: Note
+    private let files: AudioFileStore
+    @State private var showing = true
+
+    init() {
+        let container = DemoData.makeContainer(seeded: true)
+        self.container = container
+        self.note = DemoData.firstReadyNote(in: container)
+        self.files = DemoData.dependencies(container: container).files
+    }
+
+    var body: some View {
+        ZStack {
+            MurmurTheme.Colors.background.ignoresSafeArea()
+            VStack(alignment: .leading, spacing: 6) {
+                Text(note.title).font(MurmurTheme.Fonts.title).foregroundStyle(MurmurTheme.Colors.textPrimary)
+                Text(NoteSummaryText.headerLine(for: note)).font(.footnote).foregroundStyle(MurmurTheme.Colors.textSecondary)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .padding(MurmurTheme.Metrics.screenPadding)
+        }
+        .sheet(isPresented: $showing) {
+            ExportSheet(note: note, files: files) { showing = false }
+        }
+        .modelContainer(container)
     }
 }

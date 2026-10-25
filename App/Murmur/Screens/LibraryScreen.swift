@@ -25,6 +25,7 @@ struct LibraryScreen: View {
     @State private var path: [Note] = []
     @State private var selectedFolderID: UUID?
     @State private var recoveredCount = 0
+    @State private var showImport = false
 
     @State private var newFolderName = ""
     @State private var showNewFolder = false
@@ -50,6 +51,9 @@ struct LibraryScreen: View {
             .navigationDestination(for: Note.self) { note in
                 NoteScreen(note: note, deps: deps)
             }
+            .navigationDestination(isPresented: $showImport) {
+                ImportScreen(importer: deps.importer)
+            }
         }
         .preferredColorScheme(.dark)
         .task {
@@ -59,6 +63,12 @@ struct LibraryScreen: View {
             } else {
                 route = .modelDownload
             }
+        }
+        .onOpenURL { url in
+            // "Share → Murmur" and "Open in Murmur" from other apps. Files copied into the
+            // app's Inbox are removed after import.
+            deps.importer.enqueue([url], deleteSourcesAfter: url.path.contains("/Inbox/"))
+            showImport = true
         }
         .onChange(of: deps.models.isReady) { _, ready in
             if ready { deps.queue.start() }
@@ -111,14 +121,27 @@ struct LibraryScreen: View {
     // MARK: - Pieces
 
     private var header: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(Greeting.text())
-                .font(.footnote.weight(.medium))
-                .foregroundStyle(MurmurTheme.Colors.textSecondary)
-            Text("Murmur")
-                .font(MurmurTheme.Fonts.largeTitle)
-                .foregroundStyle(MurmurTheme.Colors.textPrimary)
-                .accessibilityAddTraits(.isHeader)
+        HStack(alignment: .bottom) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(Greeting.text())
+                    .font(.footnote.weight(.medium))
+                    .foregroundStyle(MurmurTheme.Colors.textSecondary)
+                Text("Murmur")
+                    .font(MurmurTheme.Fonts.largeTitle)
+                    .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                    .accessibilityAddTraits(.isHeader)
+            }
+            Spacer()
+            Button { showImport = true } label: {
+                Image(systemName: "square.and.arrow.down")
+                    .font(.body.weight(.semibold))
+                    .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                    .frame(width: MurmurTheme.Metrics.minTapTarget + 2, height: MurmurTheme.Metrics.minTapTarget + 2)
+                    .background(Circle().fill(MurmurTheme.Colors.surface))
+                    .overlay(Circle().strokeBorder(MurmurTheme.Colors.border, lineWidth: MurmurTheme.Metrics.borderWidth))
+            }
+            .buttonStyle(MurmurPressStyle())
+            .accessibilityLabel("Import a file")
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -233,10 +256,21 @@ struct LibraryScreen: View {
                     Text("It’s quiet in here")
                         .font(MurmurTheme.Fonts.title)
                         .foregroundStyle(MurmurTheme.Colors.textPrimary)
-                    Text("Tap the button to record your first note.")
+                    Text("Tap the button to record your first note, or bring in a file you already have.")
                         .font(MurmurTheme.Fonts.body)
                         .foregroundStyle(MurmurTheme.Colors.textSecondary)
                         .multilineTextAlignment(.center)
+                    Button { showImport = true } label: {
+                        Label("Import a file", systemImage: "square.and.arrow.down")
+                            .font(MurmurTheme.Fonts.body.weight(.semibold))
+                            .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                            .padding(.horizontal, 18)
+                            .frame(minHeight: MurmurTheme.Metrics.minTapTarget)
+                            .background(Capsule().fill(MurmurTheme.Colors.surface))
+                            .overlay(Capsule().strokeBorder(MurmurTheme.Colors.border, lineWidth: MurmurTheme.Metrics.borderWidth))
+                    }
+                    .buttonStyle(MurmurPressStyle())
+                    .padding(.top, 4)
                     if !deps.models.isReady {
                         SecondaryButton("Download speech model", systemImage: "arrow.down.circle") {
                             route = .modelDownload

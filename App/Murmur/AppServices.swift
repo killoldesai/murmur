@@ -9,6 +9,7 @@ import MurmurWhisper
 final class AppServices {
     let models: SpeechModelManager
     let queue: TranscriptionQueue
+    let importer: ImportQueue
     let container: ModelContainer
     private let network: NetworkMonitor
     private let engines: EngineCache
@@ -27,11 +28,16 @@ final class AppServices {
         self.container = container
         self.models = models
         self.engines = engines
-        self.queue = TranscriptionQueue(
+        let queue = TranscriptionQueue(
             context: container.mainContext,
             files: .standard,
             engineProvider: { engines.current() }
         )
+        self.queue = queue
+        let importer = ImportQueue(context: container.mainContext, files: .standard)
+        // Imported files become queued notes; start transcribing as soon as one arrives.
+        importer.onNoteAdded = { queue.start() }
+        self.importer = importer
     }
 }
 
@@ -40,6 +46,7 @@ extension AppServices {
         LibraryDependencies(
             models: models,
             queue: queue,
+            importer: importer,
             files: .standard,
             makeRecorder: { AVAudioRecorderEngine() },
             makePlayer: { AVAudioPlayerEngine() }

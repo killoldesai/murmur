@@ -5,6 +5,7 @@ import MurmurCore
 struct LibraryDependencies {
     let models: SpeechModelManager
     let queue: TranscriptionQueue
+    let importer: ImportQueue
     let files: AudioFileStore
     let makeRecorder: @MainActor () -> RecorderEngine
     let makePlayer: @MainActor () -> PlayerEngine

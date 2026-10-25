@@ -28,6 +28,16 @@ targets:
         UIUserInterfaceStyle: Dark
         NSMicrophoneUsageDescription: Murmur records your voice so it can turn speech into text on your device. Audio never leaves your phone.
         # Lets a recording continue with the screen locked or the app in the background.
+        # Lets "Share → Murmur" and "Open in Murmur" offer the app for audio and video files.
+        CFBundleDocumentTypes:
+          - CFBundleTypeName: Audio
+            CFBundleTypeRole: Viewer
+            LSHandlerRank: Alternate
+            LSItemContentTypes: [public.audio]
+          - CFBundleTypeName: Video
+            CFBundleTypeRole: Viewer
+            LSHandlerRank: Alternate
+            LSItemContentTypes: [public.movie]
         UIBackgroundModes:
           - audio
         UISupportedInterfaceOrientations:

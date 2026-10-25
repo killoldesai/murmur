@@ -16,6 +16,7 @@ struct NoteScreen: View {
 
     @State private var playback: PlaybackController
     @State private var showEdit = false
+    @State private var showExport = false
     @State private var renaming = false
     @State private var titleDraft = ""
     @State private var confirmDelete = false
@@ -70,6 +71,9 @@ struct NoteScreen: View {
         .fullScreenCover(isPresented: $showEdit) {
             EditTranscriptScreen(note: note, deps: deps, playback: playback) { showEdit = false }
         }
+        .sheet(isPresented: $showExport) {
+            ExportSheet(note: note, files: deps.files) { showExport = false }
+        }
         .alert("Rename note", isPresented: $renaming) {
             TextField("Title", text: $titleDraft)
             Button("Save") { store.rename(note, to: titleDraft) }
@@ -101,6 +105,7 @@ struct NoteScreen: View {
             Spacer()
             circleButton("pencil", label: "Edit transcript") { showEdit = true }
                 .disabled(note.segments.isEmpty)
+            circleButton("square.and.arrow.up", label: "Export") { showExport = true }
             Menu {
                 Button("Rename", systemImage: "pencil") {
                     titleDraft = note.title

@@ -17,8 +17,8 @@ public struct AudioFileStore: Sendable {
 
     /// Recordings are 16 kHz mono 16-bit PCM in a CAF container: the format Whisper wants, and a
     /// CAF file stays readable even if the app is killed mid-recording (an m4a would not).
-    public func newFileName(id: UUID = UUID()) -> String {
-        "\(id.uuidString.lowercased()).caf"
+    public func newFileName(id: UUID = UUID(), ext: String = "caf") -> String {
+        "\(id.uuidString.lowercased()).\(ext)"
     }
 
     public func url(for fileName: String) -> URL {

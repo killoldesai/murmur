@@ -32,6 +32,7 @@ struct MurmurApp: App {
 ///   `-screen modelDownload` / `modelDownloading` / `modelDone`   model download screen (fake downloader)
 ///   `-screen transcribing` / `transcribingDone`   transcribing screen with sample text
 ///   `-screen library` / `libraryEmpty`   library with demo notes / first-run state
+///   `-screen import` / `export`   import queue and export sheet (demo data)
 ///   `-screen note` / `noteEdit`   note with playback running / edit transcript (demo data)
 /// With no argument the app shows the normal home screen.
 struct RootView: View {
@@ -55,6 +56,10 @@ struct RootView: View {
             DemoLibraryHost(empty: false)
         case "libraryEmpty":
             DemoLibraryHost(empty: true)
+        case "import":
+            DemoImportHost()
+        case "export":
+            DemoExportHost()
         case "note":
             DemoNoteHost(edit: false)
         case "noteEdit":
