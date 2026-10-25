@@ -6,19 +6,29 @@ public struct Waveform: View {
     let levels: [CGFloat]
     let height: CGFloat
     let color: Color
+    let spacing: CGFloat
+    let barWidth: CGFloat
 
-    public init(levels: [CGFloat], height: CGFloat = 64, color: Color = MurmurTheme.Colors.accent) {
+    public init(
+        levels: [CGFloat],
+        height: CGFloat = 64,
+        color: Color = MurmurTheme.Colors.accent,
+        spacing: CGFloat = 3,
+        barWidth: CGFloat = 4
+    ) {
         self.levels = levels
         self.height = height
         self.color = color
+        self.spacing = spacing
+        self.barWidth = barWidth
     }
 
     public var body: some View {
-        HStack(alignment: .center, spacing: 3) {
+        HStack(alignment: .center, spacing: spacing) {
             ForEach(levels.indices, id: \.self) { i in
                 Capsule()
                     .fill(color)
-                    .frame(width: 4, height: max(4, min(1, max(0, levels[i])) * height))
+                    .frame(width: barWidth, height: max(4, min(1, max(0, levels[i])) * height))
             }
         }
         .frame(height: height)

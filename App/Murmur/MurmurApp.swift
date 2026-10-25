@@ -17,10 +17,28 @@ struct MurmurApp: App {
 
     var body: some Scene {
         WindowGroup {
-            // `-gallerySection N` launch argument scrolls to section N (used by CI screenshots).
-            ComponentGallery(initialSection: UserDefaults.standard.integer(forKey: "gallerySection"))
+            RootView()
                 .preferredColorScheme(.dark)
         }
         .modelContainer(container)
+    }
+}
+
+/// Chooses the first screen. Launch arguments exist so CI can screenshot specific screens:
+///   `-screen gallery -gallerySection N`   component gallery scrolled to section N
+///   `-screen recording` / `recordingPaused`   record screen with a fake microphone
+/// With no argument the app shows the normal home screen.
+struct RootView: View {
+    var body: some View {
+        switch UserDefaults.standard.string(forKey: "screen") {
+        case "gallery":
+            ComponentGallery(initialSection: UserDefaults.standard.integer(forKey: "gallerySection"))
+        case "recording":
+            DemoRecordingHost(startPaused: false)
+        case "recordingPaused":
+            DemoRecordingHost(startPaused: true)
+        default:
+            DevHomeView()
+        }
     }
 }

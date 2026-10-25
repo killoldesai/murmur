@@ -3,8 +3,15 @@ name: CI
 on:
   push:
     branches-ignore: [ci-results]
+    paths-ignore: ['**.md', 'docs/**']      # docs-only changes don't need a build
   pull_request:
+    paths-ignore: ['**.md', 'docs/**']
   workflow_dispatch:
+
+# A newer push cancels a run that is still going, so no minutes are spent on stale commits.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: write   # lets the last step publish logs and screenshots to the ci-results branch
@@ -54,7 +61,7 @@ jobs:
             -derivedDataPath DerivedData \
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee build/xcodebuild.log | tail -60
 
-      - name: Run in simulator and screenshot each gallery section
+      - name: Run in simulator and screenshot screens
         run: |
           UDID="${{ steps.sim.outputs.udid }}"
           xcrun simctl boot "$UDID" || true
@@ -62,12 +69,17 @@ jobs:
           APP=$(find DerivedData -name Murmur.app -path "*iphonesimulator*" | head -1)
           echo "App: $APP"
           xcrun simctl install "$UDID" "$APP"
-          for n in 0 1 2 3 4 5 6 7 8; do
-            xcrun simctl launch "$UDID" app.murmur.Murmur -gallerySection $n
-            sleep 5
-            xcrun simctl io "$UDID" screenshot "build/gallery-$n.png"
+          shot() {  # shot <name> <seconds to wait> <launch arguments...>
+            NAME="$1"; WAIT="$2"; shift 2
+            xcrun simctl launch "$UDID" app.murmur.Murmur "$@"
+            sleep "$WAIT"
+            xcrun simctl io "$UDID" screenshot "build/$NAME.png"
             xcrun simctl terminate "$UDID" app.murmur.Murmur || true
-          done
+          }
+          shot home 4
+          shot recording 5 -screen recording
+          shot recording-paused 5 -screen recordingPaused
+          shot gallery-0 4 -screen gallery -gallerySection 0
 
       - name: Publish results to ci-results branch
         if: always()

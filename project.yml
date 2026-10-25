@@ -24,6 +24,10 @@ targets:
         CFBundleDisplayName: Murmur
         UILaunchScreen: {}
         UIUserInterfaceStyle: Dark
+        NSMicrophoneUsageDescription: Murmur records your voice so it can turn speech into text on your device. Audio never leaves your phone.
+        # Lets a recording continue with the screen locked or the app in the background.
+        UIBackgroundModes:
+          - audio
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
         UISupportedInterfaceOrientations~ipad:
