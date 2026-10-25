@@ -157,7 +157,8 @@ enum DemoData {
         return notes.first { $0.status == .ready }!
     }
 
-    static func dependencies(container: ModelContainer, player: DemoPlayerEngine = DemoPlayerEngine(duration: 42 * 60 + 10)) -> LibraryDependencies {
+    static func dependencies(container: ModelContainer, player given: DemoPlayerEngine? = nil) -> LibraryDependencies {
+        let player = given ?? DemoPlayerEngine(duration: 42 * 60 + 10)
         let base = FileManager.default.temporaryDirectory.appendingPathComponent("murmur-demo-lib-\(UUID().uuidString)", isDirectory: true)
         let defaults = UserDefaults(suiteName: "murmur-demo-\(UUID().uuidString)")!
         // A model folder that already exists, so the demo behaves like a user who has the model.
