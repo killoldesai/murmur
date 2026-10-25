@@ -1,0 +1,40 @@
+# XcodeGen spec. The .xcodeproj is generated (never committed):  xcodegen generate
+name: Murmur
+options:
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+packages:
+  MurmurKit:
+    path: .
+targets:
+  Murmur:
+    type: application
+    platform: iOS
+    sources:
+      - App/Murmur
+    dependencies:
+      - package: MurmurKit
+        product: MurmurUI
+      - package: MurmurKit
+        product: MurmurCore
+    info:
+      path: App/Murmur/Info.plist
+      properties:
+        CFBundleDisplayName: Murmur
+        UILaunchScreen: {}
+        UIUserInterfaceStyle: Dark
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+    settings:
+      base:
+        # Placeholder: replace with the real bundle ID from your Apple Developer account.
+        PRODUCT_BUNDLE_IDENTIFIER: app.murmur.Murmur
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SWIFT_VERSION: "5.0"
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"

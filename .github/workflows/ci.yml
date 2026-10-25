@@ -8,7 +8,7 @@ on:
 jobs:
   build-and-test:
     runs-on: macos-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
@@ -16,37 +16,53 @@ jobs:
         run: |
           xcodebuild -version
           swift --version
-          ls /Applications | grep -i xcode || true
           xcrun simctl list devices available | head -40
 
-      - name: Detect project
-        id: detect
+      - name: Test packages (MurmurCore, MurmurUI)
         run: |
-          if [ -f Package.swift ]; then echo "package=true" >> "$GITHUB_OUTPUT"; fi
-          if ls *.xcodeproj >/dev/null 2>&1; then
-            echo "xcodeproj=$(ls -d *.xcodeproj | head -1)" >> "$GITHUB_OUTPUT"
-          fi
+          mkdir -p build
+          set -o pipefail
+          swift test 2>&1 | tee build/swift-test.log | tail -60
 
-      - name: Test MurmurCore (Swift package)
-        if: steps.detect.outputs.package == 'true'
-        run: swift test
+      - name: Install XcodeGen
+        run: brew install xcodegen
 
-      - name: Build and test iOS app in simulator
-        if: steps.detect.outputs.xcodeproj != ''
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Pick an iPhone simulator
+        id: sim
+        run: |
+          UDID=$(xcrun simctl list devices available -j | python3 -c "
+          import json, sys
+          devs = json.load(sys.stdin)['devices']
+          print(next(d['udid'] for k, v in devs.items() if 'iOS' in k for d in v if 'iPhone' in d['name']))
+          ")
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+          echo "Simulator: $UDID"
+
+      - name: Build iOS app
         run: |
           set -o pipefail
-          DEVICE=$(xcrun simctl list devices available | grep -m1 "iPhone" | sed -E 's/ \([0-9A-F-]+\).*//; s/^ +//')
-          echo "Using simulator: $DEVICE"
-          xcodebuild test \
-            -project "${{ steps.detect.outputs.xcodeproj }}" \
+          xcodebuild build \
+            -project Murmur.xcodeproj \
             -scheme Murmur \
-            -destination "platform=iOS Simulator,name=$DEVICE" \
-            -resultBundlePath build/Murmur.xcresult \
-            CODE_SIGNING_ALLOWED=NO | tee build/xcodebuild.log | tail -80
+            -destination "id=${{ steps.sim.outputs.udid }}" \
+            -derivedDataPath DerivedData \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee build/xcodebuild.log | tail -60
 
-      - name: Nothing to build yet
-        if: steps.detect.outputs.package != 'true' && steps.detect.outputs.xcodeproj == ''
-        run: echo "No Package.swift or .xcodeproj yet. App code has not been started."
+      - name: Run in simulator and screenshot
+        run: |
+          UDID="${{ steps.sim.outputs.udid }}"
+          xcrun simctl boot "$UDID" || true
+          xcrun simctl bootstatus "$UDID" -b
+          APP=$(find DerivedData -name Murmur.app -path "*iphonesimulator*" | head -1)
+          echo "App: $APP"
+          xcrun simctl install "$UDID" "$APP"
+          xcrun simctl launch "$UDID" app.murmur.Murmur
+          sleep 6
+          xcrun simctl io "$UDID" screenshot build/gallery-top.png
+          xcrun simctl terminate "$UDID" app.murmur.Murmur || true
 
       - name: Upload results
         if: always()
