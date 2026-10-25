@@ -55,7 +55,7 @@ public struct SpeechModel: Identifiable, Equatable, Sendable {
 }
 
 public enum ByteText {
-    /// "0.63 GB" or "80 MB". Decimal units, as Apple shows them.
+    /// "1.60 GB" or "632 MB". Decimal units, as Apple shows them.
     public static func format(_ bytes: Int64) -> String {
         let b = Double(max(0, bytes))
         if b >= 1_000_000_000 { return String(format: "%.2f GB", b / 1_000_000_000) }

@@ -73,7 +73,8 @@ final class SpeechModelTests: XCTestCase {
     }
 
     func testByteText() {
-        XCTAssertEqual(ByteText.format(632_000_000), "0.63 GB")
+        XCTAssertEqual(ByteText.format(632_000_000), "632 MB")
+        XCTAssertEqual(ByteText.format(1_600_000_000), "1.60 GB")
         XCTAssertEqual(ByteText.format(80_000_000), "80 MB")
         XCTAssertEqual(ByteText.format(-5), "0 MB")
     }
@@ -262,7 +263,7 @@ final class TranscriptionQueueTests: XCTestCase {
         await queue.processQueued()
         XCTAssertEqual(note.status, .ready)
         XCTAssertEqual(note.segments.count, 2)
-        XCTAssertEqual(note.transcript, "Hello there. This is a test.")
+        XCTAssertEqual(note.transcript, "Hello there.\nThis is a test.")
         XCTAssertEqual(note.language, "en")
         XCTAssertEqual(queue.fraction, 1)
         XCTAssertNil(queue.currentNoteID)

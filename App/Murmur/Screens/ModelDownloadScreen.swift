@@ -3,7 +3,7 @@ import MurmurCore
 import MurmurUI
 
 /// One-time speech model download. Matches design/iphone/ModelDownload.dc.html.
-/// (The design says ≈1.6 GB for Large; the compressed Large v3 Turbo build is about 0.63 GB.)
+/// (The design says ≈1.6 GB for Large; the compressed Large v3 Turbo build is about 632 MB.)
 struct ModelDownloadScreen: View {
     @Bindable var manager: SpeechModelManager
     let onContinue: () -> Void
