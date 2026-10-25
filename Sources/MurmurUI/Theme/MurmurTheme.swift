@@ -68,6 +68,7 @@ public enum MurmurTheme {
         public static let minTapTarget: CGFloat = 44
         public static let screenPadding: CGFloat = 20
         public static let borderWidth: CGFloat = 1
+        public static let progressRingSize: CGFloat = 200
         public static let selectedBorderWidth: CGFloat = 1.5
         public static let spacingS: CGFloat = 8
         public static let spacingM: CGFloat = 12
@@ -84,6 +85,10 @@ public enum MurmurTheme {
         public static let sectionLabel = Font.caption.weight(.bold)     // use with .murmurSectionLabel()
         /// Timers use monospaced digits so they don't jitter.
         public static let timer = Font.system(size: 56, weight: .light).monospacedDigit()
+        /// Big percentage inside the transcribing ring.
+        public static let percent = Font.system(size: 50, weight: .ultraLight).monospacedDigit()
+        /// Heading under the ring (23 pt in the design).
+        public static let heading = Font.title2.weight(.semibold)
     }
 }
 

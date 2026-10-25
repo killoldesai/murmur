@@ -35,3 +35,69 @@ struct DemoRecordingHost: View {
             }
     }
 }
+
+// MARK: - Model download and transcribing demos (CI screenshots)
+
+/// Downloader for the demo: reports 42% and then waits (until cancelled), or finishes at once.
+private struct DemoDownloader: SpeechModelDownloader {
+    let finishes: Bool
+    let folder: URL
+
+    func download(_ model: SpeechModel, onProgress: @escaping @Sendable (Double) -> Void) async throws -> URL {
+        if finishes {
+            try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+            onProgress(1)
+            return folder
+        }
+        onProgress(0.42)
+        try await Task.sleep(nanoseconds: 3_600_000_000_000)
+        return folder
+    }
+}
+
+@MainActor
+struct DemoModelDownloadHost: View {
+    enum Mode { case choosing, downloading, done }
+    let mode: Mode
+    @State private var manager: SpeechModelManager
+
+    init(mode: Mode) {
+        self.mode = mode
+        let base = FileManager.default.temporaryDirectory.appendingPathComponent("murmur-demo-models-\(UUID().uuidString)", isDirectory: true)
+        let defaults = UserDefaults(suiteName: "murmur-demo-\(UUID().uuidString)")!
+        _manager = State(initialValue: SpeechModelManager(
+            downloader: DemoDownloader(finishes: mode == .done, folder: base.appendingPathComponent("demo", isDirectory: true)),
+            baseDirectory: base,
+            defaults: defaults
+        ))
+    }
+
+    var body: some View {
+        ModelDownloadScreen(manager: manager, onContinue: {})
+            .task {
+                guard mode != .choosing else { return }
+                manager.start()
+            }
+    }
+}
+
+struct DemoTranscribingScreen: View {
+    let done: Bool
+
+    private let segments = [
+        TranscriptSegment(start: 4, end: 9, text: "Okay, let’s start with the Q4 roadmap."),
+        TranscriptSegment(start: 11, end: 17, text: "The big question is Watch first or sync first."),
+        TranscriptSegment(start: 19, end: 25, text: "Watch is smaller and users keep asking for it."),
+    ]
+
+    var body: some View {
+        TranscribingScreen(
+            phase: done ? .done : .working,
+            fraction: done ? 1 : 0.45,
+            etaText: ETAEstimator.text(for: 31),
+            segments: segments,
+            onLater: {},
+            onOpen: {}
+        )
+    }
+}

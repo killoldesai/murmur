@@ -6,6 +6,7 @@ import MurmurUI
 @main
 struct MurmurApp: App {
     private let container: ModelContainer
+    private let services: AppServices
 
     init() {
         do {
@@ -13,11 +14,12 @@ struct MurmurApp: App {
         } catch {
             fatalError("Could not create the Murmur data store: \(error)")
         }
+        services = AppServices(container: container)
     }
 
     var body: some Scene {
         WindowGroup {
-            RootView()
+            RootView(services: services)
                 .preferredColorScheme(.dark)
         }
         .modelContainer(container)
@@ -27,8 +29,12 @@ struct MurmurApp: App {
 /// Chooses the first screen. Launch arguments exist so CI can screenshot specific screens:
 ///   `-screen gallery -gallerySection N`   component gallery scrolled to section N
 ///   `-screen recording` / `recordingPaused`   record screen with a fake microphone
+///   `-screen modelDownload` / `modelDownloading` / `modelDone`   model download screen (fake downloader)
+///   `-screen transcribing` / `transcribingDone`   transcribing screen with sample text
 /// With no argument the app shows the normal home screen.
 struct RootView: View {
+    let services: AppServices
+
     var body: some View {
         switch UserDefaults.standard.string(forKey: "screen") {
         case "gallery":
@@ -37,8 +43,18 @@ struct RootView: View {
             DemoRecordingHost(startPaused: false)
         case "recordingPaused":
             DemoRecordingHost(startPaused: true)
+        case "modelDownload":
+            DemoModelDownloadHost(mode: .choosing)
+        case "modelDownloading":
+            DemoModelDownloadHost(mode: .downloading)
+        case "modelDone":
+            DemoModelDownloadHost(mode: .done)
+        case "transcribing":
+            DemoTranscribingScreen(done: false)
+        case "transcribingDone":
+            DemoTranscribingScreen(done: true)
         default:
-            DevHomeView()
+            DevHomeView(services: services)
         }
     }
 }

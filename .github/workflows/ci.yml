@@ -29,10 +29,18 @@ jobs:
           { xcodebuild -version; swift --version; } | tee build/toolchain.log
           xcrun simctl list devices available | head -40
 
-      - name: Test packages (MurmurCore, MurmurUI)
+      - name: Test packages (MurmurCore, MurmurUI, MurmurWhisper)
         run: |
           set -o pipefail
           swift test 2>&1 | tee build/swift-test.log | tail -60
+
+      # Real Whisper (tiny model) transcribing speech made by macOS `say`. Needs the network and a
+      # few minutes, so it is a separate step and does not fail the build; read e2e.log.
+      - name: End-to-end transcription test (tiny model)
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          MURMUR_E2E=1 swift test --filter WhisperEndToEndTests 2>&1 | tee build/e2e.log | tail -40
 
       - name: Install XcodeGen
         run: brew install xcodegen
@@ -80,6 +88,11 @@ jobs:
           shot recording 5 -screen recording
           shot recording-paused 5 -screen recordingPaused
           shot gallery-0 4 -screen gallery -gallerySection 0
+          shot model-download 4 -screen modelDownload
+          shot model-downloading 5 -screen modelDownloading
+          shot model-done 5 -screen modelDone
+          shot transcribing 5 -screen transcribing
+          shot transcribing-done 5 -screen transcribingDone
 
       - name: Publish results to ci-results branch
         if: always()
@@ -87,7 +100,7 @@ jobs:
           rm -rf /tmp/results && mkdir /tmp/results
           cp build/*.png /tmp/results/ 2>/dev/null || true
           for f in build/*.log; do [ -f "$f" ] && tail -n 600 "$f" > "/tmp/results/$(basename "$f")"; done
-          grep -hE "error:|warning:|Executed [0-9]+ tests|with [0-9]+ failure" build/*.log > /tmp/results/summary.txt 2>/dev/null || true
+          grep -hE "error:|warning:|Executed [0-9]+ tests|with [0-9]+ failure|E2E transcript" build/*.log > /tmp/results/summary.txt 2>/dev/null || true
           echo "commit $GITHUB_SHA" >> /tmp/results/summary.txt
           cd /tmp/results
           git init -q

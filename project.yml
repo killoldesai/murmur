@@ -18,6 +18,8 @@ targets:
         product: MurmurUI
       - package: MurmurKit
         product: MurmurCore
+      - package: MurmurKit
+        product: MurmurWhisper
     info:
       path: App/Murmur/Info.plist
       properties:
