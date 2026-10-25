@@ -7,7 +7,8 @@ On-device speech-to-text app (Whisper) for iPhone, iPad, Mac and Apple Watch. US
 Design and specs are done. Coding started on the owner's go-ahead.
 
 - **Done: build step 0.** `MurmurTheme` (tokens), `MurmurMotion` (entrance, press), shared components (PrimaryButton, SecondaryButton, Chip, NoteCard, TranscriptRow, PlaybackBar, Waveform, ProgressRing, PlanCard, SettingsRow) and `ComponentGallery`, in `Sources/MurmurUI`. `MurmurCore` has `Timecode`. Unit tests pass in CI and the screenshots match the design.
-- **Next:** spec "Build order" step 1 (SwiftData models), then step 2 (AudioRecorder and the record screen).
+- **Done: build step 1.** SwiftData models in `Sources/MurmurCore/Models`: `Note`, `Folder`, `DictionaryWord`, `TranscriptSegment`, `MurmurSchema.makeContainer`. CloudKit-compatible (defaults everywhere, optional relationships). iCloud sync is off until entitlements exist. The app loads the container at launch. 14 tests pass in CI.
+- **Next:** spec "Build order" step 2 (AudioRecorder and the record screen).
 - The root screen of the app is still the component gallery. Replace it as real screens land.
 
 Project layout: `Package.swift` (MurmurCore, MurmurUI), `project.yml` (XcodeGen spec for the iOS app; the `.xcodeproj` is generated, never committed), `App/Murmur/` (app target sources).
