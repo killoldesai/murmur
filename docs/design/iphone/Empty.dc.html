@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Empty library</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes idle{0%,100%{transform:scaleY(.25)}50%{transform:scaleY(1)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes point{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+.press{transition:transform .2s cubic-bezier(.2,.8,.2,1)}
+.press:active{transform:scale(.95)!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; position: relative; overflow: hidden">
+<div style="padding: 62px 20px 0; display: flex; justify-content: space-between; align-items: flex-end; animation: rise .6s cubic-bezier(.2,.8,.2,1) both">
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 13px; color: #B9B7C8; font-weight: 500">Welcome</span><h1 style="margin: 0; font-size: 38px; font-weight: 800; letter-spacing: -0.035em">Murmur</h1></div>
+<a href="Settings.dc.html" aria-label="Settings" style="width: 46px; height: 46px; border-radius: 23px; background: #1C1C23; border: 1px solid #2A2A33; color: #F4F3F8; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg></a>
+</div>
+
+<div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; padding: 0 32px 120px">
+<div aria-hidden="true" style="width: 220px; height: 150px; border-radius: 30px; background: #1C1C23; border: 1px solid #2A2A33; display: flex; align-items: center; justify-content: center; gap: 6px; animation: rise .7s .1s cubic-bezier(.2,.8,.2,1) both">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="13">
+<span style="width: 6px; height: {{b.h}}px; border-radius: 3px; background: {{b.c}}; animation: idle 2.2s ease-in-out {{b.d}}s infinite"></span>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; animation: rise .6s .2s cubic-bezier(.2,.8,.2,1) both">
+<h2 style="margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.02em">It’s quiet in here</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #B9B7C8">Tap the button to record your first note, or bring in a file you already have.</p>
+</div>
+<a href="Import.dc.html" class="press" style="height: 44px; padding: 0 18px; border-radius: 22px; background: #1C1C23; border: 1px solid #2A2A33; color: #F4F3F8; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; text-decoration: none; animation: rise .6s .3s cubic-bezier(.2,.8,.2,1) both"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3M7 10l5 5 5-5M5 21h14"/></svg>Import a file</a>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 150px; background: #111116; border-top: 1px solid #22222A; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 8px; padding-bottom: 30px; box-sizing: border-box">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5EE0C6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="animation: point 1.4s ease-in-out infinite"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+<a href="Recording.dc.html" class="press" aria-label="Record your first note" style="width: 80px; height: 80px; border-radius: 40px; background: #5EE0C6; display: flex; align-items: center; justify-content: center; color: #06231E; text-decoration: none; animation: pulse 2.4s ease-in-out infinite">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+</a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+const hs = [14, 22, 34, 26, 46, 60, 72, 60, 46, 26, 34, 22, 14];
+const bars = hs.map((h, i) => ({ h, c: i === 6 ? '#5EE0C6' : '#3A3A46', d: (-(i * 0.15)).toFixed(2) }));
+return { bars };
+}
+}
+</script>
+</body>
+</html>

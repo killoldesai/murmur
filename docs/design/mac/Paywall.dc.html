@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mac paywall</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes pop{0%{opacity:0;transform:scale(.95)}100%{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes wave{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}
+.press{transition:background-color .25s,border-color .25s,transform .15s}
+.press:active{transform:scale(.98)!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 1280px; height: 800px; box-sizing: border-box; background: #1A1A21; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; align-items: center; justify-content: center; border-radius: 12px; overflow: hidden">
+<div role="dialog" aria-label="Murmur Pro" style="width: 820px; border-radius: 16px; background: #16161C; border: 1px solid #2A2A33; box-shadow: 0 30px 80px rgba(0,0,0,0.55); overflow: hidden; animation: pop .35s cubic-bezier(.2,.8,.2,1) both">
+<div style="height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 14px; border-bottom: 1px solid #22222A">
+<a href="Main.dc.html" aria-label="Close" style="width: 12px; height: 12px; border-radius: 6px; background: #FF5F57"></a><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 6px; background: #3A3A46"></span><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 6px; background: #3A3A46"></span>
+</div>
+<div style="padding: 32px 40px 30px; display: flex; flex-direction: column; align-items: center; gap: 24px">
+<div style="display: flex; align-items: center; gap: 20px">
+<svg width="76" height="76" viewBox="0 0 100 100" role="img" aria-label="Murmur icon" style="animation: float 4s ease-in-out infinite"><rect x="6" y="6" width="88" height="88" rx="20" fill="#15151B" stroke="#2A2A33"/><g stroke="#5EE0C6" stroke-width="6.5" stroke-linecap="round"><line x1="29" y1="30" x2="29" y2="70" style="transform-origin: 29px 50px; animation: wave 1.4s ease-in-out infinite"/><line x1="39.5" y1="37" x2="39.5" y2="61" style="transform-origin: 39.5px 50px; animation: wave 1.4s ease-in-out -.2s infinite"/><line x1="50" y1="45" x2="50" y2="54" style="transform-origin: 50px 50px; animation: wave 1.4s ease-in-out -.4s infinite"/><line x1="60.5" y1="37" x2="60.5" y2="61" style="transform-origin: 60.5px 50px; animation: wave 1.4s ease-in-out -.6s infinite"/><line x1="71" y1="30" x2="71" y2="70" style="transform-origin: 71px 50px; animation: wave 1.4s ease-in-out -.8s infinite"/></g></svg>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-size: 32px; font-weight: 800; letter-spacing: -0.03em">Murmur <span style="color: #5EE0C6">Pro</span> for Mac</h1>
+<p style="margin: 0; font-size: 15px; color: #D8D6E4">One purchase unlocks iPhone, iPad and Mac.</p>
+</div>
+</div>
+<div role="radiogroup" aria-label="Choose a plan" style="align-self: stretch; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{plans}}" as="pl" hint-placeholder-count="3">
+<div style="display: flex; animation: rise .4s {{pl.delay}}s cubic-bezier(.2,.8,.2,1) both">
+<button role="radio" aria-checked="{{pl.checked}}" class="press" onClick="{{pl.pick}}" style="flex-grow: 1; position: relative; text-align: left; font: inherit; color: inherit; display: flex; flex-direction: column; gap: 10px; padding: 20px 18px 18px; border-radius: 14px; border: 1.5px solid {{pl.border}}; background: {{pl.bg}}">
+<sc-if value="{{pl.hasBadge}}" hint-placeholder-val="{{false}}"><span style="position: absolute; top: -10px; left: 16px; height: 20px; padding: 0 8px; border-radius: 10px; background: {{pl.badgeBg}}; color: #06231E; font-size: 10px; font-weight: 800; letter-spacing: 0.06em; display: flex; align-items: center">{{pl.badge}}</span></sc-if>
+<span style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 15px; font-weight: 700">{{pl.name}}</span><span style="width: 18px; height: 18px; border-radius: 9px; border: 2px solid {{pl.ring}}; box-sizing: border-box; display: flex; align-items: center; justify-content: center"><span style="width: 8px; height: 8px; border-radius: 4px; background: #5EE0C6; transform: scale({{pl.dot}}); transition: transform .3s cubic-bezier(.2,.8,.2,1)"></span></span></span>
+<span style="font-size: 26px; font-weight: 800; font-variant-numeric: tabular-nums">{{pl.price}}</span>
+<span style="font-size: 12px; color: #B9B7C8">{{pl.sub}}</span>
+</button>
+</div>
+</sc-for>
+</div>
+<div style="align-self: stretch; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 24px; padding: 16px 18px; border-radius: 14px; background: #1C1C23; border: 1px solid #2A2A33">
+<sc-for list="{{perks}}" as="p" hint-placeholder-count="4">
+<span style="display: flex; align-items: center; gap: 10px; font-size: 13px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5EE0C6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>{{p}}</span>
+</sc-for>
+</div>
+<div style="align-self: stretch; display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; gap: 16px; font-size: 12px"><button style="border: none; background: transparent; color: #B9B7C8; font: inherit; font-size: 12px; padding: 0; min-height: 32px">Restore purchases</button><a href="#terms" style="color: #B9B7C8; display: flex; align-items: center">Terms</a><a href="#privacy" style="color: #B9B7C8; display: flex; align-items: center">Privacy</a></div>
+<button class="press" style="height: 40px; padding: 0 22px; border-radius: 10px; border: none; background: #5EE0C6; color: #06231E; font: inherit; font-size: 14px; font-weight: 800">{{cta}}</button>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+renderVals() {
+const st = this.state || {};
+const sel = st.plan || 'lifetime';
+const raw = [
+{ id: 'monthly', name: 'Monthly', sub: 'Cancel anytime', price: '$3.99', badge: '' },
+{ id: 'yearly', name: 'Yearly', sub: '$1.67/month · 7-day free trial', price: '$19.99', badge: 'BEST VALUE' },
+{ id: 'lifetime', name: 'Lifetime', sub: 'Pay once, yours forever', price: '$39.99', badge: 'NO SUBSCRIPTION' }
+];
+const plans = raw.map((p, i) => {
+const on = p.id === sel;
+return { ...p, hasBadge: !!p.badge, badgeBg: p.id === 'yearly' ? '#5EE0C6' : '#A9B4FF', checked: on ? 'true' : 'false', border: on ? '#5EE0C6' : '#2A2A33', bg: on ? '#16302B' : '#1C1C23', ring: on ? '#5EE0C6' : '#4A4A56', dot: on ? 1 : 0, delay: (0.1 + i * 0.05).toFixed(2), pick: () => this.setState({ plan: p.id }) };
+});
+const perks = ['Unlimited transcription length', 'Batch queue with drag and drop', 'Speaker labels and AI summaries', 'SRT, TXT and Markdown export'];
+const cta = sel === 'yearly' ? 'Start free trial' : sel === 'lifetime' ? 'Unlock forever · $39.99' : 'Continue · $3.99/month';
+return { plans, perks, cta };
+}
+}
+</script>
+</body>
+</html>

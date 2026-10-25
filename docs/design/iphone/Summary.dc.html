@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Murmur Summary</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#7FF2DA}a:hover{color:#B5FFF0}
+@keyframes rise{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-60px,60px) scale(1.2)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1.1)}50%{transform:translate(60px,-40px) scale(.9)}}
+@keyframes twinkle{0%,100%{transform:scale(1) rotate(0deg);opacity:1}50%{transform:scale(.7) rotate(30deg);opacity:.6}}
+@keyframes pop{0%{transform:scale(.4)}60%{transform:scale(1.2)}100%{transform:scale(1)}}
+@keyframes sheen{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.glass{background:#1C1C23;border:1px solid #2A2A33}
+.press{transition:transform .22s cubic-bezier(.2,.8,.2,1),background .3s,border-color .3s,color .3s,box-shadow .3s}
+.press:active{transform:scale(.97)!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; position: relative; overflow: hidden">
+
+<div style="position: relative; height: 100%; display: flex; flex-direction: column">
+<div style="padding: 58px 16px 0; display: flex; justify-content: space-between; align-items: center; animation: rise .6s cubic-bezier(.2,.8,.2,1) both">
+<a href="Library.dc.html" class="glass press" aria-label="Back to library" style="width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; color: #F4F3F8"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<button class="glass press" aria-label="Copy summary" style="width: 44px; height: 44px; border-radius: 22px; color: #F4F3F8; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg></button>
+</div>
+
+<div style="padding: 14px 20px 0; display: flex; flex-direction: column; gap: 14px; animation: rise .65s .05s cubic-bezier(.2,.8,.2,1) both">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.15">Product sync — Q4 roadmap</h1>
+<span style="font-size: 13px; color: #B9B7C8">Oct 25 · 42:10 · 3 speakers</span>
+</div>
+<div class="glass" role="tablist" style="display: flex; border-radius: 14px; padding: 4px; gap: 4px">
+<a href="Note.dc.html" role="tab" aria-selected="false" class="press" style="flex-grow: 1; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: #D8D6E4; text-decoration: none">Transcript</a>
+<span role="tab" aria-selected="true" style="flex-grow: 1; height: 36px; border-radius: 10px; background: #2E2E38; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; font-weight: 600"><svg width="13" height="13" viewBox="0 0 24 24" fill="#7FF2DA" aria-hidden="true" style="animation: twinkle 2.4s ease-in-out infinite"><path d="M12 2l2.2 6.3L20 10l-5.8 1.7L12 18l-2.2-6.3L4 10l5.8-1.7z"/></svg>Summary</span>
+</div>
+<div style="display: flex; gap: 8px">
+<sc-for list="{{tpls}}" as="t" hint-placeholder-count="3">
+<button class="press" onClick="{{t.pick}}" style="height: 34px; padding: 0 14px; border-radius: 17px; border: 1px solid {{t.border}}; background: {{t.bg}}; color: {{t.fg}}; box-shadow: {{t.shadow}}; font: inherit; font-size: 13px; font-weight: 600; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px)">{{t.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<div style="padding: 16px 20px 0; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; overflow: hidden">
+<div class="glass" style="position: relative; overflow: hidden; border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 8px; animation: rise .6s .14s cubic-bezier(.2,.8,.2,1) both">
+<h2 style="position: relative; margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #5EE0C6">Summary</h2>
+<p style="position: relative; margin: 0; font-size: 15px; line-height: 1.55; color: #ECEBF2">The team chose to ship the Apple Watch app before iCloud sync: it’s smaller and most requested. Sync moves to December, with a CloudKit spike starting next week.</p>
+</div>
+
+<div class="glass" style="border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 2px; animation: rise .6s .22s cubic-bezier(.2,.8,.2,1) both">
+<div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 6px">
+<h2 style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #5EE0C6">Action items</h2>
+<span style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #B9B7C8; font-variant-numeric: tabular-nums">{{doneCount}} of 3<span style="width: 44px; height: 4px; border-radius: 2px; background: #2E2E38; overflow: hidden"><span style="display: block; height: 4px; width: {{donePct}}%; background: #5EE0C6; transition: width .5s cubic-bezier(.2,.8,.2,1)"></span></span></span>
+</div>
+<sc-for list="{{items}}" as="it" hint-placeholder-count="3">
+<button class="press" onClick="{{it.toggle}}" aria-pressed="{{it.pressed}}" style="text-align: left; font: inherit; color: inherit; display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border: none; background: transparent; animation: rise .5s {{it.delay}}s cubic-bezier(.2,.8,.2,1) both">
+<span style="flex-shrink: 0; width: 24px; height: 24px; border-radius: 12px; border: 2px solid {{it.ring}}; background: {{it.fill}}; box-shadow: {{it.glow}}; display: flex; align-items: center; justify-content: center; box-sizing: border-box; transition: background .3s, border-color .3s, box-shadow .3s">
+<sc-if value="{{it.done}}" hint-placeholder-val="{{false}}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06231E" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="animation: pop .4s cubic-bezier(.2,.8,.2,1) both"><path d="M5 12l5 5L20 7"/></svg></sc-if>
+</span>
+<span style="display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 15px; line-height: 1.45; color: {{it.fg}}; text-decoration: {{it.strike}}; transition: color .3s">{{it.text}}</span>
+<span style="font-size: 12px; color: #B9B7C8">{{it.meta}}</span>
+</span>
+</button>
+</sc-for>
+</div>
+
+<div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #B9B7C8; padding: 2px 4px; animation: rise .6s .36s cubic-bezier(.2,.8,.2,1) both">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7FF2DA" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+Generated on-device with Apple Intelligence
+</div>
+</div>
+
+<div style="padding: 0 20px 32px; animation: rise .6s .42s cubic-bezier(.2,.8,.2,1) both">
+<a href="Export.dc.html" class="press" style="height: 56px; border-radius: 18px; background: #5EE0C6; color: #06231E; text-decoration: none; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>Share summary</a>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+const st = this.state || {};
+const checks = st.checks || [false, true, false];
+const tpl = st.tpl || 'Meeting';
+const tpls = ['Meeting', 'Lecture', 'Bullet points'].map((label) => {
+const on = label === tpl;
+return {
+label,
+bg: on ? '#5EE0C6' : '#1C1C23',
+fg: on ? '#06231E' : '#F4F3F8',
+border: on ? '#5EE0C6' : '#2A2A33',
+shadow: 'none',
+pick: () => this.setState({ tpl: label })
+};
+});
+const raw = [
+['Update the Q4 timeline and share it', 'Priya · by Friday'],
+['Confirm Watch app scope with design', 'Alex · this week'],
+['Start the CloudKit migration spike', 'Jordan · next week']
+];
+const items = raw.map((r, i) => {
+const done = checks[i];
+return {
+text: r[0],
+meta: r[1],
+done,
+pressed: done ? 'true' : 'false',
+ring: done ? '#5EE0C6' : '#4A4A56',
+fill: done ? '#5EE0C6' : 'transparent',
+glow: 'none',
+fg: done ? '#B9B7C8' : '#F4F3F8',
+strike: done ? 'line-through' : 'none',
+delay: (0.28 + i * 0.06).toFixed(2),
+toggle: () => {
+const next = checks.slice();
+next[i] = !next[i];
+this.setState({ checks: next });
+}
+};
+});
+const n = checks.filter(Boolean).length;
+return { tpls, items, doneCount: n, donePct: Math.round((n / 3) * 100) };
+}
+}
+</script>
+</body>
+</html>

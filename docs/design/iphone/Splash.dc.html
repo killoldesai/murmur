@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Murmur Splash</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.6)}70%{opacity:1;transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes wave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.55)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<a href="Onboard1.dc.html" aria-label="Continue to onboarding" style="width: 390px; height: 844px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; text-decoration: none; padding-bottom: 60px; position: relative">
+<div style="width: 120px; height: 120px; border-radius: 27px; background: #1C1C23; border: 1px solid #2A2A33; display: flex; align-items: center; justify-content: center; gap: 10px; animation: pop .7s cubic-bezier(.2,.8,.2,1) both">
+<span style="width: 9px; height: 56px; border-radius: 5px; background: #5EE0C6; transform-origin: center; animation: grow .5s .3s cubic-bezier(.2,.8,.2,1) both, wave 1.6s 1s ease-in-out infinite"></span>
+<span style="width: 9px; height: 34px; border-radius: 5px; background: #5EE0C6; transform-origin: center; animation: grow .5s .38s cubic-bezier(.2,.8,.2,1) both, wave 1.6s 1.15s ease-in-out infinite"></span>
+<span style="width: 9px; height: 12px; border-radius: 5px; background: #5EE0C6; transform-origin: center; animation: grow .5s .46s cubic-bezier(.2,.8,.2,1) both, wave 1.6s 1.3s ease-in-out infinite"></span>
+<span style="width: 9px; height: 34px; border-radius: 5px; background: #5EE0C6; transform-origin: center; animation: grow .5s .54s cubic-bezier(.2,.8,.2,1) both, wave 1.6s 1.45s ease-in-out infinite"></span>
+<span style="width: 9px; height: 56px; border-radius: 5px; background: #5EE0C6; transform-origin: center; animation: grow .5s .62s cubic-bezier(.2,.8,.2,1) both, wave 1.6s 1.6s ease-in-out infinite"></span>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; animation: rise .6s .7s cubic-bezier(.2,.8,.2,1) both">
+<span style="font-size: 36px; font-weight: 800; letter-spacing: -0.035em; color: #F4F3F8">Murmur</span>
+<span style="font-size: 16px; color: #B9B7C8">Private voice to text</span>
+</div>
+<span style="position: absolute; bottom: 52px; font-size: 13px; color: #8F8D9C; animation: rise .6s 1.2s cubic-bezier(.2,.8,.2,1) both">Tap to begin</span>
+</a>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

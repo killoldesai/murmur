@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Watch playback</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 208px; height: 248px; box-sizing: border-box; background: #000000; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; border-radius: 44px; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 12px 14px 14px">
+<div style="align-self: stretch; display: flex; justify-content: space-between; align-items: center; padding: 0 6px; height: 22px">
+<a href="Recent.dc.html" aria-label="Back to recent" style="display: flex; align-items: center; color: #5EE0C6; min-width: 32px; height: 22px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<span style="font-size: 14px; font-weight: 600">9:50</span>
+</div>
+<span style="margin-top: 4px; font-size: 15px; font-weight: 700; animation: rise .35s both">Onboarding idea</span>
+<span style="font-size: 11px; color: #B9B7C8">Today · 1:24</span>
+<div style="position: relative; width: 118px; height: 118px; margin-top: 10px">
+<svg width="118" height="118" viewBox="0 0 118 118" role="img" aria-label="{{aria}}" style="position: absolute; inset: 0; transform: rotate(-90deg)">
+<circle cx="59" cy="59" r="53" fill="none" stroke="#26262E" stroke-width="7"/>
+<circle cx="59" cy="59" r="53" fill="none" stroke="#5EE0C6" stroke-width="7" stroke-linecap="round" stroke-dasharray="333" stroke-dashoffset="{{offset}}" style="transition: stroke-dashoffset .5s linear"/>
+</svg>
+<button onClick="{{toggle}}" aria-label="{{playLabel}}" style="position: absolute; inset: 16px; border-radius: 43px; border: none; background: #1C1C23; color: #F4F3F8; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{playing}}" hint-placeholder-val="{{false}}"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.5"/><rect x="14" y="5" width="4" height="14" rx="1.5"/></svg></sc-if>
+<sc-if value="{{stopped}}" hint-placeholder-val="{{true}}"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10-6.5a1 1 0 0 0 0-1.8l-10-6.5A1 1 0 0 0 8 5.5z"/></svg></sc-if>
+</button>
+</div>
+<span style="margin-top: 8px; font-size: 13px; color: #B9B7C8; font-variant-numeric: tabular-nums">{{time}} / 1:24</span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":208,"height":248}}'>
+class Component extends DCLogic {
+componentWillUnmount() {
+clearInterval(this.timer);
+}
+renderVals() {
+const st = this.state || {};
+const t = st.t == null ? 19 : st.t;
+const playing = !!st.playing;
+return {
+playing, stopped: !playing,
+playLabel: playing ? 'Pause' : 'Play',
+time: Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'),
+offset: (333 * (1 - t / 84)).toFixed(1),
+aria: 'Played ' + t + ' of 84 seconds',
+toggle: () => {
+if (playing) { clearInterval(this.timer); this.setState({ playing: false }); return; }
+this.setState({ playing: true });
+clearInterval(this.timer);
+this.timer = setInterval(() => { const c = this.state && this.state.t != null ? this.state.t : 19; this.setState({ t: c >= 84 ? 0 : c + 1 }); }, 500);
+}
+};
+}
+}
+</script>
+</body>
+</html>

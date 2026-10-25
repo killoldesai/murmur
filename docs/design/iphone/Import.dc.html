@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Import</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes pop{0%{transform:scale(.4)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.press{transition:transform .2s cubic-bezier(.2,.8,.2,1),background-color .25s}
+.press:active{transform:scale(.96)!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="padding: 58px 16px 0; display: flex; align-items: center; animation: rise .5s cubic-bezier(.2,.8,.2,1) both">
+<a href="Library.dc.html" aria-label="Back to library" style="width: 44px; height: 44px; border-radius: 22px; background: #1C1C23; border: 1px solid #2A2A33; display: flex; align-items: center; justify-content: center; color: #F4F3F8"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+</div>
+<div style="padding: 14px 20px 0; display: flex; flex-direction: column; gap: 6px; animation: rise .55s .05s cubic-bezier(.2,.8,.2,1) both">
+<h1 style="margin: 0; font-size: 32px; font-weight: 800; letter-spacing: -0.03em">Import audio or video</h1>
+<p style="margin: 0; font-size: 15px; color: #B9B7C8">MP3, M4A, WAV, MP4 and MOV. Transcribed on-device.</p>
+</div>
+
+<div style="padding: 18px 20px 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{sources}}" as="s" hint-placeholder-count="3">
+<button class="press" onClick="{{addFiles}}" style="font: inherit; color: inherit; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 16px 8px; border-radius: 20px; border: 1px solid #2A2A33; background: #1C1C23; animation: rise .5s {{s.delay}}s cubic-bezier(.2,.8,.2,1) both">
+<span style="width: 44px; height: 44px; border-radius: 14px; background: {{s.color}}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111116" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{s.icon}}"/></svg></span>
+<span style="font-size: 13px; font-weight: 600; text-align: center">{{s.label}}</span>
+</button>
+</sc-for>
+</div>
+
+<div style="margin: 12px 20px 0; padding: 16px; border-radius: 20px; border: 1.5px dashed #3A3A46; display: flex; align-items: center; gap: 14px; animation: rise .5s .25s cubic-bezier(.2,.8,.2,1) both">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5EE0C6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; animation: bob 2.4s ease-in-out infinite"><path d="M12 3v13M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
+<span style="font-size: 14px; line-height: 1.45; color: #B9B7C8">Or tap <strong style="color: #F4F3F8">Share → Murmur</strong> in any app, like Voice Memos, Zoom or WhatsApp.</span>
+</div>
+
+<div style="padding: 24px 20px 0; display: flex; justify-content: space-between; align-items: baseline; animation: rise .5s .3s cubic-bezier(.2,.8,.2,1) both">
+<h2 style="margin: 0; font-size: 12px; font-weight: 700; color: #B9B7C8; letter-spacing: 0.1em; text-transform: uppercase">Queue</h2>
+<span style="font-size: 13px; color: #B9B7C8">{{queueSummary}}</span>
+</div>
+<div style="padding: 10px 20px 0; display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{queue}}" as="q" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 18px; background: #1C1C23; border: 1px solid #2A2A33; animation: rise .45s {{q.delay}}s cubic-bezier(.2,.8,.2,1) both">
+<span style="flex-shrink: 0; width: 38px; height: 38px; border-radius: 12px; background: #26262E; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: #D8D6E4; letter-spacing: 0.04em">{{q.ext}}</span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<span style="display: flex; justify-content: space-between; gap: 8px"><span style="font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{q.name}}</span><span style="font-size: 12px; color: #B9B7C8; white-space: nowrap; font-variant-numeric: tabular-nums">{{q.status}}</span></span>
+<span style="height: 5px; border-radius: 3px; background: #26262E; overflow: hidden"><span style="display: block; height: 5px; border-radius: 3px; background: #5EE0C6; width: {{q.pct}}%; transition: width .3s linear"></span></span>
+</span>
+<span style="flex-shrink: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{q.done}}" hint-placeholder-val="{{false}}"><span style="width: 24px; height: 24px; border-radius: 12px; background: #5EE0C6; display: flex; align-items: center; justify-content: center; animation: pop .4s cubic-bezier(.2,.8,.2,1) both"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06231E" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span></sc-if>
+<sc-if value="{{q.active}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="width: 20px; height: 20px; border-radius: 10px; border: 2.5px solid #3A3A46; border-top-color: #5EE0C6; box-sizing: border-box; animation: spin .9s linear infinite"></span></sc-if>
+</span>
+</div>
+</sc-for>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+componentDidMount() {
+this.setState({ prog: [100, 46, 0] });
+this.tick();
+}
+componentWillUnmount() {
+clearInterval(this.timer);
+}
+tick() {
+clearInterval(this.timer);
+this.timer = setInterval(() => {
+const p = ((this.state && this.state.prog) || []).slice();
+const i = p.findIndex((v) => v < 100);
+if (i < 0) { clearInterval(this.timer); return; }
+p[i] = Math.min(100, p[i] + 3);
+this.setState({ prog: p });
+}, 120);
+}
+renderVals() {
+const st = this.state || {};
+const files = st.files || [['MP4', 'Customer interview — Maria.mp4', '18:22'], ['M4A', 'Voice memo 14.m4a', '06:10'], ['MP3', 'Podcast ep 12 raw.mp3', '52:40']];
+const prog = st.prog || [100, 46, 0];
+const firstActive = prog.findIndex((v) => v < 100);
+const queue = files.map((f, i) => {
+const p = prog[i] || 0;
+const done = p >= 100;
+const active = i === firstActive;
+return { ext: f[0], name: f[1], pct: p, done, active, status: done ? f[2] + ' · Done' : active ? p + '%' : 'Waiting', delay: (0.34 + i * 0.05).toFixed(2) };
+});
+const doneN = prog.filter((v) => v >= 100).length;
+const sources = [
+{ label: 'Files', color: '#8FD3FF', icon: 'M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z', delay: '0.10' },
+{ label: 'Photos & videos', color: '#FFB86B', icon: 'M4 5h16v14H4zM4 15l5-5 4 4 3-3 4 4', delay: '0.15' },
+{ label: 'Voice Memos', color: '#FF8FA3', icon: 'M12 3v18M8 8v8M16 8v8M4 11v2M20 11v2', delay: '0.20' }
+];
+return {
+sources,
+queue,
+queueSummary: doneN + ' of ' + files.length + ' done',
+addFiles: () => {
+const f = files.concat([['WAV', 'Lecture recording ' + (files.length + 1) + '.wav', '41:03']]);
+const p = prog.concat([0]);
+this.setState({ files: f.slice(-4), prog: p.slice(-4) });
+this.tick();
+}
+};
+}
+}
+</script>
+</body>
+</html>

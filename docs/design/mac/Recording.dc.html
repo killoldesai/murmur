@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mac recording window</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes pop{0%{opacity:0;transform:scale(.94)}100%{opacity:1;transform:none}}
+@keyframes wave{0%,100%{transform:scaleY(.28)}50%{transform:scaleY(1)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.press{transition:background-color .2s,transform .15s}
+.press:active{transform:scale(.94)!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 1280px; height: 800px; box-sizing: border-box; background: #1A1A21; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; position: relative; overflow: hidden; border-radius: 12px">
+<div style="height: 28px; display: flex; align-items: center; gap: 18px; padding: 0 16px; background: #0E0E12; font-size: 13px">
+<span style="font-weight: 700">Murmur</span><span style="color: #D8D6E4">File</span><span style="color: #D8D6E4">Edit</span><span style="color: #D8D6E4">View</span><span style="color: #D8D6E4">Window</span><span style="color: #D8D6E4">Help</span>
+<div style="flex-grow: 1"></div>
+<span style="display: flex; align-items: center; gap: 6px; height: 22px; padding: 0 8px; border-radius: 5px; background: #26262E"><span style="width: 7px; height: 7px; border-radius: 4px; background: {{dotColor}}; animation: blink 1.2s ease-in-out infinite; animation-play-state: {{playState}}"></span><span style="font-variant-numeric: tabular-nums; font-size: 12px">{{time}}</span></span>
+<span style="color: #D8D6E4">Sun 25 Oct  9:48 PM</span>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 80px; top: 80px; width: 900px; height: 600px; border-radius: 12px; background: #111116; border: 1px solid #22222A; opacity: 0.45">
+<div style="height: 52px; border-bottom: 1px solid #22222A; background: #16161C; border-radius: 12px 12px 0 0"></div>
+<div style="display: flex; height: 548px"><div style="width: 200px; background: #16161C; border-right: 1px solid #22222A"></div><div style="flex-grow: 1; padding: 30px; display: flex; flex-direction: column; gap: 14px"><span style="height: 14px; width: 60%; border-radius: 7px; background: #26262E"></span><span style="height: 10px; width: 80%; border-radius: 5px; background: #1F1F27"></span><span style="height: 10px; width: 72%; border-radius: 5px; background: #1F1F27"></span><span style="height: 10px; width: 76%; border-radius: 5px; background: #1F1F27"></span></div></div>
+</div>
+
+<div role="dialog" aria-label="Recording" style="position: absolute; right: 120px; top: 170px; width: 440px; border-radius: 14px; background: #16161C; border: 1px solid #2A2A33; box-shadow: 0 30px 80px rgba(0,0,0,0.55); overflow: hidden; animation: pop .35s cubic-bezier(.2,.8,.2,1) both">
+<div style="height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-bottom: 1px solid #22222A">
+<span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 6px; background: #FF5F57"></span><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 6px; background: #FEBC2E"></span><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 6px; background: #3A3A46"></span>
+<span style="flex-grow: 1; text-align: center; font-size: 13px; font-weight: 600; margin-right: 52px">New recording</span>
+</div>
+<div style="padding: 24px 28px 22px; display: flex; flex-direction: column; align-items: center; gap: 18px">
+<span style="display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: {{statusColor}}"><span style="width: 7px; height: 7px; border-radius: 4px; background: {{statusColor}}; animation: blink 1.2s ease-in-out infinite; animation-play-state: {{playState}}"></span>{{statusLabel}}</span>
+<span style="font-size: 60px; font-weight: 200; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; line-height: 1">{{time}}</span>
+<div aria-hidden="true" style="display: flex; align-items: center; gap: 3px; height: 70px">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="44">
+<span style="width: 4px; border-radius: 2px; background: #5EE0C6; height: {{b.h}}px; animation: wave {{b.dur}}s ease-in-out {{b.delay}}s infinite; animation-play-state: {{b.play}}; opacity: {{b.op}}; transition: opacity .3s"></span>
+</sc-for>
+</div>
+<label style="align-self: stretch; display: flex; align-items: center; justify-content: space-between; height: 34px; padding: 0 12px; border-radius: 8px; background: #1C1C23; border: 1px solid #2A2A33; font-size: 13px">
+<span style="color: #B9B7C8">Input</span>
+<select style="border: none; background: transparent; color: #F4F3F8; font: inherit; font-size: 13px; outline: none"><option>MacBook Pro Microphone</option><option>AirPods Pro</option><option>External USB mic</option></select>
+</label>
+<div style="display: flex; align-items: center; gap: 22px">
+<button class="press" onClick="{{mark}}" aria-label="Add bookmark" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #2A2A33; background: #26262E; color: #F4F3F8; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+<a href="NoteInspector.dc.html" class="press" aria-label="Stop and transcribe" style="width: 62px; height: 62px; border-radius: 31px; background: #FF5A6E; display: flex; align-items: center; justify-content: center"><span style="width: 20px; height: 20px; border-radius: 5px; background: #FFFFFF"></span></a>
+<button class="press" onClick="{{toggle}}" aria-label="{{toggleLabel}}" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #2A2A33; background: {{toggleBg}}; color: {{toggleFg}}; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{paused}}" hint-placeholder-val="{{false}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10-6.5a1 1 0 0 0 0-1.8l-10-6.5A1 1 0 0 0 8 5.5z"/></svg></sc-if>
+<sc-if value="{{running}}" hint-placeholder-val="{{true}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.5"/><rect x="14" y="5" width="4" height="14" rx="1.5"/></svg></sc-if>
+</button>
+</div>
+<span style="font-size: 12px; color: #8F8D9C">{{marksLabel}} · ⌃⌥R to stop</span>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+componentDidMount() {
+this.setState({ secs: 768, paused: false, marks: 2 });
+this.timer = setInterval(() => { if (!this.state.paused) this.setState({ secs: (this.state.secs || 768) + 1 }); }, 1000);
+}
+componentWillUnmount() {
+clearInterval(this.timer);
+}
+renderVals() {
+const s = this.state || {};
+const paused = !!s.paused;
+const secs = s.secs || 768;
+const time = String(Math.floor(secs / 60)).padStart(2, '0') + ':' + String(secs % 60).padStart(2, '0');
+const base = [10,16,24,18,30,40,28,22,36,52,44,30,22,40,62,50,36,26,42,58,46,32];
+const hs = base.concat(base.slice().reverse());
+const play = paused ? 'paused' : 'running';
+const bars = hs.map((h, i) => ({ h, dur: (0.9 + (i % 5) * 0.13).toFixed(2), delay: (-(i * 0.06)).toFixed(2), play, op: paused ? 0.3 : 1 }));
+const m = s.marks == null ? 2 : s.marks;
+return {
+bars, time, paused, running: !paused, playState: play,
+statusLabel: paused ? 'Paused' : 'Recording',
+statusColor: paused ? '#B9B7C8' : '#FF5A6E',
+dotColor: paused ? '#B9B7C8' : '#FF5A6E',
+toggleLabel: paused ? 'Resume' : 'Pause',
+toggleBg: paused ? '#5EE0C6' : '#26262E',
+toggleFg: paused ? '#06231E' : '#F4F3F8',
+marksLabel: m + (m === 1 ? ' bookmark' : ' bookmarks'),
+toggle: () => this.setState({ paused: !paused }),
+mark: () => this.setState({ marks: m + 1 })
+};
+}
+}
+</script>
+</body>
+</html>

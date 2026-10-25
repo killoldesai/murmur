@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Murmur Note</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#7FF2DA}a:hover{color:#B5FFF0}
+@keyframes rise{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,60px) scale(1.2)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1.1)}50%{transform:translate(-60px,-40px) scale(.9)}}
+@keyframes eq{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+.glass{background:#1C1C23;border:1px solid #2A2A33}
+.press{transition:transform .22s cubic-bezier(.2,.8,.2,1),background .3s,border-color .3s,color .3s,box-shadow .3s}
+.press:active{transform:scale(.97)!important}
+.seg{transition:background .4s cubic-bezier(.2,.8,.2,1),border-color .4s,box-shadow .4s,transform .4s cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; position: relative; overflow: hidden">
+
+<div style="position: relative; height: 100%; display: flex; flex-direction: column">
+<div style="padding: 58px 16px 0; display: flex; justify-content: space-between; align-items: center; animation: rise .6s cubic-bezier(.2,.8,.2,1) both">
+<a href="Library.dc.html" class="glass press" aria-label="Back to library" style="width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; color: #F4F3F8"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<div style="display: flex; gap: 8px">
+<a href="Edit.dc.html" class="glass press" aria-label="Edit transcript" style="width: 44px; height: 44px; border-radius: 22px; color: #F4F3F8; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16zM13 7l4 4"/></svg></a>
+<a href="FindReplace.dc.html" class="glass press" aria-label="Find and replace" style="width: 44px; height: 44px; border-radius: 22px; color: #F4F3F8; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></a>
+<a href="Export.dc.html" class="glass press" aria-label="Export" style="width: 44px; height: 44px; border-radius: 22px; color: #F4F3F8; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg></a>
+</div>
+</div>
+
+<div style="padding: 14px 20px 0; display: flex; flex-direction: column; gap: 14px; animation: rise .65s .06s cubic-bezier(.2,.8,.2,1) both">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.15">Product sync — Q4 roadmap</h1>
+<span style="font-size: 13px; color: #B9B7C8">Oct 25 · 42:10 · 3 speakers</span>
+</div>
+<div class="glass" role="tablist" style="display: flex; border-radius: 14px; padding: 4px; gap: 4px">
+<span role="tab" aria-selected="true" style="flex-grow: 1; height: 36px; border-radius: 10px; background: #2E2E38; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">Transcript</span>
+<a href="Summary.dc.html" role="tab" aria-selected="false" class="press" style="flex-grow: 1; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; font-weight: 500; color: #D8D6E4; text-decoration: none"><svg width="13" height="13" viewBox="0 0 24 24" fill="#7FF2DA" aria-hidden="true"><path d="M12 2l2.2 6.3L20 10l-5.8 1.7L12 18l-2.2-6.3L4 10l5.8-1.7z"/></svg>Summary</a>
+</div>
+</div>
+
+<div style="padding: 14px 14px 0; display: flex; flex-direction: column; gap: 6px; flex-grow: 1; overflow: hidden">
+<sc-for list="{{segs}}" as="s" hint-placeholder-count="6">
+<button class="seg press" onClick="{{s.seek}}" style="text-align: left; font: inherit; color: inherit; display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; border-radius: 18px; border: 1px solid {{s.border}}; background: {{s.bg}}; animation: rise .55s {{s.delay}}s cubic-bezier(.2,.8,.2,1) both">
+<span style="display: flex; align-items: center; gap: 8px; font-size: 12px"><span style="width: 22px; height: 22px; border-radius: 11px; background: {{s.dot}}; color: #0A0A12; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center">{{s.initial}}</span><span style="font-weight: 600; color: #ECEBF2">{{s.who}}</span><span style="color: #B9B7C8; font-variant-numeric: tabular-nums">{{s.t}}</span>
+<sc-if value="{{s.on}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="margin-left: auto; display: flex; align-items: flex-end; gap: 2px; height: 12px"><span style="width: 2px; height: 12px; border-radius: 1px; background: #7FF2DA; transform-origin: bottom; animation: eq .8s ease-in-out infinite"></span><span style="width: 2px; height: 12px; border-radius: 1px; background: #7FF2DA; transform-origin: bottom; animation: eq .8s ease-in-out -.25s infinite"></span><span style="width: 2px; height: 12px; border-radius: 1px; background: #7FF2DA; transform-origin: bottom; animation: eq .8s ease-in-out -.5s infinite"></span></span></sc-if>
+</span>
+<span style="font-size: 15px; line-height: 1.5; color: {{s.fg}}; transition: color .4s">{{s.text}}</span>
+</button>
+</sc-for>
+</div>
+
+<div class="glass" style="margin: 0 12px 28px; border-radius: 28px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; animation: rise .7s .3s cubic-bezier(.2,.8,.2,1) both">
+<div style="height: 5px; border-radius: 3px; background: #2E2E38; position: relative">
+<div style="height: 5px; border-radius: 3px; background: #5EE0C6; width: {{progress}}%; transition: width .7s cubic-bezier(.2,.8,.2,1)"></div>
+<div aria-hidden="true" style="position: absolute; top: -5px; left: {{progress}}%; margin-left: -7.5px; width: 15px; height: 15px; border-radius: 8px; background: #F4F3F8; border: 3px solid #5EE0C6; box-sizing: border-box; transition: left .7s cubic-bezier(.2,.8,.2,1)"></div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center">
+<span style="font-size: 12px; color: #B9B7C8; font-variant-numeric: tabular-nums; min-width: 60px">{{curTime}}</span>
+<div style="display: flex; align-items: center; gap: 14px">
+<button class="press" onClick="{{back}}" aria-label="Back 15 seconds" style="width: 44px; height: 44px; border-radius: 22px; border: none; background: transparent; color: #F4F3F8; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4"/></svg></button>
+<button class="press" onClick="{{toggle}}" aria-label="{{playLabel}}" style="width: 58px; height: 58px; border-radius: 29px; border: none; background: #5EE0C6; color: #06231E; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{playing}}" hint-placeholder-val="{{true}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.5"/><rect x="14" y="5" width="4" height="14" rx="1.5"/></svg></sc-if>
+<sc-if value="{{stopped}}" hint-placeholder-val="{{false}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10-6.5a1 1 0 0 0 0-1.8l-10-6.5A1 1 0 0 0 8 5.5z"/></svg></sc-if>
+</button>
+<button class="press" onClick="{{fwd}}" aria-label="Forward 15 seconds" style="width: 44px; height: 44px; border-radius: 22px; border: none; background: transparent; color: #F4F3F8; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.4-5.7M20 4v4h-4"/></svg></button>
+</div>
+<button class="press" onClick="{{cycleSpeed}}" aria-label="Playback speed" style="min-width: 60px; height: 34px; border-radius: 17px; border: 1px solid #2A2A33; background: #26262E; color: #F4F3F8; font: inherit; font-size: 13px; font-weight: 700">{{speed}}×</button>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+componentDidMount() {
+this.setState({ cur: 1, playing: true, speedIdx: 0 });
+this.loop();
+}
+componentWillUnmount() {
+clearTimeout(this.timer);
+}
+loop() {
+clearTimeout(this.timer);
+const speeds = [1, 1.5, 2];
+const s = this.state || {};
+const ms = 2600 / speeds[s.speedIdx || 0];
+this.timer = setTimeout(() => {
+const st = this.state || {};
+if (st.playing) this.setState({ cur: ((st.cur || 0) + 1) % 6 });
+this.loop();
+}, ms);
+}
+renderVals() {
+const st = this.state || {};
+const cur = st.cur == null ? 1 : st.cur;
+const playing = st.playing !== false;
+const speeds = [1, 1.5, 2];
+const speed = speeds[st.speedIdx || 0];
+const people = { A: ['Alex', '#5EE0C6'], P: ['Priya', '#FFB86B'], J: ['Jordan', '#A9B4FF'] };
+const data = [
+['A', '00:04', 'Okay, let’s start with the Q4 roadmap. The big question is Watch first or sync first.'],
+['P', '00:15', 'Watch is smaller, and it’s the most requested feature in support emails.'],
+['J', '00:24', 'Sync needs CloudKit migration work. That’s at least three weeks on its own.'],
+['A', '00:33', 'Then Watch first, and we move sync to December.'],
+['P', '00:40', 'I’ll update the timeline and share it by Friday.'],
+['J', '00:47', 'I’ll start the migration spike next week so December holds.']
+];
+const segs = data.map((d, i) => {
+const on = i === cur;
+return {
+on,
+initial: d[0],
+who: people[d[0]][0],
+dot: people[d[0]][1],
+t: d[1],
+text: d[2],
+bg: on ? '#16302B' : 'transparent',
+border: on ? '#5EE0C6' : 'transparent',
+shadow: 'none',
+fg: on ? '#FFFFFF' : '#B9B7C8',
+delay: (0.12 + i * 0.05).toFixed(2),
+seek: () => this.setState({ cur: i })
+};
+});
+const secs = [4, 15, 24, 33, 40, 47][cur];
+return {
+segs,
+playing,
+stopped: !playing,
+playLabel: playing ? 'Pause' : 'Play',
+progress: [8, 22, 36, 52, 66, 82][cur],
+curTime: '00:' + String(secs).padStart(2, '0') + ' / 42:10',
+speed,
+toggle: () => this.setState({ playing: !playing }),
+back: () => this.setState({ cur: Math.max(0, cur - 1) }),
+fwd: () => this.setState({ cur: Math.min(5, cur + 1) }),
+cycleSpeed: () => { this.setState({ speedIdx: ((st.speedIdx || 0) + 1) % 3 }); setTimeout(() => this.loop(), 0); }
+};
+}
+}
+</script>
+</body>
+</html>

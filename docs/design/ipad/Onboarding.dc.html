@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>iPad Onboarding</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes wave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.55)}}
+.press{transition:transform .2s cubic-bezier(.2,.8,.2,1)}
+.press:active{transform:scale(.96)!important}
+.card{transition:transform .45s cubic-bezier(.2,.8,.2,1),background-color .35s,border-color .35s,opacity .35s}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 1180px; height: 820px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 48px; padding: 40px 80px">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center">
+<div style="width: 96px; height: 96px; border-radius: 22px; background: #15151B; border: 1px solid #2A2A33; display: flex; align-items: center; justify-content: center; gap: 8px; animation: rise .6s cubic-bezier(.2,.8,.2,1) both">
+<span style="width: 7px; height: 44px; border-radius: 4px; background: #5EE0C6; animation: grow .5s .2s cubic-bezier(.2,.8,.2,1) both, wave 1.6s 1s ease-in-out infinite"></span>
+<span style="width: 7px; height: 27px; border-radius: 4px; background: #5EE0C6; animation: grow .5s .28s cubic-bezier(.2,.8,.2,1) both, wave 1.6s 1.15s ease-in-out infinite"></span>
+<span style="width: 7px; height: 10px; border-radius: 4px; background: #5EE0C6; animation: grow .5s .36s cubic-bezier(.2,.8,.2,1) both, wave 1.6s 1.3s ease-in-out infinite"></span>
+<span style="width: 7px; height: 27px; border-radius: 4px; background: #5EE0C6; animation: grow .5s .44s cubic-bezier(.2,.8,.2,1) both, wave 1.6s 1.45s ease-in-out infinite"></span>
+<span style="width: 7px; height: 44px; border-radius: 4px; background: #5EE0C6; animation: grow .5s .52s cubic-bezier(.2,.8,.2,1) both, wave 1.6s 1.6s ease-in-out infinite"></span>
+</div>
+<h1 style="margin: 0; font-size: 44px; font-weight: 800; letter-spacing: -0.035em; animation: rise .6s .1s cubic-bezier(.2,.8,.2,1) both">Welcome to Murmur</h1>
+<p style="margin: 0; font-size: 18px; color: #B9B7C8; animation: rise .6s .18s cubic-bezier(.2,.8,.2,1) both">Private voice to text, built for your iPad.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; width: 100%; max-width: 1000px">
+<sc-for list="{{cards}}" as="c" hint-placeholder-count="3">
+<div style="display: flex; animation: rise .6s {{c.delay}}s cubic-bezier(.2,.8,.2,1) both">
+<button class="card" onClick="{{c.pick}}" style="flex-grow: 1; text-align: left; font: inherit; color: inherit; display: flex; flex-direction: column; gap: 18px; padding: 26px; border-radius: 26px; border: 1.5px solid {{c.border}}; background: {{c.bg}}; transform: translateY({{c.y}}px); opacity: {{c.op}}">
+<span style="width: 52px; height: 52px; border-radius: 16px; background: {{c.color}}; display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#111116" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{c.icon}}"/></svg></span>
+<span style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 21px; font-weight: 800; letter-spacing: -0.02em">{{c.title}}</span><span style="font-size: 15px; line-height: 1.5; color: #B9B7C8">{{c.body}}</span></span>
+</button>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; align-items: center; gap: 24px; animation: rise .6s .45s cubic-bezier(.2,.8,.2,1) both">
+<div aria-label="{{stepLabel}}" style="display: flex; gap: 6px">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="3"><span style="height: 8px; border-radius: 4px; background: {{d.color}}; width: {{d.w}}px; transition: width .35s cubic-bezier(.2,.8,.2,1), background-color .35s"></span></sc-for>
+</div>
+<sc-if value="{{notLast}}" hint-placeholder-val="{{true}}"><button class="press" onClick="{{next}}" style="height: 56px; padding: 0 34px; border-radius: 18px; border: none; background: #5EE0C6; color: #06231E; font: inherit; font-size: 17px; font-weight: 700">Continue</button></sc-if>
+<sc-if value="{{last}}" hint-placeholder-val="{{false}}"><a href="Library.dc.html" class="press" style="height: 56px; padding: 0 34px; border-radius: 18px; background: #5EE0C6; color: #06231E; font-size: 17px; font-weight: 700; display: flex; align-items: center; text-decoration: none">Get started</a></sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+renderVals() {
+const st = this.state || {};
+const step = st.step || 0;
+const raw = [
+{ title: 'Stays on your iPad', body: 'Transcribed on-device. No servers, no account, nothing uploaded.', color: '#5EE0C6', icon: 'M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4' },
+{ title: 'Works offline', body: 'Record and transcribe anywhere, in 100+ languages, even in airplane mode.', color: '#FFB86B', icon: 'M21 15.5v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0v5l-8 5v2l8-2.5V18l-2 1.5V21l3.5-1 3.5 1v-1.5L13 18v-5z' },
+{ title: 'Summaries & speakers', body: 'Know who said what, with action items generated on your device.', color: '#A9B4FF', icon: 'M12 2l2.2 6.3L20 10l-5.8 1.7L12 18l-2.2-6.3L4 10l5.8-1.7z' }
+];
+const cards = raw.map((c, i) => {
+const on = i === step;
+return { ...c, bg: on ? '#1C1C23' : '#16161C', border: on ? '#5EE0C6' : '#22222A', y: on ? -8 : 0, op: on ? 1 : 0.6, delay: (0.25 + i * 0.07).toFixed(2), pick: () => this.setState({ step: i }) };
+});
+const dots = raw.map((_, i) => ({ w: i === step ? 24 : 8, color: i === step ? '#5EE0C6' : '#3A3A46' }));
+return { cards, dots, stepLabel: 'Step ' + (step + 1) + ' of 3', last: step === 2, notLast: step !== 2, next: () => this.setState({ step: Math.min(2, step + 1) }) };
+}
+}
+</script>
+</body>
+</html>

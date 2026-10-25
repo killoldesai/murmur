@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>iPad Settings</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.press{transition:transform .2s cubic-bezier(.2,.8,.2,1),background-color .25s}
+.press:active{transform:scale(.98)!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 1180px; height: 820px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; overflow: hidden">
+<nav aria-label="Settings sections" style="width: 340px; flex-shrink: 0; background: #16161C; border-right: 1px solid #22222A; padding: 32px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; animation: rise .45s cubic-bezier(.2,.8,.2,1) both">
+<div style="display: flex; align-items: center; gap: 12px; padding: 0 4px 16px">
+<a href="Library.dc.html" aria-label="Back to library" style="width: 40px; height: 40px; border-radius: 12px; background: #1C1C23; border: 1px solid #2A2A33; color: #F4F3F8; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<h1 style="margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.03em">Settings</h1>
+</div>
+<a href="Paywall.dc.html" class="press" style="display: flex; align-items: center; gap: 12px; padding: 14px; margin-bottom: 10px; border-radius: 18px; background: #16302B; border: 1px solid #2D5A50; color: #F4F3F8; text-decoration: none">
+<span style="width: 40px; height: 40px; border-radius: 11px; background: #15151B; border: 1px solid #2A2A33; display: flex; align-items: center; justify-content: center; gap: 2px"><span style="width: 3px; height: 16px; border-radius: 2px; background: #5EE0C6"></span><span style="width: 3px; height: 10px; border-radius: 2px; background: #5EE0C6"></span><span style="width: 3px; height: 4px; border-radius: 2px; background: #5EE0C6"></span><span style="width: 3px; height: 10px; border-radius: 2px; background: #5EE0C6"></span><span style="width: 3px; height: 16px; border-radius: 2px; background: #5EE0C6"></span></span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Murmur Pro</span><span style="font-size: 13px; color: #9FDCCF">Lifetime · iPhone, iPad & Mac</span></span>
+</a>
+<sc-for list="{{sections}}" as="s" hint-placeholder-count="5">
+<button class="press" onClick="{{s.pick}}" style="text-align: left; font: inherit; color: #F4F3F8; display: flex; align-items: center; gap: 12px; height: 46px; padding: 0 12px; border-radius: 12px; border: none; background: {{s.bg}}">
+<span style="width: 28px; height: 28px; border-radius: 8px; background: {{s.color}}; display: flex; align-items: center; justify-content: center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#111116" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{s.icon}}"/></svg></span>
+<span style="font-size: 15px; font-weight: {{s.weight}}">{{s.label}}</span>
+</button>
+</sc-for>
+<span style="margin-top: auto; padding: 0 12px; font-size: 12px; color: #8F8D9C">Murmur 1.0 · Everything stays on this iPad</span>
+</nav>
+<section style="flex-grow: 1; padding: 40px 48px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 6px; animation: fadeIn .35s cubic-bezier(.2,.8,.2,1) both">
+<h2 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.03em">{{pane.title}}</h2>
+<p style="margin: 0; font-size: 15px; color: #B9B7C8">{{pane.sub}}</p>
+</div>
+<div style="max-width: 620px; border-radius: 20px; background: #1C1C23; border: 1px solid #2A2A33; overflow: hidden">
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 14px; min-height: 58px; padding: 0 18px; border-top: 1px solid {{r.divider}}; animation: fadeIn .35s {{r.delay}}s cubic-bezier(.2,.8,.2,1) both">
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; padding: 10px 0"><span style="font-size: 16px">{{r.label}}</span><sc-if value="{{r.hasHint}}" hint-placeholder-val="{{false}}"><span style="font-size: 13px; color: #B9B7C8">{{r.hint}}</span></sc-if></span>
+<sc-if value="{{r.isValue}}" hint-placeholder-val="{{true}}"><span style="display: flex; align-items: center; gap: 6px; font-size: 15px; color: #B9B7C8">{{r.value}}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8F8D9C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span></sc-if>
+<sc-if value="{{r.isToggle}}" hint-placeholder-val="{{false}}">
+<button role="switch" aria-checked="{{r.checked}}" aria-label="{{r.label}}" onClick="{{r.toggle}}" style="flex-shrink: 0; width: 51px; height: 31px; border-radius: 16px; border: none; padding: 2px; background: {{r.track}}; transition: background-color .25s; display: flex"><span style="width: 27px; height: 27px; border-radius: 14px; background: #FFFFFF; transform: translateX({{r.x}}px); transition: transform .3s cubic-bezier(.2,.8,.2,1)"></span></button>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+renderVals() {
+const st = this.state || {};
+const sel = st.sel || 'trans';
+const t = st.t || { del: false, haptics: true, drafts: true, split: true, bg: true };
+const flip = (k) => () => { const n = Object.assign({}, t); n[k] = !n[k]; this.setState({ t: n }); };
+const defs = [
+{ id: 'trans', label: 'Transcription', color: '#5EE0C6', icon: 'M4 6h16M4 12h10M4 18h7' },
+{ id: 'rec', label: 'Recording', color: '#FF8FA3', icon: 'M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0' },
+{ id: 'dict', label: 'Custom dictionary', color: '#FFB86B', icon: 'M4 4h11a4 4 0 0 1 4 4v12H8a4 4 0 0 1-4-4z' },
+{ id: 'ipad', label: 'iPad', color: '#8FD3FF', icon: 'M6 3h12v18H6zM11 18h2' },
+{ id: 'support', label: 'Support', color: '#A9B4FF', icon: 'M4 4h16v12H8l-4 4z' }
+];
+const sections = defs.map((d) => ({ ...d, bg: d.id === sel ? '#26262E' : 'transparent', weight: d.id === sel ? 600 : 400, pick: () => this.setState({ sel: d.id }) }));
+const v = (label, value, hint) => ({ label, value, hint: hint || '', hasHint: !!hint, isValue: true, isToggle: false });
+const tg = (label, key, hint) => ({ label, hint: hint || '', hasHint: !!hint, isValue: false, isToggle: true, checked: t[key] ? 'true' : 'false', track: t[key] ? '#5EE0C6' : '#3A3A46', x: t[key] ? 20 : 0, toggle: flip(key) });
+const panes = {
+trans: { title: 'Transcription', sub: 'How Murmur turns speech into text.', rows: [v('Language', 'Auto-detect'), v('Speech model', 'Large v3 Turbo', 'Best accuracy · ≈1.6 GB'), tg('Transcribe in background', 'bg', 'Keeps going when you switch apps'), v('Summary style', 'Meeting')] },
+rec: { title: 'Recording', sub: 'Audio quality and storage.', rows: [v('Audio format', 'M4A'), tg('Delete audio after transcribing', 'del', 'Keeps the text, frees storage'), tg('Auto-save drafts', 'drafts', 'Every 3 minutes'), tg('Haptics', 'haptics')] },
+dict: { title: 'Custom dictionary', sub: 'Names and terms Murmur should always spell right.', rows: [v('Words', '8'), v('Import list', 'CSV or TXT')] },
+ipad: { title: 'iPad', sub: 'Layout and multitasking.', rows: [tg('Show summary beside transcript', 'split'), v('Keyboard shortcuts', 'View all')] },
+support: { title: 'Support', sub: 'We usually reply within a day.', rows: [v('Restore purchases', ''), v('Send feedback', ''), v('Rate Murmur', '')] }
+};
+const p = panes[sel];
+const rows = p.rows.map((r, i) => Object.assign({}, r, { divider: i === 0 ? 'transparent' : '#2A2A33', delay: (0.04 + i * 0.04).toFixed(2) }));
+return { sections, pane: p, rows };
+}
+}
+</script>
+</body>
+</html>

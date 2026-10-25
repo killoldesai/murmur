@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Microphone access</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes ring{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.9);opacity:0}}
+@keyframes pop{0%{opacity:0;transform:scale(.6)}70%{opacity:1;transform:scale(1.06)}100%{transform:scale(1)}}
+.press{transition:transform .2s cubic-bezier(.2,.8,.2,1)}
+.press:active{transform:scale(.96)!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; padding: 58px 24px 40px">
+<div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px">
+<div style="position: relative; width: 132px; height: 132px; display: flex; align-items: center; justify-content: center">
+<span aria-hidden="true" style="position: absolute; inset: 0; border-radius: 66px; border: 2px solid #5EE0C6; animation: ring 2.4s cubic-bezier(.2,.8,.2,1) infinite"></span>
+<span aria-hidden="true" style="position: absolute; inset: 0; border-radius: 66px; border: 2px solid #5EE0C6; animation: ring 2.4s 1.2s cubic-bezier(.2,.8,.2,1) infinite"></span>
+<div style="width: 132px; height: 132px; border-radius: 66px; background: #5EE0C6; display: flex; align-items: center; justify-content: center; animation: pop .7s cubic-bezier(.2,.8,.2,1) both">
+<svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#06231E" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; animation: rise .6s .2s cubic-bezier(.2,.8,.2,1) both">
+<h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.03em">Allow the microphone</h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #B9B7C8; max-width: 300px">Murmur needs your mic to record. Audio is processed on this iPhone and never sent anywhere.</p>
+</div>
+<div style="align-self: stretch; display: flex; flex-direction: column; gap: 0; border-radius: 20px; background: #1C1C23; border: 1px solid #2A2A33; animation: rise .6s .3s cubic-bezier(.2,.8,.2,1) both">
+<div style="display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-bottom: 1px solid #2A2A33">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5EE0C6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/></svg>
+<span style="font-size: 15px">Only records when you tap record</span>
+</div>
+<div style="display: flex; gap: 12px; align-items: center; padding: 14px 16px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5EE0C6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18M10.6 5.1A10.9 10.9 0 0 1 21 12M5.6 8.1A11 11 0 0 0 3 12M7 13.5a6 6 0 0 1 4-4.4"/></svg>
+<span style="font-size: 15px">No network access needed to transcribe</span>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; animation: rise .6s .4s cubic-bezier(.2,.8,.2,1) both">
+<a href="ModelDownload.dc.html" class="press" style="height: 56px; border-radius: 18px; background: #5EE0C6; color: #06231E; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center; text-decoration: none">Allow microphone</a>
+<a href="ModelDownload.dc.html" style="height: 48px; display: flex; align-items: center; justify-content: center; font-size: 15px; color: #B9B7C8; text-decoration: none">Not now</a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

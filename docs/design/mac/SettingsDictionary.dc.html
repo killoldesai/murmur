@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mac settings dictionary</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes pop{0%{opacity:0;transform:scale(.96)}100%{opacity:1;transform:none}}
+@keyframes rowIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+.tab{transition:background-color .15s}
+.tab:hover{background-color:#22222A}
+.press{transition:background-color .15s,opacity .2s}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 1280px; height: 800px; box-sizing: border-box; background: #1A1A21; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; align-items: center; justify-content: center; border-radius: 12px; overflow: hidden">
+<div role="dialog" aria-label="Settings" style="width: 680px; border-radius: 14px; background: #16161C; border: 1px solid #2A2A33; box-shadow: 0 30px 80px rgba(0,0,0,0.55); overflow: hidden; animation: pop .3s cubic-bezier(.2,.8,.2,1) both">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid #22222A">
+<div style="align-self: stretch; display: flex; gap: 8px"><a href="Main.dc.html" aria-label="Close settings" style="width: 12px; height: 12px; border-radius: 6px; background: #FF5F57"></a><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 6px; background: #3A3A46"></span><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 6px; background: #3A3A46"></span></div>
+<nav aria-label="Settings tabs" style="display: flex; gap: 4px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+<a href="{{t.href}}" class="tab" style="width: 88px; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 0; border-radius: 8px; background: {{t.bg}}; color: {{t.fg}}; text-decoration: none; font-size: 11px; font-weight: 600"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{t.icon}}"/></svg>{{t.label}}</a>
+</sc-for>
+</nav>
+</div>
+<div style="padding: 22px 28px 24px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-size: 13px; line-height: 1.5; color: #B9B7C8">Murmur uses these words as hints, so names and jargon come out right. Syncs with your iPhone and iPad.</p>
+<div style="display: flex; gap: 8px">
+<label style="flex-grow: 1; display: flex"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">New word</span><input type="text" placeholder="Add a name or term" value="{{draft}}" onChange="{{onDraft}}" style="flex-grow: 1; height: 30px; padding: 0 10px; border-radius: 7px; background: #1C1C23; border: 1.5px solid #5EE0C6; color: #F4F3F8; font: inherit; font-size: 13px; outline: none"></label>
+<button class="press" onClick="{{add}}" style="height: 30px; padding: 0 14px; border-radius: 7px; border: none; background: #5EE0C6; color: #06231E; font: inherit; font-size: 13px; font-weight: 700; opacity: {{addOp}}">Add</button>
+</div>
+<div style="border-radius: 9px; border: 1px solid #2A2A33; overflow: hidden">
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 110px 130px; gap: 12px; padding: 7px 12px; background: #1C1C23; border-bottom: 1px solid #2A2A33; font-size: 11px; font-weight: 700; color: #8F8D9C"><span>Word or phrase</span><span>Type</span><span>Added</span></div>
+<div style="height: 252px; overflow: hidden">
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
+<button onClick="{{r.pick}}" style="width: 100%; text-align: left; font: inherit; color: {{r.fg}}; display: grid; grid-template-columns: minmax(0, 1fr) 110px 130px; gap: 12px; align-items: center; padding: 0 12px; height: 31px; border: none; background: {{r.bg}}; font-size: 13px; animation: rowIn .25s {{r.delay}}s both">
+<span>{{r.text}}</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 7px; height: 7px; border-radius: 4px; background: {{r.dot}}"></span>{{r.type}}</span>
+<span style="color: {{r.sub}}">{{r.when}}</span>
+</button>
+</sc-for>
+</div>
+<div style="display: flex; align-items: center; gap: 2px; padding: 4px; background: #1C1C23; border-top: 1px solid #2A2A33">
+<button aria-label="Add word" onClick="{{focusAdd}}" style="width: 26px; height: 22px; border-radius: 5px; border: none; background: transparent; color: #F4F3F8; font-size: 16px">+</button>
+<button aria-label="Remove selected word" onClick="{{remove}}" style="width: 26px; height: 22px; border-radius: 5px; border: none; background: transparent; color: #F4F3F8; font-size: 16px; opacity: {{removeOp}}">−</button>
+<span style="flex-grow: 1"></span>
+<span style="font-size: 11px; color: #8F8D9C; padding-right: 6px">{{count}}</span>
+</div>
+</div>
+<div style="display: flex; justify-content: space-between">
+<button style="height: 28px; padding: 0 12px; border-radius: 7px; background: #26262E; border: 1px solid #2E2E38; color: #F4F3F8; font: inherit; font-size: 12px; font-weight: 600">Import list…</button>
+<button style="height: 28px; padding: 0 12px; border-radius: 7px; background: #26262E; border: 1px solid #2E2E38; color: #F4F3F8; font: inherit; font-size: 12px; font-weight: 600">Export…</button>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+renderVals() {
+const st = this.state || {};
+const base = [['Priya', 'n', 'Oct 25'], ['Jordan', 'n', 'Oct 25'], ['CloudKit', 't', 'Oct 24'], ['WhisperKit', 't', 'Oct 24'], ['SwiftUI', 't', 'Oct 22'], ['Q4 OKRs', 't', 'Oct 20'], ['Dr. Okafor', 'n', 'Oct 18'], ['glycolysis', 't', 'Oct 18']];
+const words = st.words || base;
+const sel = st.sel == null ? 2 : st.sel;
+const draft = st.draft || '';
+const rows = words.map((w, i) => {
+const on = i === sel;
+return { text: w[0], type: w[1] === 'n' ? 'Name' : 'Term', dot: w[1] === 'n' ? '#FFB86B' : '#A9B4FF', when: w[2], bg: on ? '#16302B' : (i % 2 ? '#18181E' : 'transparent'), fg: '#F4F3F8', sub: on ? '#D8D6E4' : '#8F8D9C', delay: (Math.min(i, 8) * 0.02).toFixed(2), pick: () => this.setState({ sel: i }) };
+});
+return {
+rows, draft,
+count: words.length + ' words',
+addOp: draft.trim() ? 1 : 0.45,
+removeOp: sel >= 0 && sel < words.length ? 1 : 0.35,
+onDraft: (e) => this.setState({ draft: e.target.value }),
+add: () => { const v = draft.trim(); if (!v) return; this.setState({ words: [[v, /^[A-Z]/.test(v) ? 'n' : 't', 'Today']].concat(words), draft: '', sel: 0 }); },
+focusAdd: () => this.setState({ draft: draft }),
+remove: () => { if (sel < 0 || sel >= words.length) return; this.setState({ words: words.filter((_, j) => j !== sel), sel: -1 }); },
+tabs: [
+{ label: 'General', icon: 'M4 7h10M18 7h2M4 17h4M12 17h8M16 5v4M10 15v4', href: 'SettingsGeneral.dc.html', on: false },
+{ label: 'Transcription', icon: 'M4 6h16M4 12h10M4 18h7', href: '#', on: false },
+{ label: 'Dictionary', icon: 'M4 4h11a4 4 0 0 1 4 4v12H8a4 4 0 0 1-4-4zM8 8h7M8 12h5', href: 'SettingsDictionary.dc.html', on: true },
+{ label: 'Shortcuts', icon: 'M3 7h18v10H3zM7 11h1M11 11h2M16 11h1M8 14h8', href: '#', on: false },
+{ label: 'Account', icon: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0', href: 'Paywall.dc.html', on: false }
+].map((t) => ({ ...t, bg: t.on ? '#26262E' : 'transparent', fg: t.on ? '#5EE0C6' : '#B9B7C8' }))
+};
+}
+}
+</script>
+</body>
+</html>

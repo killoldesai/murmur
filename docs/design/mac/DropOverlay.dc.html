@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mac drop files</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes zone{0%,100%{border-color:#5EE0C6}50%{border-color:#2D5A50}}
+@keyframes hover1{0%,100%{transform:translate(-120px,-10px) rotate(-8deg)}50%{transform:translate(-120px,-22px) rotate(-6deg)}}
+@keyframes hover2{0%,100%{transform:translate(0,-30px) rotate(0)}50%{transform:translate(0,-44px) rotate(1deg)}}
+@keyframes hover3{0%,100%{transform:translate(120px,-10px) rotate(8deg)}50%{transform:translate(120px,-22px) rotate(6deg)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 1280px; height: 800px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden; border-radius: 12px; border: 1px solid #2A2A33; position: relative">
+<header style="height: 52px; flex-shrink: 0; display: flex; align-items: center; gap: 12px; padding: 0 14px; background: #16161C; border-bottom: 1px solid #22222A">
+<div aria-hidden="true" style="display: flex; gap: 8px; width: 206px"><span style="width: 12px; height: 12px; border-radius: 6px; background: #FF5F57"></span><span style="width: 12px; height: 12px; border-radius: 6px; background: #FEBC2E"></span><span style="width: 12px; height: 12px; border-radius: 6px; background: #28C840"></span></div>
+<span style="font-size: 14px; font-weight: 700">All notes</span>
+</header>
+<div aria-hidden="true" style="flex-grow: 1; display: flex">
+<div style="width: 220px; background: #16161C; border-right: 1px solid #22222A"></div>
+<div style="width: 320px; border-right: 1px solid #22222A; padding: 14px; display: flex; flex-direction: column; gap: 14px"><span style="height: 12px; width: 70%; border-radius: 6px; background: #22222A"></span><span style="height: 12px; width: 82%; border-radius: 6px; background: #22222A"></span><span style="height: 12px; width: 60%; border-radius: 6px; background: #22222A"></span><span style="height: 12px; width: 76%; border-radius: 6px; background: #22222A"></span></div>
+<div style="flex-grow: 1"></div>
+</div>
+
+<a href="Queue.dc.html" aria-label="Drop files to add them to the queue" style="position: absolute; inset: 52px 0 0 0; background: rgba(17,17,22,0.88); display: flex; align-items: center; justify-content: center; text-decoration: none; color: #F4F3F8; animation: fade .25s both">
+<div style="position: relative; width: 760px; height: 520px; border-radius: 28px; border: 3px dashed #5EE0C6; background: #16302B; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; animation: zone 1.6s ease-in-out infinite">
+<div aria-hidden="true" style="position: relative; width: 240px; height: 140px">
+<div style="position: absolute; left: 30px; top: 40px; width: 180px; height: 64px; border-radius: 14px; background: #26262E; border: 1px solid #3A3A46; display: flex; align-items: center; gap: 10px; padding: 0 12px; box-sizing: border-box; animation: hover1 2.4s ease-in-out infinite"><span style="width: 34px; height: 34px; border-radius: 9px; background: #8FD3FF; color: #111116; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center">MP3</span><span style="font-size: 12px; font-weight: 600">Podcast ep 12.mp3</span></div>
+<div style="position: absolute; left: 30px; top: 40px; width: 180px; height: 64px; border-radius: 14px; background: #26262E; border: 1px solid #3A3A46; display: flex; align-items: center; gap: 10px; padding: 0 12px; box-sizing: border-box; animation: hover3 2.4s ease-in-out -.6s infinite"><span style="width: 34px; height: 34px; border-radius: 9px; background: #FFB86B; color: #111116; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center">MOV</span><span style="font-size: 12px; font-weight: 600">Team offsite.mov</span></div>
+<div style="position: absolute; left: 30px; top: 40px; width: 180px; height: 64px; border-radius: 14px; background: #2E2E38; border: 1px solid #5EE0C6; display: flex; align-items: center; gap: 10px; padding: 0 12px; box-sizing: border-box; box-shadow: 0 16px 36px rgba(0,0,0,0.45); animation: hover2 2.4s ease-in-out -.3s infinite"><span style="width: 34px; height: 34px; border-radius: 9px; background: #FF8FA3; color: #111116; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center">M4A</span><span style="font-size: 12px; font-weight: 600">Interview Maria.m4a</span></div>
+<span style="position: absolute; right: 4px; top: 0; width: 30px; height: 30px; border-radius: 15px; background: #5EE0C6; color: #06231E; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center">3</span>
+</div>
+<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#5EE0C6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="animation: bob 1.4s ease-in-out infinite"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+<span style="font-size: 28px; font-weight: 800; letter-spacing: -0.02em">Drop to transcribe 3 files</span>
+<span style="font-size: 15px; color: #B9B7C8">They’ll join the queue and transcribe on this Mac, one after another.</span>
+<span style="font-size: 13px; color: #8F8D9C">MP3 · M4A · WAV · MP4 · MOV · or drop on the Dock icon</span>
+</div>
+</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

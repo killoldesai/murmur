@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>iPad Recording</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes wave{0%,100%{transform:scaleY(.28)}50%{transform:scaleY(1)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes halo{0%{transform:scale(.9);opacity:.6}100%{transform:scale(1.6);opacity:0}}
+@keyframes slideIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.press{transition:transform .2s cubic-bezier(.2,.8,.2,1),background-color .25s,color .25s}
+.press:active{transform:scale(.93)!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 1180px; height: 820px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; overflow: hidden">
+<section style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; padding: 32px 40px 44px">
+<div style="align-self: stretch; display: flex; justify-content: space-between; align-items: center; animation: rise .45s cubic-bezier(.2,.8,.2,1) both">
+<a href="Library.dc.html" class="press" style="height: 40px; padding: 0 16px; border-radius: 12px; background: #1C1C23; border: 1px solid #2A2A33; color: #F4F3F8; display: flex; align-items: center; font-size: 14px; font-weight: 600; text-decoration: none">Cancel</a>
+<span style="display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; border-radius: 17px; background: #1C1C23; border: 1px solid #2A2A33; font-size: 13px; color: #D8D6E4"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5EE0C6" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Private · Offline</span>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; animation: rise .55s .08s cubic-bezier(.2,.8,.2,1) both">
+<span style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: {{statusColor}}"><span style="width: 8px; height: 8px; border-radius: 4px; background: {{statusColor}}; animation: blink 1.2s ease-in-out infinite; animation-play-state: {{playState}}"></span>{{statusLabel}}</span>
+<span style="font-size: 96px; font-weight: 200; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; line-height: 1">{{time}}</span>
+<span style="font-size: 15px; color: #B9B7C8">New recording · Meetings</span>
+</div>
+<div aria-hidden="true" style="display: flex; align-items: center; gap: 5px; height: 150px; animation: rise .55s .16s cubic-bezier(.2,.8,.2,1) both">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="56">
+<span style="width: 5px; border-radius: 3px; background: #5EE0C6; height: {{b.h}}px; animation: wave {{b.dur}}s ease-in-out {{b.delay}}s infinite; animation-play-state: {{b.play}}; opacity: {{b.op}}; transition: opacity .4s"></span>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 36px; padding: 12px 24px; border-radius: 60px; background: #1C1C23; border: 1px solid #2A2A33; animation: rise .55s .24s cubic-bezier(.2,.8,.2,1) both">
+<button class="press" onClick="{{mark}}" aria-label="Add bookmark" style="width: 58px; height: 58px; border-radius: 29px; border: 1px solid #2A2A33; background: #26262E; color: #F4F3F8; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+<div style="position: relative; width: 84px; height: 84px">
+<span aria-hidden="true" style="position: absolute; inset: 0; border-radius: 42px; border: 2px solid #FF5A6E; animation: halo 1.8s cubic-bezier(.2,.8,.2,1) infinite; animation-play-state: {{playState}}"></span>
+<a href="Note.dc.html" class="press" aria-label="Stop and transcribe" style="position: absolute; inset: 0; border-radius: 42px; background: #FF5A6E; display: flex; align-items: center; justify-content: center"><span style="width: 26px; height: 26px; border-radius: 7px; background: #FFFFFF"></span></a>
+</div>
+<button class="press" onClick="{{toggle}}" aria-label="{{toggleLabel}}" style="width: 58px; height: 58px; border-radius: 29px; border: 1px solid #2A2A33; background: {{toggleBg}}; color: {{toggleFg}}; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{paused}}" hint-placeholder-val="{{false}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10-6.5a1 1 0 0 0 0-1.8l-10-6.5A1 1 0 0 0 8 5.5z"/></svg></sc-if>
+<sc-if value="{{running}}" hint-placeholder-val="{{true}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.5"/><rect x="14" y="5" width="4" height="14" rx="1.5"/></svg></sc-if>
+</button>
+</div>
+</section>
+
+<aside aria-label="Bookmarks" style="width: 340px; flex-shrink: 0; background: #16161C; border-left: 1px solid #22222A; padding: 32px 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; animation: slideIn .5s .12s cubic-bezier(.2,.8,.2,1) both">
+<h2 style="margin: 0; font-size: 18px; font-weight: 800">Bookmarks</h2>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #B9B7C8">Tap the bookmark button to mark a moment. Jump back to it from the transcript.</p>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{marks}}" as="m" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: #1C1C23; border: 1px solid #2A2A33; animation: rise .35s cubic-bezier(.2,.8,.2,1) both">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#FFB86B" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>
+<span style="font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums">{{m.t}}</span>
+<span style="font-size: 14px; color: #B9B7C8">{{m.label}}</span>
+</div>
+</sc-for>
+</div>
+<div style="margin-top: auto; padding: 14px; border-radius: 16px; background: #1C1C23; border: 1px solid #2A2A33; font-size: 13px; line-height: 1.5; color: #B9B7C8">Auto-saved every 3 minutes. Recording continues if you switch apps or lock the screen.</div>
+</aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+componentDidMount() {
+this.setState({ secs: 768, paused: false, marks: [['04:12', 'Decision'], ['09:30', 'Action item']] });
+this.timer = setInterval(() => {
+if (!this.state.paused) this.setState({ secs: (this.state.secs || 768) + 1 });
+}, 1000);
+}
+componentWillUnmount() {
+clearInterval(this.timer);
+}
+renderVals() {
+const s = this.state || {};
+const paused = !!s.paused;
+const secs = s.secs || 768;
+const fmt = (x) => String(Math.floor(x / 60)).padStart(2, '0') + ':' + String(x % 60).padStart(2, '0');
+const base = [14,22,34,26,44,58,40,30,52,74,62,42,30,56,90,70,50,36,60,84,66,46,32,54,72,56,38,26];
+const hs = base.concat(base.slice().reverse()).map((h) => Math.round(h * 1.4));
+const play = paused ? 'paused' : 'running';
+const bars = hs.map((h, i) => ({ h, dur: (0.9 + (i % 5) * 0.13).toFixed(2), delay: (-(i * 0.06)).toFixed(2), play, op: paused ? 0.3 : 1 }));
+const marks = (s.marks || []).map((m) => ({ t: m[0], label: m[1] }));
+return {
+bars, marks,
+time: fmt(secs),
+paused, running: !paused, playState: play,
+statusLabel: paused ? 'Paused' : 'Recording',
+statusColor: paused ? '#B9B7C8' : '#FF5A6E',
+toggleLabel: paused ? 'Resume' : 'Pause',
+toggleBg: paused ? '#5EE0C6' : '#26262E',
+toggleFg: paused ? '#06231E' : '#F4F3F8',
+toggle: () => this.setState({ paused: !paused }),
+mark: () => this.setState({ marks: (s.marks || []).concat([[fmt(secs), 'Bookmark']]).slice(-6) })
+};
+}
+}
+</script>
+</body>
+</html>

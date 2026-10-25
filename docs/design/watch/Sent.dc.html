@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Watch saved and sending</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes pop{0%{transform:scale(.3);opacity:0}70%{transform:scale(1.12);opacity:1}100%{transform:scale(1)}}
+@keyframes draw{from{stroke-dashoffset:30}to{stroke-dashoffset:0}}
+@keyframes fly{0%{transform:translateX(-14px);opacity:0}30%,70%{opacity:1}100%{transform:translateX(14px);opacity:0}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 208px; height: 248px; box-sizing: border-box; background: #000000; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; border-radius: 44px; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 12px 14px 14px">
+<div style="align-self: stretch; display: flex; justify-content: flex-end; padding: 0 6px; height: 22px; align-items: center"><span style="font-size: 14px; font-weight: 600">9:49</span></div>
+<div style="width: 70px; height: 70px; margin-top: 8px; border-radius: 35px; background: #5EE0C6; display: flex; align-items: center; justify-content: center; animation: pop .5s cubic-bezier(.2,.8,.2,1) both">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#06231E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-dasharray="30" style="animation: draw .4s .35s ease-out both"/></svg>
+</div>
+<span style="margin-top: 10px; font-size: 18px; font-weight: 700; animation: rise .4s .3s both">Saved · 0:58</span>
+<div style="margin-top: 8px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: {{statusColor}}; animation: rise .4s .4s both">
+<sc-if value="{{sending}}" hint-placeholder-val="{{true}}"><span aria-hidden="true" style="position: relative; width: 28px; height: 14px; overflow: hidden"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5EE0C6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 7px; animation: fly 1s ease-in-out infinite"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></sc-if>
+{{status}}
+</div>
+<div style="margin-top: 8px; width: 140px; height: 4px; border-radius: 2px; background: #26262E; overflow: hidden"><div style="height: 4px; background: #5EE0C6; width: {{pct}}%; transition: width .25s linear"></div></div>
+<a href="Home.dc.html" style="margin-top: auto; align-self: stretch; height: 44px; border-radius: 22px; background: #1C1C23; color: #F4F3F8; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; text-decoration: none">Done</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":208,"height":248}}'>
+class Component extends DCLogic {
+componentDidMount() {
+this.setState({ p: 0 });
+this.timer = setInterval(() => { const c = (this.state && this.state.p) || 0; if (c >= 100) { clearInterval(this.timer); return; } this.setState({ p: Math.min(100, c + 5) }); }, 120);
+}
+componentWillUnmount() {
+clearInterval(this.timer);
+}
+renderVals() {
+const p = (this.state && this.state.p) || 0;
+const done = p >= 100;
+return { pct: p, sending: !done, status: done ? 'On iPhone · transcribing' : 'Sending to iPhone…', statusColor: done ? '#5EE0C6' : '#B9B7C8' };
+}
+}
+</script>
+</body>
+</html>

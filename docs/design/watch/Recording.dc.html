@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Watch recording</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes wave{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 208px; height: 248px; box-sizing: border-box; background: #000000; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; border-radius: 44px; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 12px 14px 14px">
+<div style="align-self: stretch; display: flex; justify-content: space-between; align-items: center; padding: 0 6px; height: 22px">
+<span style="display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 700; color: {{statusColor}}"><span style="width: 6px; height: 6px; border-radius: 3px; background: {{statusColor}}; animation: blink 1.2s ease-in-out infinite; animation-play-state: {{playState}}"></span>{{statusLabel}}</span>
+<span style="font-size: 14px; font-weight: 600">9:48</span>
+</div>
+<span style="margin-top: 8px; font-size: 44px; font-weight: 300; letter-spacing: -0.03em; font-variant-numeric: tabular-nums">{{time}}</span>
+<div aria-hidden="true" style="display: flex; align-items: center; gap: 3px; height: 46px">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="18"><span style="width: 4px; border-radius: 2px; background: #5EE0C6; height: {{b.h}}px; animation: wave {{b.dur}}s ease-in-out {{b.delay}}s infinite; animation-play-state: {{b.play}}; opacity: {{b.op}}"></span></sc-for>
+</div>
+<div style="margin-top: auto; align-self: stretch; display: flex; gap: 8px">
+<button onClick="{{toggle}}" aria-label="{{toggleLabel}}" style="flex-grow: 1; height: 54px; border-radius: 27px; border: none; background: #26262E; color: #F4F3F8; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{paused}}" hint-placeholder-val="{{false}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10-6.5a1 1 0 0 0 0-1.8l-10-6.5A1 1 0 0 0 8 5.5z"/></svg></sc-if>
+<sc-if value="{{running}}" hint-placeholder-val="{{true}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.5"/><rect x="14" y="5" width="4" height="14" rx="1.5"/></svg></sc-if>
+</button>
+<a href="Sent.dc.html" aria-label="Stop and save" style="flex-grow: 1; height: 54px; border-radius: 27px; background: #FF5A6E; display: flex; align-items: center; justify-content: center"><span style="width: 18px; height: 18px; border-radius: 5px; background: #FFFFFF"></span></a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":208,"height":248}}'>
+class Component extends DCLogic {
+componentDidMount() {
+this.setState({ secs: 42, paused: false });
+this.timer = setInterval(() => { if (!this.state.paused) this.setState({ secs: (this.state.secs || 42) + 1 }); }, 1000);
+}
+componentWillUnmount() {
+clearInterval(this.timer);
+}
+renderVals() {
+const s = this.state || {};
+const paused = !!s.paused;
+const secs = s.secs || 42;
+const play = paused ? 'paused' : 'running';
+const hs = [10, 18, 28, 20, 34, 42, 30, 22, 38, 44, 32, 24, 36, 26, 18, 30, 20, 12];
+const bars = hs.map((h, i) => ({ h, dur: (0.8 + (i % 4) * 0.15).toFixed(2), delay: (-(i * 0.07)).toFixed(2), play, op: paused ? 0.3 : 1 }));
+return {
+bars,
+time: Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0'),
+paused, running: !paused, playState: play,
+statusLabel: paused ? 'Paused' : 'REC',
+statusColor: paused ? '#B9B7C8' : '#FF5A6E',
+toggleLabel: paused ? 'Resume' : 'Pause',
+toggle: () => this.setState({ paused: !paused })
+};
+}
+}
+</script>
+</body>
+</html>

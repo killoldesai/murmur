@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Custom dictionary</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.6)}70%{opacity:1;transform:scale(1.08)}100%{transform:scale(1)}}
+.press{transition:transform .2s cubic-bezier(.2,.8,.2,1),background-color .25s,color .25s,opacity .25s}
+.press:active{transform:scale(.95)!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="padding: 58px 16px 0; display: flex; align-items: center; gap: 8px; animation: rise .5s cubic-bezier(.2,.8,.2,1) both">
+<a href="Settings.dc.html" aria-label="Back to settings" style="width: 44px; height: 44px; border-radius: 22px; background: #1C1C23; border: 1px solid #2A2A33; display: flex; align-items: center; justify-content: center; color: #F4F3F8"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+</div>
+<div style="padding: 14px 20px 0; display: flex; flex-direction: column; gap: 6px; animation: rise .55s .05s cubic-bezier(.2,.8,.2,1) both">
+<h1 style="margin: 0; font-size: 32px; font-weight: 800; letter-spacing: -0.03em">Custom dictionary</h1>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #B9B7C8">Add names, jargon and acronyms so Murmur spells them right every time.</p>
+</div>
+
+<div style="padding: 18px 20px 0; display: flex; gap: 8px; animation: rise .55s .1s cubic-bezier(.2,.8,.2,1) both">
+<label style="flex-grow: 1; display: flex; align-items: center; height: 50px; padding: 0 14px; border-radius: 16px; background: #1C1C23; border: 1.5px solid #5EE0C6">
+<input type="text" aria-label="New word" placeholder="Add a word or phrase" value="{{draft}}" onChange="{{onDraft}}" style="flex-grow: 1; min-width: 0; border: none; background: transparent; color: #F4F3F8; font: inherit; font-size: 16px; outline: none">
+</label>
+<button class="press" onClick="{{add}}" style="height: 50px; padding: 0 18px; border-radius: 16px; border: none; background: #5EE0C6; color: #06231E; font: inherit; font-size: 15px; font-weight: 700; opacity: {{addOp}}">Add</button>
+</div>
+
+<div style="padding: 22px 20px 0; display: flex; justify-content: space-between; align-items: baseline; animation: rise .55s .14s cubic-bezier(.2,.8,.2,1) both">
+<h2 style="margin: 0; font-size: 12px; font-weight: 700; color: #B9B7C8; letter-spacing: 0.1em; text-transform: uppercase">Your words</h2>
+<span style="font-size: 13px; color: #B9B7C8">{{count}}</span>
+</div>
+<div style="padding: 12px 20px 0; display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{words}}" as="w" hint-placeholder-count="8">
+<span style="display: flex; align-items: center; gap: 4px; height: 40px; padding: 0 4px 0 14px; border-radius: 20px; background: #1C1C23; border: 1px solid #2A2A33; font-size: 15px; animation: pop .4s {{w.delay}}s cubic-bezier(.2,.8,.2,1) both">
+<span style="width: 8px; height: 8px; border-radius: 4px; background: {{w.color}}; margin-right: 4px"></span>{{w.text}}
+<button class="press" onClick="{{w.remove}}" aria-label="{{w.removeLabel}}" style="width: 32px; height: 32px; border-radius: 16px; border: none; background: transparent; color: #8F8D9C; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</span>
+</sc-for>
+</div>
+
+<div style="margin: auto 20px 34px; display: flex; gap: 14px; padding: 16px; border-radius: 20px; background: #1C1C23; border: 1px solid #2A2A33; animation: rise .55s .3s cubic-bezier(.2,.8,.2,1) both">
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #B9B7C8">
+<span style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 4px; background: #FFB86B; margin-top: 5px"></span>Names</span>
+<span style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 4px; background: #A9B4FF; margin-top: 5px"></span>Terms</span>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 1.5; color: #B9B7C8">Words apply to new transcriptions. Use Find & replace to fix older notes.</p>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+const st = this.state || {};
+const base = [['Priya', 'n'], ['Jordan', 'n'], ['CloudKit', 't'], ['WhisperKit', 't'], ['SwiftUI', 't'], ['Q4 OKRs', 't'], ['Dr. Okafor', 'n'], ['glycolysis', 't']];
+const words = st.words || base;
+const draft = st.draft || '';
+const list = words.map((w, i) => ({
+text: w[0],
+color: w[1] === 'n' ? '#FFB86B' : '#A9B4FF',
+delay: (0.18 + Math.min(i, 8) * 0.03).toFixed(2),
+removeLabel: 'Remove ' + w[0],
+remove: () => this.setState({ words: words.filter((_, j) => j !== i) })
+}));
+return {
+words: list,
+count: words.length + ' words',
+draft,
+addOp: draft.trim() ? 1 : 0.45,
+onDraft: (e) => this.setState({ draft: e.target.value }),
+add: () => {
+const v = draft.trim();
+if (!v) return;
+const isName = /^[A-Z]/.test(v);
+this.setState({ words: [[v, isName ? 'n' : 't']].concat(words), draft: '' });
+}
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Export</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes sheet{from{transform:translateY(100%)}to{transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.press{transition:transform .2s cubic-bezier(.2,.8,.2,1),background-color .25s,border-color .25s}
+.press:active{transform:scale(.96)!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; position: relative; overflow: hidden">
+<div aria-hidden="true" style="padding: 112px 20px 0; display: flex; flex-direction: column; gap: 6px; transform: scale(.94); transform-origin: top center">
+<span style="font-size: 28px; font-weight: 800; letter-spacing: -0.03em">Product sync — Q4 roadmap</span>
+<span style="font-size: 13px; color: #B9B7C8">Oct 25 · 42:10 · 3 speakers</span>
+</div>
+<div style="position: absolute; inset: 0; background: rgba(0,0,0,0.6); animation: fade .3s both"></div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; background: #1C1C23; border-top: 1px solid #2A2A33; border-radius: 30px 30px 0 0; padding: 12px 20px 34px; display: flex; flex-direction: column; gap: 18px; animation: sheet .45s cubic-bezier(.2,.8,.2,1) both">
+<span style="align-self: center; width: 40px; height: 5px; border-radius: 3px; background: #3A3A46"></span>
+<div style="display: flex; justify-content: space-between; align-items: center">
+<h2 style="margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.02em">Export</h2>
+<a href="Note.dc.html" aria-label="Close" style="width: 36px; height: 36px; border-radius: 18px; background: #26262E; color: #B9B7C8; display: flex; align-items: center; justify-content: center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></a>
+</div>
+
+<div role="radiogroup" aria-label="Format" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{formats}}" as="f" hint-placeholder-count="4">
+<button role="radio" aria-checked="{{f.checked}}" class="press" onClick="{{f.pick}}" style="text-align: left; font: inherit; color: inherit; display: flex; flex-direction: column; gap: 12px; padding: 14px; border-radius: 18px; border: 1.5px solid {{f.border}}; background: {{f.bg}}; animation: rise .4s {{f.delay}}s cubic-bezier(.2,.8,.2,1) both">
+<span style="width: 36px; height: 36px; border-radius: 11px; background: {{f.tile}}; color: {{f.tileFg}}; display: flex; align-items: center; justify-content: center; transition: background-color .25s"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{f.icon}}"/></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">{{f.name}}</span><span style="font-size: 12px; color: #B9B7C8">{{f.ext}}</span></span>
+</button>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-direction: column; border-radius: 18px; background: #111116; border: 1px solid #2A2A33">
+<sc-for list="{{opts}}" as="o" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-top: 1px solid {{o.divider}}; opacity: {{o.op}}; transition: opacity .25s">
+<span style="font-size: 15px">{{o.label}}</span>
+<button role="switch" aria-checked="{{o.checked}}" aria-label="{{o.label}}" onClick="{{o.toggle}}" style="flex-shrink: 0; width: 51px; height: 31px; border-radius: 16px; border: none; padding: 2px; background: {{o.track}}; transition: background-color .25s; display: flex">
+<span style="width: 27px; height: 27px; border-radius: 14px; background: #FFFFFF; transform: translateX({{o.x}}px); transition: transform .3s cubic-bezier(.2,.8,.2,1)"></span>
+</button>
+</div>
+</sc-for>
+</div>
+
+<button class="press" style="height: 56px; border-radius: 18px; border: none; background: #5EE0C6; color: #06231E; font: inherit; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>{{cta}}</button>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+const st = this.state || {};
+const sel = st.fmt || 'txt';
+const ops = st.ops || { speakers: true, times: false, summary: true };
+const raw = [
+{ id: 'txt', name: 'Text', ext: '.txt file', icon: 'M6 3h9l5 5v13H6zM14 3v6h6M9 13h8M9 17h6' },
+{ id: 'srt', name: 'Subtitles', ext: '.srt for video', icon: 'M3 6h18v12H3zM7 14h4M13 14h4M7 10h10' },
+{ id: 'm4a', name: 'Audio', ext: '.m4a recording', icon: 'M9 18V5l11-2v13M9 18a3 3 0 1 1-3-3 3 3 0 0 1 3 3zM20 16a3 3 0 1 1-3-3 3 3 0 0 1 3 3z' },
+{ id: 'copy', name: 'Copy text', ext: 'To clipboard', icon: 'M9 9h11v11H9zM5 15V4h11' }
+];
+const formats = raw.map((f, i) => {
+const on = f.id === sel;
+return { ...f, checked: on ? 'true' : 'false', border: on ? '#5EE0C6' : '#2A2A33', bg: on ? '#16302B' : '#111116', tile: on ? '#5EE0C6' : '#26262E', tileFg: on ? '#06231E' : '#F4F3F8', delay: (0.15 + i * 0.05).toFixed(2), pick: () => this.setState({ fmt: f.id }) };
+});
+const textual = sel !== 'm4a';
+const defs = [['speakers', 'Speaker labels'], ['times', 'Timestamps'], ['summary', 'Include summary']];
+const opts = defs.map((d, i) => {
+const on = ops[d[0]] && textual;
+return {
+label: d[1],
+checked: on ? 'true' : 'false',
+track: on ? '#5EE0C6' : '#3A3A46',
+x: on ? 20 : 0,
+op: textual ? 1 : 0.4,
+divider: i === 0 ? 'transparent' : '#2A2A33',
+toggle: () => { if (!textual) return; const n = Object.assign({}, ops); n[d[0]] = !n[d[0]]; this.setState({ ops: n }); }
+};
+});
+const ctas = { txt: 'Share .txt', srt: 'Share .srt', m4a: 'Share audio', copy: 'Copy to clipboard' };
+return { formats, opts, cta: ctas[sel] };
+}
+}
+</script>
+</body>
+</html>

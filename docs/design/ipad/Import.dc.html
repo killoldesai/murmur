@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>iPad Import</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes drag{0%{transform:translate(-260px,-150px) rotate(-6deg);opacity:0}15%{opacity:1}70%{transform:translate(0,0) rotate(3deg);opacity:1}85%,100%{transform:translate(0,10px) scale(.6);opacity:0}}
+@keyframes zone{0%,60%,100%{border-color:#3A3A46;background-color:#16161C}70%,85%{border-color:#5EE0C6;background-color:#16302B}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pop{0%{transform:scale(.4)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+.press{transition:transform .2s cubic-bezier(.2,.8,.2,1)}
+.press:active{transform:scale(.96)!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 1180px; height: 820px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; overflow: hidden">
+<section style="flex-grow: 1; display: flex; flex-direction: column; padding: 32px 36px 36px; gap: 22px">
+<div style="display: flex; justify-content: space-between; align-items: center; animation: rise .45s cubic-bezier(.2,.8,.2,1) both">
+<div style="display: flex; align-items: center; gap: 14px">
+<a href="Library.dc.html" aria-label="Back to library" style="width: 42px; height: 42px; border-radius: 12px; background: #1C1C23; border: 1px solid #2A2A33; color: #F4F3F8; display: flex; align-items: center; justify-content: center"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<h1 style="margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.03em">Import audio or video</h1>
+</div>
+<div style="display: flex; gap: 8px">
+<button class="press" onClick="{{add}}" style="height: 42px; padding: 0 16px; border-radius: 12px; background: #1C1C23; border: 1px solid #2A2A33; color: #F4F3F8; font: inherit; font-size: 14px; font-weight: 600">Browse Files</button>
+<button class="press" onClick="{{add}}" style="height: 42px; padding: 0 16px; border-radius: 12px; background: #1C1C23; border: 1px solid #2A2A33; color: #F4F3F8; font: inherit; font-size: 14px; font-weight: 600">Photos & videos</button>
+</div>
+</div>
+<div style="position: relative; flex-grow: 1; border-radius: 28px; border: 2px dashed #3A3A46; background: #16161C; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; animation: zone 4s ease-in-out infinite">
+<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#5EE0C6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="animation: bob 2.4s ease-in-out infinite"><path d="M12 15V3M7 10l5 5 5-5M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+<span style="font-size: 22px; font-weight: 700">Drop files here</span>
+<span style="font-size: 15px; color: #B9B7C8; text-align: center; max-width: 420px; line-height: 1.5">Drag from Files or any app in Split View. Drop several at once and Murmur queues them.</span>
+<span style="font-size: 13px; color: #8F8D9C">MP3 · M4A · WAV · MP4 · MOV</span>
+<div aria-hidden="true" style="position: absolute; left: 50%; top: 50%; margin: -30px 0 0 -120px; width: 240px; height: 60px; border-radius: 16px; background: #26262E; border: 1px solid #3A3A46; box-shadow: 0 16px 40px rgba(0,0,0,0.45); display: flex; align-items: center; gap: 12px; padding: 0 14px; box-sizing: border-box; animation: drag 4s cubic-bezier(.4,0,.2,1) infinite">
+<span style="width: 36px; height: 36px; border-radius: 10px; background: #FFB86B; color: #111116; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center">MOV</span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Team offsite.mov</span><span style="font-size: 12px; color: #B9B7C8">1.2 GB · 48:10</span></span>
+</div>
+</div>
+</section>
+<aside aria-label="Queue" style="width: 360px; flex-shrink: 0; background: #16161C; border-left: 1px solid #22222A; padding: 32px 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><h2 style="margin: 0; font-size: 18px; font-weight: 800">Queue</h2><span style="font-size: 13px; color: #B9B7C8">{{summary}}</span></div>
+<sc-for list="{{queue}}" as="q" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; background: #1C1C23; border: 1px solid #2A2A33; animation: rise .4s {{q.delay}}s cubic-bezier(.2,.8,.2,1) both">
+<span style="flex-shrink: 0; width: 38px; height: 38px; border-radius: 11px; background: #26262E; color: #D8D6E4; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center">{{q.ext}}</span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<span style="display: flex; justify-content: space-between; gap: 8px"><span style="font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{q.name}}</span><span style="font-size: 12px; color: #B9B7C8; white-space: nowrap">{{q.status}}</span></span>
+<span style="height: 5px; border-radius: 3px; background: #26262E; overflow: hidden"><span style="display: block; height: 5px; background: #5EE0C6; border-radius: 3px; width: {{q.pct}}%; transition: width .3s linear"></span></span>
+</span>
+<span style="flex-shrink: 0; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{q.done}}" hint-placeholder-val="{{false}}"><span style="width: 22px; height: 22px; border-radius: 11px; background: #5EE0C6; display: flex; align-items: center; justify-content: center; animation: pop .35s cubic-bezier(.2,.8,.2,1) both"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#06231E" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span></sc-if>
+<sc-if value="{{q.active}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="width: 18px; height: 18px; border-radius: 9px; border: 2.5px solid #3A3A46; border-top-color: #5EE0C6; box-sizing: border-box; animation: spin .9s linear infinite"></span></sc-if>
+</span>
+</div>
+</sc-for>
+<div style="margin-top: auto; padding: 14px; border-radius: 16px; background: #1C1C23; border: 1px solid #2A2A33; font-size: 13px; line-height: 1.5; color: #B9B7C8">Files transcribe one at a time on this iPad. You can keep using Murmur while the queue runs.</div>
+</aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+componentDidMount() {
+this.setState({ prog: [100, 38, 0] });
+this.tick();
+}
+componentWillUnmount() {
+clearInterval(this.timer);
+}
+tick() {
+clearInterval(this.timer);
+this.timer = setInterval(() => {
+const p = ((this.state && this.state.prog) || []).slice();
+const i = p.findIndex((v) => v < 100);
+if (i < 0) { clearInterval(this.timer); return; }
+p[i] = Math.min(100, p[i] + 2);
+this.setState({ prog: p });
+}, 120);
+}
+renderVals() {
+const st = this.state || {};
+const files = st.files || [['MP3', 'Podcast ep 12 raw.mp3', '52:40'], ['MOV', 'Team offsite.mov', '48:10'], ['M4A', 'Voice memo 14.m4a', '06:10']];
+const prog = st.prog || [100, 38, 0];
+const act = prog.findIndex((v) => v < 100);
+const queue = files.map((f, i) => {
+const p = prog[i] || 0;
+return { ext: f[0], name: f[1], pct: p, done: p >= 100, active: i === act, status: p >= 100 ? f[2] + ' · Done' : i === act ? p + '%' : 'Waiting', delay: (0.1 + i * 0.05).toFixed(2) };
+});
+return {
+queue,
+summary: prog.filter((v) => v >= 100).length + ' of ' + files.length + ' done',
+add: () => {
+this.setState({ files: files.concat([['WAV', 'Lecture ' + (files.length + 1) + '.wav', '41:03']]).slice(-6), prog: prog.concat([0]).slice(-6) });
+this.tick();
+}
+};
+}
+}
+</script>
+</body>
+</html>

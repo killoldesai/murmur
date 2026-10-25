@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Search</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes caret{0%,49%{opacity:1}50%,100%{opacity:0}}
+.press{transition:transform .2s cubic-bezier(.2,.8,.2,1),background-color .25s,color .25s,border-color .25s}
+.press:active{transform:scale(.97)!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="padding: 62px 20px 0; display: flex; flex-direction: column; gap: 14px; animation: rise .5s cubic-bezier(.2,.8,.2,1) both">
+<div style="display: flex; align-items: center; gap: 12px">
+<label style="flex-grow: 1; display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 14px; border-radius: 16px; background: #1C1C23; border: 1.5px solid #5EE0C6; color: #B9B7C8">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+<input type="search" aria-label="Search transcripts" value="watch" style="flex-grow: 1; border: none; background: transparent; color: #F4F3F8; font: inherit; font-size: 16px; outline: none">
+<span aria-hidden="true" style="width: 22px; height: 22px; border-radius: 11px; background: #3A3A46; color: #F4F3F8; display: flex; align-items: center; justify-content: center"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+</label>
+<a href="Library.dc.html" style="font-size: 16px; color: #5EE0C6; text-decoration: none; height: 44px; display: flex; align-items: center">Cancel</a>
+</div>
+<div style="display: flex; gap: 8px">
+<sc-for list="{{scopes}}" as="s" hint-placeholder-count="3">
+<button class="press" onClick="{{s.pick}}" style="height: 34px; padding: 0 14px; border-radius: 17px; border: 1px solid {{s.border}}; background: {{s.bg}}; color: {{s.fg}}; font: inherit; font-size: 13px; font-weight: 600">{{s.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<div style="padding: 18px 20px 0; display: flex; flex-direction: column; gap: 12px; overflow: hidden">
+<span style="font-size: 13px; color: #B9B7C8; animation: rise .5s .08s cubic-bezier(.2,.8,.2,1) both">{{summary}}</span>
+<sc-for list="{{results}}" as="r" hint-placeholder-count="3">
+<a href="Note.dc.html" class="press" style="display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 20px; background: #1C1C23; border: 1px solid #2A2A33; text-decoration: none; color: #F4F3F8; animation: rise .5s {{r.delay}}s cubic-bezier(.2,.8,.2,1) both">
+<span style="display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 5px; background: {{r.color}}"></span><span style="font-size: 15px; font-weight: 700">{{r.title}}</span></span><span style="font-size: 12px; color: #B9B7C8; white-space: nowrap">{{r.count}}</span></span>
+<sc-for list="{{r.hits}}" as="h" hint-placeholder-count="2">
+<span style="display: flex; gap: 10px; font-size: 14px; line-height: 1.5"><span style="flex-shrink: 0; font-size: 12px; color: #5EE0C6; font-variant-numeric: tabular-nums; padding-top: 2px; min-width: 38px">{{h.t}}</span><span style="color: #D8D6E4">{{h.pre}}<mark style="background: #5EE0C6; color: #06231E; border-radius: 4px; padding: 0 3px; font-weight: 600">{{h.word}}</mark>{{h.post}}</span></span>
+</sc-for>
+</a>
+</sc-for>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+const st = this.state || {};
+const scope = st.scope || 'All';
+const scopes = ['All', 'Transcripts', 'Summaries'].map((label) => {
+const on = label === scope;
+return { label, bg: on ? '#5EE0C6' : '#1C1C23', fg: on ? '#06231E' : '#F4F3F8', border: on ? '#5EE0C6' : '#2A2A33', pick: () => this.setState({ scope: label }) };
+});
+const all = [
+{ kind: 'Transcripts', title: 'Product sync — Q4 roadmap', count: '4 matches', color: '#5EE0C6', hits: [
+{ t: '00:04', pre: '…the big question is ', word: 'Watch', post: ' first or sync first.' },
+{ t: '00:15', pre: '', word: 'Watch', post: ' is smaller, and it’s the most requested…' }
+] },
+{ kind: 'Summaries', title: 'Product sync — Summary', count: '1 match', color: '#A9B4FF', hits: [
+{ t: 'AI', pre: 'The team chose to ship the Apple ', word: 'Watch', post: ' app before iCloud sync…' }
+] },
+{ kind: 'Transcripts', title: 'Onboarding idea', count: '1 match', color: '#FFB86B', hits: [
+{ t: '00:32', pre: 'Recorded on my ', word: 'Watch', post: ' on the way in…' }
+] }
+];
+const results = all.filter((r) => scope === 'All' || r.kind === scope).map((r, i) => ({ ...r, delay: (0.12 + i * 0.06).toFixed(2) }));
+const n = results.reduce((a, r) => a + parseInt(r.count, 10), 0);
+return { scopes, results, summary: n + ' results in ' + results.length + ' notes' };
+}
+}
+</script>
+</body>
+</html>

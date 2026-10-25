@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mac export dialog</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes sheet{from{transform:translateY(-100%)}to{transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.press{transition:background-color .2s,border-color .2s,color .2s,transform .15s}
+.press:active{transform:scale(.97)!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 1280px; height: 800px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden; border-radius: 12px; border: 1px solid #2A2A33; position: relative">
+<header style="height: 52px; flex-shrink: 0; display: flex; align-items: center; gap: 14px; padding: 0 14px; background: #16161C; border-bottom: 1px solid #22222A; position: relative; z-index: 2">
+<div aria-hidden="true" style="display: flex; gap: 8px"><span style="width: 12px; height: 12px; border-radius: 6px; background: #3A3A46"></span><span style="width: 12px; height: 12px; border-radius: 6px; background: #3A3A46"></span><span style="width: 12px; height: 12px; border-radius: 6px; background: #3A3A46"></span></div>
+<span style="font-size: 14px; font-weight: 700">Product sync — Q4 roadmap</span>
+</header>
+<div aria-hidden="true" style="flex-grow: 1; padding: 30px 40px; display: flex; flex-direction: column; gap: 16px; opacity: .35">
+<span style="height: 14px; width: 40%; border-radius: 7px; background: #26262E"></span>
+<span style="height: 12px; width: 78%; border-radius: 6px; background: #1F1F27"></span><span style="height: 12px; width: 70%; border-radius: 6px; background: #1F1F27"></span><span style="height: 12px; width: 74%; border-radius: 6px; background: #1F1F27"></span><span style="height: 12px; width: 66%; border-radius: 6px; background: #1F1F27"></span>
+</div>
+<div style="position: absolute; inset: 52px 0 0 0; background: rgba(0,0,0,0.4); animation: fade .25s both"></div>
+
+<div style="position: absolute; top: 52px; left: 50%; margin-left: -280px; width: 560px; overflow: hidden; border-radius: 0 0 14px 14px; z-index: 1">
+<div role="dialog" aria-label="Export" style="background: #1C1C23; border: 1px solid #2E2E38; border-top: none; border-radius: 0 0 14px 14px; box-shadow: 0 24px 60px rgba(0,0,0,0.5); padding: 24px; display: flex; flex-direction: column; gap: 20px; animation: sheet .35s cubic-bezier(.2,.8,.2,1) both">
+<h2 style="margin: 0; font-size: 17px; font-weight: 700">Export “Product sync — Q4 roadmap”</h2>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; font-weight: 600; color: #B9B7C8">Format</span>
+<div role="radiogroup" aria-label="Format" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; padding: 3px; border-radius: 9px; background: #111116; border: 1px solid #2A2A33">
+<sc-for list="{{formats}}" as="f" hint-placeholder-count="4">
+<button role="radio" aria-checked="{{f.checked}}" class="press" onClick="{{f.pick}}" style="height: 30px; border-radius: 6px; border: none; background: {{f.bg}}; color: {{f.fg}}; font: inherit; font-size: 13px; font-weight: 600">{{f.label}}</button>
+</sc-for>
+</div>
+<span style="font-size: 12px; color: #8F8D9C">{{hint}}</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; opacity: {{optOp}}; transition: opacity .2s">
+<span style="font-size: 12px; font-weight: 600; color: #B9B7C8">Include</span>
+<sc-for list="{{opts}}" as="o" hint-placeholder-count="3">
+<label style="display: flex; align-items: center; gap: 10px; font-size: 14px"><input type="checkbox" checked="{{o.on}}" onChange="{{o.toggle}}" style="width: 16px; height: 16px; accent-color: #5EE0C6; margin: 0">{{o.label}}</label>
+</sc-for>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 9px; background: #111116; border: 1px solid #2A2A33; font-size: 13px">
+<span style="color: #B9B7C8">Save to</span>
+<span style="display: flex; align-items: center; gap: 8px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8FD3FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Desktop<span style="color: #5EE0C6; font-weight: 600">Change…</span></span>
+</div>
+<div style="display: flex; justify-content: flex-end; gap: 8px">
+<a href="NoteInspector.dc.html" class="press" style="height: 32px; padding: 0 16px; border-radius: 8px; background: #26262E; border: 1px solid #2E2E38; color: #F4F3F8; display: flex; align-items: center; font-size: 13px; font-weight: 600; text-decoration: none">Cancel</a>
+<a href="NoteInspector.dc.html" class="press" style="height: 32px; padding: 0 18px; border-radius: 8px; background: #5EE0C6; color: #06231E; display: flex; align-items: center; font-size: 13px; font-weight: 700; text-decoration: none">{{cta}}</a>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+renderVals() {
+const st = this.state || {};
+const sel = st.fmt || 'txt';
+const ops = st.ops || { speakers: true, times: true, summary: false };
+const defs = [['txt', 'Text'], ['srt', 'Subtitles'], ['m4a', 'Audio'], ['md', 'Markdown']];
+const formats = defs.map((d) => ({ label: d[1], checked: d[0] === sel ? 'true' : 'false', bg: d[0] === sel ? '#5EE0C6' : 'transparent', fg: d[0] === sel ? '#06231E' : '#D8D6E4', pick: () => this.setState({ fmt: d[0] }) }));
+const hints = { txt: 'Plain text file, opens anywhere.', srt: 'Timed subtitles for Final Cut Pro, Premiere or YouTube.', m4a: 'The original recording, AAC audio.', md: 'Headings, speakers and summary, ready for Notion or Obsidian.' };
+const textual = sel !== 'm4a';
+const opts = [['speakers', 'Speaker labels'], ['times', 'Timestamps'], ['summary', 'Summary and action items']].map((o) => ({ label: o[1], on: !!ops[o[0]] && textual, toggle: () => { if (!textual) return; const n = Object.assign({}, ops); n[o[0]] = !n[o[0]]; this.setState({ ops: n }); } }));
+const exts = { txt: '.txt', srt: '.srt', m4a: '.m4a', md: '.md' };
+return { formats, opts, hint: hints[sel], optOp: textual ? 1 : 0.35, cta: 'Export ' + exts[sel] };
+}
+}
+</script>
+</body>
+</html>

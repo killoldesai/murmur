@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>iPad Search</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
+.press{transition:transform .2s cubic-bezier(.2,.8,.2,1),background-color .25s,border-color .25s,color .25s}
+.press:active{transform:scale(.98)!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 1180px; height: 820px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<header style="display: flex; align-items: center; gap: 14px; padding: 30px 28px 16px; border-bottom: 1px solid #22222A; animation: rise .45s cubic-bezier(.2,.8,.2,1) both">
+<label style="flex-grow: 1; display: flex; align-items: center; gap: 10px; height: 50px; padding: 0 16px; border-radius: 16px; background: #1C1C23; border: 1.5px solid #5EE0C6; color: #B9B7C8">
+<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+<input type="search" aria-label="Search transcripts" value="december" style="flex-grow: 1; border: none; background: transparent; color: #F4F3F8; font: inherit; font-size: 17px; outline: none">
+</label>
+<div style="display: flex; gap: 6px">
+<sc-for list="{{scopes}}" as="s" hint-placeholder-count="3">
+<button class="press" onClick="{{s.pick}}" style="height: 40px; padding: 0 16px; border-radius: 20px; border: 1px solid {{s.border}}; background: {{s.bg}}; color: {{s.fg}}; font: inherit; font-size: 14px; font-weight: 600">{{s.label}}</button>
+</sc-for>
+</div>
+<a href="Library.dc.html" style="height: 44px; display: flex; align-items: center; padding: 0 6px; font-size: 16px; font-weight: 600; color: #5EE0C6; text-decoration: none">Done</a>
+</header>
+<div style="flex-grow: 1; display: flex; min-height: 0">
+<section aria-label="Results" style="width: 420px; flex-shrink: 0; border-right: 1px solid #22222A; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; overflow: hidden">
+<span style="font-size: 13px; color: #B9B7C8; padding: 0 4px 4px">{{summary}}</span>
+<sc-for list="{{results}}" as="r" hint-placeholder-count="4">
+<button class="press" onClick="{{r.pick}}" style="text-align: left; font: inherit; color: inherit; display: flex; flex-direction: column; gap: 8px; padding: 14px; border-radius: 16px; border: 1px solid {{r.border}}; background: {{r.bg}}; animation: rise .45s {{r.delay}}s cubic-bezier(.2,.8,.2,1) both">
+<span style="display: flex; justify-content: space-between; gap: 10px"><span style="display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700"><span style="width: 9px; height: 9px; border-radius: 5px; background: {{r.color}}"></span>{{r.title}}</span><span style="font-size: 12px; color: #B9B7C8; white-space: nowrap">{{r.kind}}</span></span>
+<span style="font-size: 14px; line-height: 1.5; color: #D8D6E4">{{r.pre}}<mark style="background: #5EE0C6; color: #06231E; border-radius: 4px; padding: 0 3px; font-weight: 600">{{r.word}}</mark>{{r.post}}</span>
+<span style="font-size: 12px; color: #8F8D9C">{{r.where}}</span>
+</button>
+</sc-for>
+</section>
+<section aria-label="Preview" style="flex-grow: 1; min-width: 0; padding: 24px 32px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; animation: fadeIn .4s cubic-bezier(.2,.8,.2,1) both">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.02em">{{cur.title}}</h2><span style="font-size: 14px; color: #B9B7C8">{{cur.meta}}</span></div>
+<a href="Note.dc.html" class="press" style="flex-shrink: 0; height: 42px; padding: 0 16px; border-radius: 12px; background: #5EE0C6; color: #06231E; display: flex; align-items: center; font-size: 14px; font-weight: 700; text-decoration: none">Open note</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{context}}" as="c" hint-placeholder-count="3">
+<div style="display: flex; gap: 16px; padding: 12px 14px; border-radius: 14px; border: 1px solid {{c.border}}; background: {{c.bg}}; animation: fadeIn .4s {{c.delay}}s cubic-bezier(.2,.8,.2,1) both">
+<span style="flex-shrink: 0; width: 56px; font-size: 13px; color: #5EE0C6; font-variant-numeric: tabular-nums; padding-top: 2px">{{c.t}}</span>
+<span style="font-size: 16px; line-height: 1.55; color: {{c.fg}}">{{c.pre}}<sc-if value="{{c.hit}}" hint-placeholder-val="{{false}}"><mark style="background: #5EE0C6; color: #06231E; border-radius: 4px; padding: 0 3px; font-weight: 600">{{c.word}}</mark></sc-if>{{c.post}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+renderVals() {
+const st = this.state || {};
+const scope = st.scope || 'All';
+const sel = st.sel || 0;
+const scopes = ['All', 'Transcripts', 'Summaries'].map((label) => {
+const on = label === scope;
+return { label, bg: on ? '#5EE0C6' : '#1C1C23', fg: on ? '#06231E' : '#F4F3F8', border: on ? '#5EE0C6' : '#2A2A33', pick: () => this.setState({ scope: label, sel: 0 }) };
+});
+const all = [
+{ kind: 'Transcript', group: 'Transcripts', title: 'Product sync — Q4 roadmap', color: '#5EE0C6', pre: 'Then Watch first, and we move sync to ', word: 'December', post: '.', where: '00:33 · Alex', meta: 'Oct 25 · 42:10 · Meetings',
+ctx: [['00:24', 'Sync needs CloudKit migration work. That’s at least three weeks on its own.', '', ''], ['00:33', 'Then Watch first, and we move sync to ', 'December', '.'], ['00:47', 'I’ll start the migration spike next week so ', 'December', ' holds.']] },
+{ kind: 'Summary', group: 'Summaries', title: 'Product sync — Summary', color: '#A9B4FF', pre: 'Sync moves to ', word: 'December', post: ', with a CloudKit spike next week.', where: 'AI summary', meta: 'Generated on-device',
+ctx: [['AI', 'The team will ship the Apple Watch app before iCloud sync.', '', ''], ['AI', 'Sync moves to ', 'December', ', with a CloudKit spike starting next week.']] },
+{ kind: 'Transcript', group: 'Transcripts', title: 'Weekly 1:1 with Sam', color: '#8FD3FF', pre: 'Let’s plan the ', word: 'December', post: ' release notes early.', where: '14:02 · Sam', meta: 'Oct 21 · 27:48 · Meetings',
+ctx: [['13:50', 'Screenshots are the last open item.', '', ''], ['14:02', 'Let’s plan the ', 'December', ' release notes early.']] }
+];
+const list = all.filter((r) => scope === 'All' || r.group === scope);
+const s = Math.min(sel, list.length - 1);
+const results = list.map((r, i) => ({ ...r, bg: i === s ? '#16302B' : '#1C1C23', border: i === s ? '#5EE0C6' : '#2A2A33', delay: (0.08 + i * 0.05).toFixed(2), pick: () => this.setState({ sel: i }) }));
+const cur = list[s];
+const context = cur.ctx.map((c, i) => ({ t: c[0], pre: c[1], word: c[2], post: c[3], hit: !!c[2], bg: c[2] ? '#16302B' : 'transparent', border: c[2] ? '#2D5A50' : 'transparent', fg: c[2] ? '#F4F3F8' : '#B9B7C8', delay: (0.05 + i * 0.05).toFixed(2) }));
+return { scopes, results, cur, context, summary: list.length + ' notes mention “december”' };
+}
+}
+</script>
+</body>
+</html>

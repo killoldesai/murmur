@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Onboarding: Smart</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes slideL{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+@keyframes slideR{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.2)}100%{transform:scale(1)}}
+@keyframes twinkle{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(.75) rotate(30deg)}}
+.press{transition:transform .2s cubic-bezier(.2,.8,.2,1)}
+.press:active{transform:scale(.96)!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; padding: 58px 24px 40px">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<a href="Onboard2.dc.html" aria-label="Back" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #B9B7C8"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<a href="Mic.dc.html" style="height: 44px; display: flex; align-items: center; padding: 0 4px; font-size: 15px; color: #B9B7C8; text-decoration: none">Skip</a>
+</div>
+
+<div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 12px">
+<div style="align-self: flex-start; max-width: 270px; display: flex; gap: 10px; padding: 14px; border-radius: 20px; background: #1C1C23; border: 1px solid #2A2A33; animation: slideL .6s .1s cubic-bezier(.2,.8,.2,1) both">
+<span style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 14px; background: #5EE0C6; color: #111116; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center">A</span>
+<span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 12px; font-weight: 600; color: #B9B7C8">Alex</span><span style="font-size: 14px; line-height: 1.4">Watch first, sync in December?</span></span>
+</div>
+<div style="align-self: flex-end; max-width: 270px; display: flex; gap: 10px; padding: 14px; border-radius: 20px; background: #1C1C23; border: 1px solid #2A2A33; animation: slideR .6s .3s cubic-bezier(.2,.8,.2,1) both">
+<span style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 14px; background: #FFB86B; color: #111116; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center">P</span>
+<span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 12px; font-weight: 600; color: #B9B7C8">Priya</span><span style="font-size: 14px; line-height: 1.4">Agreed. I’ll update the timeline.</span></span>
+</div>
+<div style="margin-top: 8px; padding: 18px; border-radius: 22px; background: #16302B; border: 1px solid #2D5A50; display: flex; flex-direction: column; gap: 10px; animation: rise .6s .55s cubic-bezier(.2,.8,.2,1) both">
+<span style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #5EE0C6"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="animation: twinkle 2.4s ease-in-out infinite"><path d="M12 2l2.2 6.3L20 10l-5.8 1.7L12 18l-2.2-6.3L4 10l5.8-1.7z"/></svg>Action items</span>
+<span style="display: flex; align-items: center; gap: 10px; font-size: 14px"><span style="flex-shrink: 0; width: 20px; height: 20px; border-radius: 10px; background: #5EE0C6; display: flex; align-items: center; justify-content: center; animation: pop .4s .9s cubic-bezier(.2,.8,.2,1) both"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#06231E" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Priya updates the timeline by Friday</span>
+<span style="display: flex; align-items: center; gap: 10px; font-size: 14px"><span style="flex-shrink: 0; width: 20px; height: 20px; border-radius: 10px; border: 2px solid #5EE0C6; box-sizing: border-box"></span>Move iCloud sync to December</span>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px; animation: rise .6s .3s cubic-bezier(.2,.8,.2,1) both">
+<h1 style="margin: 0; font-size: 32px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1">Knows who said<br>what, and why</h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #B9B7C8">Speaker labels, summaries and action items, all generated on your device.</p>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; margin-top: 32px; animation: rise .6s .4s cubic-bezier(.2,.8,.2,1) both">
+<div aria-label="Page 3 of 3" style="display: flex; gap: 6px">
+<span style="width: 8px; height: 8px; border-radius: 4px; background: #3A3A46"></span>
+<span style="width: 8px; height: 8px; border-radius: 4px; background: #3A3A46"></span>
+<span style="width: 22px; height: 8px; border-radius: 4px; background: #5EE0C6"></span>
+</div>
+<a href="Mic.dc.html" class="press" style="height: 56px; padding: 0 28px; border-radius: 18px; background: #5EE0C6; color: #06231E; font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 8px; text-decoration: none">Get started<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

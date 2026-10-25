@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mac transcription queue</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pop{0%{transform:scale(.4)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+.press{transition:background-color .2s,transform .15s}
+.press:active{transform:scale(.96)!important}
+.row{transition:background-color .15s}
+.row:hover{background-color:#1C1C23}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 1280px; height: 800px; box-sizing: border-box; background: #111116; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden; border-radius: 12px; border: 1px solid #2A2A33">
+<header style="height: 52px; flex-shrink: 0; display: flex; align-items: center; gap: 14px; padding: 0 14px; background: #16161C; border-bottom: 1px solid #22222A">
+<div aria-hidden="true" style="display: flex; gap: 8px"><span style="width: 12px; height: 12px; border-radius: 6px; background: #FF5F57"></span><span style="width: 12px; height: 12px; border-radius: 6px; background: #FEBC2E"></span><span style="width: 12px; height: 12px; border-radius: 6px; background: #28C840"></span></div>
+<a href="Main.dc.html" aria-label="Back to all notes" style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: #B9B7C8"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<span style="font-size: 14px; font-weight: 700">Transcription queue</span>
+<div style="flex-grow: 1"></div>
+<a href="DropOverlay.dc.html" class="press" style="height: 30px; padding: 0 12px; border-radius: 8px; background: #1C1C23; border: 1px solid #2A2A33; color: #F4F3F8; display: flex; align-items: center; font-size: 13px; font-weight: 600; text-decoration: none">Add files…</a>
+<button class="press" onClick="{{togglePause}}" style="height: 30px; padding: 0 14px; border-radius: 8px; border: none; background: {{pauseBg}}; color: {{pauseFg}}; font: inherit; font-size: 13px; font-weight: 700">{{pauseLabel}}</button>
+</header>
+<div style="padding: 26px 32px 0; display: flex; gap: 14px; animation: rise .4s cubic-bezier(.2,.8,.2,1) both">
+<sc-for list="{{stats}}" as="s" hint-placeholder-count="3">
+<div style="flex: 1 1 0; display: flex; flex-direction: column; gap: 6px; padding: 16px 18px; border-radius: 14px; background: #1C1C23; border: 1px solid #2A2A33">
+<span style="font-size: 12px; color: #B9B7C8">{{s.label}}</span>
+<span style="font-size: 26px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">{{s.value}}</span>
+</div>
+</sc-for>
+</div>
+<div style="padding: 22px 32px 0; flex-grow: 1; display: flex; flex-direction: column">
+<div style="display: grid; grid-template-columns: 40px minmax(0, 1fr) 90px 260px 110px 40px; gap: 14px; align-items: center; padding: 0 14px 8px; font-size: 11px; font-weight: 700; color: #8F8D9C; border-bottom: 1px solid #22222A">
+<span></span><span>File</span><span>Length</span><span>Progress</span><span>Speed</span><span></span>
+</div>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
+<div class="row" style="display: grid; grid-template-columns: 40px minmax(0, 1fr) 90px 260px 110px 40px; gap: 14px; align-items: center; padding: 12px 14px; border-bottom: 1px solid #1C1C23; border-radius: 8px; animation: rise .35s {{r.delay}}s cubic-bezier(.2,.8,.2,1) both">
+<span style="width: 34px; height: 34px; border-radius: 9px; background: {{r.color}}; color: #111116; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center">{{r.ext}}</span>
+<span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.name}}</span><span style="font-size: 11px; color: #8F8D9C">{{r.size}}</span></span>
+<span style="font-size: 13px; color: #B9B7C8; font-variant-numeric: tabular-nums">{{r.len}}</span>
+<span style="display: flex; align-items: center; gap: 10px">
+<span style="flex-grow: 1; height: 5px; border-radius: 3px; background: #26262E; overflow: hidden"><span style="display: block; height: 5px; border-radius: 3px; background: {{r.bar}}; width: {{r.pct}}%; transition: width .3s linear"></span></span>
+<span style="width: 70px; font-size: 12px; color: #B9B7C8; font-variant-numeric: tabular-nums; text-align: right">{{r.status}}</span>
+</span>
+<span style="font-size: 12px; color: #B9B7C8">{{r.speed}}</span>
+<span style="display: flex; justify-content: center">
+<sc-if value="{{r.done}}" hint-placeholder-val="{{false}}"><span style="width: 20px; height: 20px; border-radius: 10px; background: #5EE0C6; display: flex; align-items: center; justify-content: center; animation: pop .35s cubic-bezier(.2,.8,.2,1) both"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#06231E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span></sc-if>
+<sc-if value="{{r.active}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="width: 16px; height: 16px; border-radius: 8px; border: 2px solid #3A3A46; border-top-color: #5EE0C6; box-sizing: border-box; animation: spin .9s linear infinite; animation-play-state: {{spinState}}"></span></sc-if>
+</span>
+</div>
+</sc-for>
+</div>
+<div style="padding: 14px 32px 20px; font-size: 12px; color: #8F8D9C">Runs on this Mac’s Neural Engine and GPU. Keep the lid open for the fastest results.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+componentDidMount() {
+this.setState({ prog: [100, 100, 34, 0, 0], paused: false });
+this.timer = setInterval(() => {
+const s = this.state || {};
+if (s.paused) return;
+const p = (s.prog || []).slice();
+const i = p.findIndex((v) => v < 100);
+if (i < 0) return;
+p[i] = Math.min(100, p[i] + 2);
+this.setState({ prog: p });
+}, 110);
+}
+componentWillUnmount() {
+clearInterval(this.timer);
+}
+renderVals() {
+const st = this.state || {};
+const paused = !!st.paused;
+const prog = st.prog || [100, 100, 34, 0, 0];
+const files = [['M4A', 'Customer interview — Maria.m4a', '24 MB', '18:22', '#FF8FA3', 22], ['MP3', 'Podcast ep 12 raw.mp3', '74 MB', '52:40', '#8FD3FF', 19], ['MOV', 'Team offsite.mov', '1.2 GB', '48:10', '#FFB86B', 17], ['WAV', 'Lecture 9 — Biology 201.wav', '640 MB', '1:04:12', '#A9B4FF', 0], ['MP4', 'Product demo walkthrough.mp4', '310 MB', '12:05', '#5EE0C6', 0]];
+const act = prog.findIndex((v) => v < 100);
+const rows = files.map((f, i) => {
+const p = prog[i];
+const done = p >= 100;
+const active = i === act;
+return { ext: f[0], name: f[1], size: f[2], len: f[3], color: f[4], pct: p, done, active, bar: active && paused ? '#8F8D9C' : '#5EE0C6', status: done ? 'Done' : active ? (paused ? 'Paused' : p + '%') : 'Waiting', speed: done ? f[5] + '× real time' : active ? '17× real time' : '—', delay: (0.05 + i * 0.04).toFixed(2) };
+});
+const doneN = prog.filter((v) => v >= 100).length;
+const leftMin = Math.max(1, Math.round(((100 - (prog[act] || 100)) / 100) * 3 + (files.length - doneN - 1) * 3));
+return {
+rows,
+stats: [{ label: 'Done', value: doneN + ' of ' + files.length }, { label: 'Time left', value: doneN === files.length ? '—' : '≈' + leftMin + ' min' }, { label: 'Audio transcribed', value: '2h 52m' }],
+spinState: paused ? 'paused' : 'running',
+pauseLabel: paused ? 'Resume' : 'Pause queue',
+pauseBg: paused ? '#5EE0C6' : '#26262E',
+pauseFg: paused ? '#06231E' : '#F4F3F8',
+togglePause: () => this.setState({ paused: !paused })
+};
+}
+}
+</script>
+</body>
+</html>

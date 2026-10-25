@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Toolchain info
+        run: |
+          xcodebuild -version
+          swift --version
+          ls /Applications | grep -i xcode || true
+          xcrun simctl list devices available | head -40
+
+      - name: Detect project
+        id: detect
+        run: |
+          if [ -f Package.swift ]; then echo "package=true" >> "$GITHUB_OUTPUT"; fi
+          if ls *.xcodeproj >/dev/null 2>&1; then
+            echo "xcodeproj=$(ls -d *.xcodeproj | head -1)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Test MurmurCore (Swift package)
+        if: steps.detect.outputs.package == 'true'
+        run: swift test
+
+      - name: Build and test iOS app in simulator
+        if: steps.detect.outputs.xcodeproj != ''
+        run: |
+          set -o pipefail
+          DEVICE=$(xcrun simctl list devices available | grep -m1 "iPhone" | sed -E 's/ \([0-9A-F-]+\).*//; s/^ +//')
+          echo "Using simulator: $DEVICE"
+          xcodebuild test \
+            -project "${{ steps.detect.outputs.xcodeproj }}" \
+            -scheme Murmur \
+            -destination "platform=iOS Simulator,name=$DEVICE" \
+            -resultBundlePath build/Murmur.xcresult \
+            CODE_SIGNING_ALLOWED=NO | tee build/xcodebuild.log | tail -80
+
+      - name: Nothing to build yet
+        if: steps.detect.outputs.package != 'true' && steps.detect.outputs.xcodeproj == ''
+        run: echo "No Package.swift or .xcodeproj yet. App code has not been started."
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-results
+          path: build/
+          if-no-files-found: ignore

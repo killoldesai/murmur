@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mac menu bar</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes drop{from{opacity:0;transform:translateY(-8px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes wave{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.press{transition:background-color .15s,transform .15s}
+.press:active{transform:scale(.97)!important}
+.item{transition:background-color .15s}
+.item:hover{background-color:#26262E}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 1280px; height: 800px; box-sizing: border-box; background: #1A1A21; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; position: relative; overflow: hidden; border-radius: 12px">
+<div style="height: 28px; display: flex; align-items: center; gap: 18px; padding: 0 16px; background: #0E0E12; font-size: 13px">
+<span style="font-weight: 700">Finder</span><span style="color: #D8D6E4">File</span><span style="color: #D8D6E4">Edit</span><span style="color: #D8D6E4">View</span><span style="color: #D8D6E4">Go</span>
+<div style="flex-grow: 1"></div>
+<span style="display: flex; align-items: center; justify-content: center; gap: 2px; width: 30px; height: 22px; border-radius: 5px; background: #2E2E38" role="img" aria-label="Murmur menu">
+<span style="width: 2px; height: 11px; border-radius: 1px; background: {{iconColor}}"></span><span style="width: 2px; height: 7px; border-radius: 1px; background: {{iconColor}}"></span><span style="width: 2px; height: 3px; border-radius: 1px; background: {{iconColor}}"></span><span style="width: 2px; height: 7px; border-radius: 1px; background: {{iconColor}}"></span><span style="width: 2px; height: 11px; border-radius: 1px; background: {{iconColor}}"></span>
+</span>
+<span style="color: #D8D6E4">Sun 25 Oct  9:48 PM</span>
+</div>
+
+<div role="menu" aria-label="Murmur" style="position: absolute; top: 34px; right: 150px; width: 340px; border-radius: 14px; background: #1C1C23; border: 1px solid #2E2E38; box-shadow: 0 24px 60px rgba(0,0,0,0.5); padding: 10px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; animation: drop .3s cubic-bezier(.2,.8,.2,1) both; transform-origin: top right">
+<sc-if value="{{idle}}" hint-placeholder-val="{{true}}">
+<button class="press" onClick="{{start}}" style="height: 48px; border-radius: 10px; border: none; background: #5EE0C6; color: #06231E; font: inherit; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Start recording<span style="font-weight: 500; opacity: .7">⌃⌥R</span></button>
+</sc-if>
+<sc-if value="{{rec}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; background: #16161C; border: 1px solid #2A2A33">
+<span style="width: 8px; height: 8px; border-radius: 4px; background: #FF5A6E; animation: blink 1.2s ease-in-out infinite"></span>
+<span style="font-size: 22px; font-weight: 300; font-variant-numeric: tabular-nums">{{time}}</span>
+<span aria-hidden="true" style="flex-grow: 1; display: flex; align-items: center; gap: 2px; height: 26px">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="20"><span style="width: 3px; border-radius: 2px; background: #5EE0C6; height: {{b.h}}px; animation: wave {{b.dur}}s ease-in-out {{b.delay}}s infinite"></span></sc-for>
+</span>
+<button class="press" onClick="{{stop}}" aria-label="Stop recording" style="width: 32px; height: 32px; border-radius: 16px; border: none; background: #FF5A6E; display: flex; align-items: center; justify-content: center"><span style="width: 11px; height: 11px; border-radius: 3px; background: #FFFFFF"></span></button>
+</div>
+</sc-if>
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 4px 8px; font-size: 12px; color: #B9B7C8"><span>Input</span><span style="color: #F4F3F8">MacBook Pro Microphone</span></div>
+<div style="height: 1px; background: #2A2A33; margin: 2px 0"></div>
+<span style="padding: 4px 8px 2px; font-size: 11px; font-weight: 700; color: #8F8D9C">Recent</span>
+<sc-for list="{{recent}}" as="r" hint-placeholder-count="4">
+<a href="NoteInspector.dc.html" class="item" role="menuitem" style="display: flex; align-items: center; gap: 10px; padding: 7px 8px; border-radius: 7px; color: #F4F3F8; text-decoration: none">
+<span style="width: 8px; height: 8px; border-radius: 4px; background: {{r.color}}"></span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.title}}</span><span style="font-size: 11px; color: #8F8D9C">{{r.meta}}</span></span>
+<span style="font-size: 11px; color: {{r.stateColor}}; white-space: nowrap">{{r.state}}</span>
+</a>
+</sc-for>
+<div style="height: 1px; background: #2A2A33; margin: 2px 0"></div>
+<a href="Main.dc.html" class="item" role="menuitem" style="display: flex; justify-content: space-between; padding: 7px 8px; border-radius: 7px; font-size: 13px; color: #F4F3F8; text-decoration: none">Open Murmur<span style="color: #8F8D9C">⌘O</span></a>
+<a href="DropOverlay.dc.html" class="item" role="menuitem" style="display: flex; justify-content: space-between; padding: 7px 8px; border-radius: 7px; font-size: 13px; color: #F4F3F8; text-decoration: none">Import files…<span style="color: #8F8D9C">⌘I</span></a>
+<a href="SettingsGeneral.dc.html" class="item" role="menuitem" style="display: flex; justify-content: space-between; padding: 7px 8px; border-radius: 7px; font-size: 13px; color: #F4F3F8; text-decoration: none">Settings…<span style="color: #8F8D9C">⌘,</span></a>
+<span class="item" role="menuitem" style="display: flex; justify-content: space-between; padding: 7px 8px; border-radius: 7px; font-size: 13px; color: #F4F3F8">Quit Murmur<span style="color: #8F8D9C">⌘Q</span></span>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+componentWillUnmount() {
+clearInterval(this.timer);
+}
+renderVals() {
+const st = this.state || {};
+const rec = !!st.rec;
+const secs = st.secs || 0;
+const time = String(Math.floor(secs / 60)).padStart(2, '0') + ':' + String(secs % 60).padStart(2, '0');
+const hs = [8, 14, 20, 12, 24, 18, 26, 14, 20, 10, 16, 24, 12, 22, 18, 26, 10, 16, 20, 8];
+const bars = hs.map((h, i) => ({ h, dur: (0.8 + (i % 4) * 0.15).toFixed(2), delay: (-(i * 0.07)).toFixed(2) }));
+const recent = [['Product sync — Q4 roadmap', 'Today, 10:30 AM · 42:10', '#5EE0C6', 'Summary ready', '#5EE0C6'], ['Podcast ep 12 raw', 'Today · 52:40', '#8FD3FF', 'Transcribing 38%', '#B9B7C8'], ['Onboarding idea', 'From Watch · 1:24', '#FFB86B', '', '#B9B7C8'], ['Biology 201 — Lecture 8', 'Yesterday · 1:12:04', '#A9B4FF', '', '#B9B7C8']].map((r) => ({ title: r[0], meta: r[1], color: r[2], state: r[3], stateColor: r[4] }));
+return {
+idle: !rec, rec, time, bars, recent,
+iconColor: rec ? '#FF5A6E' : '#5EE0C6',
+start: () => {
+this.setState({ rec: true, secs: 0 });
+clearInterval(this.timer);
+this.timer = setInterval(() => this.setState({ secs: ((this.state && this.state.secs) || 0) + 1 }), 1000);
+},
+stop: () => { clearInterval(this.timer); this.setState({ rec: false, secs: 0 }); }
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mac onboarding</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#5EE0C6}a:hover{color:#7FF2DA}
+@keyframes pop{0%{opacity:0;transform:scale(.96)}100%{opacity:1;transform:none}}
+@keyframes slide{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@keyframes wave{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
+@keyframes ring{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.8);opacity:0}}
+.press{transition:background-color .2s,transform .15s}
+.press:active{transform:scale(.97)!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 1280px; height: 800px; box-sizing: border-box; background: #1A1A21; color: #F4F3F8; font-family: 'Inter', system-ui, sans-serif; display: flex; align-items: center; justify-content: center; border-radius: 12px; overflow: hidden">
+<div role="dialog" aria-label="Welcome to Murmur" style="width: 720px; height: 520px; border-radius: 16px; background: #16161C; border: 1px solid #2A2A33; box-shadow: 0 30px 80px rgba(0,0,0,0.55); overflow: hidden; display: flex; flex-direction: column; animation: pop .35s cubic-bezier(.2,.8,.2,1) both">
+<div style="height: 40px; flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 0 14px"><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 6px; background: #3A3A46"></span><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 6px; background: #3A3A46"></span><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 6px; background: #3A3A46"></span></div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; padding: 0 60px; text-align: center">
+<sc-if value="{{s0}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 20px; animation: slide .4s cubic-bezier(.2,.8,.2,1) both">
+<div aria-hidden="true" style="width: 100px; height: 100px; border-radius: 23px; background: #15151B; border: 1px solid #2A2A33; display: flex; align-items: center; justify-content: center; gap: 8px">
+<span style="width: 7px; height: 46px; border-radius: 4px; background: #5EE0C6; animation: wave 1.6s ease-in-out infinite"></span><span style="width: 7px; height: 28px; border-radius: 4px; background: #5EE0C6; animation: wave 1.6s ease-in-out -.2s infinite"></span><span style="width: 7px; height: 10px; border-radius: 4px; background: #5EE0C6; animation: wave 1.6s ease-in-out -.4s infinite"></span><span style="width: 7px; height: 28px; border-radius: 4px; background: #5EE0C6; animation: wave 1.6s ease-in-out -.6s infinite"></span><span style="width: 7px; height: 46px; border-radius: 4px; background: #5EE0C6; animation: wave 1.6s ease-in-out -.8s infinite"></span>
+</div>
+<h1 style="margin: 0; font-size: 32px; font-weight: 800; letter-spacing: -0.03em">Welcome to Murmur for Mac</h1>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #B9B7C8; max-width: 460px">Long meetings and lectures transcribe fast on Apple silicon, entirely on this Mac. Nothing is uploaded.</p>
+</div>
+</sc-if>
+<sc-if value="{{s1}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 20px; animation: slide .4s cubic-bezier(.2,.8,.2,1) both">
+<div style="position: relative; width: 96px; height: 96px"><span aria-hidden="true" style="position: absolute; inset: 0; border-radius: 48px; border: 2px solid #5EE0C6; animation: ring 2.2s cubic-bezier(.2,.8,.2,1) infinite"></span><span style="position: absolute; inset: 0; border-radius: 48px; background: #5EE0C6; display: flex; align-items: center; justify-content: center"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#06231E" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span></div>
+<h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.03em">Allow microphone access</h1>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #B9B7C8; max-width: 440px">macOS will ask next. Murmur only listens while you record.</p>
+</div>
+</sc-if>
+<sc-if value="{{s2}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 20px; animation: slide .4s cubic-bezier(.2,.8,.2,1) both">
+<div style="display: flex; gap: 10px">
+<span style="min-width: 64px; height: 64px; padding: 0 14px; border-radius: 14px; background: #1C1C23; border: 1px solid #3A3A46; border-bottom-width: 4px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700">⌃</span>
+<span style="min-width: 64px; height: 64px; padding: 0 14px; border-radius: 14px; background: #1C1C23; border: 1px solid #3A3A46; border-bottom-width: 4px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700">⌥</span>
+<span style="min-width: 64px; height: 64px; padding: 0 14px; border-radius: 14px; background: #16302B; border: 1px solid #5EE0C6; border-bottom-width: 4px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; color: #5EE0C6">R</span>
+</div>
+<h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.03em">Record from anywhere</h1>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #B9B7C8; max-width: 460px">Press Control-Option-R or use the Murmur icon in the menu bar. Drop audio or video files onto the window to import.</p>
+</div>
+</sc-if>
+<sc-if value="{{s3}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 18px; width: 100%; animation: slide .4s cubic-bezier(.2,.8,.2,1) both">
+<h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.03em">{{dlTitle}}</h1>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #B9B7C8; max-width: 460px">Whisper Large v3 Turbo, ≈1.6 GB. One-time download, then Murmur works offline.</p>
+<div style="width: 420px; display: flex; flex-direction: column; gap: 8px">
+<div style="height: 8px; border-radius: 4px; background: #26262E; overflow: hidden"><div style="height: 8px; border-radius: 4px; background: #5EE0C6; width: {{pct}}%; transition: width .25s linear"></div></div>
+<div style="display: flex; justify-content: space-between; font-size: 12px; color: #B9B7C8; font-variant-numeric: tabular-nums"><span>{{got}}</span><span>{{pct}}%</span></div>
+</div>
+</div>
+</sc-if>
+</div>
+<div style="flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; border-top: 1px solid #22222A">
+<div aria-label="{{stepLabel}}" style="display: flex; gap: 6px"><sc-for list="{{dots}}" as="d" hint-placeholder-count="4"><span style="height: 7px; border-radius: 4px; background: {{d.c}}; width: {{d.w}}px; transition: width .3s cubic-bezier(.2,.8,.2,1), background-color .3s"></span></sc-for></div>
+<div style="display: flex; gap: 8px">
+<sc-if value="{{canBack}}" hint-placeholder-val="{{false}}"><button class="press" onClick="{{back}}" style="height: 34px; padding: 0 16px; border-radius: 8px; background: #26262E; border: 1px solid #2E2E38; color: #F4F3F8; font: inherit; font-size: 13px; font-weight: 600">Back</button></sc-if>
+<sc-if value="{{notDone}}" hint-placeholder-val="{{true}}"><button class="press" onClick="{{next}}" style="height: 34px; padding: 0 20px; border-radius: 8px; border: none; background: #5EE0C6; color: #06231E; font: inherit; font-size: 13px; font-weight: 700; opacity: {{nextOp}}">{{nextLabel}}</button></sc-if>
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}"><a href="Main.dc.html" class="press" style="height: 34px; padding: 0 20px; border-radius: 8px; background: #5EE0C6; color: #06231E; display: flex; align-items: center; font-size: 13px; font-weight: 700; text-decoration: none">Open Murmur</a></sc-if>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+componentWillUnmount() {
+clearInterval(this.timer);
+}
+renderVals() {
+const st = this.state || {};
+const step = st.step || 0;
+const p = st.p || 0;
+const downloading = step === 3 && p < 100;
+const done = step === 3 && p >= 100;
+const labels = ['Continue', 'Allow microphone', 'Continue', 'Downloading…'];
+const dots = [0, 1, 2, 3].map((i) => ({ w: i === step ? 22 : 7, c: i <= step ? '#5EE0C6' : '#3A3A46' }));
+const goStep = (n) => {
+this.setState({ step: n });
+if (n === 3) {
+clearInterval(this.timer);
+this.setState({ p: 0 });
+this.timer = setInterval(() => { const c = (this.state && this.state.p) || 0; if (c >= 100) { clearInterval(this.timer); return; } this.setState({ p: Math.min(100, c + 4) }); }, 120);
+}
+};
+return {
+s0: step === 0, s1: step === 1, s2: step === 2, s3: step === 3,
+dots, stepLabel: 'Step ' + (step + 1) + ' of 4',
+pct: p, got: (1.6 * p / 100).toFixed(2) + ' of 1.6 GB',
+dlTitle: done ? 'Ready to go' : 'Downloading the speech model',
+canBack: step > 0 && step < 3,
+notDone: !done, done,
+nextLabel: labels[step],
+nextOp: downloading ? 0.5 : 1,
+next: () => { if (step < 3) goStep(step + 1); },
+back: () => this.setState({ step: Math.max(0, step - 1) })
+};
+}
+}
+</script>
+</body>
+</html>
