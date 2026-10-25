@@ -92,6 +92,10 @@ jobs:
           shot model-downloading 5 -screen modelDownloading
           shot model-done 5 -screen modelDone
           shot transcribing 5 -screen transcribing
+          shot library 5 -screen library
+          shot library-empty 5 -screen libraryEmpty
+          shot note 5 -screen note
+          shot note-edit 5 -screen noteEdit
           shot transcribing-done 5 -screen transcribingDone
 
       - name: Publish results to ci-results branch

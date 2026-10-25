@@ -9,6 +9,7 @@ import MurmurWhisper
 final class AppServices {
     let models: SpeechModelManager
     let queue: TranscriptionQueue
+    let container: ModelContainer
     private let network: NetworkMonitor
     private let engines: EngineCache
 
@@ -23,12 +24,25 @@ final class AppServices {
             isOnExpensiveNetwork: { network.isMetered }
         )
         let engines = EngineCache(models: models)
+        self.container = container
         self.models = models
         self.engines = engines
         self.queue = TranscriptionQueue(
             context: container.mainContext,
             files: .standard,
             engineProvider: { engines.current() }
+        )
+    }
+}
+
+extension AppServices {
+    var libraryDependencies: LibraryDependencies {
+        LibraryDependencies(
+            models: models,
+            queue: queue,
+            files: .standard,
+            makeRecorder: { AVAudioRecorderEngine() },
+            makePlayer: { AVAudioPlayerEngine() }
         )
     }
 }
