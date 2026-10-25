@@ -152,20 +152,20 @@ private struct ModelOptionRow: View {
                 .frame(width: 22, height: 22)
 
                 VStack(alignment: .leading, spacing: 3) {
-                    HStack(spacing: 8) {
-                        Text(model.title)
-                            .font(MurmurTheme.Fonts.headline)
-                            .foregroundStyle(MurmurTheme.Colors.textPrimary)
-                        if model.isRecommended {
-                            Text("RECOMMENDED")
-                                .font(.system(.caption2, weight: .heavy))
-                                .tracking(0.6)
-                                .foregroundStyle(MurmurTheme.Colors.onAccent)
-                                .padding(.horizontal, 8)
-                                .frame(height: 20)
-                                .background(Capsule().fill(MurmurTheme.Colors.accent))
-                        }
+                    if model.isRecommended {
+                        Text("RECOMMENDED")
+                            .font(.system(.caption2, weight: .heavy))
+                            .tracking(0.6)
+                            .foregroundStyle(MurmurTheme.Colors.onAccent)
+                            .padding(.horizontal, 8)
+                            .frame(height: 20)
+                            .background(Capsule().fill(MurmurTheme.Colors.accent))
+                            .fixedSize()
+                            .padding(.bottom, 2)
                     }
+                    Text(model.title)
+                        .font(MurmurTheme.Fonts.headline)
+                        .foregroundStyle(MurmurTheme.Colors.textPrimary)
                     Text(model.subtitle)
                         .font(.footnote)
                         .foregroundStyle(MurmurTheme.Colors.textSecondary)

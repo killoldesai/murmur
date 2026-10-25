@@ -28,6 +28,7 @@ final class WhisperEndToEndTests: XCTestCase {
         )
 
         print("E2E transcript: \(output.text)")
+        for segment in output.segments { print("E2E segment \(segment.start)-\(segment.end): \(segment.text)") }
         let text = output.text.lowercased()
         let hits = ["quick", "brown", "fox", "lazy", "dog", "speech", "text"].filter { text.contains($0) }
         XCTAssertGreaterThanOrEqual(hits.count, 3, "transcript was: \(output.text)")
