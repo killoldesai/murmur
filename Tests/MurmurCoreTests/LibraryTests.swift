@@ -323,7 +323,8 @@ private final class FakePlayer: PlayerEngine {
 final class PlaybackControllerTests: XCTestCase {
     private let segments = [seg("a", 0, 10), seg("b", 10, 20), seg("c", 20, 30)]
 
-    private func make(_ player: FakePlayer = FakePlayer()) -> (PlaybackController, FakePlayer) {
+    private func make(_ given: FakePlayer? = nil) -> (PlaybackController, FakePlayer) {
+        let player = given ?? FakePlayer()
         let controller = PlaybackController(engine: player, segments: segments, autoTick: false)
         controller.load(url: URL(fileURLWithPath: "/tmp/x.caf"))
         return (controller, player)
