@@ -5,8 +5,17 @@ import SwiftData
 @MainActor
 final class ModelTests: XCTestCase {
 
+    /// The container must outlive its context: SwiftData traps if the container is freed first.
+    private var container: ModelContainer?
+
     private func makeContext() throws -> ModelContext {
-        try MurmurSchema.makeContainer(inMemory: true).mainContext
+        let made = try MurmurSchema.makeContainer(inMemory: true)
+        container = made
+        return made.mainContext
+    }
+
+    override func tearDown() async throws {
+        container = nil
     }
 
     func testDefaults() {
