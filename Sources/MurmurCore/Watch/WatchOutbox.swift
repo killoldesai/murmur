@@ -13,7 +13,7 @@ public final class WatchOutbox {
 
     public let directory: URL
     @ObservationIgnored private let keepDelivered: Int
-    @ObservationIgnored private var indexURL: URL { directory.appendingPathComponent("outbox.json") }
+    private var indexURL: URL { directory.appendingPathComponent("outbox.json") }
 
     public init(directory: URL, keepDelivered: Int = 10) {
         self.directory = directory
@@ -111,12 +111,24 @@ public struct WatchSnapshot: Codable, Equatable, Sendable {
     public struct Memo: Codable, Equatable, Sendable {
         public var title: String
         public var detail: String
+
+        public init(title: String, detail: String) {
+            self.title = title
+            self.detail = detail
+        }
     }
 
     public var notesToday: Int
     public var waitingCount: Int
     public var lastMemoText: String
     public var recent: [Memo]
+
+    public init(notesToday: Int, waitingCount: Int, lastMemoText: String, recent: [Memo]) {
+        self.notesToday = notesToday
+        self.waitingCount = waitingCount
+        self.lastMemoText = lastMemoText
+        self.recent = recent
+    }
 
     public static let empty = WatchSnapshot(notesToday: 0, waitingCount: 0, lastMemoText: "No memos yet", recent: [])
 
@@ -144,12 +156,12 @@ public struct WatchSnapshot: Codable, Equatable, Sendable {
         )
     }
 
-    public func save(to defaults: UserDefaults? = UserDefaults(suiteName: appGroup)) {
+    public func save(to defaults: UserDefaults? = UserDefaults(suiteName: WatchSnapshot.appGroup)) {
         guard let data = try? JSONEncoder().encode(self) else { return }
         defaults?.set(data, forKey: Self.key)
     }
 
-    public static func load(from defaults: UserDefaults? = UserDefaults(suiteName: appGroup)) -> WatchSnapshot {
+    public static func load(from defaults: UserDefaults? = UserDefaults(suiteName: WatchSnapshot.appGroup)) -> WatchSnapshot {
         guard let data = defaults?.data(forKey: key), let value = try? JSONDecoder().decode(WatchSnapshot.self, from: data) else {
             return .empty
         }
