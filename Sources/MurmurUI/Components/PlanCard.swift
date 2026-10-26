@@ -42,6 +42,8 @@ public struct PlanCard: View {
                 VStack(alignment: .leading, spacing: 3) {
                     HStack(spacing: 8) {
                         Text(name)
+                            .lineLimit(1)
+                            .fixedSize(horizontal: true, vertical: false)
                             .font(MurmurTheme.Fonts.headline)
                             .foregroundStyle(MurmurTheme.Colors.textPrimary)
                         if let badge {

@@ -78,7 +78,7 @@ public struct PlanOffer: Equatable, Identifiable, Sendable {
     public var badge: String? {
         switch plan {
         case .yearly: "BEST VALUE"
-        case .lifetime: "NO SUBSCRIPTION"
+        case .lifetime: "ONE-TIME"
         case .monthly: nil
         }
     }

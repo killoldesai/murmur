@@ -38,9 +38,9 @@ struct PaywallScreen: View {
                     }
                     .padding(.top, 8)
 
-                    header.padding(.top, 4).murmurEntrance(index: 0)
-                    perksCard.padding(.top, 22).murmurEntrance(index: 1)
-                    plans.padding(.top, 20).murmurEntrance(index: 2)
+                    header.murmurEntrance(index: 0)
+                    perksCard.padding(.top, 16).murmurEntrance(index: 1)
+                    plans.padding(.top, 14).murmurEntrance(index: 2)
                 }
                 .padding(.horizontal, MurmurTheme.Metrics.screenPadding)
                 .padding(.bottom, 12)
@@ -54,9 +54,9 @@ struct PaywallScreen: View {
     }
 
     private var header: some View {
-        VStack(spacing: 14) {
+        VStack(spacing: 10) {
             AppIconMark()
-                .frame(width: 96, height: 96)
+                .frame(width: 64, height: 64)
                 .accessibilityHidden(true)
             VStack(spacing: 6) {
                 (Text("Murmur ").foregroundStyle(MurmurTheme.Colors.textPrimary)
