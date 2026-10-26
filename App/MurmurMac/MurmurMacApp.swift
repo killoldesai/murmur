@@ -4,52 +4,74 @@ import UniformTypeIdentifiers
 import MurmurCore
 import MurmurUI
 
+/// Screenshot runs (`-screen ...`) use a minimal app with one window, so nothing but the screen
+/// being shot is on the display. Normal launches use the full app.
 @main
-struct MurmurMacApp: App {
+enum MurmurMacLauncher {
+    static func main() {
+        if UserDefaults.standard.string(forKey: "screen") != nil {
+            MurmurMacDemoApp.main()
+        } else {
+            MurmurMacApp.main()
+        }
+    }
+}
+
+struct MurmurMacDemoApp: App {
     private let container: ModelContainer
     private let session: MacSession
-    private let services: AppServices?
-    private let screen: String?
-    private let hotKey = GlobalHotKey()
-    @AppStorage("settings.showMenuBarIcon") private var showMenuBarIcon = true
+    private let screen = UserDefaults.standard.string(forKey: "screen")
 
     init() {
-        let screen = UserDefaults.standard.string(forKey: "screen")
-        self.screen = screen
-        if screen != nil {
-            // Screenshot mode: demo notes, fake microphone, fake downloader. Nothing real is touched.
-            let container = DemoData.makeContainer(seeded: screen != "empty")
-            self.container = container
-            self.services = nil
-            self.session = MacSession(deps: DemoData.dependencies(container: container), container: container)
-        } else {
-            let container: ModelContainer
-            do {
-                container = try MurmurSchema.makeContainer()
-            } catch {
-                fatalError("Could not create the Murmur data store: \(error)")
-            }
-            let services = AppServices(container: container)
-            self.container = container
-            self.services = services
-            self.session = MacSession(
-                deps: services.libraryDependencies,
-                container: container,
-                requestMicrophone: { await services.requestMicrophone() }
-            )
-        }
+        // Demo notes, fake microphone, fake downloader. Nothing real is touched.
+        let container = DemoData.makeContainer(seeded: true)
+        self.container = container
+        self.session = MacSession(deps: DemoData.dependencies(container: container), container: container)
     }
 
     var body: some Scene {
         Window("Murmur", id: "main") {
             MacRoot(session: session, screen: screen)
                 .modelContainer(container)
-                .frame(minWidth: screen == nil ? 980 : 0, minHeight: screen == nil ? 620 : 0)
+        }
+        .windowStyle(.hiddenTitleBar)
+        .windowResizability(.contentSize)
+    }
+}
+
+struct MurmurMacApp: App {
+    private let container: ModelContainer
+    private let session: MacSession
+    private let services: AppServices
+    private let hotKey = GlobalHotKey()
+    @AppStorage("settings.showMenuBarIcon") private var showMenuBarIcon = true
+
+    init() {
+        let container: ModelContainer
+        do {
+            container = try MurmurSchema.makeContainer()
+        } catch {
+            fatalError("Could not create the Murmur data store: \(error)")
+        }
+        let services = AppServices(container: container)
+        self.container = container
+        self.services = services
+        self.session = MacSession(
+            deps: services.libraryDependencies,
+            container: container,
+            requestMicrophone: { await services.requestMicrophone() }
+        )
+    }
+
+    var body: some Scene {
+        Window("Murmur", id: "main") {
+            MacRoot(session: session, screen: nil)
+                .modelContainer(container)
+                .frame(minWidth: 980, minHeight: 620)
                 .task { await applyLaunchSettings() }
         }
         .windowStyle(.hiddenTitleBar)
         .defaultSize(width: 1180, height: 760)
-        .windowResizability(screen == nil ? .automatic : .contentSize)
         .commands { MacCommands(session: session) }
 
         Window("Recording", id: "recorder") {
@@ -59,7 +81,7 @@ struct MurmurMacApp: App {
         .windowResizability(.contentSize)
         .defaultPosition(.topTrailing)
 
-        MenuBarExtra(isInserted: Binding(get: { showMenuBarIcon && screen == nil }, set: { showMenuBarIcon = $0 })) {
+        MenuBarExtra(isInserted: Binding(get: { showMenuBarIcon }, set: { if $0 != showMenuBarIcon { showMenuBarIcon = $0 } })) {
             MenuBarHost(session: session).modelContainer(container)
         } label: {
             MenuBarLabel(session: session)
@@ -71,9 +93,8 @@ struct MurmurMacApp: App {
         }
     }
 
-    /// Registers the global shortcut and applies the Dock setting. Skipped in screenshot mode.
+    /// Registers the global shortcut and applies the Dock setting.
     @MainActor private func applyLaunchSettings() async {
-        guard screen == nil else { return }
         let settings = session.deps.settings
         if settings.hideDockIcon { MacDockPolicy.apply(hidden: true) }
         let session = self.session

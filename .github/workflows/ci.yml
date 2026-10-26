@@ -164,6 +164,12 @@ jobs:
             ls -la "build/mac-$NAME.png" >> $LOG 2>&1 || echo "no snapshot for $NAME" >> $LOG
           }
           macshot main -screen main
+          # The normal app (no demo arguments): does it start and keep its main thread free?
+          "$BIN" > build/mac-live.log 2>&1 &
+          LIVE=$!
+          sleep 10
+          sample $LIVE 2 -file build/mac-live-sample.txt >> $LOG 2>&1 || true
+          kill -9 $LIVE 2>/dev/null || true
           # If the first screen failed, the rest would too: skip them to save CI minutes.
           if [ ! -f build/mac-main.png ]; then echo "main failed; skipping the other Mac screens" >> $LOG; exit 0; fi
           macshot note-locked -screen noteLocked
@@ -186,7 +192,7 @@ jobs:
         run: |
           rm -rf /tmp/results && mkdir /tmp/results
           cp build/*.png /tmp/results/ 2>/dev/null || true
-          cp build/mac-sample.txt /tmp/results/ 2>/dev/null || true
+          cp build/mac-sample.txt build/mac-live-sample.txt /tmp/results/ 2>/dev/null || true
           pkill -9 -x Murmur 2>/dev/null || true
           for f in build/*.log; do [ -f "$f" ] && tail -n 600 "$f" > "/tmp/results/$(basename "$f")"; done
           grep -hE "error:|warning:|Executed [0-9]+ tests|with [0-9]+ failure|E2E transcript" build/*.log > /tmp/results/summary.txt 2>/dev/null || true
