@@ -29,8 +29,10 @@ struct DemoRecordingHost: View {
     var body: some View {
         RecordingScreen(controller: controller, onClose: {}, onFinished: { _ in })
             .task {
+                try? await Task.sleep(nanoseconds: 1_200_000_000)
+                controller.addBookmark()
                 guard startPaused else { return }
-                try? await Task.sleep(nanoseconds: 1_500_000_000)
+                try? await Task.sleep(nanoseconds: 300_000_000)
                 controller.pause()
             }
     }
@@ -207,16 +209,18 @@ struct DemoNoteHost: View {
     let edit: Bool
     var summaryTab = false
     var locked = false
+    var wide = false
     private let container: ModelContainer
     private let player: DemoPlayerEngine
     private let deps: LibraryDependencies
     private let note: Note
     @State private var playback: PlaybackController
 
-    init(edit: Bool, summaryTab: Bool = false, locked: Bool = false) {
+    init(edit: Bool, summaryTab: Bool = false, locked: Bool = false, wide: Bool = false) {
         self.edit = edit
         self.summaryTab = summaryTab
         self.locked = locked
+        self.wide = wide
         let container = DemoData.makeContainer(seeded: true)
         let player = DemoPlayerEngine(duration: 42 * 60 + 10)
         player.currentTime = 16
@@ -225,7 +229,7 @@ struct DemoNoteHost: View {
         self.player = player
         self.deps = DemoData.dependencies(container: container, player: player)
         let note = DemoData.firstReadyNote(in: container)
-        if summaryTab { note.summary = DemoSummaryService.sample.encoded() }
+        if summaryTab || wide { note.summary = DemoSummaryService.sample.encoded() }
         if locked {
             // A long note: the free tier shows only the first two minutes.
             // Keep the list short so the locked card is on screen in the screenshot.
@@ -244,6 +248,8 @@ struct DemoNoteHost: View {
         Group {
             if edit {
                 EditTranscriptScreen(note: note, deps: deps, playback: playback, initialSelection: note.segments[1].id, onClose: {})
+            } else if wide {
+                NoteScreen(note: note, deps: deps, wide: true)
             } else {
                 NavigationStack { NoteScreen(note: note, deps: deps, initialTab: summaryTab ? .summary : .transcript) }
             }

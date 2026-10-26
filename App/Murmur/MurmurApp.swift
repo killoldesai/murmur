@@ -33,6 +33,7 @@ struct MurmurApp: App {
 ///   `-screen transcribing` / `transcribingDone`   transcribing screen with sample text
 ///   `-screen library` / `libraryEmpty`   library with demo notes / first-run state
 ///   `-screen import` / `export`   import queue and export sheet (demo data)
+///   `-screen noteWide`   iPad note with the summary panel
 ///   `-screen note` / `noteEdit`   note with playback running / edit transcript (demo data)
 /// With no argument the app shows the normal home screen.
 struct RootView: View {
@@ -74,6 +75,8 @@ struct RootView: View {
             DemoFindReplaceHost()
         case "summary":
             DemoNoteHost(edit: false, summaryTab: true)
+        case "noteWide":
+            DemoNoteHost(edit: false, wide: true)
         case "noteEdit":
             DemoNoteHost(edit: true)
         case "transcribing":

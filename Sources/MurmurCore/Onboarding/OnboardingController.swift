@@ -6,6 +6,15 @@ public struct OnboardingPage: Equatable, Sendable {
     public let body: String
     /// SF Symbol for the illustration.
     public let symbol: String
+
+    /// The same page worded for one line and another device, e.g. "Your words stay on your iPad".
+    public func worded(forDevice device: String) -> OnboardingPage {
+        OnboardingPage(
+            title: title.replacingOccurrences(of: "\n", with: " ").replacingOccurrences(of: "iPhone", with: device),
+            body: body.replacingOccurrences(of: "iPhone", with: device),
+            symbol: symbol
+        )
+    }
 }
 
 /// Three feature pages, then the microphone explanation.
@@ -38,6 +47,12 @@ public final class OnboardingController {
 
     public func next() {
         if index < Self.pages.count { index += 1 }
+    }
+
+    /// Tapping a card on the iPad jumps to that page. Ignored outside the feature pages.
+    public func select(_ page: Int) {
+        guard Self.pages.indices.contains(page) else { return }
+        index = page
     }
 
     /// Skip jumps straight to the microphone step, which still has to be shown.

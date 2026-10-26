@@ -22,6 +22,8 @@ public final class RecordingController {
     /// Most recent levels, 0...1, oldest first. Always `levelCount` long.
     public private(set) var levels: [Double] = Array(repeating: 0, count: RecordingController.levelCount)
     public private(set) var bookmarkCount = 0
+    /// Bookmark times in seconds, oldest first (the iPad bookmarks panel lists them).
+    public private(set) var bookmarks: [TimeInterval] = []
 
     @ObservationIgnored private let engine: RecorderEngine
     @ObservationIgnored private let store: RecordingNoteStore
@@ -99,6 +101,7 @@ public final class RecordingController {
         guard state == .recording || state == .paused, let note else { return }
         timeline.addBookmark(at: now())
         bookmarkCount = timeline.bookmarks.count
+        bookmarks = timeline.bookmarks
         try? store.saveBookmarks(timeline.bookmarks, for: note)
     }
 
@@ -133,6 +136,7 @@ public final class RecordingController {
         timeline = RecordingTimeline()
         elapsed = 0
         bookmarkCount = 0
+        bookmarks = []
         state = .idle
     }
 

@@ -47,6 +47,22 @@ final class AppSettingsTests: XCTestCase {
 
 @MainActor
 final class OnboardingControllerTests: XCTestCase {
+    func testSelectJumpsToPageAndIgnoresOutOfRange() {
+        let controller = OnboardingController()
+        controller.select(2)
+        XCTAssertEqual(controller.index, 2)
+        controller.select(9)
+        controller.select(-1)
+        XCTAssertEqual(controller.index, 2)
+    }
+
+    func testPageCanBeWordedForIPad() {
+        let page = OnboardingController.pages[0].worded(forDevice: "iPad")
+        XCTAssertEqual(page.title, "Your words stay on your iPad")
+        XCTAssertFalse(page.title.contains("\n"))
+        XCTAssertEqual(page.symbol, OnboardingController.pages[0].symbol)
+    }
+
     func testWalksThroughPagesThenMicrophone() {
         let controller = OnboardingController()
         XCTAssertEqual(controller.index, 0)

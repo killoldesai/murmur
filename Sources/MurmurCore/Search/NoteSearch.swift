@@ -88,3 +88,44 @@ public enum NoteSearch {
         }
     }
 }
+
+/// One transcript line in the iPad search preview.
+public struct ContextLine: Identifiable, Equatable, Sendable {
+    public let id: UUID
+    public let timestamp: String
+    public let text: String
+    /// Matches inside `text`; empty for a neighbouring line shown only for context.
+    public let spans: [HighlightSpan]
+    public var isMatch: Bool { !spans.isEmpty }
+}
+
+public enum SearchContext {
+    /// Lines of a note that contain `query`, each with `radius` lines of context either side,
+    /// in transcript order. Only the first `maxMatches` matching lines are used.
+    public static func lines(for note: Note, query rawQuery: String, radius: Int = 1, maxMatches: Int = 6) -> [ContextLine] {
+        let query = rawQuery.trimmingCharacters(in: .whitespacesAndNewlines)
+        let segments = note.segments
+        guard !query.isEmpty, !segments.isEmpty else { return [] }
+
+        var matchIndexes: [Int] = []
+        for (index, segment) in segments.enumerated() where !TextSearch.ranges(of: query, in: segment.text).isEmpty {
+            matchIndexes.append(index)
+            if matchIndexes.count == maxMatches { break }
+        }
+
+        var wanted = Set<Int>()
+        for index in matchIndexes {
+            for neighbour in max(0, index - radius)...min(segments.count - 1, index + radius) {
+                wanted.insert(neighbour)
+            }
+        }
+
+        return wanted.sorted().map { index in
+            let segment = segments[index]
+            let spans = TextSearch.offsets(of: query, in: segment.text).map {
+                HighlightSpan(offset: $0.lowerBound, length: $0.count, isCurrent: true)
+            }
+            return ContextLine(id: segment.id, timestamp: Timecode.format(segment.start), text: segment.text, spans: spans)
+        }
+    }
+}

@@ -256,3 +256,38 @@ final class FindReplaceTests: XCTestCase {
         XCTAssertTrue(c.spans(inSegment: 0).isEmpty)
     }
 }
+
+@MainActor
+final class SearchContextTests: XCTestCase {
+    private var keep: ModelContainer?
+
+    private func makeNote(_ texts: [String]) throws -> Note {
+        let container = try MurmurSchema.makeContainer(inMemory: true)
+        keep = container
+        let note = Note(title: "Test", createdAt: Date(), duration: 60, source: .recording, status: .ready)
+        note.segments = texts.enumerated().map { seg($1, Double($0) * 10) }
+        container.mainContext.insert(note)
+        return note
+    }
+
+    func testMatchesGetNeighbourLines() throws {
+        let note = try makeNote(["zero", "one", "two Watch", "three", "four", "five", "six", "seven Watch", "eight"])
+        let lines = SearchContext.lines(for: note, query: "watch", radius: 1)
+        XCTAssertEqual(lines.map(\.text), ["one", "two Watch", "three", "six", "seven Watch", "eight"])
+        XCTAssertEqual(lines.map(\.isMatch), [false, true, false, false, true, false])
+        XCTAssertEqual(lines[1].spans.first?.offset, 4)
+        XCTAssertEqual(lines[1].spans.first?.length, 5)
+    }
+
+    func testEmptyQueryOrNoMatchGivesNothing() throws {
+        let note = try makeNote(["alpha", "beta"])
+        XCTAssertTrue(SearchContext.lines(for: note, query: "  ").isEmpty)
+        XCTAssertTrue(SearchContext.lines(for: note, query: "zebra").isEmpty)
+    }
+
+    func testLimitsMatches() throws {
+        let note = try makeNote(Array(repeating: "hit", count: 20))
+        let lines = SearchContext.lines(for: note, query: "hit", radius: 0, maxMatches: 3)
+        XCTAssertEqual(lines.count, 3)
+    }
+}

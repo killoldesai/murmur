@@ -10,6 +10,8 @@ struct SettingsScreen: View {
 
     @Environment(\.dismiss) private var dismiss
     @Query private var words: [DictionaryWord]
+    @Environment(\.horizontalSizeClass) private var sizeClass
+    @State private var pane: Pane = .transcription
     @State private var showPaywall = false
 
     private var settings: AppSettings { deps.settings }
@@ -18,6 +20,9 @@ struct SettingsScreen: View {
     var body: some View {
         ZStack {
             MurmurTheme.Colors.background.ignoresSafeArea()
+            if sizeClass == .regular {
+                padLayout
+            } else {
             ScrollView {
                 VStack(alignment: .leading, spacing: 18) {
                     HStack {
@@ -33,69 +38,23 @@ struct SettingsScreen: View {
                     proCard.murmurEntrance(index: 0)
 
                     group("Transcription") {
-                        Menu {
-                            ForEach(TranscriptionLanguage.all) { language in
-                                Button {
-                                    settings.setLanguage(language.code)
-                                } label: {
-                                    if language.code == settings.language {
-                                        Label(language.name, systemImage: "checkmark")
-                                    } else {
-                                        Text(language.name)
-                                    }
-                                }
-                            }
-                        } label: {
-                            SettingsRow(systemImage: "globe", title: "Language", value: TranscriptionLanguage.name(for: settings.language))
-                        }
-                        divider
-                        NavigationLink {
-                            ModelSettingsDestination(manager: deps.models)
-                        } label: {
-                            SettingsRow(systemImage: "cpu", title: "Speech model", value: deps.models.selected.title)
-                        }
-                        divider
-                        NavigationLink {
-                            DictionaryScreen()
-                        } label: {
-                            SettingsRow(systemImage: "character.book.closed", title: "Custom dictionary",
-                                        value: "\(words.count) word\(words.count == 1 ? "" : "s")")
-                        }
+                        transcriptionRows
                     }
                     .murmurEntrance(index: 1)
 
                     group("Recording") {
-                        SettingsRow(systemImage: "trash", title: "Delete audio after transcribing",
-                                    isOn: Binding(get: { settings.deleteAudioAfterTranscribing },
-                                                  set: { settings.setDeleteAudioAfterTranscribing($0) }))
-                        divider
-                        SettingsRow(systemImage: "iphone.radiowaves.left.and.right", title: "Haptics",
-                                    isOn: Binding(get: { settings.hapticsEnabled },
-                                                  set: { settings.setHapticsEnabled($0) }))
+                        recordingRows
                     }
                     .murmurEntrance(index: 2)
 
                     group("Support") {
-                        Button {
-                            Task { await entitlements.restore() }
-                        } label: {
-                            SettingsRow(systemImage: "arrow.clockwise", title: "Restore purchases",
-                                        value: entitlements.state == .restoring ? "Restoring…" : nil)
-                        }
-                        .buttonStyle(.plain)
-                        .disabled(entitlements.isBusy)
+                        supportRows
                     }
                     .murmurEntrance(index: 3)
                     restoreStatus
 
                     group("About") {
-                        Link(destination: LegalLinks.privacy) {
-                            SettingsRow(systemImage: "hand.raised", title: "Privacy Policy")
-                        }
-                        divider
-                        Link(destination: LegalLinks.terms) {
-                            SettingsRow(systemImage: "doc.text", title: "Terms of Use")
-                        }
+                        aboutRows
                     }
                     .murmurEntrance(index: 4)
 
@@ -108,11 +67,207 @@ struct SettingsScreen: View {
                 .padding(.horizontal, 16)
                 .padding(.bottom, 24)
             }
+            }
         }
         .preferredColorScheme(.dark)
         .toolbar(.hidden, for: .navigationBar)
         .fullScreenCover(isPresented: $showPaywall) {
             PaywallScreen(controller: entitlements) { showPaywall = false }
+        }
+    }
+
+
+    // MARK: - Rows shared by the iPhone list and the iPad panes
+
+    @ViewBuilder
+    private var transcriptionRows: some View {
+                Menu {
+                    ForEach(TranscriptionLanguage.all) { language in
+                        Button {
+                            settings.setLanguage(language.code)
+                        } label: {
+                            if language.code == settings.language {
+                                Label(language.name, systemImage: "checkmark")
+                            } else {
+                                Text(language.name)
+                            }
+                        }
+                    }
+                } label: {
+                    SettingsRow(systemImage: "globe", title: "Language", value: TranscriptionLanguage.name(for: settings.language))
+                }
+                divider
+                NavigationLink {
+                    ModelSettingsDestination(manager: deps.models)
+                } label: {
+                    SettingsRow(systemImage: "cpu", title: "Speech model", value: deps.models.selected.title)
+                }
+                divider
+                NavigationLink {
+                    DictionaryScreen()
+                } label: {
+                    SettingsRow(systemImage: "character.book.closed", title: "Custom dictionary",
+                                value: "\(words.count) word\(words.count == 1 ? "" : "s")")
+                }
+    }
+
+    @ViewBuilder
+    private var recordingRows: some View {
+                SettingsRow(systemImage: "trash", title: "Delete audio after transcribing",
+                            isOn: Binding(get: { settings.deleteAudioAfterTranscribing },
+                                          set: { settings.setDeleteAudioAfterTranscribing($0) }))
+                divider
+                SettingsRow(systemImage: "iphone.radiowaves.left.and.right", title: "Haptics",
+                            isOn: Binding(get: { settings.hapticsEnabled },
+                                          set: { settings.setHapticsEnabled($0) }))
+    }
+
+    @ViewBuilder
+    private var supportRows: some View {
+                Button {
+                    Task { await entitlements.restore() }
+                } label: {
+                    SettingsRow(systemImage: "arrow.clockwise", title: "Restore purchases",
+                                value: entitlements.state == .restoring ? "Restoring…" : nil)
+                }
+                .buttonStyle(.plain)
+                .disabled(entitlements.isBusy)
+    }
+
+    @ViewBuilder
+    private var aboutRows: some View {
+                Link(destination: LegalLinks.privacy) {
+                    SettingsRow(systemImage: "hand.raised", title: "Privacy Policy")
+                }
+                divider
+                Link(destination: LegalLinks.terms) {
+                    SettingsRow(systemImage: "doc.text", title: "Terms of Use")
+                }
+    }
+
+    // MARK: - iPad: section list beside a detail pane (design/ipad/Settings.dc.html)
+
+    private enum Pane: String, CaseIterable, Identifiable {
+        case transcription, recording, dictionary, support, about
+        var id: String { rawValue }
+        var title: String {
+            switch self {
+            case .transcription: "Transcription"
+            case .recording: "Recording"
+            case .dictionary: "Custom dictionary"
+            case .support: "Support"
+            case .about: "About"
+            }
+        }
+        var subtitle: String {
+            switch self {
+            case .transcription: "Language and the speech model that turns audio into text."
+            case .recording: "What happens to your audio and how the app feels."
+            case .dictionary: "Names and terms Murmur should spell your way."
+            case .support: "Purchases on this Apple ID."
+            case .about: "Privacy and terms."
+            }
+        }
+        var symbol: String {
+            switch self {
+            case .transcription: "text.alignleft"
+            case .recording: "mic"
+            case .dictionary: "character.book.closed"
+            case .support: "lifepreserver"
+            case .about: "info.circle"
+            }
+        }
+        var colorIndex: Int {
+            switch self {
+            case .transcription: 0
+            case .recording: 3
+            case .dictionary: 1
+            case .support: 2
+            case .about: 4
+            }
+        }
+    }
+
+    private var padLayout: some View {
+        HStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 6) {
+                HStack {
+                    HeaderCircleButton(symbol: "xmark", label: "Close settings") { dismiss() }
+                    Text("Settings")
+                        .font(MurmurTheme.Fonts.title)
+                        .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                        .accessibilityAddTraits(.isHeader)
+                }
+                .padding(.bottom, 12)
+                proCard.padding(.bottom, 8)
+                ForEach(Pane.allCases) { pane in
+                    Button { self.pane = pane } label: {
+                        HStack(spacing: 12) {
+                            Image(systemName: pane.symbol)
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(MurmurTheme.Colors.background)
+                                .frame(width: 28, height: 28)
+                                .background(RoundedRectangle(cornerRadius: 8, style: .continuous).fill(MurmurTheme.Colors.folder(pane.colorIndex)))
+                            Text(pane.title)
+                                .font(MurmurTheme.Fonts.body.weight(self.pane == pane ? .semibold : .regular))
+                                .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                            Spacer(minLength: 0)
+                        }
+                        .padding(.horizontal, 12)
+                        .frame(minHeight: 46)
+                        .background(RoundedRectangle(cornerRadius: 12, style: .continuous).fill(self.pane == pane ? MurmurTheme.Colors.raised : Color.clear))
+                    }
+                    .buttonStyle(MurmurPressStyle())
+                    .accessibilityAddTraits(self.pane == pane ? .isSelected : [])
+                }
+                Spacer(minLength: 0)
+                Text("Murmur \(version) · Everything stays on this iPad")
+                    .font(MurmurTheme.Fonts.caption)
+                    .foregroundStyle(MurmurTheme.Colors.textTertiary)
+                    .padding(.horizontal, 12)
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 28)
+            .frame(width: 320)
+            .background(MurmurTheme.Colors.panel)
+            .overlay(alignment: .trailing) {
+                Rectangle().fill(MurmurTheme.Colors.border).frame(width: MurmurTheme.Metrics.borderWidth)
+            }
+
+            ScrollView {
+                VStack(alignment: .leading, spacing: 22) {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(pane.title)
+                            .font(MurmurTheme.Fonts.title)
+                            .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                        Text(pane.subtitle)
+                            .font(MurmurTheme.Fonts.body)
+                            .foregroundStyle(MurmurTheme.Colors.textSecondary)
+                    }
+                    VStack(spacing: 0) {
+                        switch pane {
+                        case .transcription: transcriptionRows
+                        case .recording: recordingRows
+                        case .dictionary:
+                            NavigationLink {
+                                DictionaryScreen()
+                            } label: {
+                                SettingsRow(systemImage: "character.book.closed", title: "Custom dictionary",
+                                            value: "\(words.count) word\(words.count == 1 ? "" : "s")")
+                            }
+                        case .support: supportRows
+                        case .about: aboutRows
+                        }
+                    }
+                    .frame(maxWidth: 620)
+                    .murmurCard()
+                    .clipShape(RoundedRectangle(cornerRadius: MurmurTheme.Metrics.cardRadius, style: .continuous))
+                    if pane == .support { restoreStatus }
+                }
+                .padding(.horizontal, 48)
+                .padding(.vertical, 40)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
         }
     }
 

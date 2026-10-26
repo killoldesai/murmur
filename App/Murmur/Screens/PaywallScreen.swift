@@ -7,6 +7,8 @@ struct PaywallScreen: View {
     let controller: EntitlementController
     let onClose: () -> Void
 
+    @Environment(\.horizontalSizeClass) private var sizeClass
+
     private let perks: [(String, Int)] = [
         ("Unlimited length", 0),
         ("Speaker labels", 1),
@@ -21,6 +23,9 @@ struct PaywallScreen: View {
     var body: some View {
         ZStack {
             MurmurTheme.Colors.background.ignoresSafeArea()
+            if sizeClass == .regular {
+                padLayout
+            } else {
             ScrollView {
                 VStack(spacing: 0) {
                     HStack {
@@ -45,11 +50,94 @@ struct PaywallScreen: View {
                 .padding(.horizontal, MurmurTheme.Metrics.screenPadding)
                 .padding(.bottom, 12)
             }
+            }
         }
-        .safeAreaInset(edge: .bottom, spacing: 0) { footer }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            if sizeClass != .regular { footer }
+        }
         .preferredColorScheme(.dark)
         .onChange(of: controller.isPro) { _, isPro in
             if isPro { onClose() }
+        }
+    }
+
+    // MARK: - iPad: perks column beside plan cards (design/ipad/Paywall.dc.html)
+
+    private let padPerks: [String] = [
+        "Unlimited transcription length",
+        "Speaker labels and AI summaries",
+        "Batch import and SRT subtitles",
+        "Custom dictionary",
+        "No account, no cloud, ever"
+    ]
+
+    private var padLayout: some View {
+        HStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 28) {
+                AppIconMark()
+                    .frame(width: 64, height: 64)
+                    .accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: 10) {
+                    (Text("Murmur ").foregroundStyle(MurmurTheme.Colors.textPrimary)
+                        + Text("Pro").foregroundStyle(MurmurTheme.Colors.accent))
+                        .font(.system(size: 44, weight: .heavy))
+                        .accessibilityAddTraits(.isHeader)
+                    Text("Unlimited, private transcription. Free notes show the first 2 minutes.")
+                        .font(.title3)
+                        .foregroundStyle(MurmurTheme.Colors.textSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                VStack(alignment: .leading, spacing: 16) {
+                    ForEach(Array(padPerks.enumerated()), id: \.offset) { index, text in
+                        HStack(spacing: 14) {
+                            Image(systemName: "checkmark")
+                                .font(.footnote.weight(.heavy))
+                                .foregroundStyle(MurmurTheme.Colors.background)
+                                .frame(width: 34, height: 34)
+                                .background(RoundedRectangle(cornerRadius: 11, style: .continuous).fill(MurmurTheme.Colors.folder(index)))
+                                .accessibilityHidden(true)
+                            Text(text)
+                                .font(MurmurTheme.Fonts.body)
+                                .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                        }
+                        .accessibilityElement(children: .combine)
+                    }
+                }
+                Spacer(minLength: 0)
+            }
+            .padding(.horizontal, 56)
+            .padding(.vertical, 56)
+            .frame(width: 480, alignment: .leading)
+            .background(MurmurTheme.Colors.panel)
+            .overlay(alignment: .trailing) {
+                Rectangle().fill(MurmurTheme.Colors.border).frame(width: MurmurTheme.Metrics.borderWidth)
+            }
+
+            VStack(alignment: .leading, spacing: 14) {
+                HStack {
+                    Spacer()
+                    Button(action: onClose) {
+                        Image(systemName: "xmark")
+                            .font(.footnote.weight(.heavy))
+                            .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                            .frame(width: MurmurTheme.Metrics.minTapTarget, height: MurmurTheme.Metrics.minTapTarget)
+                            .background(Circle().fill(MurmurTheme.Colors.surface))
+                            .overlay(Circle().strokeBorder(MurmurTheme.Colors.border, lineWidth: MurmurTheme.Metrics.borderWidth))
+                    }
+                    .buttonStyle(MurmurPressStyle())
+                    .accessibilityLabel("Close")
+                }
+                Text("Choose a plan")
+                    .font(MurmurTheme.Fonts.headline)
+                    .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                plans
+                Spacer(minLength: 0)
+                footerContent
+            }
+            .padding(.horizontal, 56)
+            .padding(.top, 16)
+            .padding(.bottom, 32)
+            .frame(maxWidth: .infinity)
         }
     }
 
@@ -114,6 +202,16 @@ struct PaywallScreen: View {
     }
 
     private var footer: some View {
+        footerContent
+            .padding(.horizontal, MurmurTheme.Metrics.screenPadding)
+            .padding(.top, 10)
+            .background(MurmurTheme.Colors.background)
+            .overlay(alignment: .top) {
+                Rectangle().fill(MurmurTheme.Colors.border).frame(height: MurmurTheme.Metrics.borderWidth)
+            }
+    }
+
+    private var footerContent: some View {
         VStack(spacing: 6) {
             statusLine
             PrimaryButton(controller.state == .purchasing ? "Working…" : controller.callToAction, action: {
@@ -147,12 +245,6 @@ struct PaywallScreen: View {
                     .frame(minHeight: MurmurTheme.Metrics.minTapTarget)
                     .padding(.horizontal, 8)
             }
-        }
-        .padding(.horizontal, MurmurTheme.Metrics.screenPadding)
-        .padding(.top, 10)
-        .background(MurmurTheme.Colors.background)
-        .overlay(alignment: .top) {
-            Rectangle().fill(MurmurTheme.Colors.border).frame(height: MurmurTheme.Metrics.borderWidth)
         }
     }
 

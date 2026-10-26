@@ -452,7 +452,7 @@ extension LibraryScreen {
         .sheet(isPresented: $showSearch) {
             NavigationStack {
                 SearchScreen()
-                    .navigationDestination(for: Note.self) { NoteScreen(note: $0, deps: deps) }
+                    .navigationDestination(for: Note.self) { NoteScreen(note: $0, deps: deps, wide: true) }
             }
         }
         .sheet(isPresented: $showImport) {

@@ -223,6 +223,8 @@ final class RecordingControllerTests: XCTestCase {
         rig.clock.advance(6)
         rig.controller.addBookmark()
         XCTAssertEqual(rig.controller.bookmarkCount, 2)
+        XCTAssertEqual(rig.controller.bookmarks.count, 2)
+        XCTAssertEqual(rig.controller.bookmarks[1], 10, accuracy: 1e-9)
         let note = try XCTUnwrap(try notes(rig).first)
         XCTAssertEqual(note.bookmarks.count, 2)
         XCTAssertEqual(note.bookmarks[0], 4, accuracy: 1e-9)

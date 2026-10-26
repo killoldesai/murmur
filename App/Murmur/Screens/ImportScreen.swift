@@ -9,6 +9,8 @@ struct ImportScreen: View {
     let importer: ImportQueue
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.horizontalSizeClass) private var sizeClass
+    @State private var isDropTargeted = false
     @State private var showFiles = false
     @State private var photoItems: [PhotosPickerItem] = []
     @State private var notice: String?
@@ -16,6 +18,9 @@ struct ImportScreen: View {
     var body: some View {
         ZStack {
             MurmurTheme.Colors.background.ignoresSafeArea()
+            if sizeClass == .regular {
+                padLayout
+            } else {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
@@ -102,6 +107,7 @@ struct ImportScreen: View {
                 .padding(.top, 8)
                 .padding(.bottom, 24)
             }
+            }
         }
         .preferredColorScheme(.dark)
         .toolbar(.hidden, for: .navigationBar)
@@ -129,6 +135,109 @@ struct ImportScreen: View {
         }
     }
 
+    // MARK: - iPad: drop zone beside the queue (design/ipad/Import.dc.html)
+
+    private var padLayout: some View {
+        HStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 20) {
+                HStack(spacing: 14) {
+                    Button { dismiss() } label: {
+                        Image(systemName: "chevron.left")
+                            .font(.body.weight(.semibold))
+                            .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                            .frame(width: MurmurTheme.Metrics.minTapTarget, height: MurmurTheme.Metrics.minTapTarget)
+                            .background(Circle().fill(MurmurTheme.Colors.surface))
+                            .overlay(Circle().strokeBorder(MurmurTheme.Colors.border, lineWidth: MurmurTheme.Metrics.borderWidth))
+                    }
+                    .buttonStyle(MurmurPressStyle())
+                    .accessibilityLabel("Back to library")
+                    Text("Import audio or video")
+                        .font(MurmurTheme.Fonts.title)
+                        .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                        .accessibilityAddTraits(.isHeader)
+                    Spacer(minLength: 8)
+                    Button("Browse Files") { showFiles = true }
+                        .buttonStyle(PadPillStyle())
+                    PhotosPicker(selection: $photoItems, maxSelectionCount: 10, matching: .videos) {
+                        Text("Photos & videos")
+                    }
+                    .buttonStyle(PadPillStyle())
+                }
+                .murmurEntrance(index: 0)
+
+                VStack(spacing: 16) {
+                    Image(systemName: "square.and.arrow.down")
+                        .font(.system(size: 52, weight: .light))
+                        .foregroundStyle(MurmurTheme.Colors.accent)
+                    Text("Drop files here")
+                        .font(MurmurTheme.Fonts.title)
+                        .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                    Text("Drag from Files or any app in Split View. Drop several at once and Murmur queues them.")
+                        .font(MurmurTheme.Fonts.body)
+                        .foregroundStyle(MurmurTheme.Colors.textSecondary)
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: 420)
+                    Text("MP3 · M4A · WAV · MP4 · MOV")
+                        .font(.footnote)
+                        .foregroundStyle(MurmurTheme.Colors.textTertiary)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(RoundedRectangle(cornerRadius: 28, style: .continuous).fill(isDropTargeted ? MurmurTheme.Colors.selectedFill : MurmurTheme.Colors.panel))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 28, style: .continuous)
+                        .strokeBorder(isDropTargeted ? MurmurTheme.Colors.accent : MurmurTheme.Colors.textTertiary,
+                                      style: StrokeStyle(lineWidth: 2, dash: [8, 6]))
+                )
+                .dropDestination(for: URL.self) { urls, _ in
+                    let skipped = importer.enqueue(urls.filter(\.isFileURL))
+                    if skipped > 0 { notice = "\(skipped) file\(skipped == 1 ? " was" : "s were") skipped: only audio and video can be imported." }
+                    return !urls.isEmpty
+                } isTargeted: { isDropTargeted = $0 }
+                .accessibilityLabel("Drop files here to import")
+                .murmurEntrance(index: 1)
+            }
+            .padding(.horizontal, 32)
+            .padding(.vertical, 28)
+
+            VStack(alignment: .leading, spacing: 12) {
+                HStack(alignment: .firstTextBaseline) {
+                    Text("Queue")
+                        .font(MurmurTheme.Fonts.headline)
+                        .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                    Spacer()
+                    Text(importer.summary)
+                        .font(.footnote)
+                        .foregroundStyle(MurmurTheme.Colors.textSecondary)
+                }
+                ScrollView {
+                    VStack(spacing: 8) {
+                        if importer.items.isEmpty {
+                            Text("Files you add show up here while they’re prepared.")
+                                .font(MurmurTheme.Fonts.body)
+                                .foregroundStyle(MurmurTheme.Colors.textTertiary)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        ForEach(importer.items) { ImportRow(item: $0) }
+                    }
+                }
+                Spacer(minLength: 0)
+                Text("Files transcribe one at a time on this iPad. You can keep using Murmur while the queue runs.")
+                    .font(.footnote)
+                    .foregroundStyle(MurmurTheme.Colors.textSecondary)
+                    .padding(14)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .murmurCard()
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 32)
+            .frame(width: 360)
+            .background(MurmurTheme.Colors.panel)
+            .overlay(alignment: .leading) {
+                Rectangle().fill(MurmurTheme.Colors.border).frame(width: MurmurTheme.Metrics.borderWidth)
+            }
+        }
+    }
+
     private func sourceTile(_ symbol: String, _ label: String, tint: Color) -> some View {
         VStack(spacing: 10) {
             Image(systemName: symbol)
@@ -145,6 +254,20 @@ struct ImportScreen: View {
         .padding(.horizontal, 8)
         .frame(maxWidth: .infinity)
         .murmurCard()
+    }
+}
+
+/// Small rounded button in the iPad import header.
+private struct PadPillStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(MurmurTheme.Fonts.body.weight(.semibold))
+            .foregroundStyle(MurmurTheme.Colors.textPrimary)
+            .padding(.horizontal, 16)
+            .frame(minHeight: MurmurTheme.Metrics.minTapTarget)
+            .background(RoundedRectangle(cornerRadius: 12, style: .continuous).fill(MurmurTheme.Colors.surface))
+            .overlay(RoundedRectangle(cornerRadius: 12, style: .continuous).strokeBorder(MurmurTheme.Colors.border, lineWidth: MurmurTheme.Metrics.borderWidth))
+            .scaleEffect(configuration.isPressed ? 0.96 : 1)
     }
 }
 

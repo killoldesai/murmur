@@ -15,6 +15,8 @@ struct NoteScreen: View {
     let showsBack: Bool
     /// Called after the note is deleted when the screen is not pushed (iPad detail column).
     let onDeleted: (() -> Void)?
+    /// iPad full-screen layout: transcript beside a summary panel (design/ipad/Note.dc.html).
+    let wide: Bool
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
@@ -31,12 +33,14 @@ struct NoteScreen: View {
     @State private var copied = false
     @State private var findReplace: FindReplaceController?
     @State private var showPaywall = false
+    @State private var showWide = false
 
-    init(note: Note, deps: LibraryDependencies, initialTab: Tab = .transcript, showsBack: Bool = true, onDeleted: (() -> Void)? = nil) {
+    init(note: Note, deps: LibraryDependencies, initialTab: Tab = .transcript, showsBack: Bool = true, onDeleted: (() -> Void)? = nil, wide: Bool = false) {
         self.note = note
         self.deps = deps
         self.showsBack = showsBack
         self.onDeleted = onDeleted
+        self.wide = wide
         _tab = State(initialValue: initialTab)
         _summaryController = State(initialValue: SummaryController(service: deps.summaries))
         _playback = State(initialValue: PlaybackController(engine: deps.makePlayer(), segments: note.segments))
@@ -49,6 +53,9 @@ struct NoteScreen: View {
     var body: some View {
         ZStack {
             MurmurTheme.Colors.background.ignoresSafeArea()
+            if wide {
+                wideLayout
+            } else {
             VStack(spacing: 0) {
                 topBar
                     .padding(.horizontal, 16)
@@ -89,6 +96,7 @@ struct NoteScreen: View {
                     }
                 }
             }
+            }
         }
         .preferredColorScheme(.dark)
         .toolbar(.hidden, for: .navigationBar)
@@ -109,6 +117,9 @@ struct NoteScreen: View {
             if let controller = findReplace {
                 FindReplaceScreen(controller: controller, speakerNames: note.speakerNames) { findReplace = nil }
             }
+        }
+        .fullScreenCover(isPresented: $showWide) {
+            NoteScreen(note: note, deps: deps, wide: true)
         }
         .fullScreenCover(isPresented: $showPaywall) {
             PaywallScreen(controller: deps.entitlements) { showPaywall = false }
@@ -136,6 +147,45 @@ struct NoteScreen: View {
             Button("Keep", role: .cancel) {}
         } message: {
             Text("The recording and its transcript are removed from this device. This can’t be undone.")
+        }
+    }
+
+    private var hasSummaryPanel: Bool { showsTabs }
+
+    private var wideLayout: some View {
+        HStack(spacing: 0) {
+            VStack(spacing: 0) {
+                topBar
+                    .padding(.horizontal, 16)
+                    .padding(.top, 8)
+                titleBlock
+                    .padding(.horizontal, MurmurTheme.Metrics.screenPadding)
+                    .padding(.top, 14)
+                transcript.padding(.top, 10)
+                if note.audioFileName != nil {
+                    playbackPanel
+                } else {
+                    Label("Audio was deleted after transcribing", systemImage: "trash")
+                        .font(.footnote)
+                        .foregroundStyle(MurmurTheme.Colors.textTertiary)
+                        .padding(.vertical, 14)
+                }
+            }
+            if hasSummaryPanel {
+                Rectangle().fill(MurmurTheme.Colors.border).frame(width: MurmurTheme.Metrics.borderWidth)
+                SummaryTab(
+                    note: note,
+                    controller: summaryController,
+                    onGenerate: { gated { generateSummary() } },
+                    onToggle: { store.toggleActionItem($0, in: note) },
+                    onCopy: copySummary,
+                    copied: copied,
+                    talkTime: TalkTime.shares(segments: note.segments, names: note.speakerNames)
+                )
+                .padding(.top, 16)
+                .frame(width: 380)
+                .background(MurmurTheme.Colors.panel)
+            }
         }
     }
 
@@ -231,6 +281,12 @@ struct NoteScreen: View {
                 circleButton("chevron.left", label: "Back to library") { dismiss() }
             }
             Spacer()
+            if !showsBack && !wide && showsTabs {
+                circleButton("sparkles", label: "Open with summary panel") {
+                    playback.stop()
+                    showWide = true
+                }
+            }
             circleButton("pencil", label: "Edit transcript") { gated { showEdit = true } }
                 .disabled(note.segments.isEmpty)
             circleButton("square.and.arrow.up", label: "Export") { gated { showExport = true } }

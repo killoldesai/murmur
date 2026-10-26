@@ -11,6 +11,8 @@ struct SummaryTab: View {
     let onToggle: (UUID) -> Void
     let onCopy: () -> Void
     let copied: Bool
+    /// Talk-time bars, shown in the iPad summary panel. Empty hides the card.
+    var talkTime: [SpeakerShare] = []
 
     private var summary: NoteSummary? { NoteSummary.decode(note.summary) }
 
@@ -23,6 +25,7 @@ struct SummaryTab: View {
                 } else if let summary {
                     summaryCard(summary)
                     if !summary.actionItems.isEmpty { actionCard(summary.actionItems) }
+                    if !talkTime.isEmpty { speakersCard }
                     footer(summary)
                 } else {
                     empty
@@ -151,6 +154,40 @@ struct SummaryTab: View {
             }
         }
         .padding(16)
+        .murmurCard()
+    }
+
+    private var speakersCard: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("SPEAKERS").murmurSectionLabel()
+            ForEach(talkTime) { share in
+                HStack(spacing: 10) {
+                    Text(share.name)
+                        .font(MurmurTheme.Fonts.body)
+                        .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                        .lineLimit(1)
+                        .frame(width: 80, alignment: .leading)
+                    GeometryReader { proxy in
+                        ZStack(alignment: .leading) {
+                            Capsule().fill(MurmurTheme.Colors.raised)
+                            Capsule()
+                                .fill(MurmurTheme.Colors.folder(share.index))
+                                .frame(width: max(8, proxy.size.width * share.fraction))
+                        }
+                    }
+                    .frame(height: 8)
+                    Text("\(share.percent)%")
+                        .font(.footnote.monospacedDigit())
+                        .foregroundStyle(MurmurTheme.Colors.textSecondary)
+                        .frame(width: 40, alignment: .trailing)
+                }
+                .frame(minHeight: 28)
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel("\(share.name), \(share.percent) percent of the talking")
+            }
+        }
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .murmurCard()
     }
 
