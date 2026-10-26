@@ -121,14 +121,14 @@ jobs:
             xcrun simctl boot "$UDID" || true
             xcrun simctl bootstatus "$UDID" -b
             xcrun simctl install "$UDID" "$APP"
-            shot ipad-library 6 -screen library
-            shot ipad-note-wide 6 -screen noteWide
-            shot ipad-recording 5 -screen recording
-            shot ipad-search 6 -screen search
-            shot ipad-import 6 -screen import
-            shot ipad-settings 5 -screen settings
-            shot ipad-onboarding 5 -screen onboarding
-            shot ipad-paywall 5 -screen paywall
+            shot ipad-library 9 -screen library
+            shot ipad-note-wide 9 -screen noteWide
+            shot ipad-recording 9 -screen recording
+            shot ipad-search 9 -screen search
+            shot ipad-import 9 -screen import
+            shot ipad-settings 9 -screen settings
+            shot ipad-onboarding 9 -screen onboarding
+            shot ipad-paywall 9 -screen paywall
           fi
 
       - name: Publish results to ci-results branch
