@@ -155,12 +155,17 @@ jobs:
             rm -f "build/mac-$NAME.png"
             "$BIN" "$@" -snapshot "$PWD/build/mac-$NAME.png" > "build/mac-$NAME.log" 2>&1 &
             PID=$!
-            for i in $(seq 1 30); do sleep 1; kill -0 $PID 2>/dev/null || break; done
-            if kill -0 $PID 2>/dev/null; then echo "$NAME: still running after 30 s" >> $LOG; kill $PID 2>/dev/null || true; else wait $PID; echo "$NAME: exit $?" >> $LOG; fi
+            for i in $(seq 1 20); do
+              sleep 1; kill -0 $PID 2>/dev/null || break
+              # Once, a stack sample of the first screen, to see what the app is doing if it hangs.
+              if [ "$i" = 12 ] && [ "$NAME" = main ]; then sample $PID 2 -file build/mac-sample.txt >> $LOG 2>&1 || true; fi
+            done
+            if kill -0 $PID 2>/dev/null; then echo "$NAME: still running after 20 s" >> $LOG; kill -9 $PID 2>/dev/null || true; else wait $PID; echo "$NAME: exit $?" >> $LOG; fi
             ls -la "build/mac-$NAME.png" >> $LOG 2>&1 || echo "no snapshot for $NAME" >> $LOG
           }
           macshot main -screen main
-          screencapture -x build/mac-fullscreen.png >> $LOG 2>&1 || true
+          # If the first screen failed, the rest would too: skip them to save CI minutes.
+          if [ ! -f build/mac-main.png ]; then echo "main failed; skipping the other Mac screens" >> $LOG; exit 0; fi
           macshot note-locked -screen noteLocked
           macshot queue -screen queue
           macshot drop -screen drop
@@ -181,6 +186,8 @@ jobs:
         run: |
           rm -rf /tmp/results && mkdir /tmp/results
           cp build/*.png /tmp/results/ 2>/dev/null || true
+          cp build/mac-sample.txt /tmp/results/ 2>/dev/null || true
+          pkill -9 -x Murmur 2>/dev/null || true
           for f in build/*.log; do [ -f "$f" ] && tail -n 600 "$f" > "/tmp/results/$(basename "$f")"; done
           grep -hE "error:|warning:|Executed [0-9]+ tests|with [0-9]+ failure|E2E transcript" build/*.log > /tmp/results/summary.txt 2>/dev/null || true
           echo "commit $GITHUB_SHA" >> /tmp/results/summary.txt

@@ -140,8 +140,13 @@ enum SnapshotWriter {
 
     static func write(to path: String, after seconds: Double) async {
         say("snapshot: waiting \(seconds)s, windows now: \(NSApp.windows.count)")
-        NSApp.activate(ignoringOtherApps: true)
-        try? await Task.sleep(nanoseconds: UInt64(seconds * 1_000_000_000))
+        // No App Nap: a window that is not frontmost must still run its timers.
+        let activity = ProcessInfo.processInfo.beginActivity(options: [.userInitiated, .latencyCritical], reason: "snapshot")
+        defer { ProcessInfo.processInfo.endActivity(activity) }
+        await withCheckedContinuation { continuation in
+            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) { continuation.resume() }
+        }
+        say("snapshot: woke up")
         for window in NSApp.windows {
             say("window \(window.title) visible=\(window.isVisible) frame=\(window.frame) content=\(window.contentView != nil)")
         }
