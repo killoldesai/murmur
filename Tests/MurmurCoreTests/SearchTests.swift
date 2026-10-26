@@ -114,8 +114,12 @@ final class NoteSearchTests: XCTestCase {
 
 @MainActor
 final class DictionaryStoreTests: XCTestCase {
+    /// The container must outlive the store, or the in-memory data is freed under it.
+    private var keep: ModelContainer?
+
     private func make() throws -> (DictionaryStore, ModelContainer) {
         let container = try MurmurSchema.makeContainer(inMemory: true)
+        keep = container
         return (DictionaryStore(context: container.mainContext), container)
     }
 
