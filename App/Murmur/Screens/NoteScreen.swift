@@ -73,15 +73,24 @@ struct NoteScreen: View {
                 } else {
                     transcript
                         .padding(.top, 10)
-                    playbackPanel
+                    if note.audioFileName != nil {
+                        playbackPanel
+                    } else {
+                        Label("Audio was deleted after transcribing", systemImage: "trash")
+                            .font(.footnote)
+                            .foregroundStyle(MurmurTheme.Colors.textTertiary)
+                            .padding(.vertical, 14)
+                    }
                 }
             }
         }
         .preferredColorScheme(.dark)
         .toolbar(.hidden, for: .navigationBar)
         .task {
-            playback.load(url: deps.files.url(for: note.audioFileName ?? "missing.caf"), fallbackDuration: note.duration)
-            playback.start()
+            if let audio = note.audioFileName {
+                playback.load(url: deps.files.url(for: audio), fallbackDuration: note.duration)
+                playback.start()
+            }
         }
         .onDisappear { playback.stop() }
         .fullScreenCover(isPresented: $showEdit) {
@@ -200,6 +209,7 @@ struct NoteScreen: View {
     private func copySummary() {
         guard let text = NoteSummary.plainText(from: note.summary) else { return }
         UIPasteboard.general.string = text
+        Haptics.tap(deps.settings)
         copied = true
         Task { @MainActor in
             try? await Task.sleep(nanoseconds: 1_500_000_000)

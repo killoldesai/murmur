@@ -331,6 +331,41 @@ final class TranscriptionQueueTests: XCTestCase {
         XCTAssertNil(engine.receivedOptions.first?.language)
     }
 
+    func testLanguageSettingIsPassedToTheEngine() async {
+        addNote()
+        let engine = FakeTranscriber()
+        let queue = makeQueue(engine)
+        let settings = AppSettings(defaults: UserDefaults(suiteName: "murmur-q-\(UUID().uuidString)")!)
+        settings.setLanguage("es")
+        queue.settings = settings
+        await queue.processQueued()
+        XCTAssertEqual(engine.receivedOptions.first?.language, "es")
+    }
+
+    func testAudioIsDeletedAfterTranscribingWhenEnabled() async {
+        let note = addNote()
+        let name = note.audioFileName!
+        let queue = makeQueue(FakeTranscriber())
+        let settings = AppSettings(defaults: UserDefaults(suiteName: "murmur-q-\(UUID().uuidString)")!)
+        settings.setDeleteAudioAfterTranscribing(true)
+        queue.settings = settings
+        await queue.processQueued()
+        XCTAssertEqual(note.status, .ready)
+        XCTAssertNil(note.audioFileName)
+        XCTAssertFalse(files.exists(name))
+        XCTAssertEqual(note.segments.count, 2)
+    }
+
+    func testAudioIsKeptByDefault() async {
+        let note = addNote()
+        let name = note.audioFileName!
+        let queue = makeQueue(FakeTranscriber())
+        queue.settings = AppSettings(defaults: UserDefaults(suiteName: "murmur-q-\(UUID().uuidString)")!)
+        await queue.processQueued()
+        XCTAssertEqual(note.audioFileName, name)
+        XCTAssertTrue(files.exists(name))
+    }
+
     func testStartRunsInBackground() async {
         let note = addNote()
         let queue = makeQueue(FakeTranscriber())

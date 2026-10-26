@@ -27,7 +27,7 @@ struct LibraryScreen: View {
     @State private var recoveredCount = 0
     @State private var showImport = false
     @State private var showSearch = false
-    @State private var showDictionary = false
+    @State private var showSettings = false
 
     @State private var newFolderName = ""
     @State private var showNewFolder = false
@@ -59,8 +59,8 @@ struct LibraryScreen: View {
             .navigationDestination(isPresented: $showSearch) {
                 SearchScreen()
             }
-            .navigationDestination(isPresented: $showDictionary) {
-                DictionaryScreen()
+            .navigationDestination(isPresented: $showSettings) {
+                SettingsScreen(deps: deps)
             }
         }
         .preferredColorScheme(.dark)
@@ -147,8 +147,8 @@ struct LibraryScreen: View {
             Spacer()
             HStack(spacing: 8) {
                 HeaderCircleButton(symbol: "magnifyingglass", label: "Search") { showSearch = true }
-                HeaderCircleButton(symbol: "character.book.closed", label: "Custom dictionary") { showDictionary = true }
                 HeaderCircleButton(symbol: "square.and.arrow.down", label: "Import a file") { showImport = true }
+                HeaderCircleButton(symbol: "gearshape", label: "Settings") { showSettings = true }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -296,7 +296,10 @@ struct LibraryScreen: View {
 
     private var bottomBar: some View {
         VStack(spacing: 10) {
-            RecordButton { route = .recording(makeController()) }
+            RecordButton {
+                Haptics.tap(deps.settings)
+                route = .recording(makeController())
+            }
             Label("Stays on your iPhone", systemImage: "lock.fill")
                 .font(MurmurTheme.Fonts.caption)
                 .foregroundStyle(MurmurTheme.Colors.textSecondary)

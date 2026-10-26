@@ -133,6 +133,7 @@ enum DemoData {
         bio.transcript = "Cellular respiration, starting with glycolysis in the cytoplasm."
         bio.segments = [TranscriptSegment(start: 0, end: 6, text: bio.transcript)]
 
+        [sync, idea, bio].forEach { $0.audioFileName = "demo.caf" }
         let waiting = Note(title: "Recording Oct 25, 9:41 AM", createdAt: now.addingTimeInterval(-60), duration: 125, source: .recording, status: .queued)
 
         [sync, idea, bio, waiting].forEach(context.insert)
@@ -178,7 +179,8 @@ enum DemoData {
             makeRecorder: { DemoRecorderEngine() },
             makePlayer: { player },
             summaries: summaries ?? DemoSummaryService(),
-            entitlements: entitlements ?? EntitlementController(store: DemoPurchaseStore())
+            entitlements: entitlements ?? EntitlementController(store: DemoPurchaseStore()),
+            settings: AppSettings(defaults: defaults)
         )
     }
 }
@@ -420,5 +422,27 @@ struct DemoPaywallHost: View {
     var body: some View {
         PaywallScreen(controller: controller, onClose: {})
             .task { await controller.loadOffers() }
+    }
+}
+
+@MainActor
+struct DemoSettingsHost: View {
+    private let container: ModelContainer
+    private let deps: LibraryDependencies
+
+    init() {
+        let container = DemoData.makeContainer(seeded: false)
+        let now = Date()
+        for (index, term) in ["Priya", "Jordan", "CloudKit", "WhisperKit", "SwiftUI", "Q4 OKRs", "Dr. Okafor", "glycolysis"].enumerated() {
+            container.mainContext.insert(DictionaryWord(term: term, createdAt: now.addingTimeInterval(Double(-index))))
+        }
+        try? container.mainContext.save()
+        self.container = container
+        self.deps = DemoData.dependencies(container: container)
+    }
+
+    var body: some View {
+        NavigationStack { SettingsScreen(deps: deps) }
+            .modelContainer(container)
     }
 }

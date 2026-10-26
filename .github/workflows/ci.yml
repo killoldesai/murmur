@@ -99,6 +99,9 @@ jobs:
           shot summary 5 -screen summary
           shot search 5 -screen search
           shot paywall 5 -screen paywall
+          shot onboarding 5 -screen onboarding
+          shot onboarding-mic 5 -screen onboardingMic
+          shot settings 5 -screen settings
           shot note-locked 5 -screen noteLocked
           shot dictionary 5 -screen dictionary
           shot find-replace 5 -screen findReplace

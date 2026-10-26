@@ -20,6 +20,8 @@ public final class TranscriptionQueue {
     private let engineProvider: @MainActor () -> TranscriptionEngine?
     private let files: AudioFileStore
     private let language: String?
+    /// Optional preferences: the language to use and whether to delete audio when done.
+    @ObservationIgnored public var settings: AppSettings?
     private let now: @Sendable () -> Date
     private var task: Task<Void, Never>?
 
@@ -85,7 +87,7 @@ public final class TranscriptionQueue {
         let clock = now
 
         var cancelled = false
-        let options = TranscriptionOptions(language: language, vocabulary: dictionaryTerms())
+        let options = TranscriptionOptions(language: settings?.language ?? language, vocabulary: dictionaryTerms())
         do {
             let output = try await engine.transcribe(
                 audioURL: files.url(for: name),
@@ -104,6 +106,10 @@ public final class TranscriptionQueue {
             note.transcript = output.text
             note.language = output.language
             note.status = .ready
+            if settings?.deleteAudioAfterTranscribing == true, !output.segments.isEmpty {
+                files.delete(name)
+                note.audioFileName = nil
+            }
             fraction = 1
             etaSeconds = 0
             previewSegments = output.segments

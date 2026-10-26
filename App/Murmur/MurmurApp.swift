@@ -80,8 +80,30 @@ struct RootView: View {
             DemoTranscribingScreen(done: false)
         case "transcribingDone":
             DemoTranscribingScreen(done: true)
+        case "onboarding":
+            OnboardingScreen(requestMicrophone: {}, onFinish: {})
+        case "onboardingMic":
+            OnboardingScreen(startAt: 3, requestMicrophone: {}, onFinish: {})
+        case "settings":
+            DemoSettingsHost()
         default:
+            HomeGate(services: services)
+        }
+    }
+}
+
+/// The first launch shows onboarding; after that, the library.
+struct HomeGate: View {
+    let services: AppServices
+
+    var body: some View {
+        if services.settings.hasCompletedOnboarding {
             LibraryScreen(deps: services.libraryDependencies)
+        } else {
+            OnboardingScreen(
+                requestMicrophone: { await services.requestMicrophone() },
+                onFinish: { services.settings.completeOnboarding() }
+            )
         }
     }
 }

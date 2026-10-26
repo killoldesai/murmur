@@ -1,5 +1,6 @@
 import Foundation
 import SwiftData
+import AVFoundation
 import MurmurCore
 import MurmurWhisper
 
@@ -11,6 +12,7 @@ final class AppServices {
     let queue: TranscriptionQueue
     let importer: ImportQueue
     let entitlements: EntitlementController
+    let settings = AppSettings()
     let container: ModelContainer
     private let network: NetworkMonitor
     private let engines: EngineCache
@@ -34,6 +36,7 @@ final class AppServices {
             files: .standard,
             engineProvider: { engines.current() }
         )
+        queue.settings = settings
         self.queue = queue
         let importer = ImportQueue(context: container.mainContext, files: .standard)
         // Imported files become queued notes; start transcribing as soon as one arrives.
@@ -44,6 +47,11 @@ final class AppServices {
 }
 
 extension AppServices {
+    /// Shows the system microphone prompt (once; later calls return the saved answer).
+    func requestMicrophone() async {
+        _ = await AVAudioApplication.requestRecordPermission()
+    }
+
     var libraryDependencies: LibraryDependencies {
         LibraryDependencies(
             models: models,
@@ -53,7 +61,8 @@ extension AppServices {
             makeRecorder: { AVAudioRecorderEngine() },
             makePlayer: { AVAudioPlayerEngine() },
             summaries: OnDeviceSummaryService(),
-            entitlements: entitlements
+            entitlements: entitlements,
+            settings: settings
         )
     }
 }

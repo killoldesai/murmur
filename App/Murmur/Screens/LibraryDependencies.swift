@@ -11,4 +11,5 @@ struct LibraryDependencies {
     let makePlayer: @MainActor () -> PlayerEngine
     let summaries: SummaryService
     let entitlements: EntitlementController
+    let settings: AppSettings
 }
