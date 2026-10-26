@@ -43,6 +43,11 @@ public struct ExportService {
         }
     }
 
+    /// A `.md` file named after the note. Used by the Mac export sheet.
+    public func prepareMarkdown(note: Note, options: ExportOptions) throws -> URL {
+        try write(Exporter.markdown(for: note, options: options), name: Exporter.fileName(for: note.title), ext: "md")
+    }
+
     private func write(_ text: String, name: String, ext: String) throws -> URL {
         let url = try newFolder().appendingPathComponent("\(name).\(ext)")
         try text.write(to: url, atomically: true, encoding: .utf8)

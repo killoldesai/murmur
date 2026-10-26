@@ -38,6 +38,12 @@ public final class AppSettings {
     /// `nil` detects the language of each recording.
     public private(set) var language: String?
     public private(set) var hasCompletedOnboarding: Bool
+    /// Mac: show the menu bar item.
+    public private(set) var showMenuBarIcon: Bool
+    /// Mac: hide the Dock icon (the menu bar item stays).
+    public private(set) var hideDockIcon: Bool
+    /// Mac: the global shortcut that starts a recording.
+    public private(set) var recordShortcut: RecordShortcut
 
     @ObservationIgnored private let defaults: UserDefaults
 
@@ -46,6 +52,9 @@ public final class AppSettings {
         static let haptics = "settings.haptics"
         static let language = "settings.language"
         static let onboarded = "settings.onboardingDone"
+        static let menuBar = "settings.showMenuBarIcon"
+        static let hideDock = "settings.hideDockIcon"
+        static let shortcut = "settings.recordShortcut"
     }
 
     public init(defaults: UserDefaults = .standard) {
@@ -54,6 +63,9 @@ public final class AppSettings {
         hapticsEnabled = defaults.object(forKey: Key.haptics) as? Bool ?? true
         language = defaults.string(forKey: Key.language)
         hasCompletedOnboarding = defaults.bool(forKey: Key.onboarded)
+        showMenuBarIcon = defaults.object(forKey: Key.menuBar) as? Bool ?? true
+        hideDockIcon = defaults.bool(forKey: Key.hideDock)
+        recordShortcut = RecordShortcut.decode(defaults.string(forKey: Key.shortcut)) ?? .default
     }
 
     public func setDeleteAudioAfterTranscribing(_ value: Bool) {
@@ -69,6 +81,23 @@ public final class AppSettings {
     public func setLanguage(_ code: String?) {
         language = code
         if let code { defaults.set(code, forKey: Key.language) } else { defaults.removeObject(forKey: Key.language) }
+    }
+
+    public func setShowMenuBarIcon(_ value: Bool) {
+        showMenuBarIcon = value
+        defaults.set(value, forKey: Key.menuBar)
+    }
+
+    /// Ignores shortcuts that are not valid (no Control, Option or Command).
+    public func setRecordShortcut(_ value: RecordShortcut) {
+        guard value.isValid else { return }
+        recordShortcut = value
+        defaults.set(value.encoded(), forKey: Key.shortcut)
+    }
+
+    public func setHideDockIcon(_ value: Bool) {
+        hideDockIcon = value
+        defaults.set(value, forKey: Key.hideDock)
     }
 
     public func completeOnboarding() {

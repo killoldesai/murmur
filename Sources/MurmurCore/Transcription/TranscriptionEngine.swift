@@ -47,6 +47,20 @@ public protocol TranscriptionEngine: Sendable {
     ) async throws -> TranscriptionOutput
 }
 
+/// How much faster than real time the transcription runs, e.g. "17× real time".
+public enum RealtimeFactor {
+    /// Audio seconds processed per second of work, or `nil` until there is enough to measure.
+    public static func value(audioSeconds: TimeInterval, elapsed: TimeInterval) -> Double? {
+        guard audioSeconds > 0, elapsed >= 1 else { return nil }
+        return audioSeconds / elapsed
+    }
+
+    public static func text(_ factor: Double?) -> String {
+        guard let factor, factor.isFinite, factor > 0 else { return "—" }
+        return factor >= 10 ? "\(Int(factor.rounded()))× real time" : String(format: "%.1f× real time", factor)
+    }
+}
+
 /// Estimates time left from how far the work has got.
 public struct ETAEstimator: Sendable {
     private let start: Date

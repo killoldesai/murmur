@@ -3,6 +3,7 @@ name: Murmur
 options:
   deploymentTarget:
     iOS: "18.0"
+    macOS: "15.0"
   createIntermediateGroups: true
 packages:
   MurmurKit:
@@ -13,6 +14,7 @@ targets:
     platform: iOS
     sources:
       - App/Murmur
+      - App/Shared
     dependencies:
       - package: MurmurKit
         product: MurmurUI
@@ -54,3 +56,52 @@ targets:
         SWIFT_VERSION: "5.0"
         MARKETING_VERSION: "0.1.0"
         CURRENT_PROJECT_VERSION: "1"
+
+  MurmurMac:
+    type: application
+    platform: macOS
+    sources:
+      - App/MurmurMac
+      - App/Shared
+    dependencies:
+      - package: MurmurKit
+        product: MurmurUI
+      - package: MurmurKit
+        product: MurmurCore
+      - package: MurmurKit
+        product: MurmurWhisper
+    info:
+      path: App/MurmurMac/Info.plist
+      properties:
+        CFBundleDisplayName: Murmur
+        LSMinimumSystemVersion: "15.0"
+        LSApplicationCategoryType: public.app-category.productivity
+        NSMicrophoneUsageDescription: Murmur records your voice so it can turn speech into text on your Mac. Audio never leaves your Mac.
+        # "Open with Murmur" and dropping files on the Dock icon.
+        CFBundleDocumentTypes:
+          - CFBundleTypeName: Audio
+            CFBundleTypeRole: Viewer
+            LSHandlerRank: Alternate
+            LSItemContentTypes: [public.audio]
+          - CFBundleTypeName: Video
+            CFBundleTypeRole: Viewer
+            LSHandlerRank: Alternate
+            LSItemContentTypes: [public.movie]
+    entitlements:
+      path: App/MurmurMac/Murmur.entitlements
+      properties:
+        # App Sandbox with only what Murmur needs: microphone, files the person picks or drops,
+        # and the network for the model download and StoreKit.
+        com.apple.security.app-sandbox: true
+        com.apple.security.device.audio-input: true
+        com.apple.security.files.user-selected.read-write: true
+        com.apple.security.network.client: true
+    settings:
+      base:
+        # Same bundle ID as the iOS app: one purchase covers iPhone, iPad and Mac (universal purchase).
+        PRODUCT_BUNDLE_IDENTIFIER: app.murmur.Murmur
+        PRODUCT_NAME: Murmur
+        SWIFT_VERSION: "5.0"
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        ARCHS: arm64

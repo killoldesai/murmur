@@ -89,6 +89,51 @@ public enum Exporter {
         return blocks.joined(separator: "\n\n") + "\n"
     }
 
+    /// Markdown for Notion or Obsidian: title, summary with a task list, then the transcript.
+    public static func markdown(for note: Note, options: ExportOptions) -> String {
+        markdown(title: note.title, segments: note.segments, fallbackText: note.transcript,
+                 speakerNames: note.speakerNames, summary: NoteSummary.decode(note.summary), options: options)
+    }
+
+    public static func markdown(
+        title: String,
+        segments: [TranscriptSegment],
+        fallbackText: String = "",
+        speakerNames: [String],
+        summary: NoteSummary?,
+        options: ExportOptions
+    ) -> String {
+        var blocks: [String] = ["# " + title]
+        if options.summary, let summary {
+            let body = summary.text.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !body.isEmpty { blocks.append("## Summary\n\n" + body) }
+            if !summary.actionItems.isEmpty {
+                let tasks = summary.actionItems.map { item -> String in
+                    var line = "- [" + (item.done ? "x" : " ") + "] " + item.text
+                    if let meta = item.metaLine { line += " (" + meta + ")" }
+                    return line
+                }
+                blocks.append("## Action items\n\n" + tasks.joined(separator: "\n"))
+            }
+        }
+        if segments.isEmpty {
+            let fallback = fallbackText.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !fallback.isEmpty { blocks.append("## Transcript\n\n" + fallback) }
+        } else {
+            let lines = segments.map { segment -> String in
+                var parts: [String] = []
+                if options.timestamps { parts.append("`" + Timecode.format(segment.start) + "`") }
+                if options.speakerLabels, let index = segment.speakerIndex {
+                    parts.append("**" + Speakers.name(at: index, in: speakerNames) + ":**")
+                }
+                parts.append(segment.text)
+                return parts.joined(separator: " ")
+            }
+            blocks.append("## Transcript\n\n" + lines.joined(separator: "\n\n"))
+        }
+        return blocks.joined(separator: "\n\n") + "\n"
+    }
+
     public static func srt(segments: [TranscriptSegment], speakerNames: [String], options: ExportOptions) -> String {
         var cues: [String] = []
         for segment in segments where !segment.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {

@@ -81,6 +81,42 @@ public enum NoteFilter {
         guard let folderID else { return notes }
         return notes.filter { $0.folder?.id == folderID }
     }
+
+    /// Notes from the last `days` days (the Mac sidebar's "Recent").
+    public static func recent(_ notes: [Note], days: Int = 7, now: Date = Date()) -> [Note] {
+        let cutoff = now.addingTimeInterval(-Double(days) * 86_400)
+        return notes.filter { $0.createdAt >= cutoff }
+    }
+
+    public static func fromWatch(_ notes: [Note]) -> [Note] {
+        notes.filter { $0.source == .watch }
+    }
+}
+
+/// The batch queue's totals (done, waiting, time left) for the Mac queue screen.
+public struct QueueStats: Equatable, Sendable {
+    public let done: Int
+    public let waiting: Int
+    public let working: Int
+    /// `nil` when work is pending but there is no speed to estimate from yet.
+    public let secondsLeft: TimeInterval?
+
+    /// - Parameters:
+    ///   - currentETA: seconds left for the note being transcribed, if known.
+    ///   - speed: audio seconds per second of work, if known.
+    public static func make(notes: [Note], currentETA: TimeInterval?, speed: Double?) -> QueueStats {
+        let done = notes.filter { $0.status == .ready }.count
+        let queued = notes.filter { $0.status == .queued }
+        let working = notes.filter { $0.status == .transcribing }.count
+        let pending = queued.count + working
+        guard pending > 0 else { return QueueStats(done: done, waiting: 0, working: 0, secondsLeft: 0) }
+        var left: TimeInterval?
+        if let speed, speed > 0 {
+            let waitingAudio = queued.reduce(0) { $0 + $1.duration }
+            left = (working > 0 ? (currentETA ?? 0) : 0) + waitingAudio / speed
+        }
+        return QueueStats(done: done, waiting: queued.count, working: working, secondsLeft: left)
+    }
 }
 
 public extension NoteSummaryText {

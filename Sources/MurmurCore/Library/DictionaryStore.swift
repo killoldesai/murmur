@@ -36,6 +36,19 @@ public final class DictionaryStore {
         try? context.save()
     }
 
+    /// One word per line, newest first. For the Mac "Export…" button.
+    public func exportList() -> String {
+        words().map(\.term).joined(separator: "\n") + "\n"
+    }
+
+    /// Adds every non-blank line that is not already in the dictionary. Returns how many were added.
+    @discardableResult
+    public func importList(_ text: String) -> Int {
+        text.split(whereSeparator: \.isNewline).reduce(0) { count, line in
+            add(String(line)) == nil ? count : count + 1
+        }
+    }
+
     /// A name when every word is capitalized and otherwise lowercase ("Priya", "Dr. Okafor");
     /// anything else ("CloudKit", "Q4 OKRs", "glycolysis") is a term.
     public static func guessKind(_ term: String) -> DictionaryWordKind {

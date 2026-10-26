@@ -131,6 +131,49 @@ jobs:
             shot ipad-paywall 9 -screen paywall
           fi
 
+      - name: Build macOS app
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -project Murmur.xcodeproj \
+            -scheme MurmurMac \
+            -destination "platform=macOS,arch=arm64" \
+            -derivedDataPath DerivedDataMac \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee build/xcodebuild-mac.log | tail -60
+
+      # The Mac app writes its own window to a PNG (-snapshot) and quits, so no screen-recording
+      # permission is needed. Each screen is a separate launch with demo data.
+      - name: Run Mac app and snapshot screens
+        continue-on-error: true
+        run: |
+          APP=$(find DerivedDataMac -name Murmur.app -path "*Build/Products/Debug/*" | head -1)
+          BIN="$APP/Contents/MacOS/Murmur"
+          echo "Mac app: $APP"
+          macshot() {  # macshot <name> <launch arguments...>
+            NAME="$1"; shift
+            rm -f "build/mac-$NAME.png"
+            "$BIN" "$@" -snapshot "$PWD/build/mac-$NAME.png" > "build/mac-$NAME.log" 2>&1 &
+            PID=$!
+            for i in $(seq 1 45); do sleep 1; kill -0 $PID 2>/dev/null || break; done
+            kill $PID 2>/dev/null || true
+            ls -la "build/mac-$NAME.png" || echo "no snapshot for $NAME"
+          }
+          macshot main -screen main
+          macshot note-locked -screen noteLocked
+          macshot queue -screen queue
+          macshot drop -screen drop
+          macshot export -screen export
+          macshot paywall -screen paywall
+          macshot recording -screen recording
+          macshot menubar -screen menubar
+          macshot settings -screen settings
+          macshot dictionary -screen dictionary
+          macshot account -screen account
+          macshot onboarding -screen onboarding
+          macshot onboarding-mic -screen onboardingMic
+          macshot onboarding-shortcut -screen onboardingShortcut
+          macshot onboarding-model -screen onboardingModel
+
       - name: Publish results to ci-results branch
         if: always()
         run: |

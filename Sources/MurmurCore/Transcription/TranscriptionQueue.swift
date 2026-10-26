@@ -12,6 +12,8 @@ public final class TranscriptionQueue {
     public private(set) var fraction: Double = 0
     public private(set) var previewSegments: [TranscriptSegment] = []
     public private(set) var etaSeconds: TimeInterval?
+    /// Audio seconds transcribed per second of work for the current note (the Mac queue's speed column).
+    public private(set) var speedFactor: Double?
     public private(set) var lastFailure: String?
 
     public var isRunning: Bool { task != nil }
@@ -82,9 +84,12 @@ public final class TranscriptionQueue {
         fraction = 0
         previewSegments = []
         etaSeconds = nil
+        speedFactor = nil
         lastFailure = nil
-        let estimator = ETAEstimator(start: now())
+        let started = now()
+        let estimator = ETAEstimator(start: started)
         let clock = now
+        let totalSeconds = note.duration
 
         var cancelled = false
         let options = TranscriptionOptions(language: settings?.language ?? language, vocabulary: dictionaryTerms())
@@ -99,6 +104,10 @@ public final class TranscriptionQueue {
                     self.fraction = max(self.fraction, min(1, update.fraction))
                     self.previewSegments = update.segments
                     self.etaSeconds = estimator.remaining(fraction: self.fraction, at: clock())
+                    self.speedFactor = RealtimeFactor.value(
+                        audioSeconds: totalSeconds * self.fraction,
+                        elapsed: clock().timeIntervalSince(started)
+                    )
                 }
             }
             try Task.checkCancellation()
