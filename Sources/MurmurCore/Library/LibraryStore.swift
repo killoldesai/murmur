@@ -79,5 +79,20 @@ public final class LibraryStore {
         save()
     }
 
+    /// Stores a summary on the note (as JSON text in `Note.summary`), or removes it with `nil`.
+    public func setSummary(_ summary: NoteSummary?, for note: Note) {
+        note.summary = summary?.encoded()
+        save()
+    }
+
+    /// Ticks or unticks one action item of the note's summary.
+    public func toggleActionItem(_ id: UUID, in note: Note) {
+        guard var summary = NoteSummary.decode(note.summary),
+              let index = summary.actionItems.firstIndex(where: { $0.id == id }) else { return }
+        summary.actionItems[index].done.toggle()
+        note.summary = summary.encoded()
+        save()
+    }
+
     private func save() { try? context.save() }
 }

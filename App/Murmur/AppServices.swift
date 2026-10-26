@@ -49,7 +49,8 @@ extension AppServices {
             importer: importer,
             files: .standard,
             makeRecorder: { AVAudioRecorderEngine() },
-            makePlayer: { AVAudioPlayerEngine() }
+            makePlayer: { AVAudioPlayerEngine() },
+            summaries: OnDeviceSummaryService()
         )
     }
 }

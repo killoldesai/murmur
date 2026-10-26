@@ -157,7 +157,7 @@ enum DemoData {
         return notes.first { $0.status == .ready }!
     }
 
-    static func dependencies(container: ModelContainer, player given: DemoPlayerEngine? = nil) -> LibraryDependencies {
+    static func dependencies(container: ModelContainer, player given: DemoPlayerEngine? = nil, summaries: SummaryService? = nil) -> LibraryDependencies {
         let player = given ?? DemoPlayerEngine(duration: 42 * 60 + 10)
         let base = FileManager.default.temporaryDirectory.appendingPathComponent("murmur-demo-lib-\(UUID().uuidString)", isDirectory: true)
         let defaults = UserDefaults(suiteName: "murmur-demo-\(UUID().uuidString)")!
@@ -176,7 +176,8 @@ enum DemoData {
             importer: ImportQueue(context: container.mainContext, files: files, converter: DemoConverter()),
             files: files,
             makeRecorder: { DemoRecorderEngine() },
-            makePlayer: { player }
+            makePlayer: { player },
+            summaries: summaries ?? DemoSummaryService()
         )
     }
 }
@@ -201,14 +202,16 @@ struct DemoLibraryHost: View {
 @MainActor
 struct DemoNoteHost: View {
     let edit: Bool
+    var summaryTab = false
     private let container: ModelContainer
     private let player: DemoPlayerEngine
     private let deps: LibraryDependencies
     private let note: Note
     @State private var playback: PlaybackController
 
-    init(edit: Bool) {
+    init(edit: Bool, summaryTab: Bool = false) {
         self.edit = edit
+        self.summaryTab = summaryTab
         let container = DemoData.makeContainer(seeded: true)
         let player = DemoPlayerEngine(duration: 42 * 60 + 10)
         player.currentTime = 16
@@ -217,6 +220,7 @@ struct DemoNoteHost: View {
         self.player = player
         self.deps = DemoData.dependencies(container: container, player: player)
         let note = DemoData.firstReadyNote(in: container)
+        if summaryTab { note.summary = DemoSummaryService.sample.encoded() }
         self.note = note
         let playback = PlaybackController(engine: player, segments: note.segments)
         playback.load(url: URL(fileURLWithPath: "/demo"))
@@ -228,7 +232,7 @@ struct DemoNoteHost: View {
             if edit {
                 EditTranscriptScreen(note: note, deps: deps, playback: playback, initialSelection: note.segments[1].id, onClose: {})
             } else {
-                NavigationStack { NoteScreen(note: note, deps: deps) }
+                NavigationStack { NoteScreen(note: note, deps: deps, initialTab: summaryTab ? .summary : .transcript) }
             }
         }
         .modelContainer(container)

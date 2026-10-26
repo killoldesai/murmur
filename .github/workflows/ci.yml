@@ -96,6 +96,7 @@ jobs:
           shot library-empty 5 -screen libraryEmpty
           shot note 5 -screen note
           shot note-edit 5 -screen noteEdit
+          shot summary 5 -screen summary
           shot import 5 -screen import
           shot export 5 -screen export
           shot transcribing-done 5 -screen transcribingDone

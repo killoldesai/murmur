@@ -52,7 +52,7 @@ public enum ExportFormat: String, CaseIterable, Identifiable, Sendable {
 public enum Exporter {
     public static func text(for note: Note, options: ExportOptions) -> String {
         text(title: note.title, segments: note.segments, fallbackText: note.transcript,
-             speakerNames: note.speakerNames, summary: note.summary, options: options)
+             speakerNames: note.speakerNames, summary: NoteSummary.plainText(from: note.summary), options: options)
     }
 
     public static func srt(for note: Note, options: ExportOptions) -> String {

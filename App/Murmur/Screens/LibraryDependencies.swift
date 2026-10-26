@@ -9,4 +9,5 @@ struct LibraryDependencies {
     let files: AudioFileStore
     let makeRecorder: @MainActor () -> RecorderEngine
     let makePlayer: @MainActor () -> PlayerEngine
+    let summaries: SummaryService
 }
