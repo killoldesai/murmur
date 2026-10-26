@@ -21,6 +21,8 @@ struct LibraryScreen: View {
         var id: String { "cover" }
     }
 
+    @Environment(\.horizontalSizeClass) private var sizeClass
+    @State private var selectedNoteID: UUID?
     @State private var route: Route?
     @State private var path: [Note] = []
     @State private var selectedFolderID: UUID?
@@ -39,6 +41,19 @@ struct LibraryScreen: View {
     private var visibleNotes: [Note] { NoteFilter.filter(notes, folderID: selectedFolderID) }
 
     var body: some View {
+        shared(layout)
+    }
+
+    @ViewBuilder
+    private var layout: some View {
+        if sizeClass == .regular {
+            padLayout
+        } else {
+            phoneLayout
+        }
+    }
+
+    private var phoneLayout: some View {
         NavigationStack(path: $path) {
             ZStack {
                 MurmurTheme.Colors.background.ignoresSafeArea()
@@ -63,7 +78,13 @@ struct LibraryScreen: View {
                 SettingsScreen(deps: deps)
             }
         }
-        .preferredColorScheme(.dark)
+    }
+
+    /// Behaviour both layouts share: launch tasks, the record / download / transcribe cover and the
+    /// rename, delete and new-folder prompts.
+    private func shared<Content: View>(_ content: Content) -> some View {
+        content
+            .preferredColorScheme(.dark)
         .task {
             recoverInterruptedRecordings()
             if deps.models.isReady {
@@ -351,7 +372,7 @@ struct LibraryScreen: View {
             onLater: { route = nil },
             onOpen: {
                 route = nil
-                path.append(note)
+                open(note)
             }
         )
     }
@@ -390,5 +411,237 @@ private struct IdleBars: View {
             .murmurCard()
         }
         .accessibilityHidden(true)
+    }
+}
+
+// MARK: - iPad: sidebar, note list and note detail (design/ipad/Library.dc.html)
+
+extension LibraryScreen {
+    fileprivate var selectedNote: Note? {
+        guard let selectedNoteID else { return nil }
+        return notes.first { $0.id == selectedNoteID }
+    }
+
+    /// Opens a finished note: pushed on iPhone, shown in the detail column on iPad.
+    fileprivate func open(_ note: Note) {
+        if sizeClass == .regular {
+            selectedNoteID = note.id
+        } else {
+            path.append(note)
+        }
+    }
+
+    fileprivate var padLayout: some View {
+        HStack(spacing: 0) {
+            sidebar
+                .frame(width: 260)
+                .background(MurmurTheme.Colors.panel)
+                .overlay(alignment: .trailing) { divider }
+            noteColumn
+                .frame(width: 360)
+                .overlay(alignment: .trailing) { divider }
+            detail
+                .frame(maxWidth: .infinity)
+        }
+        .background(MurmurTheme.Colors.background.ignoresSafeArea())
+        .task {
+            if selectedNoteID == nil {
+                selectedNoteID = visibleNotes.first { $0.status == .ready }?.id
+            }
+        }
+        .sheet(isPresented: $showSearch) {
+            NavigationStack {
+                SearchScreen()
+                    .navigationDestination(for: Note.self) { NoteScreen(note: $0, deps: deps) }
+            }
+        }
+        .sheet(isPresented: $showImport) {
+            NavigationStack { ImportScreen(importer: deps.importer) }
+        }
+        .sheet(isPresented: $showSettings) {
+            NavigationStack { SettingsScreen(deps: deps) }
+        }
+    }
+
+    private var divider: some View {
+        Rectangle().fill(MurmurTheme.Colors.border).frame(width: MurmurTheme.Metrics.borderWidth)
+    }
+
+    private var sidebar: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text("Murmur")
+                .font(MurmurTheme.Fonts.title)
+                .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                .accessibilityAddTraits(.isHeader)
+                .padding(.horizontal, 10)
+                .padding(.bottom, 18)
+            Text("Library").murmurSectionLabel().padding(.horizontal, 10).padding(.bottom, 4)
+            sidebarRow(title: "All notes", count: notes.count, systemImage: "text.alignleft", color: nil,
+                       selected: selectedFolderID == nil) { selectedFolderID = nil }
+            HStack {
+                Text("Folders").murmurSectionLabel()
+                Spacer()
+                Button { showNewFolder = true } label: {
+                    Image(systemName: "folder.badge.plus")
+                        .foregroundStyle(MurmurTheme.Colors.textSecondary)
+                        .frame(width: MurmurTheme.Metrics.minTapTarget, height: MurmurTheme.Metrics.minTapTarget)
+                }
+                .accessibilityLabel("New folder")
+            }
+            .padding(.leading, 10)
+            .padding(.top, 14)
+            ScrollView {
+                VStack(spacing: 4) {
+                    ForEach(folders) { folder in
+                        sidebarRow(title: folder.name, count: folder.notes?.count ?? 0, systemImage: nil,
+                                   color: MurmurTheme.Colors.folder(folder.colorIndex),
+                                   selected: selectedFolderID == folder.id) { selectedFolderID = folder.id }
+                            .contextMenu {
+                                Button("Delete folder", role: .destructive) {
+                                    if selectedFolderID == folder.id { selectedFolderID = nil }
+                                    store.deleteFolder(folder)
+                                }
+                            }
+                    }
+                }
+            }
+            Spacer(minLength: 8)
+            VStack(spacing: 10) {
+                PrimaryButton("New recording", systemImage: "mic.fill") {
+                    Haptics.tap(deps.settings)
+                    route = .recording(makeController())
+                }
+                HStack(spacing: 8) {
+                    SecondaryButton("Import", systemImage: "square.and.arrow.down") { showImport = true }
+                    HeaderCircleButton(symbol: "gearshape", label: "Settings") { showSettings = true }
+                }
+                Label("Stays on your iPad", systemImage: "lock.fill")
+                    .font(MurmurTheme.Fonts.caption)
+                    .foregroundStyle(MurmurTheme.Colors.textSecondary)
+            }
+        }
+        .padding(.horizontal, 14)
+        .padding(.top, 36)
+        .padding(.bottom, 20)
+    }
+
+    private func sidebarRow(title: String, count: Int, systemImage: String?, color: Color?, selected: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack(spacing: 10) {
+                if let systemImage {
+                    Image(systemName: systemImage)
+                        .foregroundStyle(selected ? MurmurTheme.Colors.accent : MurmurTheme.Colors.textSecondary)
+                        .frame(width: 18)
+                } else if let color {
+                    RoundedRectangle(cornerRadius: 3).fill(color).frame(width: 10, height: 10).padding(.horizontal, 4)
+                }
+                Text(title)
+                    .font(MurmurTheme.Fonts.body.weight(selected ? .semibold : .regular))
+                    .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                    .lineLimit(1)
+                Spacer()
+                Text("\(count)").font(MurmurTheme.Fonts.caption).foregroundStyle(MurmurTheme.Colors.textTertiary)
+            }
+            .padding(.horizontal, 10)
+            .frame(minHeight: MurmurTheme.Metrics.minTapTarget)
+            .background(RoundedRectangle(cornerRadius: 10).fill(selected ? MurmurTheme.Colors.raised : Color.clear))
+        }
+        .buttonStyle(MurmurPressStyle())
+        .accessibilityAddTraits(selected ? .isSelected : [])
+    }
+
+    private var noteColumn: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(alignment: .firstTextBaseline) {
+                Text(folders.first { $0.id == selectedFolderID }?.name ?? "All notes")
+                    .font(MurmurTheme.Fonts.title)
+                    .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                    .lineLimit(1)
+                    .accessibilityAddTraits(.isHeader)
+                Spacer()
+                Text("\(visibleNotes.count)").font(.footnote).foregroundStyle(MurmurTheme.Colors.textSecondary)
+            }
+            Button { showSearch = true } label: {
+                Label("Search transcripts", systemImage: "magnifyingglass")
+                    .font(MurmurTheme.Fonts.body)
+                    .foregroundStyle(MurmurTheme.Colors.textSecondary)
+                    .padding(.horizontal, 12)
+                    .frame(maxWidth: .infinity, minHeight: MurmurTheme.Metrics.minTapTarget, alignment: .leading)
+                    .background(RoundedRectangle(cornerRadius: 12).fill(MurmurTheme.Colors.surface))
+                    .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(MurmurTheme.Colors.border, lineWidth: MurmurTheme.Metrics.borderWidth))
+            }
+            .buttonStyle(MurmurPressStyle())
+            if !deps.models.isReady { downloadPrompt }
+            if notes.isEmpty {
+                VStack(spacing: 8) {
+                    Text("It’s quiet in here").font(MurmurTheme.Fonts.headline).foregroundStyle(MurmurTheme.Colors.textPrimary)
+                    Text("Record your first note, or import a file you already have.")
+                        .font(MurmurTheme.Fonts.body).foregroundStyle(MurmurTheme.Colors.textSecondary)
+                        .multilineTextAlignment(.center)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.top, 40)
+            }
+            ScrollView {
+                LazyVStack(spacing: 8) {
+                    ForEach(visibleNotes) { note in
+                        padRow(for: note)
+                    }
+                }
+                .padding(.bottom, 16)
+            }
+            Spacer(minLength: 0)
+        }
+        .padding(.horizontal, 16)
+        .padding(.top, 36)
+    }
+
+    @ViewBuilder
+    private func padRow(for note: Note) -> some View {
+        let selected = note.id == selectedNoteID
+        Button {
+            if note.status == .ready { selectedNoteID = note.id } else { openPending(note) }
+        } label: {
+            NoteCard(
+                title: note.title,
+                meta: Timecode.format(note.duration) + " · " + NoteSummaryText.metaLine(for: note),
+                snippet: NoteSummaryText.snippet(for: note) ?? NoteSummaryText.statusText(note.status),
+                tint: MurmurTheme.Colors.folder(note.folder?.colorIndex ?? 0)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: MurmurTheme.Metrics.cardRadius, style: .continuous)
+                    .strokeBorder(MurmurTheme.Colors.accent, lineWidth: MurmurTheme.Metrics.selectedBorderWidth)
+                    .opacity(selected ? 1 : 0)
+            )
+        }
+        .buttonStyle(MurmurPressStyle())
+        .accessibilityAddTraits(selected ? .isSelected : [])
+        .contextMenu {
+            Button("Rename", systemImage: "pencil") {
+                renameText = note.title
+                renameTarget = note
+            }
+            Menu("Move to folder", systemImage: "folder") {
+                Button("No folder") { store.move(note, to: nil) }
+                ForEach(folders) { folder in
+                    Button(folder.name) { store.move(note, to: folder) }
+                }
+            }
+            Button("Delete", systemImage: "trash", role: .destructive) { deleteTarget = note }
+        }
+    }
+
+    @ViewBuilder
+    private var detail: some View {
+        if let note = selectedNote {
+            NoteScreen(note: note, deps: deps, showsBack: false, onDeleted: { selectedNoteID = nil })
+                .id(note.id)
+        } else {
+            VStack(spacing: 10) {
+                Image(systemName: "waveform").font(.largeTitle).foregroundStyle(MurmurTheme.Colors.textTertiary)
+                Text("Select a note").font(MurmurTheme.Fonts.headline).foregroundStyle(MurmurTheme.Colors.textSecondary)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
     }
 }

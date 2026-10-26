@@ -11,6 +11,10 @@ struct NoteScreen: View {
 
     let note: Note
     let deps: LibraryDependencies
+    /// False in the iPad detail column, where there is nothing to go back to.
+    let showsBack: Bool
+    /// Called after the note is deleted when the screen is not pushed (iPad detail column).
+    let onDeleted: (() -> Void)?
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
@@ -28,9 +32,11 @@ struct NoteScreen: View {
     @State private var findReplace: FindReplaceController?
     @State private var showPaywall = false
 
-    init(note: Note, deps: LibraryDependencies, initialTab: Tab = .transcript) {
+    init(note: Note, deps: LibraryDependencies, initialTab: Tab = .transcript, showsBack: Bool = true, onDeleted: (() -> Void)? = nil) {
         self.note = note
         self.deps = deps
+        self.showsBack = showsBack
+        self.onDeleted = onDeleted
         _tab = State(initialValue: initialTab)
         _summaryController = State(initialValue: SummaryController(service: deps.summaries))
         _playback = State(initialValue: PlaybackController(engine: deps.makePlayer(), segments: note.segments))
@@ -121,7 +127,7 @@ struct NoteScreen: View {
                 // Delete after the screen has left, so nothing reads a deleted note.
                 let store = self.store
                 let doomed = note
-                dismiss()
+                if let onDeleted { onDeleted() } else { dismiss() }
                 Task { @MainActor in
                     try? await Task.sleep(nanoseconds: 500_000_000)
                     store.delete(doomed)
@@ -221,7 +227,9 @@ struct NoteScreen: View {
 
     private var topBar: some View {
         HStack {
-            circleButton("chevron.left", label: "Back to library") { dismiss() }
+            if showsBack {
+                circleButton("chevron.left", label: "Back to library") { dismiss() }
+            }
             Spacer()
             circleButton("pencil", label: "Edit transcript") { gated { showEdit = true } }
                 .disabled(note.segments.isEmpty)
