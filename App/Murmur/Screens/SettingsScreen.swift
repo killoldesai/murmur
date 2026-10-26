@@ -88,6 +88,17 @@ struct SettingsScreen: View {
                     .murmurEntrance(index: 3)
                     restoreStatus
 
+                    group("About") {
+                        Link(destination: LegalLinks.privacy) {
+                            SettingsRow(systemImage: "hand.raised", title: "Privacy Policy")
+                        }
+                        divider
+                        Link(destination: LegalLinks.terms) {
+                            SettingsRow(systemImage: "doc.text", title: "Terms of Use")
+                        }
+                    }
+                    .murmurEntrance(index: 4)
+
                     Text("Murmur \(version) · Everything stays on this iPhone")
                         .font(MurmurTheme.Fonts.caption)
                         .foregroundStyle(MurmurTheme.Colors.textTertiary)

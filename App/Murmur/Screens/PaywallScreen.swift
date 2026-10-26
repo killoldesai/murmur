@@ -120,16 +120,33 @@ struct PaywallScreen: View {
                 Task { await controller.purchase() }
             })
             .disabled(controller.isBusy)
-            Button {
-                Task { await controller.restore() }
-            } label: {
-                Text(controller.state == .restoring ? "Restoring…" : "Restore purchases")
+            Text(LegalLinks.subscriptionNotice)
+                .font(.caption2)
+                .foregroundStyle(MurmurTheme.Colors.textTertiary)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+            HStack(spacing: 8) {
+                Button {
+                    Task { await controller.restore() }
+                } label: {
+                    Text(controller.state == .restoring ? "Restoring…" : "Restore purchases")
+                        .font(.footnote)
+                        .foregroundStyle(MurmurTheme.Colors.textSecondary)
+                        .frame(minHeight: MurmurTheme.Metrics.minTapTarget)
+                        .padding(.horizontal, 8)
+                }
+                .disabled(controller.isBusy)
+                Link("Terms", destination: LegalLinks.terms)
                     .font(.footnote)
                     .foregroundStyle(MurmurTheme.Colors.textSecondary)
                     .frame(minHeight: MurmurTheme.Metrics.minTapTarget)
-                    .padding(.horizontal, 12)
+                    .padding(.horizontal, 8)
+                Link("Privacy", destination: LegalLinks.privacy)
+                    .font(.footnote)
+                    .foregroundStyle(MurmurTheme.Colors.textSecondary)
+                    .frame(minHeight: MurmurTheme.Metrics.minTapTarget)
+                    .padding(.horizontal, 8)
             }
-            .disabled(controller.isBusy)
         }
         .padding(.horizontal, MurmurTheme.Metrics.screenPadding)
         .padding(.top, 10)

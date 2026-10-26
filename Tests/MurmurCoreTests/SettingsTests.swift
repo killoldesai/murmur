@@ -79,3 +79,18 @@ final class OnboardingControllerTests: XCTestCase {
         }
     }
 }
+
+final class LegalLinksTests: XCTestCase {
+    func testLinksAreSecureAndDistinct() {
+        let urls = [LegalLinks.home, LegalLinks.privacy, LegalLinks.terms]
+        XCTAssertTrue(urls.allSatisfy { $0.scheme == "https" })
+        XCTAssertEqual(Set(urls.map(\.absoluteString)).count, 3)
+        XCTAssertTrue(LegalLinks.privacy.absoluteString.hasSuffix("/privacy/"))
+        XCTAssertTrue(LegalLinks.terms.absoluteString.hasSuffix("/terms/"))
+    }
+
+    func testSubscriptionNoticeMentionsRenewalAndCancellation() {
+        XCTAssertTrue(LegalLinks.subscriptionNotice.contains("renew automatically"))
+        XCTAssertTrue(LegalLinks.subscriptionNotice.contains("cancel"))
+    }
+}
