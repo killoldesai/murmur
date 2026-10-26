@@ -21,6 +21,7 @@ public protocol RecorderEngine: AnyObject {
     func averagePowerDecibels() -> Float
 }
 
+#if !os(watchOS)
 /// Records 16 kHz mono 16-bit PCM to a CAF file with `AVAudioRecorder`.
 /// Needs a real microphone: it cannot be exercised in CI or the simulator.
 @MainActor
@@ -97,6 +98,8 @@ public final class AVAudioRecorderEngine: RecorderEngine {
         return recorder.averagePower(forChannel: 0)
     }
 }
+
+#endif
 
 /// A fake microphone that writes no file and produces a moving level. Used for SwiftUI previews
 /// and for simulator screenshots in CI, where there is no microphone.

@@ -38,7 +38,11 @@ public struct ExportService {
         case .audio:
             guard let name = note.audioFileName, files.exists(name) else { throw ExportError.noAudio }
             let destination = try newFolder().appendingPathComponent("\(baseName).m4a")
+            #if os(watchOS)
+            throw ExportError.noAudio
+            #else
             try await AudioTranscoder.exportM4A(from: files.url(for: name), to: destination)
+            #endif
             return .file(destination)
         }
     }

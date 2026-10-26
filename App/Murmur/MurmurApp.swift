@@ -103,15 +103,19 @@ struct HomeGate: View {
     @State private var splashDone = false
 
     var body: some View {
-        if services.settings.hasCompletedOnboarding {
-            LibraryScreen(deps: services.libraryDependencies)
-        } else if !splashDone {
-            SplashScreen { splashDone = true }
-        } else {
-            OnboardingScreen(
-                requestMicrophone: { await services.requestMicrophone() },
-                onFinish: { services.settings.completeOnboarding() }
-            )
+        Group {
+            if services.settings.hasCompletedOnboarding {
+                LibraryScreen(deps: services.libraryDependencies)
+            } else if !splashDone {
+                SplashScreen { splashDone = true }
+            } else {
+                OnboardingScreen(
+                    requestMicrophone: { await services.requestMicrophone() },
+                    onFinish: { services.settings.completeOnboarding() }
+                )
+            }
         }
+        .task { services.startWatch() }
+        .onChange(of: services.entitlements.isPro) { _, _ in services.publishPro() }
     }
 }

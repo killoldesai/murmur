@@ -14,6 +14,11 @@ final class AppServices {
     let entitlements: EntitlementController
     let settings = AppSettings()
     let container: ModelContainer
+    #if os(iOS)
+    /// Recordings from the Apple Watch arrive here and become queued notes.
+    let watchLink = WatchConnectivityLink()
+    let watchInbox: WatchInbox
+    #endif
     private let network: NetworkMonitor
     private let engines: EngineCache
 
@@ -43,8 +48,32 @@ final class AppServices {
         importer.onNoteAdded = { queue.start() }
         self.importer = importer
         self.entitlements = EntitlementController(store: StoreKitPurchaseStore())
+        #if os(iOS)
+        let inbox = WatchInbox(context: container.mainContext, files: .standard, converter: WhisperWAVConverter())
+        self.watchInbox = inbox
+        watchLink.onFileReceived = { url, transfer in
+            Task { @MainActor in
+                if await inbox.receive(fileURL: url, transfer: transfer) != nil { queue.start() }
+                try? FileManager.default.removeItem(at: url)
+            }
+        }
+        #endif
     }
 }
+
+#if os(iOS)
+extension AppServices {
+    /// Starts Watch Connectivity and tells the watch whether Pro is unlocked.
+    func startWatch() {
+        watchLink.activate()
+        watchLink.publish(isPro: entitlements.isPro)
+    }
+
+    func publishPro() {
+        watchLink.publish(isPro: entitlements.isPro)
+    }
+}
+#endif
 
 extension AppServices {
     /// Shows the system microphone prompt (once; later calls return the saved answer).

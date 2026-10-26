@@ -4,6 +4,7 @@ options:
   deploymentTarget:
     iOS: "18.0"
     macOS: "15.0"
+    watchOS: "11.0"
   createIntermediateGroups: true
 packages:
   MurmurKit:
@@ -22,6 +23,8 @@ targets:
         product: MurmurCore
       - package: MurmurKit
         product: MurmurWhisper
+      # The Apple Watch app is delivered inside the iPhone app.
+      - target: MurmurWatch
     info:
       path: App/Murmur/Info.plist
       properties:
@@ -105,3 +108,57 @@ targets:
         MARKETING_VERSION: "0.1.0"
         CURRENT_PROJECT_VERSION: "1"
         ARCHS: arm64
+
+  MurmurWatch:
+    type: application
+    platform: watchOS
+    sources:
+      - App/MurmurWatch
+    dependencies:
+      - package: MurmurKit
+        product: MurmurUI
+      - package: MurmurKit
+        product: MurmurCore
+      - target: MurmurWatchWidget
+    info:
+      path: App/MurmurWatch/Info.plist
+      properties:
+        CFBundleDisplayName: Murmur
+        WKApplication: true
+        WKCompanionAppBundleIdentifier: app.murmur.Murmur
+        NSMicrophoneUsageDescription: Murmur records your voice on your watch and sends it to your iPhone to turn into text.
+        # Keeps a recording going with the wrist down.
+        WKBackgroundModes:
+          - audio
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.murmur.Murmur.watchkitapp
+        PRODUCT_NAME: MurmurWatch
+        SWIFT_VERSION: "5.0"
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+
+  MurmurWatchWidget:
+    type: app-extension
+    platform: watchOS
+    sources:
+      - App/MurmurWatchWidget
+      - path: App/MurmurWatch/WatchWidgetViews.swift
+    dependencies:
+      - package: MurmurKit
+        product: MurmurUI
+      - package: MurmurKit
+        product: MurmurCore
+    info:
+      path: App/MurmurWatchWidget/Info.plist
+      properties:
+        CFBundleDisplayName: Murmur
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.murmur.Murmur.watchkitapp.widget
+        PRODUCT_NAME: MurmurWatchWidget
+        SWIFT_VERSION: "5.0"
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"

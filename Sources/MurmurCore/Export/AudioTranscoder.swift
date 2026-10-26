@@ -1,3 +1,4 @@
+#if !os(watchOS)
 import Foundation
 import AVFoundation
 
@@ -171,3 +172,4 @@ public enum AudioTranscoder {
         }
     }
 }
+#endif

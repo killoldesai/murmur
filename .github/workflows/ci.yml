@@ -187,6 +187,47 @@ jobs:
           macshot onboarding-shortcut -screen onboardingShortcut
           macshot onboarding-model -screen onboardingModel
 
+      - name: Build watchOS app
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -project Murmur.xcodeproj \
+            -scheme MurmurWatch \
+            -destination "generic/platform=watchOS Simulator" \
+            -derivedDataPath DerivedDataWatch \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee build/xcodebuild-watch.log | tail -60
+
+      - name: Run watch app in simulator and screenshot screens
+        continue-on-error: true
+        run: |
+          LOG=build/watch-run.log
+          xcrun simctl list devices available | grep -i watch | head -5 > $LOG 2>&1 || true
+          WATCH=$(xcrun simctl list devices available -j | python3 -c "
+          import json, sys
+          devs = json.load(sys.stdin)['devices']
+          print(next((d['udid'] for k, v in devs.items() if 'watchOS' in k for d in v if 'Watch' in d['name']), ''))
+          ")
+          echo "watch sim: $WATCH" >> $LOG
+          [ -n "$WATCH" ] || exit 0
+          xcrun simctl boot "$WATCH" || true
+          xcrun simctl bootstatus "$WATCH" -b >> $LOG 2>&1
+          APP=$(find DerivedDataWatch -name MurmurWatch.app -path "*watchsimulator*" | head -1)
+          echo "app: $APP" >> $LOG
+          xcrun simctl install "$WATCH" "$APP" >> $LOG 2>&1
+          wshot() {  # wshot <name> <screen>
+            xcrun simctl launch "$WATCH" app.murmur.Murmur.watchkitapp -screen "$2" >> $LOG 2>&1
+            sleep 8
+            xcrun simctl io "$WATCH" screenshot "build/watch-$1.png" >> $LOG 2>&1
+            xcrun simctl terminate "$WATCH" app.murmur.Murmur.watchkitapp >> $LOG 2>&1 || true
+          }
+          wshot home home
+          wshot recording recording
+          wshot saved saved
+          wshot recent recent
+          wshot playback playback
+          wshot locked locked
+          wshot complications complications
+
       - name: Publish results to ci-results branch
         if: always()
         run: |

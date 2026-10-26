@@ -46,7 +46,11 @@ public struct WhisperWAVConverter: AudioConverting {
     public init() {}
 
     public func convert(from source: URL, to destination: URL, onProgress: @escaping @Sendable (Double) -> Void) async throws -> TimeInterval {
+        #if os(watchOS)
+        throw CocoaError(.featureUnsupported)
+        #else
         try await AudioTranscoder.convertToWhisperWAV(from: source, to: destination, onProgress: onProgress)
+        #endif
     }
 }
 
