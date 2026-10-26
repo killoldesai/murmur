@@ -266,18 +266,22 @@ struct DemoImportHost: View {
     init() {
         let container = DemoData.makeContainer(seeded: false)
         self.container = container
-        let deps = DemoData.dependencies(container: container)
-        self.deps = deps
-        deps.importer.enqueue([
-            URL(fileURLWithPath: "/tmp/Customer interview — Maria.mp4"),
-            URL(fileURLWithPath: "/tmp/Voice memo 14.m4a"),
-            URL(fileURLWithPath: "/tmp/Podcast ep 12 raw.mp3"),
-        ])
+        self.deps = DemoData.dependencies(container: container)
     }
 
     var body: some View {
         ImportScreen(importer: deps.importer)
             .modelContainer(container)
+            .task {
+                // Started here, not in init: SwiftUI may create this view more than once, and a
+                // discarded copy must not leave work running against a freed store.
+                guard deps.importer.items.isEmpty else { return }
+                deps.importer.enqueue([
+                    URL(fileURLWithPath: "/tmp/Customer interview — Maria.mp4"),
+                    URL(fileURLWithPath: "/tmp/Voice memo 14.m4a"),
+                    URL(fileURLWithPath: "/tmp/Podcast ep 12 raw.mp3"),
+                ])
+            }
     }
 }
 
