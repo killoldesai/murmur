@@ -25,6 +25,7 @@ struct NoteScreen: View {
     @State private var tab: Tab
     @State private var summaryController: SummaryController
     @State private var copied = false
+    @State private var findReplace: FindReplaceController?
 
     init(note: Note, deps: LibraryDependencies, initialTab: Tab = .transcript) {
         self.note = note
@@ -84,6 +85,14 @@ struct NoteScreen: View {
         .onDisappear { playback.stop() }
         .fullScreenCover(isPresented: $showEdit) {
             EditTranscriptScreen(note: note, deps: deps, playback: playback) { showEdit = false }
+        }
+        .fullScreenCover(
+            isPresented: Binding(get: { findReplace != nil }, set: { if !$0 { findReplace = nil } }),
+            onDismiss: { playback.segments = note.segments }
+        ) {
+            if let controller = findReplace {
+                FindReplaceScreen(controller: controller, speakerNames: note.speakerNames) { findReplace = nil }
+            }
         }
         .sheet(isPresented: $showExport) {
             ExportSheet(note: note, files: deps.files) { showExport = false }
@@ -167,6 +176,14 @@ struct NoteScreen: View {
         }
     }
 
+    private func openFindReplace() {
+        findReplace = FindReplaceController(
+            note: note,
+            library: store,
+            dictionary: DictionaryStore(context: modelContext)
+        )
+    }
+
     private func copySummary() {
         guard let text = NoteSummary.plainText(from: note.summary) else { return }
         UIPasteboard.general.string = text
@@ -187,6 +204,8 @@ struct NoteScreen: View {
                 .disabled(note.segments.isEmpty)
             circleButton("square.and.arrow.up", label: "Export") { showExport = true }
             Menu {
+                Button("Find & replace", systemImage: "text.magnifyingglass") { openFindReplace() }
+                    .disabled(note.segments.isEmpty)
                 Button("Rename", systemImage: "pencil") {
                     titleDraft = note.title
                     renaming = true

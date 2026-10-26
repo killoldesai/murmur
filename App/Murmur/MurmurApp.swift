@@ -62,6 +62,12 @@ struct RootView: View {
             DemoExportHost()
         case "note":
             DemoNoteHost(edit: false)
+        case "search":
+            DemoSearchHost()
+        case "dictionary":
+            DemoDictionaryHost()
+        case "findReplace":
+            DemoFindReplaceHost()
         case "summary":
             DemoNoteHost(edit: false, summaryTab: true)
         case "noteEdit":

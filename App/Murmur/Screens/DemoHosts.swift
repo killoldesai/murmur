@@ -319,3 +319,81 @@ struct DemoExportHost: View {
         .modelContainer(container)
     }
 }
+
+@MainActor
+struct DemoSearchHost: View {
+    private let container: ModelContainer
+
+    init() {
+        let container = DemoData.makeContainer(seeded: true)
+        DemoData.firstReadyNote(in: container).summary = DemoSummaryService.sample.encoded()
+        self.container = container
+    }
+
+    var body: some View {
+        NavigationStack { SearchScreen(initialQuery: "watch") }
+            .modelContainer(container)
+    }
+}
+
+@MainActor
+struct DemoDictionaryHost: View {
+    private let container: ModelContainer
+
+    init() {
+        let container = DemoData.makeContainer(seeded: false)
+        let now = Date()
+        let words: [(String, DictionaryWordKind)] = [
+            ("Priya", .name), ("Jordan", .name), ("CloudKit", .term), ("WhisperKit", .term),
+            ("SwiftUI", .term), ("Q4 OKRs", .term), ("Dr. Okafor", .name), ("glycolysis", .term)
+        ]
+        for (index, entry) in words.enumerated() {
+            container.mainContext.insert(DictionaryWord(term: entry.0, kind: entry.1,
+                                                        createdAt: now.addingTimeInterval(Double(-index))))
+        }
+        try? container.mainContext.save()
+        self.container = container
+    }
+
+    var body: some View {
+        NavigationStack { DictionaryScreen() }
+            .modelContainer(container)
+    }
+}
+
+@MainActor
+struct DemoFindReplaceHost: View {
+    private let container: ModelContainer
+    private let controller: FindReplaceController
+    private let note: Note
+
+    init() {
+        let container = DemoData.makeContainer(seeded: true)
+        let note = DemoData.firstReadyNote(in: container)
+        note.segments = [
+            TranscriptSegment(start: 4, end: 10, text: "Okay, let’s start with the Q4 roadmap.", speakerIndex: 0),
+            TranscriptSegment(start: 20, end: 24, text: "Over to you, Jordon — how long is the sync work?", speakerIndex: 0),
+            TranscriptSegment(start: 24, end: 32, text: "Sync needs CloudKit migration work. Jordon estimated three weeks.", speakerIndex: 2),
+            TranscriptSegment(start: 47, end: 55, text: "So Jordon starts the spike next week.", speakerIndex: 1),
+        ]
+        note.transcript = note.segments.joinedText
+        let files = AudioFileStore(directory: FileManager.default.temporaryDirectory
+            .appendingPathComponent("murmur-demo-fr-\(UUID().uuidString)", isDirectory: true))
+        let controller = FindReplaceController(
+            note: note,
+            library: LibraryStore(context: container.mainContext, files: files),
+            dictionary: DictionaryStore(context: container.mainContext),
+            find: "Jordon",
+            replacement: "Jordan"
+        )
+        controller.next()
+        self.container = container
+        self.note = note
+        self.controller = controller
+    }
+
+    var body: some View {
+        FindReplaceScreen(controller: controller, speakerNames: note.speakerNames, onClose: {})
+            .modelContainer(container)
+    }
+}

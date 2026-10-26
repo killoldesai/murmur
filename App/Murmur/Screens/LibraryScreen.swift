@@ -26,6 +26,8 @@ struct LibraryScreen: View {
     @State private var selectedFolderID: UUID?
     @State private var recoveredCount = 0
     @State private var showImport = false
+    @State private var showSearch = false
+    @State private var showDictionary = false
 
     @State private var newFolderName = ""
     @State private var showNewFolder = false
@@ -53,6 +55,12 @@ struct LibraryScreen: View {
             }
             .navigationDestination(isPresented: $showImport) {
                 ImportScreen(importer: deps.importer)
+            }
+            .navigationDestination(isPresented: $showSearch) {
+                SearchScreen()
+            }
+            .navigationDestination(isPresented: $showDictionary) {
+                DictionaryScreen()
             }
         }
         .preferredColorScheme(.dark)
@@ -132,16 +140,11 @@ struct LibraryScreen: View {
                     .accessibilityAddTraits(.isHeader)
             }
             Spacer()
-            Button { showImport = true } label: {
-                Image(systemName: "square.and.arrow.down")
-                    .font(.body.weight(.semibold))
-                    .foregroundStyle(MurmurTheme.Colors.textPrimary)
-                    .frame(width: MurmurTheme.Metrics.minTapTarget + 2, height: MurmurTheme.Metrics.minTapTarget + 2)
-                    .background(Circle().fill(MurmurTheme.Colors.surface))
-                    .overlay(Circle().strokeBorder(MurmurTheme.Colors.border, lineWidth: MurmurTheme.Metrics.borderWidth))
+            HStack(spacing: 8) {
+                HeaderCircleButton(symbol: "magnifyingglass", label: "Search") { showSearch = true }
+                HeaderCircleButton(symbol: "character.book.closed", label: "Custom dictionary") { showDictionary = true }
+                HeaderCircleButton(symbol: "square.and.arrow.down", label: "Import a file") { showImport = true }
             }
-            .buttonStyle(MurmurPressStyle())
-            .accessibilityLabel("Import a file")
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
