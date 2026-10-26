@@ -99,6 +99,7 @@ jobs:
           shot summary 5 -screen summary
           shot search 5 -screen search
           shot paywall 5 -screen paywall
+          shot splash 5 -screen splash
           shot onboarding 5 -screen onboarding
           shot onboarding-mic 5 -screen onboardingMic
           shot settings 5 -screen settings

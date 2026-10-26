@@ -80,6 +80,8 @@ struct RootView: View {
             DemoTranscribingScreen(done: false)
         case "transcribingDone":
             DemoTranscribingScreen(done: true)
+        case "splash":
+            SplashScreen(onBegin: {})
         case "onboarding":
             OnboardingScreen(requestMicrophone: {}, onFinish: {})
         case "onboardingMic":
@@ -95,10 +97,13 @@ struct RootView: View {
 /// The first launch shows onboarding; after that, the library.
 struct HomeGate: View {
     let services: AppServices
+    @State private var splashDone = false
 
     var body: some View {
         if services.settings.hasCompletedOnboarding {
             LibraryScreen(deps: services.libraryDependencies)
+        } else if !splashDone {
+            SplashScreen { splashDone = true }
         } else {
             OnboardingScreen(
                 requestMicrophone: { await services.requestMicrophone() },
