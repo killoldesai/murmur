@@ -25,7 +25,7 @@ struct MacRoot: View {
         case "recording": view.frame(width: 340, height: 230)
         case "menubar": view.fixedSize()
         case "settings", "dictionary", "account": view.frame(width: 600, height: 460)
-        case "export": view.frame(width: 520, height: 420)
+        case "export": view.fixedSize()
         case "paywall": view.frame(width: 730, height: 560)
         case "onboarding", "onboardingMic", "onboardingShortcut", "onboardingModel": view.frame(width: 900, height: 600)
         default: view.frame(width: 1180, height: 760)
@@ -89,6 +89,8 @@ struct MacRoot: View {
             session.selectedNoteID = DemoData.firstReadyNoteID(in: session.container)
             session.dropCount = 3
             session.isDropTargeted = true
+        case "dictionary":
+            DictionaryStore(context: session.context).importList("Priya\nOkafor\nCloudKit\nglycolysis\nQ4 OKRs")
         case "recording", "menubar":
             session.startRecording()
         default:

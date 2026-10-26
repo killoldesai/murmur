@@ -12,7 +12,7 @@ struct MacPaywallView: View {
         ("sparkles", "Summaries and action items"),
         ("square.and.arrow.up", "Export to TXT, SRT, Markdown and audio"),
         ("tray.full", "Batch import of long files"),
-        ("iphone.and.ipad", "One purchase for iPhone, iPad and Mac"),
+        ("laptopcomputer.and.iphone", "One purchase for iPhone, iPad and Mac"),
     ]
 
     var body: some View {

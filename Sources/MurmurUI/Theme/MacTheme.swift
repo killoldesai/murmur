@@ -11,8 +11,8 @@ public extension MurmurTheme {
         /// Room for the window's traffic-light buttons at the left of the header.
         public static let trafficLightsInset: CGFloat = 78
         public static let sidebarWidth: CGFloat = 220
-        public static let listWidth: CGFloat = 300
-        public static let inspectorWidth: CGFloat = 280
+        public static let listWidth: CGFloat = 280
+        public static let inspectorWidth: CGFloat = 260
         public static let padding: CGFloat = 16
 
         public static let body = Font.system(size: 13)

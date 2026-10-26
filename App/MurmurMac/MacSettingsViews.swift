@@ -117,6 +117,7 @@ struct MacGeneralSettings: View {
             }
             .padding(MurmurTheme.Mac.padding + 6)
             .toggleStyle(.switch)
+            .tint(MurmurTheme.Colors.accent)
         }
     }
 
