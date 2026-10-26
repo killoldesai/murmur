@@ -134,18 +134,37 @@ private struct MenuBarDemo: View {
 /// Writes the main window to a PNG, then quits. Only used by CI screenshots.
 @MainActor
 enum SnapshotWriter {
+    private static func say(_ text: String) {
+        FileHandle.standardError.write(Data((text + "\n").utf8))
+    }
+
     static func write(to path: String, after seconds: Double) async {
+        say("snapshot: waiting \(seconds)s, windows now: \(NSApp.windows.count)")
+        NSApp.activate(ignoringOtherApps: true)
         try? await Task.sleep(nanoseconds: UInt64(seconds * 1_000_000_000))
-        guard
-            let window = NSApp.windows.first(where: { $0.isVisible && $0.contentView != nil }),
-            let view = window.contentView,
-            let rep = view.bitmapImageRepForCachingDisplay(in: view.bounds)
-        else {
+        for window in NSApp.windows {
+            say("window \(window.title) visible=\(window.isVisible) frame=\(window.frame) content=\(window.contentView != nil)")
+        }
+        guard let window = NSApp.windows.first(where: { $0.contentView != nil && $0.frame.width > 100 }), let view = window.contentView else {
+            say("snapshot: no window")
             exit(2)
         }
-        view.cacheDisplay(in: view.bounds, to: rep)
-        guard let data = rep.representation(using: .png, properties: [:]) else { exit(3) }
-        try? data.write(to: URL(fileURLWithPath: path))
+        var data: Data?
+        if let rep = view.bitmapImageRepForCachingDisplay(in: view.bounds) {
+            view.cacheDisplay(in: view.bounds, to: rep)
+            data = rep.representation(using: .png, properties: [:])
+        }
+        guard let png = data else {
+            say("snapshot: could not draw")
+            exit(3)
+        }
+        do {
+            try png.write(to: URL(fileURLWithPath: path))
+            say("snapshot: wrote \(path) (\(png.count) bytes)")
+        } catch {
+            say("snapshot: write failed \(error)")
+            exit(4)
+        }
         exit(0)
     }
 }

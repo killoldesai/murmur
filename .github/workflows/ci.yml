@@ -148,17 +148,19 @@ jobs:
         run: |
           APP=$(find DerivedDataMac -name Murmur.app -path "*Build/Products/Debug/*" | head -1)
           BIN="$APP/Contents/MacOS/Murmur"
-          echo "Mac app: $APP"
+          LOG=build/mac-run.log
+          { echo "Mac app: $APP"; ls -la "$APP/Contents/MacOS"; codesign -dv "$APP" 2>&1 | head -5; launchctl managername; whoami; } > $LOG 2>&1
           macshot() {  # macshot <name> <launch arguments...>
             NAME="$1"; shift
             rm -f "build/mac-$NAME.png"
             "$BIN" "$@" -snapshot "$PWD/build/mac-$NAME.png" > "build/mac-$NAME.log" 2>&1 &
             PID=$!
-            for i in $(seq 1 45); do sleep 1; kill -0 $PID 2>/dev/null || break; done
-            kill $PID 2>/dev/null || true
-            ls -la "build/mac-$NAME.png" || echo "no snapshot for $NAME"
+            for i in $(seq 1 30); do sleep 1; kill -0 $PID 2>/dev/null || break; done
+            if kill -0 $PID 2>/dev/null; then echo "$NAME: still running after 30 s" >> $LOG; kill $PID 2>/dev/null || true; else wait $PID; echo "$NAME: exit $?" >> $LOG; fi
+            ls -la "build/mac-$NAME.png" >> $LOG 2>&1 || echo "no snapshot for $NAME" >> $LOG
           }
           macshot main -screen main
+          screencapture -x build/mac-fullscreen.png >> $LOG 2>&1 || true
           macshot note-locked -screen noteLocked
           macshot queue -screen queue
           macshot drop -screen drop
