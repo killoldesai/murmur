@@ -191,6 +191,7 @@ struct WatchSavedView: View {
             HStack(spacing: 6) {
                 WatchDeliveryIcon(delivery: entry?.delivery ?? .waiting)
                 Text(statusText).font(MurmurTheme.Watch.caption).foregroundStyle(MurmurTheme.Colors.textSecondary)
+                    .lineLimit(1).minimumScaleFactor(0.7)
             }
             WatchCapsuleButton(title: "Done", fill: MurmurTheme.Colors.raised, textColor: MurmurTheme.Colors.textPrimary) {
                 session.path = []
@@ -304,6 +305,7 @@ struct WatchLockedView: View {
     @Bindable var session: WatchSession
 
     var body: some View {
+        ScrollView {
         VStack(spacing: 8) {
             Image(systemName: "lock.fill").font(.system(size: 28)).foregroundStyle(MurmurTheme.Colors.accent)
             Text("Unlock on iPhone").font(MurmurTheme.Watch.title).foregroundStyle(MurmurTheme.Colors.textPrimary)
@@ -315,5 +317,6 @@ struct WatchLockedView: View {
             }
         }
         .padding(.horizontal, 4)
+        }
     }
 }
