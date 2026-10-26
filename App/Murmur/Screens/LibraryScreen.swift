@@ -72,6 +72,11 @@ struct LibraryScreen: View {
                 route = .modelDownload
             }
         }
+        .task {
+            // Reads what the Apple ID owns (this also restores purchases on a fresh install) and
+            // keeps listening for renewals and refunds.
+            await deps.entitlements.start()
+        }
         .onOpenURL { url in
             // "Share → Murmur" and "Open in Murmur" from other apps. Files copied into the
             // app's Inbox are removed after import.

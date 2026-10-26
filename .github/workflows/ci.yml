@@ -98,6 +98,8 @@ jobs:
           shot note-edit 5 -screen noteEdit
           shot summary 5 -screen summary
           shot search 5 -screen search
+          shot paywall 5 -screen paywall
+          shot note-locked 5 -screen noteLocked
           shot dictionary 5 -screen dictionary
           shot find-replace 5 -screen findReplace
           shot import 5 -screen import

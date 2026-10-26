@@ -157,7 +157,7 @@ enum DemoData {
         return notes.first { $0.status == .ready }!
     }
 
-    static func dependencies(container: ModelContainer, player given: DemoPlayerEngine? = nil, summaries: SummaryService? = nil) -> LibraryDependencies {
+    static func dependencies(container: ModelContainer, player given: DemoPlayerEngine? = nil, summaries: SummaryService? = nil, entitlements: EntitlementController? = nil) -> LibraryDependencies {
         let player = given ?? DemoPlayerEngine(duration: 42 * 60 + 10)
         let base = FileManager.default.temporaryDirectory.appendingPathComponent("murmur-demo-lib-\(UUID().uuidString)", isDirectory: true)
         let defaults = UserDefaults(suiteName: "murmur-demo-\(UUID().uuidString)")!
@@ -177,7 +177,8 @@ enum DemoData {
             files: files,
             makeRecorder: { DemoRecorderEngine() },
             makePlayer: { player },
-            summaries: summaries ?? DemoSummaryService()
+            summaries: summaries ?? DemoSummaryService(),
+            entitlements: entitlements ?? EntitlementController(store: DemoPurchaseStore())
         )
     }
 }
@@ -203,15 +204,17 @@ struct DemoLibraryHost: View {
 struct DemoNoteHost: View {
     let edit: Bool
     var summaryTab = false
+    var locked = false
     private let container: ModelContainer
     private let player: DemoPlayerEngine
     private let deps: LibraryDependencies
     private let note: Note
     @State private var playback: PlaybackController
 
-    init(edit: Bool, summaryTab: Bool = false) {
+    init(edit: Bool, summaryTab: Bool = false, locked: Bool = false) {
         self.edit = edit
         self.summaryTab = summaryTab
+        self.locked = locked
         let container = DemoData.makeContainer(seeded: true)
         let player = DemoPlayerEngine(duration: 42 * 60 + 10)
         player.currentTime = 16
@@ -221,6 +224,13 @@ struct DemoNoteHost: View {
         self.deps = DemoData.dependencies(container: container, player: player)
         let note = DemoData.firstReadyNote(in: container)
         if summaryTab { note.summary = DemoSummaryService.sample.encoded() }
+        if locked {
+            // A long note: the free tier shows only the first two minutes.
+            note.segments += [
+                TranscriptSegment(start: 128, end: 140, text: "Next, the Watch complication and widget scope.", speakerIndex: 1),
+                TranscriptSegment(start: 300, end: 312, text: "Let’s regroup on pricing after the beta.", speakerIndex: 2),
+            ]
+        }
         self.note = note
         let playback = PlaybackController(engine: player, segments: note.segments)
         playback.load(url: URL(fileURLWithPath: "/demo"))
@@ -395,5 +405,19 @@ struct DemoFindReplaceHost: View {
     var body: some View {
         FindReplaceScreen(controller: controller, speakerNames: note.speakerNames, onClose: {})
             .modelContainer(container)
+    }
+}
+
+@MainActor
+struct DemoPaywallHost: View {
+    private let controller: EntitlementController
+
+    init() {
+        controller = EntitlementController(store: DemoPurchaseStore())
+    }
+
+    var body: some View {
+        PaywallScreen(controller: controller, onClose: {})
+            .task { await controller.loadOffers() }
     }
 }

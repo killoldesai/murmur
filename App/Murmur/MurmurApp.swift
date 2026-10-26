@@ -62,6 +62,10 @@ struct RootView: View {
             DemoExportHost()
         case "note":
             DemoNoteHost(edit: false)
+        case "paywall":
+            DemoPaywallHost()
+        case "noteLocked":
+            DemoNoteHost(edit: false, locked: true)
         case "search":
             DemoSearchHost()
         case "dictionary":

@@ -10,4 +10,5 @@ struct LibraryDependencies {
     let makeRecorder: @MainActor () -> RecorderEngine
     let makePlayer: @MainActor () -> PlayerEngine
     let summaries: SummaryService
+    let entitlements: EntitlementController
 }

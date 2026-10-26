@@ -10,6 +10,7 @@ final class AppServices {
     let models: SpeechModelManager
     let queue: TranscriptionQueue
     let importer: ImportQueue
+    let entitlements: EntitlementController
     let container: ModelContainer
     private let network: NetworkMonitor
     private let engines: EngineCache
@@ -38,6 +39,7 @@ final class AppServices {
         // Imported files become queued notes; start transcribing as soon as one arrives.
         importer.onNoteAdded = { queue.start() }
         self.importer = importer
+        self.entitlements = EntitlementController(store: StoreKitPurchaseStore())
     }
 }
 
@@ -50,7 +52,8 @@ extension AppServices {
             files: .standard,
             makeRecorder: { AVAudioRecorderEngine() },
             makePlayer: { AVAudioPlayerEngine() },
-            summaries: OnDeviceSummaryService()
+            summaries: OnDeviceSummaryService(),
+            entitlements: entitlements
         )
     }
 }

@@ -26,6 +26,7 @@ struct NoteScreen: View {
     @State private var summaryController: SummaryController
     @State private var copied = false
     @State private var findReplace: FindReplaceController?
+    @State private var showPaywall = false
 
     init(note: Note, deps: LibraryDependencies, initialTab: Tab = .transcript) {
         self.note = note
@@ -60,13 +61,13 @@ struct NoteScreen: View {
                     SummaryTab(
                         note: note,
                         controller: summaryController,
-                        onGenerate: generateSummary,
+                        onGenerate: { gated { generateSummary() } },
                         onToggle: { store.toggleActionItem($0, in: note) },
                         onCopy: copySummary,
                         copied: copied
                     )
                     .padding(.top, 10)
-                    SecondaryButton("Export", systemImage: "square.and.arrow.up") { showExport = true }
+                    SecondaryButton("Export", systemImage: "square.and.arrow.up") { gated { showExport = true } }
                         .padding(.horizontal, 12)
                         .padding(.bottom, 12)
                 } else {
@@ -93,6 +94,9 @@ struct NoteScreen: View {
             if let controller = findReplace {
                 FindReplaceScreen(controller: controller, speakerNames: note.speakerNames) { findReplace = nil }
             }
+        }
+        .fullScreenCover(isPresented: $showPaywall) {
+            PaywallScreen(controller: deps.entitlements) { showPaywall = false }
         }
         .sheet(isPresented: $showExport) {
             ExportSheet(note: note, files: deps.files) { showExport = false }
@@ -176,6 +180,15 @@ struct NoteScreen: View {
         }
     }
 
+    /// Notes longer than the free limit need Pro for anything that uses the whole transcript.
+    private var isLimited: Bool {
+        FreeTier.lockedCount(note.segments, isPro: deps.entitlements.isPro) > 0
+    }
+
+    private func gated(_ action: () -> Void) {
+        if isLimited { showPaywall = true } else { action() }
+    }
+
     private func openFindReplace() {
         findReplace = FindReplaceController(
             note: note,
@@ -200,11 +213,11 @@ struct NoteScreen: View {
         HStack {
             circleButton("chevron.left", label: "Back to library") { dismiss() }
             Spacer()
-            circleButton("pencil", label: "Edit transcript") { showEdit = true }
+            circleButton("pencil", label: "Edit transcript") { gated { showEdit = true } }
                 .disabled(note.segments.isEmpty)
-            circleButton("square.and.arrow.up", label: "Export") { showExport = true }
+            circleButton("square.and.arrow.up", label: "Export") { gated { showExport = true } }
             Menu {
-                Button("Find & replace", systemImage: "text.magnifyingglass") { openFindReplace() }
+                Button("Find & replace", systemImage: "text.magnifyingglass") { gated { openFindReplace() } }
                     .disabled(note.segments.isEmpty)
                 Button("Rename", systemImage: "pencil") {
                     titleDraft = note.title
@@ -251,6 +264,22 @@ struct NoteScreen: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
+    private var lockedCard: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Label("The rest is locked", systemImage: "lock.fill")
+                .font(MurmurTheme.Fonts.headline)
+                .foregroundStyle(MurmurTheme.Colors.textPrimary)
+            Text(FreeTier.lockedText(duration: note.duration) + " Murmur Pro unlocks the full transcript, summaries, export and editing.")
+                .font(MurmurTheme.Fonts.body)
+                .foregroundStyle(MurmurTheme.Colors.textSecondary)
+            PrimaryButton("Unlock Murmur Pro", systemImage: "sparkles") { showPaywall = true }
+        }
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .murmurCard()
+        .padding(.top, 6)
+    }
+
     private var transcript: some View {
         ScrollViewReader { proxy in
             ScrollView {
@@ -262,7 +291,7 @@ struct NoteScreen: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(14)
                     }
-                    ForEach(Array(note.segments.enumerated()), id: \.element.id) { index, segment in
+                    ForEach(Array(FreeTier.visible(note.segments, isPro: deps.entitlements.isPro).enumerated()), id: \.element.id) { index, segment in
                         Button { playback.play(segment: segment) } label: {
                             TranscriptRow(
                                 speaker: segment.speakerIndex.map { Speakers.name(at: $0, in: note.speakerNames) },
@@ -275,6 +304,7 @@ struct NoteScreen: View {
                         .buttonStyle(MurmurPressStyle())
                         .id(segment.id)
                     }
+                    if isLimited { lockedCard }
                 }
                 .padding(.horizontal, 14)
                 .padding(.bottom, 12)
