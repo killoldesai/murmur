@@ -154,6 +154,8 @@ struct ImportScreen: View {
                     Text("Import audio or video")
                         .font(MurmurTheme.Fonts.title)
                         .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
                         .accessibilityAddTraits(.isHeader)
                     Spacer(minLength: 8)
                     Button("Browse Files") { showFiles = true }

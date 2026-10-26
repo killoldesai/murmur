@@ -144,10 +144,9 @@ struct OnboardingScreen: View {
                                 .foregroundStyle(MurmurTheme.Colors.textSecondary)
                                 .multilineTextAlignment(.leading)
                                 .fixedSize(horizontal: false, vertical: true)
-                            Spacer(minLength: 0)
                         }
                         .padding(26)
-                        .frame(maxWidth: .infinity, minHeight: 260, alignment: .topLeading)
+                        .frame(maxWidth: .infinity, minHeight: 240, alignment: .topLeading)
                         .background(RoundedRectangle(cornerRadius: 26, style: .continuous).fill(selected ? MurmurTheme.Colors.surface : MurmurTheme.Colors.panel))
                         .overlay(
                             RoundedRectangle(cornerRadius: 26, style: .continuous)
@@ -162,6 +161,7 @@ struct OnboardingScreen: View {
                 }
             }
             .frame(maxWidth: 1000)
+            .fixedSize(horizontal: false, vertical: true)
             .murmurEntrance(index: 1)
 
             HStack(spacing: 24) {
