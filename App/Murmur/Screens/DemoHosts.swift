@@ -226,7 +226,8 @@ struct DemoNoteHost: View {
         if summaryTab { note.summary = DemoSummaryService.sample.encoded() }
         if locked {
             // A long note: the free tier shows only the first two minutes.
-            note.segments += [
+            // Keep the list short so the locked card is on screen in the screenshot.
+            note.segments = Array(note.segments.prefix(2)) + [
                 TranscriptSegment(start: 128, end: 140, text: "Next, the Watch complication and widget scope.", speakerIndex: 1),
                 TranscriptSegment(start: 300, end: 312, text: "Let’s regroup on pricing after the beta.", speakerIndex: 2),
             ]

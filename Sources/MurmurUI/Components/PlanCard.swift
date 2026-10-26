@@ -48,6 +48,8 @@ public struct PlanCard: View {
                             Text(badge)
                                 .font(.caption2.weight(.heavy))
                                 .tracking(0.6)
+                                .lineLimit(1)
+                                .fixedSize()
                                 .foregroundStyle(MurmurTheme.Colors.onAccent)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 3)
