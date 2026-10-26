@@ -164,7 +164,7 @@ private struct ImportRow: View {
         switch item.state {
         case .waiting: "Waiting"
         case .converting(let f): "\(Int(f * 100))%"
-        case .done: item.duration.map { "\(Timecode.format($0)) · Ready to transcribe" } ?? "Done"
+        case .done: item.duration.map { "\(Timecode.format($0)) · Done" } ?? "Done"
         case .failed(let message): message
         }
     }
