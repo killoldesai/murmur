@@ -51,9 +51,9 @@ final class WatchTransferTests: XCTestCase {
     func testMetaLine() {
         let now = Date()
         let today = WatchRecordingEntry(transfer: WatchTransfer(createdAt: now, duration: 84))
-        XCTAssertEqual(today.meta(now: now), "Today · 1:24")
+        XCTAssertEqual(today.meta(now: now), "Today · 01:24")
         let old = WatchRecordingEntry(transfer: WatchTransfer(createdAt: now.addingTimeInterval(-86_400), duration: 5))
-        XCTAssertEqual(old.meta(now: now), "Yesterday · 0:05")
+        XCTAssertEqual(old.meta(now: now), "Yesterday · 00:05")
     }
 }
 
@@ -116,7 +116,7 @@ final class WatchOutboxTests: XCTestCase {
         let snapshot = WatchSnapshot.make(from: outbox, now: now)
         XCTAssertEqual(snapshot.notesToday, 1)
         XCTAssertEqual(snapshot.waitingCount, 2)
-        XCTAssertEqual(snapshot.lastMemoText, "Last memo 0:58 · waiting for iphone")
+        XCTAssertEqual(snapshot.lastMemoText, "Last memo 00:58 · waiting for iphone")
         XCTAssertEqual(snapshot.recent.count, 2)
     }
 
