@@ -33,6 +33,19 @@ public struct AudioFileStore: Sendable {
         FileManager.default.fileExists(atPath: url(for: fileName).path)
     }
 
+    /// Every file in the audio folder with its last-modified date.
+    public func allFiles() -> [(name: String, modified: Date)] {
+        let urls = (try? FileManager.default.contentsOfDirectory(
+            at: directory,
+            includingPropertiesForKeys: [.contentModificationDateKey],
+            options: [.skipsHiddenFiles]
+        )) ?? []
+        return urls.map { url in
+            let date = (try? url.resourceValues(forKeys: [.contentModificationDateKey]))?.contentModificationDate ?? Date()
+            return (url.lastPathComponent, date)
+        }
+    }
+
     public func delete(_ fileName: String) {
         try? FileManager.default.removeItem(at: url(for: fileName))
     }

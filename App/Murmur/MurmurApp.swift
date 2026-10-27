@@ -9,12 +9,14 @@ struct MurmurApp: App {
     private let services: AppServices
 
     init() {
+        let opened: (container: ModelContainer, state: SyncState)
         do {
-            container = try MurmurSchema.makeContainer()
+            opened = try MurmurSchema.openStore()
         } catch {
             fatalError("Could not create the Murmur data store: \(error)")
         }
-        services = AppServices(container: container)
+        container = opened.container
+        services = AppServices(container: opened.container, syncState: opened.state)
     }
 
     var body: some Scene {
@@ -32,6 +34,7 @@ struct MurmurApp: App {
 ///   `-screen modelDownload` / `modelDownloading` / `modelDone`   model download screen (fake downloader)
 ///   `-screen transcribing` / `transcribingDone`   transcribing screen with sample text
 ///   `-screen library` / `libraryEmpty`   library with demo notes / first-run state
+///   `-screen folders` / `foldersNew` / `swipe` / `libraryWatch`   folders grid, new-folder sheet, swipe row, Watch banner
 ///   `-screen import` / `export`   import queue and export sheet (demo data)
 ///   `-screen noteWide`   iPad note with the summary panel
 ///   `-screen note` / `noteEdit`   note with playback running / edit transcript (demo data)
@@ -57,6 +60,14 @@ struct RootView: View {
             DemoLibraryHost(empty: false)
         case "libraryEmpty":
             DemoLibraryHost(empty: true)
+        case "libraryWatch":
+            DemoLibraryHost(empty: false, watchBanner: true)
+        case "folders":
+            DemoFoldersHost(newFolder: false)
+        case "foldersNew":
+            DemoFoldersHost(newFolder: true)
+        case "swipe":
+            DemoSwipeHost()
         case "import":
             DemoImportHost()
         case "export":

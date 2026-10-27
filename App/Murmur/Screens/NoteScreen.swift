@@ -86,14 +86,7 @@ struct NoteScreen: View {
                 } else {
                     transcript
                         .padding(.top, 10)
-                    if note.audioFileName != nil {
-                        playbackPanel
-                    } else {
-                        Label("Audio was deleted after transcribing", systemImage: "trash")
-                            .font(.footnote)
-                            .foregroundStyle(MurmurTheme.Colors.textTertiary)
-                            .padding(.vertical, 14)
-                    }
+                    audioFooter
                 }
             }
             }
@@ -101,7 +94,7 @@ struct NoteScreen: View {
         .preferredColorScheme(.dark)
         .toolbar(.hidden, for: .navigationBar)
         .task {
-            if let audio = note.audioFileName {
+            if audioAvailability == .here, let audio = note.audioFileName {
                 playback.load(url: deps.files.url(for: audio), fallbackDuration: note.duration)
                 playback.start()
             }
@@ -162,14 +155,7 @@ struct NoteScreen: View {
                     .padding(.horizontal, MurmurTheme.Metrics.screenPadding)
                     .padding(.top, 14)
                 transcript.padding(.top, 10)
-                if note.audioFileName != nil {
-                    playbackPanel
-                } else {
-                    Label("Audio was deleted after transcribing", systemImage: "trash")
-                        .font(.footnote)
-                        .foregroundStyle(MurmurTheme.Colors.textTertiary)
-                        .padding(.vertical, 14)
-                }
+                audioFooter
             }
             if hasSummaryPanel {
                 Rectangle().fill(MurmurTheme.Colors.border).frame(width: MurmurTheme.Metrics.borderWidth)
@@ -186,6 +172,29 @@ struct NoteScreen: View {
                 .frame(width: 380)
                 .background(MurmurTheme.Colors.panel)
             }
+        }
+    }
+
+    private var audioAvailability: AudioAvailability {
+        AudioAvailability.of(note, files: deps.files, syncActive: deps.settings.isSyncActive)
+    }
+
+    /// The player, or a line saying why there is no audio here.
+    @ViewBuilder
+    private var audioFooter: some View {
+        switch audioAvailability {
+        case .here:
+            playbackPanel
+        case .deleted:
+            Label("Audio was deleted after transcribing", systemImage: "trash")
+                .font(.footnote)
+                .foregroundStyle(MurmurTheme.Colors.textTertiary)
+                .padding(.vertical, 14)
+        case .onAnotherDevice:
+            Label("The recording is on the device that made it", systemImage: "icloud")
+                .font(.footnote)
+                .foregroundStyle(MurmurTheme.Colors.textTertiary)
+                .padding(.vertical, 14)
         }
     }
 

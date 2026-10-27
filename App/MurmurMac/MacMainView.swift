@@ -296,6 +296,7 @@ struct MacNoteList: View {
                             ForEach(section.notes) { note in
                                 MacNoteRow(note: note, selected: session.selectedNoteID == note.id)
                                     .onTapGesture { session.select(note) }
+                                    .onDrag { dragProvider(for: note) }
                                     .contextMenu { contextMenu(for: note) }
                             }
                         }
@@ -305,6 +306,16 @@ struct MacNoteList: View {
             }
         }
         .background(MurmurTheme.Colors.background)
+    }
+
+    /// Dragging a note to Finder, Mail or another app hands over its transcript as a `.txt` file.
+    /// Locked (free-tier) or unfinished notes are not draggable.
+    private func dragProvider(for note: Note) -> NSItemProvider {
+        guard note.status == .ready,
+              FreeTier.lockedCount(note.segments, isPro: session.deps.entitlements.isPro) == 0,
+              let url = try? ExportService(files: session.deps.files).prepareTextFile(note: note),
+              let provider = NSItemProvider(contentsOf: url) else { return NSItemProvider() }
+        return provider
     }
 
     @ViewBuilder private func contextMenu(for note: Note) -> some View {

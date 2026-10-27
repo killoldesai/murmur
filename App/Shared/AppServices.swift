@@ -22,7 +22,8 @@ final class AppServices {
     private let network: NetworkMonitor
     private let engines: EngineCache
 
-    init(container: ModelContainer) {
+    init(container: ModelContainer, syncState: SyncState = .off) {
+        settings.syncState = syncState
         let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
             .appendingPathComponent("Murmur/Models", isDirectory: true)
         let network = NetworkMonitor()
@@ -42,8 +43,14 @@ final class AppServices {
             engineProvider: { engines.current() }
         )
         queue.settings = settings
+        // Recordings are re-encoded to M4A after transcribing when the Audio format setting is M4A.
+        queue.audioCompactor = { source, destination in
+            try await AudioTranscoder.exportM4A(from: source, to: destination)
+        }
         self.queue = queue
         let importer = ImportQueue(context: container.mainContext, files: .standard)
+        let appSettings = settings
+        importer.defaultFolder = { appSettings.defaultFolderID }
         // Imported files become queued notes; start transcribing as soon as one arrives.
         importer.onNoteAdded = { queue.start() }
         self.importer = importer
@@ -53,7 +60,10 @@ final class AppServices {
         self.watchInbox = inbox
         watchLink.onFileReceived = { url, transfer in
             Task { @MainActor in
-                if await inbox.receive(fileURL: url, transfer: transfer) != nil { queue.start() }
+                if await inbox.receive(fileURL: url, transfer: transfer) != nil {
+                    appSettings.noteWatchRecordingReceived()
+                    queue.start()
+                }
                 try? FileManager.default.removeItem(at: url)
             }
         }
@@ -82,12 +92,21 @@ extension AppServices {
     }
 
     var libraryDependencies: LibraryDependencies {
-        LibraryDependencies(
+        let settings = self.settings
+        return LibraryDependencies(
             models: models,
             queue: queue,
             importer: importer,
             files: .standard,
-            makeRecorder: { AVAudioRecorderEngine() },
+            makeRecorder: { [settings] () -> RecorderEngine in
+                #if os(macOS)
+                // A microphone picked in Settings; if it is unplugged, the system default is used.
+                if let uid = MicDevices.resolvedUID(saved: settings.inputDeviceUID) {
+                    return DeviceRecorderEngine(deviceUID: uid)
+                }
+                #endif
+                return AVAudioRecorderEngine()
+            },
             makePlayer: { AVAudioPlayerEngine() },
             summaries: OnDeviceSummaryService(),
             entitlements: entitlements,

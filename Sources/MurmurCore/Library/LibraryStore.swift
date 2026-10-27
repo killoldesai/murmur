@@ -27,6 +27,13 @@ public final class LibraryStore {
         return folder
     }
 
+    public func renameFolder(_ folder: Folder, to name: String) {
+        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty, trimmed != folder.name else { return }
+        folder.name = trimmed
+        save()
+    }
+
     public func deleteFolder(_ folder: Folder) {
         context.delete(folder)   // notes become unfiled (nullify rule)
         save()
@@ -49,6 +56,22 @@ public final class LibraryStore {
         if let name = note.audioFileName { files.delete(name) }
         context.delete(note)
         save()
+    }
+
+    /// With iCloud sync, deleting a note on one device leaves its audio file behind on the device
+    /// that recorded it. This removes audio files that no note uses, once they are older than
+    /// `age` (so a file that is still being imported or recorded is never touched).
+    /// - Returns: how many files were removed.
+    @discardableResult
+    public func removeOrphanedAudio(olderThan age: TimeInterval = 86_400, now: Date = Date()) -> Int {
+        let notes = (try? context.fetch(FetchDescriptor<Note>())) ?? []
+        let used = Set(notes.compactMap(\.audioFileName))
+        var removed = 0
+        for file in files.allFiles() where !used.contains(file.name) && now.timeIntervalSince(file.modified) > age {
+            files.delete(file.name)
+            removed += 1
+        }
+        return removed
     }
 
     /// Saves an edited transcript and keeps the plain-text copy in step.
@@ -95,4 +118,12 @@ public final class LibraryStore {
     }
 
     private func save() { try? context.save() }
+}
+
+extension ModelContext {
+    /// The folder with this id, or `nil` (also when it was deleted since the setting was saved).
+    func folder(withID id: UUID?) -> Folder? {
+        guard let id else { return nil }
+        return ((try? fetch(FetchDescriptor<Folder>())) ?? []).first { $0.id == id }
+    }
 }

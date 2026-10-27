@@ -24,6 +24,9 @@ public final class TranscriptionQueue {
     private let language: String?
     /// Optional preferences: the language to use and whether to delete audio when done.
     @ObservationIgnored public var settings: AppSettings?
+    /// Re-encodes audio from the first URL into the second (an `.m4a`). Set by the app; when it
+    /// is `nil` audio is kept as recorded. Used when the audio format setting is M4A.
+    @ObservationIgnored public var audioCompactor: (@Sendable (URL, URL) async throws -> Void)?
     private let now: @Sendable () -> Date
     private var task: Task<Void, Never>?
 
@@ -135,8 +138,31 @@ public final class TranscriptionQueue {
             }
         }
         save()
+        if note.status == .ready { await compactAudio(of: note) }
         currentNoteID = nil
         return !cancelled
+    }
+
+    /// Replaces the recording with a much smaller `.m4a`. The original is deleted only after the
+    /// new file exists and is not empty, so a failed conversion never loses audio.
+    private func compactAudio(of note: Note) async {
+        guard settings?.audioFormat == .m4a, let compactor = audioCompactor,
+              let name = note.audioFileName, !name.hasSuffix(".m4a"), files.exists(name) else { return }
+        let newName = files.newFileName(ext: "m4a")
+        let destination = files.url(for: newName)
+        do {
+            try await compactor(files.url(for: name), destination)
+            let size = (try? destination.resourceValues(forKeys: [.fileSizeKey]))?.fileSize ?? 0
+            guard size > 0, note.audioFileName == name else {
+                files.delete(newName)
+                return
+            }
+            note.audioFileName = newName
+            files.delete(name)
+            save()
+        } catch {
+            files.delete(newName)
+        }
     }
 
     // MARK: - Helpers
@@ -147,7 +173,7 @@ public final class TranscriptionQueue {
         guard currentNoteID == nil else { return }
         let all = (try? context.fetch(FetchDescriptor<Note>())) ?? []
         var changed = false
-        for note in all where note.status == .transcribing {
+        for note in all where note.status == .transcribing && isOnThisDevice(note) {
             note.status = .queued
             changed = true
         }
@@ -156,7 +182,15 @@ public final class TranscriptionQueue {
 
     private func nextQueuedNote() -> Note? {
         let all = (try? context.fetch(FetchDescriptor<Note>(sortBy: [SortDescriptor(\.createdAt)]))) ?? []
-        return all.first { $0.status == .queued }
+        return all.first { $0.status == .queued && isOnThisDevice($0) }
+    }
+
+    /// With iCloud sync on, queued notes recorded on another device arrive here too. Only the
+    /// device that holds the audio transcribes it, so nothing is done twice or marked failed here.
+    private func isOnThisDevice(_ note: Note) -> Bool {
+        guard settings?.isSyncActive == true else { return true }
+        guard let name = note.audioFileName else { return false }
+        return files.exists(name)
     }
 
     private func dictionaryTerms() -> [String] {

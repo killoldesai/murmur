@@ -11,6 +11,8 @@ import SwiftData
 public final class RecordingNoteStore {
     private let context: ModelContext
     private let files: AudioFileStore
+    /// The folder new recordings are filed in (the Mac "default folder" setting).
+    public var defaultFolder: (@MainActor () -> UUID?)?
 
     public init(context: ModelContext, files: AudioFileStore) {
         self.context = context
@@ -30,6 +32,7 @@ public final class RecordingNoteStore {
             status: .recording
         )
         context.insert(note)
+        note.folder = context.folder(withID: defaultFolder?())
         try context.save()
         return note
     }
@@ -58,14 +61,16 @@ public final class RecordingNoteStore {
 
     /// Call once at launch. Notes still marked `.recording` were interrupted by a crash or kill.
     /// Ones with audio on disk are queued for transcription; ones without are marked failed.
+    /// With `skippingRemote` (iCloud sync on), a note whose audio is not on this device is left
+    /// alone: it is probably being recorded on another device.
     /// - Returns: how many notes were recovered (queued).
     @discardableResult
-    public func recoverInterruptedRecordings() throws -> Int {
+    public func recoverInterruptedRecordings(skippingRemote: Bool = false) throws -> Int {
         let all = try context.fetch(FetchDescriptor<Note>())
         var recovered = 0
         for note in all where note.status == .recording {
             guard let name = note.audioFileName, files.exists(name) else {
-                note.status = .failed
+                if !skippingRemote { note.status = .failed }
                 continue
             }
             if note.duration == 0, let seconds = Self.audioDuration(of: files.url(for: name)) {

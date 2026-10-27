@@ -82,6 +82,7 @@ struct MacSettingRow<Control: View>: View {
 
 struct MacGeneralSettings: View {
     let session: MacSession
+    @Query(sort: \Folder.sortOrder) private var folders: [Folder]
     @State private var launchAtLogin = SMAppService.mainApp.status == .enabled
     @State private var loginError: String?
 
@@ -102,11 +103,31 @@ struct MacGeneralSettings: View {
                 MacSettingRow(title: "Record shortcut", hint: "Works in any app. Needs Control, Option or Command.") {
                     ShortcutRecorder(current: settings.recordShortcut) { settings.setRecordShortcut($0) }
                 }
-                MacSettingRow(title: "Recording format", hint: "16 kHz mono, what Whisper reads best. Export makes an M4A.") {
-                    Text("CAF").font(MurmurTheme.Mac.body).foregroundStyle(MurmurTheme.Colors.textSecondary)
+                MacSettingRow(title: "Microphone", hint: "Recording uses this input. Unplugged devices fall back to the system default.") {
+                    Picker("", selection: Binding(get: { settings.inputDeviceUID ?? "" }, set: { settings.setInputDeviceUID($0.isEmpty ? nil : $0) })) {
+                        Text("System default").tag("")
+                        ForEach(MicDevices.available()) { Text($0.name).tag($0.id) }
+                    }
+                    .labelsHidden().frame(width: 220)
+                }
+                MacSettingRow(title: "New notes go to", hint: "The folder for new recordings and imports.") {
+                    Picker("", selection: Binding(get: { settings.defaultFolderID }, set: { settings.setDefaultFolderID($0) })) {
+                        Text("No folder").tag(UUID?.none)
+                        ForEach(folders) { Text($0.name).tag(UUID?.some($0.id)) }
+                    }
+                    .labelsHidden().frame(width: 180)
+                }
+                MacSettingRow(title: "Audio format", hint: settings.audioFormat.detail) {
+                    Picker("", selection: Binding(get: { settings.audioFormat }, set: { settings.setAudioFormat($0) })) {
+                        ForEach(AudioFormat.allCases) { Text($0.title).tag($0) }
+                    }
+                    .labelsHidden().frame(width: 120)
                 }
                 MacSettingRow(title: "Delete audio after transcribing", hint: "Saves space. The transcript stays.") {
                     Toggle("", isOn: Binding(get: { settings.deleteAudioAfterTranscribing }, set: { settings.setDeleteAudioAfterTranscribing($0) })).labelsHidden()
+                }
+                MacSettingRow(title: "Sync with iCloud", hint: settings.syncMessage) {
+                    Toggle("", isOn: Binding(get: { settings.iCloudSyncEnabled }, set: { settings.setICloudSyncEnabled($0) })).labelsHidden()
                 }
                 MacSettingRow(title: "Hide Dock icon", hint: "Murmur lives in the menu bar. Needs the menu bar icon.") {
                     Toggle("", isOn: Binding(get: { settings.hideDockIcon }, set: { value in
@@ -333,9 +354,12 @@ struct MacAccountSettings: View {
                 MacSettingRow(title: "Restore purchases", hint: "Uses your Apple ID.") {
                     Button("Restore") { Task { await entitlements.restore() } }
                 }
+                MacSettingRow(title: "Send feedback", hint: "Opens a form on GitHub.") { Link("Open", destination: LegalLinks.feedback) }
                 MacSettingRow(title: "Privacy Policy") { Link("Open", destination: LegalLinks.privacy) }
                 MacSettingRow(title: "Terms of Use") { Link("Open", destination: LegalLinks.terms) }
-                MacSettingRow(title: "Your data", hint: "Audio and text never leave this Mac.") {
+                MacSettingRow(title: "Your data", hint: session.deps.settings.isSyncActive
+                              ? "Notes sync through your private iCloud. Audio stays on this Mac."
+                              : "Audio and text never leave this Mac.") {
                     Image(systemName: "lock.fill").foregroundStyle(MurmurTheme.Colors.textTertiary)
                 }
             }

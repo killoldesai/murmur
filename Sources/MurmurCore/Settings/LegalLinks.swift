@@ -6,6 +6,8 @@ public enum LegalLinks {
     public static let home = URL(string: "https://killoldesai.github.io/murmur/")!
     public static let privacy = URL(string: "https://killoldesai.github.io/murmur/privacy/")!
     public static let terms = URL(string: "https://killoldesai.github.io/murmur/terms/")!
+    /// Where "Send feedback" goes. Change it to a support address or form when you have one.
+    public static let feedback = URL(string: "https://github.com/killoldesai/murmur/issues/new")!
 
     /// What the paywall must say about auto-renewing subscriptions (App Store guideline 3.1.2).
     public static let subscriptionNotice =

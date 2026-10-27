@@ -47,6 +47,11 @@ public struct ExportService {
         }
     }
 
+    /// A `.txt` file named after the note, written at once. Used when a note is dragged out of the Mac app.
+    public func prepareTextFile(note: Note, options: ExportOptions = ExportOptions()) throws -> URL {
+        try write(Exporter.text(for: note, options: options), name: Exporter.fileName(for: note.title), ext: "txt")
+    }
+
     /// A `.md` file named after the note. Used by the Mac export sheet.
     public func prepareMarkdown(note: Note, options: ExportOptions) throws -> URL {
         try write(Exporter.markdown(for: note, options: options), name: Exporter.fileName(for: note.title), ext: "md")

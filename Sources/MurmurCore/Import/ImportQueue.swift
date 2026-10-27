@@ -62,6 +62,8 @@ public final class ImportQueue {
     public private(set) var items: [ImportItem] = []
     /// Called after each note is added, so the app can start transcription.
     @ObservationIgnored public var onNoteAdded: (@MainActor () -> Void)?
+    /// The folder imported notes are filed in (the Mac "default folder" setting).
+    @ObservationIgnored public var defaultFolder: (@MainActor () -> UUID?)?
 
     @ObservationIgnored private let context: ModelContext
     @ObservationIgnored private let files: AudioFileStore
@@ -141,6 +143,7 @@ public final class ImportQueue {
                 status: .queued
             )
             context.insert(note)
+            note.folder = context.folder(withID: defaultFolder?())
             try context.save()
             update(itemID) {
                 $0.state = .done

@@ -108,9 +108,12 @@ final class MacSession {
             showModelDownload = true
             return
         }
+        let noteStore = RecordingNoteStore(context: context, files: deps.files)
+        let settings = deps.settings
+        noteStore.defaultFolder = { settings.defaultFolderID }
         let controller = RecordingController(
             engine: deps.makeRecorder(),
-            store: RecordingNoteStore(context: context, files: deps.files),
+            store: noteStore,
             files: deps.files
         )
         recorder = controller

@@ -6,7 +6,11 @@ import MurmurUI
 /// The name of the microphone Murmur records from (the system's default input).
 enum InputDevice {
     static var name: String {
-        AVCaptureDevice.default(for: .audio)?.localizedName ?? "Default microphone"
+        if let uid = UserDefaults.standard.string(forKey: "settings.inputDeviceUID"),
+           let device = AVCaptureDevice(uniqueID: uid) {
+            return device.localizedName
+        }
+        return AVCaptureDevice.default(for: .audio)?.localizedName ?? "Default microphone"
     }
 }
 

@@ -44,6 +44,18 @@ public final class AppSettings {
     public private(set) var hideDockIcon: Bool
     /// Mac: the global shortcut that starts a recording.
     public private(set) var recordShortcut: RecordShortcut
+    /// The person's iCloud sync choice. It takes effect the next time the app opens.
+    public private(set) var iCloudSyncEnabled: Bool
+    /// What sync is doing in this run (set once at launch from `MurmurSchema.openStore`).
+    public var syncState: SyncState = .off
+    /// What happens to a recording's audio once it has been transcribed.
+    public private(set) var audioFormat: AudioFormat
+    /// Apple Watch recordings that arrived since the person last looked (the Library banner).
+    public private(set) var newWatchRecordings: Int
+    /// Mac: the folder new recordings and imports are filed in. `nil` leaves them unfiled.
+    public private(set) var defaultFolderID: UUID?
+    /// Mac: the microphone to record from (its device UID). `nil` uses the system default.
+    public private(set) var inputDeviceUID: String?
 
     @ObservationIgnored private let defaults: UserDefaults
 
@@ -55,6 +67,11 @@ public final class AppSettings {
         static let menuBar = "settings.showMenuBarIcon"
         static let hideDock = "settings.hideDockIcon"
         static let shortcut = "settings.recordShortcut"
+        static let iCloud = ICloudSync.defaultsKey
+        static let audioFormat = "settings.audioFormat"
+        static let newWatch = "settings.newWatchRecordings"
+        static let defaultFolder = "settings.defaultFolderID"
+        static let inputDevice = "settings.inputDeviceUID"
     }
 
     public init(defaults: UserDefaults = .standard) {
@@ -66,6 +83,49 @@ public final class AppSettings {
         showMenuBarIcon = defaults.object(forKey: Key.menuBar) as? Bool ?? true
         hideDockIcon = defaults.bool(forKey: Key.hideDock)
         recordShortcut = RecordShortcut.decode(defaults.string(forKey: Key.shortcut)) ?? .default
+        iCloudSyncEnabled = defaults.bool(forKey: Key.iCloud)
+        audioFormat = AudioFormat(rawValue: defaults.string(forKey: Key.audioFormat) ?? "") ?? .m4a
+        newWatchRecordings = defaults.integer(forKey: Key.newWatch)
+        defaultFolderID = defaults.string(forKey: Key.defaultFolder).flatMap(UUID.init(uuidString:))
+        inputDeviceUID = defaults.string(forKey: Key.inputDevice)
+    }
+
+    public func setDefaultFolderID(_ value: UUID?) {
+        defaultFolderID = value
+        if let value { defaults.set(value.uuidString, forKey: Key.defaultFolder) } else { defaults.removeObject(forKey: Key.defaultFolder) }
+    }
+
+    public func setInputDeviceUID(_ value: String?) {
+        inputDeviceUID = value
+        if let value { defaults.set(value, forKey: Key.inputDevice) } else { defaults.removeObject(forKey: Key.inputDevice) }
+    }
+
+    public func setAudioFormat(_ value: AudioFormat) {
+        audioFormat = value
+        defaults.set(value.rawValue, forKey: Key.audioFormat)
+    }
+
+    public func noteWatchRecordingReceived() {
+        newWatchRecordings += 1
+        defaults.set(newWatchRecordings, forKey: Key.newWatch)
+    }
+
+    public func clearNewWatchRecordings() {
+        newWatchRecordings = 0
+        defaults.set(0, forKey: Key.newWatch)
+    }
+
+    public func setICloudSyncEnabled(_ value: Bool) {
+        iCloudSyncEnabled = value
+        defaults.set(value, forKey: Key.iCloud)
+    }
+
+    /// True while notes from other devices may be in the store.
+    public var isSyncActive: Bool { syncState == .active }
+
+    /// Shown under the iCloud switch.
+    public var syncMessage: String {
+        ICloudSync.message(enabled: iCloudSyncEnabled, state: syncState)
     }
 
     public func setDeleteAudioAfterTranscribing(_ value: Bool) {

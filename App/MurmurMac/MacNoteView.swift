@@ -56,6 +56,21 @@ struct MacNoteView: View {
                 .opacity(0)
                 .accessibilityHidden(true)
         )
+        // Up and Down move between transcript lines (and play from there).
+        .background(
+            Button("") { playback.step(bySegments: -1) }
+                .keyboardShortcut(.upArrow, modifiers: [])
+                .disabled(titleFocused || session.searchIsFocused)
+                .opacity(0)
+                .accessibilityHidden(true)
+        )
+        .background(
+            Button("") { playback.step(bySegments: 1) }
+                .keyboardShortcut(.downArrow, modifiers: [])
+                .disabled(titleFocused || session.searchIsFocused)
+                .opacity(0)
+                .accessibilityHidden(true)
+        )
     }
 
     // MARK: Header
@@ -355,7 +370,10 @@ struct MacInspector: View {
     }
 
     private var audioText: String {
-        guard let name = note.audioFileName, session.deps.files.exists(name) else { return "Deleted" }
+        guard let name = note.audioFileName, session.deps.files.exists(name) else {
+            return AudioAvailability.of(note, files: session.deps.files, syncActive: session.deps.settings.isSyncActive) == .onAnotherDevice
+                ? "On another device" : "Deleted"
+        }
         let url = session.deps.files.url(for: name)
         let size = (try? url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize ?? 0
         return "\(url.pathExtension.uppercased()) · \(ByteText.format(Int64(size)))"

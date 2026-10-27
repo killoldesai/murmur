@@ -94,10 +94,14 @@ struct DemoLibraryHost: View {
     private let container: ModelContainer
     private let deps: LibraryDependencies
 
-    init(empty: Bool) {
+    init(empty: Bool, watchBanner: Bool = false) {
         let container = DemoData.makeContainer(seeded: !empty)
         self.container = container
         self.deps = DemoData.dependencies(container: container)
+        if watchBanner {
+            deps.settings.noteWatchRecordingReceived()
+            deps.settings.noteWatchRecordingReceived()
+        }
     }
 
     var body: some View {
@@ -339,5 +343,46 @@ struct DemoSettingsHost: View {
     var body: some View {
         NavigationStack { SettingsScreen(deps: deps) }
             .modelContainer(container)
+    }
+}
+
+// MARK: - Folders and swipe demos
+
+@MainActor
+struct DemoFoldersHost: View {
+    let newFolder: Bool
+    private let container: ModelContainer
+    private let deps: LibraryDependencies
+
+    init(newFolder: Bool) {
+        self.newFolder = newFolder
+        let container = DemoData.makeContainer(seeded: true)
+        self.container = container
+        self.deps = DemoData.dependencies(container: container)
+    }
+
+    var body: some View {
+        FoldersScreen(files: deps.files, onSelect: { _ in }, startsWithNewFolder: newFolder, sheetName: newFolder ? "Interviews" : "")
+            .modelContainer(container)
+    }
+}
+
+/// Two note cards, the first slid open to show Delete.
+struct DemoSwipeHost: View {
+    var body: some View {
+        ZStack(alignment: .top) {
+            MurmurTheme.Colors.background.ignoresSafeArea()
+            VStack(spacing: 12) {
+                SwipeToDelete(startsRevealed: true, onDelete: {}) {
+                    NoteCard(title: "Product sync — Q4 roadmap", meta: "42:10 · Today", snippet: "Okay, let’s start with the Q4 roadmap.", tint: MurmurTheme.Colors.folder(0))
+                }
+                SwipeToDelete(onDelete: {}) {
+                    NoteCard(title: "Onboarding idea", meta: "1:24 · Today", snippet: "Show the airplane-mode demo first.", tint: MurmurTheme.Colors.folder(1))
+                }
+            }
+            .padding(.horizontal, 20)
+            .padding(.top, 120)
+        }
+        .preferredColorScheme(.dark)
     }
 }

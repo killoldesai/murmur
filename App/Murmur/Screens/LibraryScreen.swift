@@ -30,6 +30,9 @@ struct LibraryScreen: View {
     @State private var showImport = false
     @State private var showSearch = false
     @State private var showSettings = false
+    @State private var showFolders = false
+    /// The "From Watch" smart folder is selected (instead of a real folder).
+    @State private var watchOnly = false
 
     @State private var newFolderName = ""
     @State private var showNewFolder = false
@@ -38,7 +41,9 @@ struct LibraryScreen: View {
     @State private var deleteTarget: Note?
 
     private var store: LibraryStore { LibraryStore(context: modelContext, files: deps.files) }
-    private var visibleNotes: [Note] { NoteFilter.filter(notes, folderID: selectedFolderID) }
+    private var visibleNotes: [Note] {
+        watchOnly ? NoteFilter.fromWatch(notes) : NoteFilter.filter(notes, folderID: selectedFolderID)
+    }
 
     var body: some View {
         shared(layout)
@@ -180,6 +185,7 @@ struct LibraryScreen: View {
             VStack(alignment: .leading, spacing: 16) {
                 header.murmurEntrance(index: 0)
                 if !deps.models.isReady { downloadPrompt }
+                if deps.settings.newWatchRecordings > 0 { watchBanner }
                 folderChips.murmurEntrance(index: 1)
                 if recoveredCount > 0 {
                     Text("Recovered \(recoveredCount) interrupted recording\(recoveredCount == 1 ? "" : "s").")
@@ -194,7 +200,19 @@ struct LibraryScreen: View {
                 }
                 ForEach(Array(DaySections.make(from: visibleNotes).enumerated()), id: \.element.id) { sectionIndex, section in
                     VStack(alignment: .leading, spacing: 12) {
-                        Text(section.title).murmurSectionLabel()
+                        HStack {
+                            Text(section.title).murmurSectionLabel()
+                            Spacer()
+                            if sectionIndex == 0 {
+                                Button { showFolders = true } label: {
+                                    Label("All folders", systemImage: "folder")
+                                        .font(.footnote.weight(.semibold))
+                                        .foregroundStyle(MurmurTheme.Colors.accent)
+                                        .frame(minHeight: MurmurTheme.Metrics.minTapTarget)
+                                }
+                                .buttonStyle(MurmurPressStyle())
+                            }
+                        }
                         ForEach(section.notes) { note in
                             row(for: note)
                         }
@@ -217,15 +235,18 @@ struct LibraryScreen: View {
     private var folderChips: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
-                Chip("All", isSelected: selectedFolderID == nil) { selectedFolderID = nil }
+                Chip("All", isSelected: selectedFolderID == nil && !watchOnly) { selectedFolderID = nil; watchOnly = false }
                 ForEach(folders) { folder in
-                    Chip(folder.name, isSelected: selectedFolderID == folder.id) { selectedFolderID = folder.id }
+                    Chip(folder.name, isSelected: selectedFolderID == folder.id && !watchOnly) { selectedFolderID = folder.id; watchOnly = false }
                         .contextMenu {
                             Button("Delete folder", role: .destructive) {
                                 if selectedFolderID == folder.id { selectedFolderID = nil }
                                 store.deleteFolder(folder)
                             }
                         }
+                }
+                if notes.contains(where: { $0.source == .watch }) {
+                    Chip("From Watch", isSelected: watchOnly) { watchOnly = true; selectedFolderID = nil }
                 }
                 Button { showNewFolder = true } label: {
                     Image(systemName: "folder.badge.plus")
@@ -249,14 +270,16 @@ struct LibraryScreen: View {
             snippet: NoteSummaryText.snippet(for: note) ?? NoteSummaryText.statusText(note.status),
             tint: MurmurTheme.Colors.folder(note.folder?.colorIndex ?? 0)
         )
-        Group {
-            if note.status == .ready {
-                NavigationLink(value: note) { card }
-            } else {
-                Button { openPending(note) } label: { card }
+        SwipeToDelete(onDelete: { deleteTarget = note }) {
+            Group {
+                if note.status == .ready {
+                    NavigationLink(value: note) { card }
+                } else {
+                    Button { openPending(note) } label: { card }
+                }
             }
+            .buttonStyle(MurmurPressStyle())
         }
-        .buttonStyle(MurmurPressStyle())
         .contextMenu {
             Button("Rename", systemImage: "pencil") {
                 renameText = note.title
@@ -321,7 +344,8 @@ struct LibraryScreen: View {
                 Haptics.tap(deps.settings)
                 route = .recording(makeController())
             }
-            Label("Stays on your iPhone", systemImage: "lock.fill")
+            Label(deps.settings.isSyncActive ? "Synced with your iCloud" : "Stays on your iPhone",
+                  systemImage: deps.settings.isSyncActive ? "icloud.fill" : "lock.fill")
                 .font(MurmurTheme.Fonts.caption)
                 .foregroundStyle(MurmurTheme.Colors.textSecondary)
         }
@@ -334,7 +358,49 @@ struct LibraryScreen: View {
         }
     }
 
+    private var watchBanner: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "applewatch")
+                .font(.headline)
+                .foregroundStyle(MurmurTheme.Colors.accent)
+                .accessibilityHidden(true)
+            Text(WatchBanner.text(count: deps.settings.newWatchRecordings))
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Button("View") {
+                watchOnly = true
+                selectedFolderID = nil
+                deps.settings.clearNewWatchRecordings()
+            }
+            .font(.subheadline.weight(.bold))
+            .foregroundStyle(MurmurTheme.Colors.accent)
+            .frame(minWidth: MurmurTheme.Metrics.minTapTarget, minHeight: MurmurTheme.Metrics.minTapTarget)
+            Button { deps.settings.clearNewWatchRecordings() } label: {
+                Image(systemName: "xmark")
+                    .font(.footnote.weight(.bold))
+                    .foregroundStyle(MurmurTheme.Colors.textTertiary)
+                    .frame(width: MurmurTheme.Metrics.minTapTarget, height: MurmurTheme.Metrics.minTapTarget)
+            }
+            .accessibilityLabel("Dismiss")
+        }
+        .padding(.leading, 16)
+        .padding(.trailing, 4)
+        .murmurCard(selected: true)
+    }
+
     // MARK: - Actions
+
+    private func chooseFolder(_ card: FolderCard) {
+        switch card.kind {
+        case .folder(let id):
+            selectedFolderID = id
+            watchOnly = false
+        case .fromWatch:
+            selectedFolderID = nil
+            watchOnly = true
+        }
+    }
 
     private func finished(_ note: Note) {
         if deps.models.isReady {
@@ -387,7 +453,10 @@ struct LibraryScreen: View {
 
     private func recoverInterruptedRecordings() {
         let store = RecordingNoteStore(context: modelContext, files: deps.files)
-        recoveredCount = (try? store.recoverInterruptedRecordings()) ?? 0
+        recoveredCount = (try? store.recoverInterruptedRecordings(skippingRemote: deps.settings.isSyncActive)) ?? 0
+        if deps.settings.isSyncActive {
+            LibraryStore(context: modelContext, files: deps.files).removeOrphanedAudio()
+        }
     }
 }
 
@@ -515,7 +584,8 @@ extension LibraryScreen {
                     SecondaryButton("Import", systemImage: "square.and.arrow.down") { showImport = true }
                     HeaderCircleButton(symbol: "gearshape", label: "Settings") { showSettings = true }
                 }
-                Label("Stays on your iPad", systemImage: "lock.fill")
+                Label(deps.settings.isSyncActive ? "Synced with your iCloud" : "Stays on your iPad",
+                      systemImage: deps.settings.isSyncActive ? "icloud.fill" : "lock.fill")
                     .font(MurmurTheme.Fonts.caption)
                     .foregroundStyle(MurmurTheme.Colors.textSecondary)
             }

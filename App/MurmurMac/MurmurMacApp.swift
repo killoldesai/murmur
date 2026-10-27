@@ -48,12 +48,15 @@ struct MurmurMacApp: App {
 
     init() {
         let container: ModelContainer
+        let syncState: SyncState
         do {
-            container = try MurmurSchema.makeContainer()
+            let opened = try MurmurSchema.openStore()
+            container = opened.container
+            syncState = opened.state
         } catch {
             fatalError("Could not create the Murmur data store: \(error)")
         }
-        let services = AppServices(container: container)
+        let services = AppServices(container: container, syncState: syncState)
         self.container = container
         self.services = services
         self.session = MacSession(

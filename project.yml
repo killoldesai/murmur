@@ -29,6 +29,7 @@ targets:
       path: App/Murmur/Info.plist
       properties:
         CFBundleDisplayName: Murmur
+        ITSAppUsesNonExemptEncryption: false
         UILaunchScreen: {}
         UIUserInterfaceStyle: Dark
         NSMicrophoneUsageDescription: Murmur records your voice so it can turn speech into text on your device. Audio never leaves your phone.
@@ -45,17 +46,28 @@ targets:
             LSItemContentTypes: [public.movie]
         UIBackgroundModes:
           - audio
+          # CloudKit tells the app when notes change on another device.
+          - remote-notification
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
         UISupportedInterfaceOrientations~ipad:
           - UIInterfaceOrientationPortrait
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
+    entitlements:
+      path: App/Murmur/Murmur.entitlements
+      properties:
+        # iCloud sync (opt-in). The container must exist in the Apple Developer account.
+        com.apple.developer.icloud-container-identifiers: [iCloud.app.murmur.Murmur]
+        com.apple.developer.icloud-services: [CloudKit]
+        # Push for CloudKit changes; the system switches it to production for App Store builds.
+        aps-environment: development
     settings:
       base:
         # Placeholder: replace with the real bundle ID from your Apple Developer account.
         PRODUCT_BUNDLE_IDENTIFIER: app.murmur.Murmur
         TARGETED_DEVICE_FAMILY: "1,2"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SWIFT_VERSION: "5.0"
         MARKETING_VERSION: "0.1.0"
         CURRENT_PROJECT_VERSION: "1"
@@ -77,6 +89,7 @@ targets:
       path: App/MurmurMac/Info.plist
       properties:
         CFBundleDisplayName: Murmur
+        ITSAppUsesNonExemptEncryption: false
         LSMinimumSystemVersion: "15.0"
         LSApplicationCategoryType: public.app-category.productivity
         NSMicrophoneUsageDescription: Murmur records your voice so it can turn speech into text on your Mac. Audio never leaves your Mac.
@@ -99,11 +112,16 @@ targets:
         com.apple.security.device.audio-input: true
         com.apple.security.files.user-selected.read-write: true
         com.apple.security.network.client: true
+        # iCloud sync (opt-in).
+        com.apple.developer.icloud-container-identifiers: [iCloud.app.murmur.Murmur]
+        com.apple.developer.icloud-services: [CloudKit]
+        com.apple.developer.aps-environment: development
     settings:
       base:
         # Same bundle ID as the iOS app: one purchase covers iPhone, iPad and Mac (universal purchase).
         PRODUCT_BUNDLE_IDENTIFIER: app.murmur.Murmur
         PRODUCT_NAME: Murmur
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SWIFT_VERSION: "5.0"
         MARKETING_VERSION: "0.1.0"
         CURRENT_PROJECT_VERSION: "1"
@@ -134,6 +152,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: app.murmur.Murmur.watchkitapp
         PRODUCT_NAME: MurmurWatch
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SWIFT_VERSION: "5.0"
         MARKETING_VERSION: "0.1.0"
         CURRENT_PROJECT_VERSION: "1"

@@ -169,8 +169,28 @@ public final class PlaybackController {
         if !engine.isPlaying { toggle() }
     }
 
+    /// Jumps to the previous (-1) or next (+1) transcript line and plays from its start.
+    /// Stays on the first or last line at the ends.
+    public func step(bySegments delta: Int) {
+        guard let index = SegmentNavigation.target(current: playingIndex, delta: delta, count: segments.count) else { return }
+        play(segment: segments[index])
+    }
+
     public func cycleSpeed() {
         speedIndex = (speedIndex + 1) % Self.speeds.count
         engine.rate = speed
+    }
+}
+
+/// Which transcript line the Up and Down arrow keys move to.
+public enum SegmentNavigation {
+    /// - Parameters:
+    ///   - current: the line playing now, or `nil` before the first line.
+    ///   - delta: -1 for the previous line, +1 for the next.
+    /// - Returns: the line to jump to, or `nil` when there are no lines.
+    public static func target(current: Int?, delta: Int, count: Int) -> Int? {
+        guard count > 0 else { return nil }
+        guard let current else { return 0 }
+        return min(max(current + delta, 0), count - 1)
     }
 }

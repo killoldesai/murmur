@@ -109,6 +109,10 @@ jobs:
           shot import 5 -screen import
           shot export 5 -screen export
           shot transcribing-done 5 -screen transcribingDone
+          shot folders 5 -screen folders
+          shot folders-new 6 -screen foldersNew
+          shot swipe 5 -screen swipe
+          shot library-watch 5 -screen libraryWatch
 
           # iPad layouts: the same build on an iPad simulator.
           IPAD=$(xcrun simctl list devices available -j | python3 -c "

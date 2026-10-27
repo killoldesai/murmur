@@ -47,6 +47,12 @@ struct SettingsScreen: View {
                     }
                     .murmurEntrance(index: 2)
 
+                    group("iCloud") {
+                        syncRows
+                    }
+                    .murmurEntrance(index: 3)
+                    syncFooter
+
                     group("Support") {
                         supportRows
                     }
@@ -58,7 +64,7 @@ struct SettingsScreen: View {
                     }
                     .murmurEntrance(index: 4)
 
-                    Text("Murmur \(version) · Everything stays on this iPhone")
+                    Text("Murmur \(version) · \(privacyLine(device: "iPhone"))")
                         .font(MurmurTheme.Fonts.caption)
                         .foregroundStyle(MurmurTheme.Colors.textTertiary)
                         .frame(maxWidth: .infinity)
@@ -113,6 +119,22 @@ struct SettingsScreen: View {
 
     @ViewBuilder
     private var recordingRows: some View {
+                Menu {
+                    ForEach(AudioFormat.allCases) { format in
+                        Button {
+                            settings.setAudioFormat(format)
+                        } label: {
+                            if format == settings.audioFormat {
+                                Label("\(format.title) · \(format.detail)", systemImage: "checkmark")
+                            } else {
+                                Text("\(format.title) · \(format.detail)")
+                            }
+                        }
+                    }
+                } label: {
+                    SettingsRow(systemImage: "music.note", title: "Audio format", value: settings.audioFormat.title)
+                }
+                divider
                 SettingsRow(systemImage: "trash", title: "Delete audio after transcribing",
                             isOn: Binding(get: { settings.deleteAudioAfterTranscribing },
                                           set: { settings.setDeleteAudioAfterTranscribing($0) }))
@@ -120,6 +142,21 @@ struct SettingsScreen: View {
                 SettingsRow(systemImage: "iphone.radiowaves.left.and.right", title: "Haptics",
                             isOn: Binding(get: { settings.hapticsEnabled },
                                           set: { settings.setHapticsEnabled($0) }))
+    }
+
+    @ViewBuilder
+    private var syncRows: some View {
+                SettingsRow(systemImage: "icloud", title: "Sync with iCloud",
+                            isOn: Binding(get: { settings.iCloudSyncEnabled },
+                                          set: { settings.setICloudSyncEnabled($0) }))
+    }
+
+    private var syncFooter: some View {
+        Text(settings.syncMessage)
+            .font(.footnote)
+            .foregroundStyle(MurmurTheme.Colors.textTertiary)
+            .padding(.horizontal, 6)
+            .fixedSize(horizontal: false, vertical: true)
     }
 
     @ViewBuilder
@@ -132,6 +169,10 @@ struct SettingsScreen: View {
                 }
                 .buttonStyle(.plain)
                 .disabled(entitlements.isBusy)
+                divider
+                Link(destination: LegalLinks.feedback) {
+                    SettingsRow(systemImage: "bubble.left", title: "Send feedback")
+                }
     }
 
     @ViewBuilder
@@ -148,13 +189,14 @@ struct SettingsScreen: View {
     // MARK: - iPad: section list beside a detail pane (design/ipad/Settings.dc.html)
 
     private enum Pane: String, CaseIterable, Identifiable {
-        case transcription, recording, dictionary, support, about
+        case transcription, recording, dictionary, icloud, support, about
         var id: String { rawValue }
         var title: String {
             switch self {
             case .transcription: "Transcription"
             case .recording: "Recording"
             case .dictionary: "Custom dictionary"
+            case .icloud: "iCloud"
             case .support: "Support"
             case .about: "About"
             }
@@ -164,6 +206,7 @@ struct SettingsScreen: View {
             case .transcription: "Language and the speech model that turns audio into text."
             case .recording: "What happens to your audio and how the app feels."
             case .dictionary: "Names and terms Murmur should spell your way."
+            case .icloud: "Keep your notes in step across your devices."
             case .support: "Purchases on this Apple ID."
             case .about: "Privacy and terms."
             }
@@ -173,6 +216,7 @@ struct SettingsScreen: View {
             case .transcription: "text.alignleft"
             case .recording: "mic"
             case .dictionary: "character.book.closed"
+            case .icloud: "icloud"
             case .support: "lifepreserver"
             case .about: "info.circle"
             }
@@ -182,6 +226,7 @@ struct SettingsScreen: View {
             case .transcription: 0
             case .recording: 3
             case .dictionary: 1
+            case .icloud: 0
             case .support: 2
             case .about: 4
             }
@@ -221,7 +266,7 @@ struct SettingsScreen: View {
                     .accessibilityAddTraits(self.pane == pane ? .isSelected : [])
                 }
                 Spacer(minLength: 0)
-                Text("Murmur \(version) · Everything stays on this iPad")
+                Text("Murmur \(version) · \(privacyLine(device: "iPad"))")
                     .font(MurmurTheme.Fonts.caption)
                     .foregroundStyle(MurmurTheme.Colors.textTertiary)
                     .padding(.horizontal, 12)
@@ -255,6 +300,7 @@ struct SettingsScreen: View {
                                 SettingsRow(systemImage: "character.book.closed", title: "Custom dictionary",
                                             value: "\(words.count) word\(words.count == 1 ? "" : "s")")
                             }
+                        case .icloud: syncRows
                         case .support: supportRows
                         case .about: aboutRows
                         }
@@ -263,12 +309,17 @@ struct SettingsScreen: View {
                     .murmurCard()
                     .clipShape(RoundedRectangle(cornerRadius: MurmurTheme.Metrics.cardRadius, style: .continuous))
                     if pane == .support { restoreStatus }
+                    if pane == .icloud { syncFooter }
                 }
                 .padding(.horizontal, 48)
                 .padding(.vertical, 40)
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
+    }
+
+    private func privacyLine(device: String) -> String {
+        settings.isSyncActive ? "Synced through your private iCloud" : "Everything stays on this \(device)"
     }
 
     private var version: String {
