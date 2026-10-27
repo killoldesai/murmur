@@ -162,7 +162,7 @@ jobs:
             for i in $(seq 1 20); do
               sleep 1; kill -0 $PID 2>/dev/null || break
               # Once, a stack sample of the first screen, to see what the app is doing if it hangs.
-              if [ "$i" = 12 ] && [ "$NAME" = main ]; then sample $PID 2 -file build/mac-sample.txt >> $LOG 2>&1 || true; fi
+              if [ "$i" = 12 ]; then sample $PID 2 -file "build/mac-sample-$NAME.txt" >> $LOG 2>&1 || true; fi
             done
             if kill -0 $PID 2>/dev/null; then echo "$NAME: still running after 20 s" >> $LOG; kill -9 $PID 2>/dev/null || true; else wait $PID; echo "$NAME: exit $?" >> $LOG; fi
             ls -la "build/mac-$NAME.png" >> $LOG 2>&1 || echo "no snapshot for $NAME" >> $LOG
@@ -237,7 +237,7 @@ jobs:
         run: |
           rm -rf /tmp/results && mkdir /tmp/results
           cp build/*.png /tmp/results/ 2>/dev/null || true
-          cp build/mac-sample.txt build/mac-live-sample.txt /tmp/results/ 2>/dev/null || true
+          cp build/mac-sample*.txt build/mac-live-sample.txt /tmp/results/ 2>/dev/null || true
           pkill -9 -x Murmur 2>/dev/null || true
           for f in build/*.log; do [ -f "$f" ] && tail -n 600 "$f" > "/tmp/results/$(basename "$f")"; done
           grep -hE "error:|warning:|Executed [0-9]+ tests|with [0-9]+ failure|E2E transcript" build/*.log > /tmp/results/summary.txt 2>/dev/null || true
