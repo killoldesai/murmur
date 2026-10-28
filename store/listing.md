@@ -148,8 +148,8 @@ Up to 10 per device; at least 1 per device family you support.
 ## Before you submit
 
 - [ ] Bundle ID, team and signing set; products created with the IDs above.
-- [ ] iCloud container `iCloud.app.murmur.Murmur` created; **CloudKit schema deployed to Production** in the CloudKit Dashboard (without this, sync works in development builds only).
-- [ ] App Group `group.app.murmur.Murmur` on the iOS app, watch app and watch widget.
+- [ ] iCloud container `iCloud.com.appyzone.murmur` created; **CloudKit schema deployed to Production** in the CloudKit Dashboard (without this, sync works in development builds only).
+- [ ] App Group `group.com.appyzone.murmur` on the iOS app, watch app and watch widget.
 - [ ] Support, Privacy and Terms URLs open.
 - [ ] Copyright line filled in.
 - [ ] Screenshots uploaded for iPhone, iPad, Mac and Watch.

@@ -79,10 +79,10 @@ jobs:
           xcrun simctl install "$UDID" "$APP"
           shot() {  # shot <name> <seconds to wait> <launch arguments...>
             NAME="$1"; WAIT="$2"; shift 2
-            xcrun simctl launch "$UDID" app.murmur.Murmur "$@"
+            xcrun simctl launch "$UDID" com.appyzone.murmur "$@"
             sleep "$WAIT"
             xcrun simctl io "$UDID" screenshot "build/$NAME.png"
-            xcrun simctl terminate "$UDID" app.murmur.Murmur || true
+            xcrun simctl terminate "$UDID" com.appyzone.murmur || true
           }
           shot home 4
           shot recording 5 -screen recording
@@ -219,10 +219,10 @@ jobs:
           echo "app: $APP" >> $LOG
           xcrun simctl install "$WATCH" "$APP" >> $LOG 2>&1
           wshot() {  # wshot <name> <screen>
-            xcrun simctl launch "$WATCH" app.murmur.Murmur.watchkitapp -screen "$2" >> $LOG 2>&1
+            xcrun simctl launch "$WATCH" com.appyzone.murmur.watchkitapp -screen "$2" >> $LOG 2>&1
             sleep 8
             xcrun simctl io "$WATCH" screenshot "build/watch-$1.png" >> $LOG 2>&1
-            xcrun simctl terminate "$WATCH" app.murmur.Murmur.watchkitapp >> $LOG 2>&1 || true
+            xcrun simctl terminate "$WATCH" com.appyzone.murmur.watchkitapp >> $LOG 2>&1 || true
           }
           wshot home home
           wshot recording recording

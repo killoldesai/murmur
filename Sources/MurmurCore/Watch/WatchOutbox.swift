@@ -134,7 +134,7 @@ public struct WatchSnapshot: Codable, Equatable, Sendable {
 
     /// App group shared by the watch app and its widget. It must be added as a capability when the
     /// app is signed; without it the widget simply shows `empty`.
-    public static let appGroup = "group.app.murmur.Murmur"
+    public static let appGroup = "group.com.appyzone.murmur"
     private static let key = "watch.snapshot"
 
     @MainActor

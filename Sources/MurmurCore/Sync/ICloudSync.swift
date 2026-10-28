@@ -16,7 +16,7 @@ public enum SyncState: Equatable, Sendable {
 
 public enum ICloudSync {
     /// Must match the container in the Apple Developer account and in the entitlements.
-    public static let containerIdentifier = "iCloud.app.murmur.Murmur"
+    public static let containerIdentifier = "iCloud.com.appyzone.murmur"
     public static let defaultsKey = "settings.iCloudSync"
     static let backupDoneKey = "sync.localBackupMade"
 

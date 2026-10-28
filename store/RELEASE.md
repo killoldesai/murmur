@@ -3,12 +3,19 @@
 Notes for the owner. The release workflow (`.github/workflows/release.yml`) has never run: it needs
 your Apple Developer account first, and the first real run will probably need small fixes.
 
+## Done so far (October 28, 2026)
+
+The bundle ID `app.murmur.Murmur` was already taken, so the app uses `com.appyzone.murmur`.
+- Developer portal: the three App IDs, App Group `group.com.appyzone.murmur` and iCloud container `iCloud.com.appyzone.murmur` exist and are linked. (An unused group `group.app.murmur.Murmur` was also created; delete it.)
+- App Store Connect: app "Murmur: Private Transcription" (iOS and macOS, Apple ID 6827877311), subscription group "Murmur Pro" with Pro Yearly $19.99 and Pro Monthly $3.99, and the Pro Lifetime non-consumable $39.99, all available in all countries, product IDs `app.murmur.pro.yearly|monthly|lifetime`.
+- Still open: accept the Paid Apps agreement and bank/tax details, add the 7-day free trial to Pro Yearly, add a review screenshot to each product, upload a build, App Store Connect API key and GitHub secrets.
+
 ## One-time setup in your Apple Developer account
 
 1. Register the App IDs (Certificates, Identifiers & Profiles):
-   - `app.murmur.Murmur` (iOS and macOS share it): capabilities **iCloud (CloudKit)**, **Push Notifications**, **App Groups**, **In-App Purchase**.
-   - `app.murmur.Murmur.watchkitapp` and `app.murmur.Murmur.watchkitapp.widget`: **App Groups**.
-   - App Group `group.app.murmur.Murmur`, iCloud container `iCloud.app.murmur.Murmur`.
+   - `com.appyzone.murmur` (iOS and macOS share it): capabilities **iCloud (CloudKit)**, **Push Notifications**, **App Groups**, **In-App Purchase**.
+   - `com.appyzone.murmur.watchkitapp` and `com.appyzone.murmur.watchkitapp.widget`: **App Groups**.
+   - App Group `group.com.appyzone.murmur`, iCloud container `iCloud.com.appyzone.murmur`.
    If you choose a different bundle ID, change `PRODUCT_BUNDLE_IDENTIFIER` and `WKCompanionAppBundleIdentifier` in `project.yml`, the product IDs in `Plans.swift`, and `ICloudSync.containerIdentifier`.
 2. Create the app in App Store Connect with that bundle ID.
 3. Create the three in-app purchases (IDs in `store/listing.md`).
