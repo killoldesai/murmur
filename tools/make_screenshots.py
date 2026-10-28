@@ -5,7 +5,7 @@ Flat colours only (no gradients, glows or blur). Each image is the real app scre
 a caption, the Murmur logo badge, a flat waveform strip and one or two small chips.
 
 Usage: python3 tools/make_screenshots.py <dir with the ci-results PNGs> <output dir>
-Sizes: iPhone 6.9" 1320x2868, iPad 13" 2064x2752, Mac 2880x1800, Watch 416x496.
+Sizes: iPhone 1206x2622 (App Store Connect now lists 6.1"/6.3" "medium display"), iPad 13" 2064x2752, Mac 2880x1800, Watch 416x496.
 """
 import os
 import sys
@@ -182,7 +182,7 @@ def watch_set(out, src):
 
 def main():
     src, out = sys.argv[1], sys.argv[2]
-    run(out, "iphone-6.9", IPHONE, (1320, 2868), src, shot_width=1040, top=900, hl=112, radius=96, border=10)
+    run(out, "iphone", IPHONE, (1206, 2622), src, shot_width=950, top=820, hl=102, radius=88, border=9)
     run(out, "ipad-13", IPAD, (2064, 2752), src, shot_width=1560, top=900, hl=140, radius=64, border=10)
     run(out, "mac", MAC, (2880, 1800), src, shot_width=1900, top=560, hl=92, radius=24, border=6)
     watch_set(out, src)
