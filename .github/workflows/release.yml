@@ -39,12 +39,25 @@ jobs:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
         run: |
           mkdir -p "$RUNNER_TEMP/keys"
-          # The secret may hold the raw .p8 text or its base64; accept both.
-          if printf '%s' "$ASC_KEY_P8_BASE64" | grep -q "BEGIN PRIVATE KEY"; then
-            printf '%s\n' "$ASC_KEY_P8_BASE64" > "$RUNNER_TEMP/keys/AuthKey_${ASC_KEY_ID}.p8"
-          else
-            printf '%s' "$ASC_KEY_P8_BASE64" | base64 --decode > "$RUNNER_TEMP/keys/AuthKey_${ASC_KEY_ID}.p8"
-          fi
+          # The secret may hold the raw .p8 text, its base64, or just the key body. Rebuild a clean PEM.
+          python3 - <<'PY'
+          import base64, os, re, textwrap
+          v = os.environ["ASC_KEY_P8_BASE64"].replace("\r", "").strip()
+          if "BEGIN" not in v:
+              try:
+                  d = base64.b64decode(v, validate=False).decode("utf-8", "ignore")
+              except Exception:
+                  d = ""
+              v = d.replace("\r", "").strip() if "BEGIN" in d else v
+          if "BEGIN" in v:
+              body = re.sub(r"-----[A-Z ]+-----|\s+", "", v)
+          else:
+              body = re.sub(r"\s+", "", v)
+          pem = "-----BEGIN PRIVATE KEY-----\n" + "\n".join(textwrap.wrap(body, 64)) + "\n-----END PRIVATE KEY-----\n"
+          open(os.path.join(os.environ["RUNNER_TEMP"], "keys", "AuthKey_" + os.environ["ASC_KEY_ID"] + ".p8"), "w").write(pem)
+          print("key body characters:", len(body))
+          PY
+          if openssl pkey -in "$RUNNER_TEMP/keys/AuthKey_${ASC_KEY_ID}.p8" -noout; then echo "p8 key parses OK"; else echo "p8 key is NOT a valid private key (check the ASC_KEY_P8_BASE64 secret)"; exit 1; fi
           echo "ASC_KEY_PATH=$RUNNER_TEMP/keys/AuthKey_${ASC_KEY_ID}.p8" >> "$GITHUB_ENV"
 
       - name: Set the build number to the run number
