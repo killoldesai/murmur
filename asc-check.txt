@@ -1,0 +1,54 @@
+
+=== iOS and macOS versions ===
+MAC_OS 1.0 id=e51e7d79-d7b7-4821-b7ca-e7b90bf06237 state=PREPARE_FOR_SUBMISSION / PREPARE_FOR_SUBMISSION build=1 buildState=VALID encryptionKnown=False
+IOS 1.0 id=3ee2add6-9a46-49cc-9e38-0df5f96808c4 state=WAITING_FOR_REVIEW / WAITING_FOR_REVIEW build=1 buildState=VALID encryptionKnown=False
+
+=== MAC_OS version details ===
+review detail: demoAccountRequired= False  contact fields filled= True  notes filled= True
+localization en-US: description=2243 chars, keywords=98, supportUrl=yes
+   screenshot sets: APP_DESKTOP
+localization es-MX: description=2501 chars, keywords=96, supportUrl=yes
+   screenshot sets: none
+localization de-DE: description=2657 chars, keywords=97, supportUrl=yes
+   screenshot sets: none
+localization fr-FR: description=2726 chars, keywords=92, supportUrl=yes
+   screenshot sets: none
+localization pt-BR: description=2396 chars, keywords=90, supportUrl=yes
+   screenshot sets: none
+
+=== App info (age rating, privacy, category) ===
+appInfo id=d4be94c9-f9d6-45b1-9b0b-cd53fdc5466b state=WAITING_FOR_REVIEW ageRating=FOUR_PLUS
+
+=== Subscription groups and subscriptions ===
+group Murmur Pro id=22521438
+  subscription app.murmur.pro.monthly id=6827878106 state=WAITING_FOR_REVIEW
+  subscription app.murmur.pro.yearly id=6827877717 state=WAITING_FOR_REVIEW
+  group localization en-US state=PREPARE_FOR_SUBMISSION
+
+=== In-app purchases ===
+  app.murmur.pro.lifetime id=6827878251 type=NON_CONSUMABLE state=WAITING_FOR_REVIEW
+
+=== Review submissions ===
+submission id=fdec6d3b-3885-476b-8421-c39e74210a2d platform=IOS state=WAITING_FOR_REVIEW items=5
+  item id=ZmRlYzZkM2ItMzg4NS00NzZiLTg0MjEtYzM5ZTc0MjEwYTJkfDE4fDkyMGRmYzE3LTMxNWUtNDdmNi1hOWRjLWRiNDhjNTExNDlmYw state=READY_FOR_REVIEW -> {}
+  item id=ZmRlYzZkM2ItMzg4NS00NzZiLTg0MjEtYzM5ZTc0MjEwYTJkfDE5fGRkNjlmOGEzLTE2NDgtNDNhNi1hZWFmLTNmNGQwNTJhZDE0Zg state=READY_FOR_REVIEW -> {}
+  item id=ZmRlYzZkM2ItMzg4NS00NzZiLTg0MjEtYzM5ZTc0MjEwYTJkfDE4fDhlMTExMzFlLWVjNmItNDlhYy1iYzFkLTQ4NTBhMmJhNjhkZA state=READY_FOR_REVIEW -> {}
+  item id=ZmRlYzZkM2ItMzg4NS00NzZiLTg0MjEtYzM5ZTc0MjEwYTJkfDE3fGE1YzdlYjQ1LTAxOGMtNDlmMy1hYmE1LWJhNDRmNmQ4NDA1NA state=READY_FOR_REVIEW -> {}
+  item id=ZmRlYzZkM2ItMzg4NS00NzZiLTg0MjEtYzM5ZTc0MjEwYTJkfDZ8ODk0MDUyMDYx state=READY_FOR_REVIEW -> {}
+
+=== Submit the MAC_OS draft for review ===
+create MAC_OS draft: HTTP 201
+
+draft aa324e80-cafb-4e6d-a170-dcd3415e178f: 0 item(s) visible through the API; version included=False
+add version: HTTP 201
+  added
+submit: HTTP 200
+  submitted, state=WAITING_FOR_REVIEW
+
+=== State afterwards ===
+  MAC_OS 1.0 state=WAITING_FOR_REVIEW
+  IOS 1.0 state=WAITING_FOR_REVIEW
+  app.murmur.pro.monthly state=WAITING_FOR_REVIEW
+  app.murmur.pro.yearly state=WAITING_FOR_REVIEW
+  app.murmur.pro.lifetime state=WAITING_FOR_REVIEW
+action submit commit a3d6d74ba2f7c4a68d6c6aec3ce97895f96a6d53
