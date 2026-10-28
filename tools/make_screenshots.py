@@ -5,7 +5,7 @@ Flat colours only (no gradients, glows or blur). Each image is the real app scre
 a caption, the Murmur logo badge, a flat waveform strip and one or two small chips.
 
 Usage: python3 tools/make_screenshots.py <dir with the ci-results PNGs> <output dir>
-Sizes: iPhone 6.9" 1320x2868, iPad 13" 2064x2752, Mac 2880x1800, Watch 410x502.
+Sizes: iPhone 6.9" 1320x2868, iPad 13" 2064x2752, Mac 2880x1800, Watch 416x496.
 """
 import os
 import sys
@@ -162,7 +162,7 @@ def run(out, sub, items, size, src, **kw):
 
 
 def watch_set(out, src):
-    """Watch shots stay as the real screen on a flat panel (410x502), with no extras."""
+    """Watch shots stay as the real screen on a flat panel (416x496), with no extras."""
     os.makedirs(os.path.join(out, "watch"), exist_ok=True)
     n = 0
     for name in WATCH:
@@ -172,10 +172,10 @@ def watch_set(out, src):
             continue
         n += 1
         img = Image.open(shot).convert("RGB")
-        scale = min(410 / img.size[0], 502 / img.size[1])
+        scale = min(416 / img.size[0], 496 / img.size[1])
         img = img.resize((int(img.size[0] * scale), int(img.size[1] * scale)), Image.LANCZOS)
-        canvas = Image.new("RGB", (410, 502), (0x11, 0x11, 0x16))
-        canvas.paste(img, ((410 - img.size[0]) // 2, (502 - img.size[1]) // 2))
+        canvas = Image.new("RGB", (416, 496), (0x11, 0x11, 0x16))
+        canvas.paste(img, ((416 - img.size[0]) // 2, (496 - img.size[1]) // 2))
         canvas.save(os.path.join(out, "watch", f"{n}-{name}.png"), "PNG")
 
 
@@ -183,7 +183,7 @@ def main():
     src, out = sys.argv[1], sys.argv[2]
     run(out, "iphone-6.9", IPHONE, (1320, 2868), src, shot_width=1040, top=900, hl=112, radius=96, border=10)
     run(out, "ipad-13", IPAD, (2064, 2752), src, shot_width=1560, top=900, hl=140, radius=64, border=10)
-    run(out, "mac", MAC, (2880, 1800), src, shot_width=1500, top=620, hl=92, radius=24, border=6)
+    run(out, "mac", MAC, (2880, 1800), src, shot_width=1900, top=560, hl=92, radius=24, border=6)
     watch_set(out, src)
 
 
