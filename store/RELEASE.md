@@ -35,3 +35,18 @@ The bundle ID `app.murmur.Murmur` was already taken, so the app uses `com.appyzo
 
 - Bump `MARKETING_VERSION` in `project.yml` (the workflow sets the build number).
 - Test on real devices first: the lists at the end of `CLAUDE.md` say what only a device can check.
+
+## First submission (iOS 1.0, October 28, 2026)
+
+Submitted through the App Store Connect API, because the website kept failing with "An unexpected
+error was encountered" when adding the version to a draft. iOS 1.0, Pro Yearly, Pro Monthly and Pro
+Lifetime went to Waiting for Review together.
+
+- The manual workflow **App Store Connect check** (`tools/asc_check.py`) shows the real state and
+  Apple's exact errors. Actions: `check`, `add-version`, `add-purchases`, `submit` (sends the iOS
+  draft to App Review). Results are on the `asc-check` branch (ids, states and errors only).
+- Apple only accepts the first subscription and the first non-consumable together with an app
+  version. Add them to the same draft in the website (Add for Review on each product page), then
+  submit.
+- "Sign-in required" must stay unticked on each version page; Murmur has no accounts.
+- macOS 1.0 is filled in (build 1, five languages) but not submitted yet.
