@@ -13,7 +13,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ICON = os.path.join(HERE, "..", "store", "icon-1024.png")
-WAVES = [(0x5E, 0xE0, 0xC6)] * 3  # same brand teal on every image and device
+WAVES = [(0xFF, 0x5A, 0x6E)] * 3  # one colour (record coral) on every image and device
 ACCENT, TEXT, SUB = (0x5E, 0xE0, 0xC6), (0xF4, 0xF3, 0xF8), (0xB9, 0xB7, 0xC8)
 # (background, frame border, waveform/chip surface): all solid brand tones
 THEMES = [
