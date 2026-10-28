@@ -1,0 +1,61 @@
+# Manual: reads App Store Connect state through the API and shows Apple's exact errors.
+# "add-version" also adds the iOS version to the draft review submission. It never submits.
+# Results go to the asc-check branch (ids, states and error text only; no contact details).
+name: App Store Connect check (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "check, or add-version (adds the iOS version to the draft; no submit)"
+        type: choice
+        options: [check, add-version]
+        default: check
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write the API key
+        env:
+          ASC_KEY_P8_BASE64: ${{ secrets.ASC_KEY_P8_BASE64 }}
+        run: |
+          python3 - <<'PY'
+          import base64, os, re, textwrap
+          v = os.environ["ASC_KEY_P8_BASE64"].replace("\r", "").strip()
+          if "BEGIN" not in v:
+              try:
+                  d = base64.b64decode(v, validate=False).decode("utf-8", "ignore")
+              except Exception:
+                  d = ""
+              v = d.replace("\r", "").strip() if "BEGIN" in d else v
+          body = re.sub(r"-----[A-Z ]+-----|\s+", "", v)
+          pem = "-----BEGIN PRIVATE KEY-----\n" + "\n".join(textwrap.wrap(body, 64)) + "\n-----END PRIVATE KEY-----\n"
+          open(os.path.join(os.environ["RUNNER_TEMP"], "asc.p8"), "w").write(pem)
+          PY
+      - name: Query App Store Connect
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ACTION: ${{ inputs.action }}
+        run: |
+          pip install -q pyjwt cryptography
+          mkdir -p /tmp/results
+          ASC_KEY_PATH="$RUNNER_TEMP/asc.p8" python3 tools/asc_check.py 2>&1 | tee /tmp/results/asc-check.txt
+      - name: Publish results to the asc-check branch
+        if: always()
+        run: |
+          cd /tmp/results
+          echo "action ${{ inputs.action }} commit $GITHUB_SHA" >> asc-check.txt
+          git init -q
+          git config user.name ci
+          git config user.email ci@users.noreply.github.com
+          git checkout -q -b asc-check
+          git add -A
+          git commit -q -m "ASC check"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" asc-check
