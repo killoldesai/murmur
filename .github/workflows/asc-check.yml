@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "check; add-version (iOS version into the draft); add-purchases (group, subscriptions, Lifetime). None of them submits the app."
+        description: "check; add-version (iOS version into the draft); add-purchases (group, subscriptions, Lifetime). submit sends the iOS draft to App Review."
         type: choice
-        options: [check, add-version, add-purchases]
+        options: [check, add-version, add-purchases, submit]
         default: check
 
 permissions:

@@ -174,6 +174,38 @@ if ACTION == "add-purchases":
         a = s["attributes"]
         print(f"  submission {s['id']} platform={a.get('platform')} state={a.get('state')} items={len((s['relationships'].get('items', {}).get('data') or []))}")
 
+if ACTION == "submit":
+    section("Submit the iOS draft for review")
+    if not draft:
+        print("No iOS draft submission (READY_FOR_REVIEW) found.")
+        sys.exit(0)
+    sid = draft["id"]
+    items = get(f"/v1/reviewSubmissions/{sid}/items?include=appStoreVersion", "items") or {}
+    has_version = False
+    for it in items.get("data", []):
+        rel = {k: (v.get("data") or {}).get("id") for k, v in it.get("relationships", {}).items() if isinstance(v, dict) and v.get("data")}
+        print(f"  item state={it['attributes'].get('state')} rel={rel}")
+        if rel.get("appStoreVersion"):
+            has_version = True
+    print(f"draft {sid}: {len(items.get('data', []))} item(s) visible through the API; version included={has_version}")
+    if not has_version and ios_version:
+        status, resp = call("POST", "/v1/reviewSubmissionItems", {"data": {"type": "reviewSubmissionItems", "relationships": {
+            "reviewSubmission": {"data": {"type": "reviewSubmissions", "id": sid}},
+            "appStoreVersion": {"data": {"type": "appStoreVersions", "id": ios_version["id"]}}}}})
+        print(f"add version: HTTP {status}")
+        print(errors(resp) or "  added")
+    status, resp = call("PATCH", f"/v1/reviewSubmissions/{sid}", {"data": {"type": "reviewSubmissions", "id": sid, "attributes": {"submitted": True}}})
+    print(f"submit: HTTP {status}")
+    print(errors(resp) or f"  submitted, state={resp.get('data', {}).get('attributes', {}).get('state')}")
+    section("State afterwards")
+    for v in (get(f"/v1/apps/{APP_ID}/appStoreVersions?filter[platform]=IOS&limit=3", "versions") or {}).get("data", []):
+        print(f"  iOS {v['attributes']['versionString']} state={v['attributes'].get('appStoreState')}")
+    for inc in (get(f"/v1/apps/{APP_ID}/subscriptionGroups?include=subscriptions", "groups") or {}).get("included", []):
+        if inc["type"] == "subscriptions":
+            print(f"  {inc['attributes'].get('productId')} state={inc['attributes'].get('state')}")
+    for p in (get(f"/v1/apps/{APP_ID}/inAppPurchasesV2", "iaps") or {}).get("data", []):
+        print(f"  {p['attributes'].get('productId')} state={p['attributes'].get('state')}")
+
 if ACTION == "add-version":
     section("Add the iOS version to the draft submission (no submit)")
     if not ios_version:
