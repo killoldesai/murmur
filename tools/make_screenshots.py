@@ -13,6 +13,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ICON = os.path.join(HERE, "..", "store", "icon-1024.png")
+WAVES = [(0x5E, 0xE0, 0xC6), (0xFF, 0x5A, 0x6E), (0xF4, 0xF3, 0xF8)]
 ACCENT, TEXT, SUB = (0x5E, 0xE0, 0xC6), (0xF4, 0xF3, 0xF8), (0xB9, 0xB7, 0xC8)
 # (background, frame border, waveform/chip surface): all solid brand tones
 THEMES = [
@@ -51,14 +52,16 @@ def logo_badge(draw, canvas, cx, y, size, label_colour):
 
 
 def waveform(draw, x0, x1, y_mid, max_h, bar_w, gap, colour):
-    """Flat teal bars, the same shape as the recording screen."""
-    pattern = [0.3, 0.55, 0.8, 0.45, 1.0, 0.65, 0.35, 0.9, 0.5, 0.75, 0.4, 0.6]
-    x, i = x0, 0
-    while x + bar_w <= x1:
-        h = max(bar_w, int(max_h * pattern[i % len(pattern)]))
+    """Flat rounded bars shaped like a voice: a swelling envelope, tallest in the middle."""
+    import math
+    n = int((x1 - x0 + gap) // (bar_w + gap))
+    for i in range(n):
+        t = i / max(1, n - 1)
+        envelope = 0.25 + 0.75 * math.sin(math.pi * t) ** 1.5
+        ripple = 0.55 + 0.45 * abs(math.sin(i * 1.7) * math.cos(i * 0.45))
+        h = max(bar_w, int(max_h * envelope * ripple))
+        x = x0 + i * (bar_w + gap)
         draw.rounded_rectangle((x, y_mid - h // 2, x + bar_w, y_mid + h // 2), bar_w // 2, fill=colour)
-        x += bar_w + gap
-        i += 1
 
 
 def chips(draw, cx, y, labels, size, surface, border):
@@ -90,7 +93,7 @@ def headline(draw, canvas_w, y, lines, size, accent_word):
     return y
 
 
-def compose(out_path, size, shot_path, entry, theme, shot_width, top, hl, radius, border, wave=True):
+def compose(out_path, size, shot_path, entry, theme, wave_colour, shot_width, top, hl, radius, border, wave=True):
     lines, sub, accent, tags = entry
     bg, line, surface = theme
     W, H = size
@@ -105,7 +108,7 @@ def compose(out_path, size, shot_path, entry, theme, shot_width, top, hl, radius
     y_chip = int(y + hl * 0.08 + hl * 0.40 * 1.7)
     y_end = chips(draw, W // 2, y_chip, tags, int(hl * 0.30), surface, line)
     if wave:
-        waveform(draw, 0, W, y_end + int(hl * 0.55), int(hl * 0.5), max(8, hl // 16), max(8, hl // 14), line)
+        waveform(draw, 0, W, y_end + int(hl * 0.55), int(hl * 0.85), max(10, hl // 12), max(8, hl // 16), wave_colour)
 
     shot = Image.open(shot_path).convert("RGB")
     shot = shot.resize((shot_width, int(shot.size[1] * shot_width / shot.size[0])), Image.LANCZOS)
@@ -155,7 +158,7 @@ def run(out, sub, items, size, src, **kw):
             print("missing", shot)
             continue
         n += 1
-        compose(os.path.join(out, sub, f"{n}-{name}.png"), size, shot, tuple(entry), THEMES[(n - 1) % 3], **kw)
+        compose(os.path.join(out, sub, f"{n}-{name}.png"), size, shot, tuple(entry), THEMES[(n - 1) % 3], WAVES[(n - 1) % 3], **kw)
 
 
 def watch_set(out, src):
