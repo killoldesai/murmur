@@ -35,6 +35,8 @@ targets:
         NSMicrophoneUsageDescription: Murmur records your voice so it can turn speech into text on your device. Audio never leaves your phone.
         # Lets a recording continue with the screen locked or the app in the background.
         # Lets "Share → Murmur" and "Open in Murmur" offer the app for audio and video files.
+        # Files are copied into the app, not edited in place.
+        LSSupportsOpeningDocumentsInPlace: false
         CFBundleDocumentTypes:
           - CFBundleTypeName: Audio
             CFBundleTypeRole: Viewer
@@ -52,6 +54,7 @@ targets:
           - UIInterfaceOrientationPortrait
         UISupportedInterfaceOrientations~ipad:
           - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
     entitlements:
@@ -94,6 +97,8 @@ targets:
         LSApplicationCategoryType: public.app-category.productivity
         NSMicrophoneUsageDescription: Murmur records your voice so it can turn speech into text on your Mac. Audio never leaves your Mac.
         # "Open with Murmur" and dropping files on the Dock icon.
+        # Files are copied into the app, not edited in place.
+        LSSupportsOpeningDocumentsInPlace: false
         CFBundleDocumentTypes:
           - CFBundleTypeName: Audio
             CFBundleTypeRole: Viewer
@@ -146,7 +151,9 @@ targets:
         WKCompanionAppBundleIdentifier: com.appyzone.murmur
         NSMicrophoneUsageDescription: Murmur records your voice on your watch and sends it to your iPhone to turn into text.
         # Keeps a recording going with the wrist down.
-        WKBackgroundModes:
+        # Background audio recording on watchOS is declared with UIBackgroundModes (WKBackgroundModes
+        # only accepts workout and similar modes; App Store Connect rejected 'audio' there).
+        UIBackgroundModes:
           - audio
     settings:
       base:
