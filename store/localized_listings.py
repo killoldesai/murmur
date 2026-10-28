@@ -56,8 +56,8 @@ Gratis: los primeros 2 minutos de cada nota. Pro desbloquea transcripciones comp
 Los precios se muestran en la app y varían según el país.
 Las suscripciones se renuevan automáticamente a menos que las canceles al menos 24 horas antes de que termine el periodo. Adminístralas en Ajustes > tu ID de Apple > Suscripciones.
 
-Términos de uso: https://killoldesai.github.io/murmur/terms/
-Política de privacidad: https://killoldesai.github.io/murmur/privacy/""",
+Términos de uso: https://murmur.netofficials.com/terms/
+Política de privacidad: https://murmur.netofficials.com/privacy/""",
     ),
     "German": dict(
         name="Murmur: Sprache zu Text",
@@ -105,8 +105,8 @@ Kostenlos: die ersten 2 Minuten jeder Notiz. Pro schaltet vollständige Transkri
 Die Preise siehst du in der App, sie unterscheiden sich je nach Land.
 Abos verlängern sich automatisch, wenn du nicht mindestens 24 Stunden vor Ablauf des Zeitraums kündigst. Verwalten unter Einstellungen > Apple-ID > Abonnements.
 
-Nutzungsbedingungen: https://killoldesai.github.io/murmur/terms/
-Datenschutzerklärung: https://killoldesai.github.io/murmur/privacy/""",
+Nutzungsbedingungen: https://murmur.netofficials.com/terms/
+Datenschutzerklärung: https://murmur.netofficials.com/privacy/""",
     ),
     "French": dict(
         name="Murmur: Audio en Texte",
@@ -154,8 +154,8 @@ Gratuit : les 2 premières minutes de chaque note. Pro débloque les transcripti
 Les prix s'affichent dans l'app et varient selon le pays.
 Les abonnements se renouvellent automatiquement sauf résiliation au moins 24 heures avant la fin de la période. Gérez-les dans Réglages > identifiant Apple > Abonnements.
 
-Conditions d'utilisation : https://killoldesai.github.io/murmur/terms/
-Politique de confidentialité : https://killoldesai.github.io/murmur/privacy/""",
+Conditions d'utilisation : https://murmur.netofficials.com/terms/
+Politique de confidentialité : https://murmur.netofficials.com/privacy/""",
     ),
     "Portuguese (Brazil)": dict(
         name="Murmur: Áudio para Texto",
@@ -203,8 +203,8 @@ Grátis: os primeiros 2 minutos de cada nota. O Pro libera transcrições comple
 Os preços aparecem no app e variam conforme o país.
 As assinaturas são renovadas automaticamente, a menos que você cancele pelo menos 24 horas antes do fim do período. Gerencie em Ajustes > ID Apple > Assinaturas.
 
-Termos de uso: https://killoldesai.github.io/murmur/terms/
-Política de privacidade: https://killoldesai.github.io/murmur/privacy/""",
+Termos de uso: https://murmur.netofficials.com/terms/
+Política de privacidade: https://murmur.netofficials.com/privacy/""",
     ),
 }
 

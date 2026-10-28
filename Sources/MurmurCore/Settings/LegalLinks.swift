@@ -3,9 +3,9 @@ import Foundation
 /// Public pages for the policies, hosted with GitHub Pages from this repo's `docs/` folder.
 /// If the pages move (for example to your own domain), change them here and in App Store Connect.
 public enum LegalLinks {
-    public static let home = URL(string: "https://killoldesai.github.io/murmur/")!
-    public static let privacy = URL(string: "https://killoldesai.github.io/murmur/privacy/")!
-    public static let terms = URL(string: "https://killoldesai.github.io/murmur/terms/")!
+    public static let home = URL(string: "https://murmur.netofficials.com/")!
+    public static let privacy = URL(string: "https://murmur.netofficials.com/privacy/")!
+    public static let terms = URL(string: "https://murmur.netofficials.com/terms/")!
     /// Where "Send feedback" goes. Change it to a support address or form when you have one.
     public static let feedback = URL(string: "https://github.com/killoldesai/murmur/issues/new")!
 

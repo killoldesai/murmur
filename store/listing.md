@@ -17,8 +17,8 @@ same bundle ID for iOS and Mac).
 | Copyright | `2026 <your name or company>` | |
 | Support URL | https://murmur.netofficials.com | |
 | Marketing URL | (optional, leave empty) | |
-| Privacy Policy URL | https://killoldesai.github.io/murmur/privacy/ | |
-| Terms of Use (custom EULA) | https://killoldesai.github.io/murmur/terms/ | |
+| Privacy Policy URL | https://murmur.netofficials.com/privacy/ | |
+| Terms of Use (custom EULA) | https://murmur.netofficials.com/terms/ | |
 
 Do not repeat the app name or category words in the keywords field (Apple already indexes them).
 
@@ -64,8 +64,8 @@ Free: the first 2 minutes of every note. Pro unlocks full transcripts, editing, 
 Prices are shown in the app and vary by country.
 Subscriptions renew automatically unless cancelled at least 24 hours before the end of the period. Manage them in Settings > Apple ID > Subscriptions.
 
-Terms of Use: https://killoldesai.github.io/murmur/terms/
-Privacy Policy: https://killoldesai.github.io/murmur/privacy/
+Terms of Use: https://murmur.netofficials.com/terms/
+Privacy Policy: https://murmur.netofficials.com/privacy/
 ```
 
 ## What's New (first release)
