@@ -18,6 +18,7 @@ import jwt  # PyJWT
 API = "https://api.appstoreconnect.apple.com"
 APP_ID = os.environ.get("APP_ID", "6827877311")
 ACTION = os.environ.get("ACTION", "check")
+PLATFORM = os.environ.get("PLATFORM", "IOS")  # IOS or MAC_OS
 
 
 def token():
@@ -87,12 +88,12 @@ for v in versions.get("data", []):
     battrs = builds.get(b, {}).get("attributes", {})
     print(f"{a['platform']} {a['versionString']} id={v['id']} state={a.get('appStoreState')} / {a.get('appVersionState')}"
           f" build={battrs.get('version')} buildState={battrs.get('processingState')} encryptionKnown={battrs.get('usesNonExemptEncryption')}")
-    if a["platform"] == "IOS" and a.get("appStoreState") in ("PREPARE_FOR_SUBMISSION", "DEVELOPER_REJECTED", "REJECTED", "METADATA_REJECTED"):
+    if a["platform"] == PLATFORM and a.get("appStoreState") in ("PREPARE_FOR_SUBMISSION", "DEVELOPER_REJECTED", "REJECTED", "METADATA_REJECTED"):
         ios_version = v
 
 if ios_version:
     vid = ios_version["id"]
-    section("iOS version details")
+    section(PLATFORM + " version details")
     det = get(f"/v1/appStoreVersions/{vid}/appStoreReviewDetail", "reviewDetail")
     if det and det.get("data"):
         a = det["data"]["attributes"]
@@ -137,7 +138,7 @@ for s in subs.get("data", []):
     a = s["attributes"]
     items = [i["id"] for i in (s["relationships"].get("items", {}).get("data") or [])]
     print(f"submission id={s['id']} platform={a.get('platform')} state={a.get('state')} items={len(items)}")
-    if a.get("platform") == "IOS" and a.get("state") == "READY_FOR_REVIEW":
+    if a.get("platform") == PLATFORM and a.get("state") == "READY_FOR_REVIEW":
         draft = s
 for inc in subs.get("included", []):
     if inc["type"] == "reviewSubmissionItems":
@@ -175,10 +176,15 @@ if ACTION == "add-purchases":
         print(f"  submission {s['id']} platform={a.get('platform')} state={a.get('state')} items={len((s['relationships'].get('items', {}).get('data') or []))}")
 
 if ACTION == "submit":
-    section("Submit the iOS draft for review")
+    section("Submit the " + PLATFORM + " draft for review")
     if not draft:
-        print("No iOS draft submission (READY_FOR_REVIEW) found.")
-        sys.exit(0)
+        status, resp = call("POST", "/v1/reviewSubmissions", {"data": {"type": "reviewSubmissions", "attributes": {"platform": PLATFORM},
+                            "relationships": {"app": {"data": {"type": "apps", "id": APP_ID}}}}})
+        print(f"create {PLATFORM} draft: HTTP {status}")
+        print(errors(resp))
+        if status >= 400:
+            sys.exit(0)
+        draft = resp["data"]
     sid = draft["id"]
     items = get(f"/v1/reviewSubmissions/{sid}/items?include=appStoreVersion", "items") or {}
     has_version = False
@@ -198,8 +204,8 @@ if ACTION == "submit":
     print(f"submit: HTTP {status}")
     print(errors(resp) or f"  submitted, state={resp.get('data', {}).get('attributes', {}).get('state')}")
     section("State afterwards")
-    for v in (get(f"/v1/apps/{APP_ID}/appStoreVersions?filter[platform]=IOS&limit=3", "versions") or {}).get("data", []):
-        print(f"  iOS {v['attributes']['versionString']} state={v['attributes'].get('appStoreState')}")
+    for v in (get(f"/v1/apps/{APP_ID}/appStoreVersions?limit=5", "versions") or {}).get("data", []):
+        print(f"  {v['attributes']['platform']} {v['attributes']['versionString']} state={v['attributes'].get('appStoreState')}")
     for inc in (get(f"/v1/apps/{APP_ID}/subscriptionGroups?include=subscriptions", "groups") or {}).get("included", []):
         if inc["type"] == "subscriptions":
             print(f"  {inc['attributes'].get('productId')} state={inc['attributes'].get('state')}")
@@ -212,7 +218,7 @@ if ACTION == "add-version":
         print("No editable iOS version found.")
         sys.exit(0)
     if not draft:
-        status, resp = call("POST", "/v1/reviewSubmissions", {"data": {"type": "reviewSubmissions", "attributes": {"platform": "IOS"},
+        status, resp = call("POST", "/v1/reviewSubmissions", {"data": {"type": "reviewSubmissions", "attributes": {"platform": PLATFORM},
                             "relationships": {"app": {"data": {"type": "apps", "id": APP_ID}}}}})
         print(f"create draft: HTTP {status}")
         print(errors(resp))

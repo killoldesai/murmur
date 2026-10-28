@@ -7,10 +7,15 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "check; add-version (iOS version into the draft); add-purchases (group, subscriptions, Lifetime). submit sends the iOS draft to App Review."
+        description: "check; add-version (iOS version into the draft); add-purchases (group, subscriptions, Lifetime). submit sends the chosen platform's draft to App Review."
         type: choice
         options: [check, add-version, add-purchases, submit]
         default: check
+      platform:
+        description: "Which version: IOS or MAC_OS"
+        type: choice
+        options: [IOS, MAC_OS]
+        default: IOS
 
 permissions:
   contents: write
@@ -43,6 +48,7 @@ jobs:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
           ACTION: ${{ inputs.action }}
+          PLATFORM: ${{ inputs.platform }}
         run: |
           pip install -q pyjwt cryptography
           mkdir -p /tmp/results
