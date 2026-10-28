@@ -13,7 +13,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ICON = os.path.join(HERE, "..", "store", "icon-1024.png")
-WAVES = [(0x5E, 0xE0, 0xC6), (0xFF, 0x5A, 0x6E), (0xF4, 0xF3, 0xF8)]
+WAVES = [(0x5E, 0xE0, 0xC6)] * 3  # same brand teal on every image and device
 ACCENT, TEXT, SUB = (0x5E, 0xE0, 0xC6), (0xF4, 0xF3, 0xF8), (0xB9, 0xB7, 0xC8)
 # (background, frame border, waveform/chip surface): all solid brand tones
 THEMES = [
@@ -183,7 +183,7 @@ def main():
     src, out = sys.argv[1], sys.argv[2]
     run(out, "iphone-6.9", IPHONE, (1320, 2868), src, shot_width=1040, top=900, hl=112, radius=96, border=10)
     run(out, "ipad-13", IPAD, (2064, 2752), src, shot_width=1560, top=900, hl=140, radius=64, border=10)
-    run(out, "mac", MAC, (2880, 1800), src, shot_width=1500, top=620, hl=92, radius=24, border=6, wave=False)
+    run(out, "mac", MAC, (2880, 1800), src, shot_width=1500, top=620, hl=92, radius=24, border=6)
     watch_set(out, src)
 
 
