@@ -98,7 +98,6 @@ targets:
         NSMicrophoneUsageDescription: Murmur records your voice so it can turn speech into text on your Mac. Audio never leaves your Mac.
         # "Open with Murmur" and dropping files on the Dock icon.
         # Files are copied into the app, not edited in place.
-        LSSupportsOpeningDocumentsInPlace: false
         CFBundleDocumentTypes:
           - CFBundleTypeName: Audio
             CFBundleTypeRole: Viewer
