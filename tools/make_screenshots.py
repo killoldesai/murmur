@@ -111,6 +111,7 @@ def compose(out_path, size, shot_path, entry, theme, wave_colour, shot_width, to
         waveform(draw, 0, W, y_end + int(hl * 0.55), int(hl * 0.85), max(10, hl // 12), max(8, hl // 16), wave_colour)
 
     shot = Image.open(shot_path).convert("RGB")
+    shot_width = min(shot_width, shot.size[0] * 2)  # never blow a small shot up more than 2x
     shot = shot.resize((shot_width, int(shot.size[1] * shot_width / shot.size[0])), Image.LANCZOS)
     fw, fh = shot_width + 2 * border, shot.size[1] + 2 * border
     frame = rounded(Image.new("RGBA", (fw, fh), line + (255,)), radius + border)
@@ -142,7 +143,7 @@ MAC = [
     ("mac-main", ["Fast, private", "transcription"], "Runs on Apple silicon. Your audio never leaves your Mac.", "private", T),
     ("mac-queue", ["Drop files in,", "get text out"], "Batch-transcribe audio and video in the background.", "text out", ["Batch", "Background"]),
     ("mac-export", ["Export", "any way"], "Text, subtitles, audio or Markdown.", "any way", ["TXT", "SRT"]),
-    ("mac-recording", ["Record from", "the menu bar"], "A global shortcut starts recording anywhere.", "menu bar", ["⌃⌥R", "Floating"]),
+    ("mac-drop", ["Drop in as many", "files as you like"], "Drag audio or video onto the window to start.", "files", ["Drag & drop", "Video too"]),
     ("mac-settings", ["Make it", "yours"], "Pick your model, language and shortcut.", "yours", ["Models", "Dictionary"]),
     ("mac-paywall", ["Go Pro,", "keep it private"], "3-day free trial. Cancel anytime.", "Pro", ["Yearly", "Lifetime"]),
 ]
