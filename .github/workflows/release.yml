@@ -5,7 +5,7 @@
 #   APPLE_TEAM_ID        your 10-character team ID
 #   ASC_KEY_ID           App Store Connect API key ID
 #   ASC_ISSUER_ID        App Store Connect issuer ID
-#   ASC_KEY_P8_BASE64    the .p8 key file, base64-encoded (base64 -i AuthKey_XXXX.p8)
+#   ASC_KEY_P8_BASE64    the .p8 key file: paste its text as it is, or base64-encode it first
 # Signing is automatic and cloud-managed through the API key, so no certificates are stored here.
 name: Release (manual)
 
@@ -36,7 +36,12 @@ jobs:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
         run: |
           mkdir -p "$RUNNER_TEMP/keys"
-          echo "$ASC_KEY_P8_BASE64" | base64 --decode > "$RUNNER_TEMP/keys/AuthKey_${ASC_KEY_ID}.p8"
+          # The secret may hold the raw .p8 text or its base64; accept both.
+          if printf '%s' "$ASC_KEY_P8_BASE64" | grep -q "BEGIN PRIVATE KEY"; then
+            printf '%s\n' "$ASC_KEY_P8_BASE64" > "$RUNNER_TEMP/keys/AuthKey_${ASC_KEY_ID}.p8"
+          else
+            printf '%s' "$ASC_KEY_P8_BASE64" | base64 --decode > "$RUNNER_TEMP/keys/AuthKey_${ASC_KEY_ID}.p8"
+          fi
           echo "ASC_KEY_PATH=$RUNNER_TEMP/keys/AuthKey_${ASC_KEY_ID}.p8" >> "$GITHUB_ENV"
 
       - name: Set the build number to the run number
