@@ -10,9 +10,9 @@ same bundle ID for iOS and Mac).
 | Field | Text | Limit |
 |---|---|---|
 | App name | `Murmur: Private Transcription` | 30 |
-| Subtitle | `Voice to text, on your device` | 30 |
-| Promotional text | `Record or import audio and get an accurate transcript in minutes. Whisper runs on your device, so nothing is uploaded. No account needed.` | 170 |
-| Keywords | `transcribe,whisper,dictation,voice memo,meeting notes,lecture,audio to text,recorder,offline` | 100 |
+| Subtitle | `Speech to Text, Fully Offline` | 30 |
+| Promotional text | `Transcribe meetings, lectures and voice notes on your device with Whisper. No account, no uploads, works offline. Try Pro free for 3 days.` | 170 |
+| Keywords | `voice,transcribe,whisper,dictation,audio,notes,meeting,lecture,interview,recorder,subtitles,ai,srt` | 100 |
 | Category | Productivity (primary), Business (secondary) | |
 | Copyright | `2026 <your name or company>` | |
 | Support URL | https://killoldesai.github.io/murmur/ | |
@@ -25,9 +25,9 @@ Do not repeat the app name or category words in the keywords field (Apple alread
 ## Description
 
 ```
-Turn speech into text without sending it anywhere.
+Speech to text without sending it anywhere.
 
-Murmur records meetings, lectures and ideas, or imports audio and video you already have, and turns them into an accurate transcript using Whisper running on your own device. There are no servers and no accounts. Your audio and text are never uploaded to us, and Murmur even works in airplane mode after the one-time speech model download.
+Murmur transcribes meetings, lectures, interviews and voice notes. Record, or import audio and video you already have, and get an accurate transcript from Whisper running on your own device. There are no servers and no accounts. Your audio and text are never uploaded to us, and Murmur even works in airplane mode after the one-time speech model download.
 
 RECORD OR IMPORT
 • Record with one tap, with bookmarks to mark the moments that matter
@@ -58,9 +58,10 @@ No analytics. No ads. No tracking. Murmur downloads its speech model once, then 
 
 MURMUR PRO
 Free: the first 2 minutes of every note. Pro unlocks full transcripts, editing, export, find and replace, and summaries for everything you record, including older notes.
-• $19.99 per year, with a 3-day free trial
-• $39.99 once, for life
-• $3.99 per month
+• Yearly, with a 3-day free trial
+• Monthly
+• Lifetime, one time
+Prices are shown in the app and vary by country.
 Subscriptions renew automatically unless cancelled at least 24 hours before the end of the period. Manage them in Settings > Apple ID > Subscriptions.
 
 Terms of Use: https://killoldesai.github.io/murmur/terms/
