@@ -15,7 +15,7 @@ same bundle ID for iOS and Mac).
 | Keywords | `voice,transcribe,whisper,dictation,audio,notes,meeting,lecture,interview,recorder,subtitles,ai,srt` | 100 |
 | Category | Productivity (primary), Business (secondary) | |
 | Copyright | `2026 <your name or company>` | |
-| Support URL | https://killoldesai.github.io/murmur/ | |
+| Support URL | https://murmur.netofficials.com | |
 | Marketing URL | (optional, leave empty) | |
 | Privacy Policy URL | https://killoldesai.github.io/murmur/privacy/ | |
 | Terms of Use (custom EULA) | https://killoldesai.github.io/murmur/terms/ | |
