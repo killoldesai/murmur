@@ -144,6 +144,36 @@ for inc in subs.get("included", []):
         rel = {k: (v.get("data") or {}).get("type") for k, v in inc.get("relationships", {}).items() if isinstance(v, dict) and v.get("data")}
         print(f"  item id={inc['id']} state={inc['attributes'].get('state')} -> {rel}")
 
+if ACTION == "add-purchases":
+    section("Add the subscription group, subscriptions and Lifetime for review (no app submit)")
+    for g in groups.get("data", []):
+        status, resp = call("POST", "/v1/subscriptionGroupSubmissions", {"data": {"type": "subscriptionGroupSubmissions",
+                            "relationships": {"subscriptionGroup": {"data": {"type": "subscriptionGroups", "id": g["id"]}}}}})
+        print(f"group {g['attributes']['referenceName']}: HTTP {status}")
+        print(errors(resp) or "  added")
+    for inc in groups.get("included", []):
+        if inc["type"] != "subscriptions":
+            continue
+        status, resp = call("POST", "/v1/subscriptionSubmissions", {"data": {"type": "subscriptionSubmissions",
+                            "relationships": {"subscription": {"data": {"type": "subscriptions", "id": inc["id"]}}}}})
+        print(f"subscription {inc['attributes'].get('productId')}: HTTP {status}")
+        print(errors(resp) or "  added")
+    for p in iaps.get("data", []):
+        status, resp = call("POST", "/v1/inAppPurchaseSubmissions", {"data": {"type": "inAppPurchaseSubmissions",
+                            "relationships": {"inAppPurchaseV2": {"data": {"type": "inAppPurchases", "id": p["id"]}}}}})
+        print(f"in-app purchase {p['attributes'].get('productId')}: HTTP {status}")
+        print(errors(resp) or "  added")
+    section("State afterwards")
+    for inc in (get(f"/v1/apps/{APP_ID}/subscriptionGroups?include=subscriptions", "groups") or {}).get("included", []):
+        if inc["type"] == "subscriptions":
+            print(f"  {inc['attributes'].get('productId')} state={inc['attributes'].get('state')}")
+    for p in (get(f"/v1/apps/{APP_ID}/inAppPurchasesV2", "iaps") or {}).get("data", []):
+        print(f"  {p['attributes'].get('productId')} state={p['attributes'].get('state')}")
+    subs2 = get(f"/v1/reviewSubmissions?filter[app]={APP_ID}&limit=10&include=items", "reviewSubmissions") or {}
+    for s in subs2.get("data", []):
+        a = s["attributes"]
+        print(f"  submission {s['id']} platform={a.get('platform')} state={a.get('state')} items={len((s['relationships'].get('items', {}).get('data') or []))}")
+
 if ACTION == "add-version":
     section("Add the iOS version to the draft submission (no submit)")
     if not ios_version:
