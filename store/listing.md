@@ -58,7 +58,7 @@ No analytics. No ads. No tracking. Murmur downloads its speech model once, then 
 
 MURMUR PRO
 Free: the first 2 minutes of every note. Pro unlocks full transcripts, editing, export, find and replace, and summaries for everything you record, including older notes.
-• $19.99 per year, with a 7-day free trial
+• $19.99 per year, with a 3-day free trial
 • $39.99 once, for life
 • $3.99 per month
 Subscriptions renew automatically unless cancelled at least 24 hours before the end of the period. Manage them in Settings > Apple ID > Subscriptions.
@@ -77,7 +77,7 @@ Welcome to Murmur. Record or import audio and get a private, on-device transcrip
 
 | Reference name | Product ID | Type | Price | Display name | Description |
 |---|---|---|---|---|---|
-| Pro Yearly | `app.murmur.pro.yearly` | Auto-renewable, group "Murmur Pro" | $19.99, 7-day free trial (introductory offer) | Murmur Pro Yearly | Full transcripts, editing, export and summaries. Renews every year. |
+| Pro Yearly | `app.murmur.pro.yearly` | Auto-renewable, group "Murmur Pro" | $19.99, 3-day free trial (introductory offer) | Murmur Pro Yearly | Full transcripts, editing, export and summaries. Renews every year. |
 | Pro Lifetime | `app.murmur.pro.lifetime` | Non-consumable | $39.99 | Murmur Pro Lifetime | Pay once and keep Pro on all your devices. |
 | Pro Monthly | `app.murmur.pro.monthly` | Auto-renewable, group "Murmur Pro" | $3.99 | Murmur Pro Monthly | Full transcripts, editing, export and summaries. Renews every month. |
 

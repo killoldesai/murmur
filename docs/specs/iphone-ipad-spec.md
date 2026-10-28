@@ -124,7 +124,7 @@ Every screen animates on entry, and all motion turns off when Reduce Motion is o
 - Import queue that transcribes files one after another.
 - Settings toggles: delete audio after transcribing, haptics.
 - iPad: three-column layout and summary side panel (see Screens).
-- Paywall prices on the designs ($19.99 yearly with a 7-day trial, $39.99 lifetime, $3.99 monthly) are placeholders. Set real prices in App Store Connect.
+- Paywall prices on the designs ($19.99 yearly with a 3-day trial, $39.99 lifetime, $3.99 monthly) are placeholders. Set real prices in App Store Connect.
 
 ## Out of scope for MVP
 

@@ -93,7 +93,7 @@ public struct ComponentGallery: View {
                     }
 
                     section("Plans", index: 7) {
-                        PlanCard(name: "Yearly", price: "$19.99", detail: "7-day free trial", badge: "BEST VALUE",
+                        PlanCard(name: "Yearly", price: "$19.99", detail: "3-day free trial", badge: "BEST VALUE",
                                  isSelected: plan == 1) { plan = 1 }
                         PlanCard(name: "Lifetime", price: "$39.99", detail: "Pay once, yours forever",
                                  isSelected: plan == 2) { plan = 2 }

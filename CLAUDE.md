@@ -82,4 +82,4 @@ Development happens in a Linux cloud session with no Xcode. Code cannot be compi
 
 ## Pricing (placeholders)
 
-$19.99/year with 7-day trial, $39.99 lifetime, $3.99/month. Real prices are set in App Store Connect.
+$19.99/year with 3-day trial, $39.99 lifetime, $3.99/month. Real prices are set in App Store Connect.

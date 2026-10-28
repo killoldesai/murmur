@@ -59,7 +59,7 @@ public struct PlanOffer: Equatable, Identifiable, Sendable {
     public static func placeholder(_ plan: Plan) -> PlanOffer {
         PlanOffer(plan: plan, displayPrice: plan.placeholderPrice,
                   monthlyEquivalent: plan == .yearly ? "$1.67" : nil,
-                  trialDays: plan == .yearly ? 7 : nil, isAvailable: false)
+                  trialDays: plan == .yearly ? 3 : nil, isAvailable: false)
     }
 
     /// Second line on the plan card.

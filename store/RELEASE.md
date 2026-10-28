@@ -8,7 +8,8 @@ your Apple Developer account first, and the first real run will probably need sm
 The bundle ID `app.murmur.Murmur` was already taken, so the app uses `com.appyzone.murmur`.
 - Developer portal: the three App IDs, App Group `group.com.appyzone.murmur` and iCloud container `iCloud.com.appyzone.murmur` exist and are linked. (An unused group `group.app.murmur.Murmur` was also created; delete it.)
 - App Store Connect: app "Murmur: Private Transcription" (iOS and macOS, Apple ID 6827877311), subscription group "Murmur Pro" with Pro Yearly $19.99 and Pro Monthly $3.99, and the Pro Lifetime non-consumable $39.99, all available in all countries, product IDs `app.murmur.pro.yearly|monthly|lifetime`.
-- Still open: accept the Paid Apps agreement and bank/tax details, add the 7-day free trial to Pro Yearly, add a review screenshot to each product, upload a build, App Store Connect API key and GitHub secrets.
+- Pro Yearly has a free introductory offer of 3 days in all countries (Apple's shortest free trial; 1 day is not offered). The Paid Apps agreement and tax details were completed by the owner.
+- Still open: request App Store Connect API access (Users and Access > Integrations; needs the account holder to accept terms), create the API key and add the GitHub secrets, add a review screenshot to each product, upload screenshots (`tools/make_screenshots.py`), upload a build.
 
 ## One-time setup in your Apple Developer account
 

@@ -123,7 +123,7 @@ public final class DemoPurchaseStore: PurchaseStore, @unchecked Sendable {
         if shouldFail { throw DemoStoreError.failed }
         return offersToReturn ?? Plan.allCases.map {
             PlanOffer(plan: $0, displayPrice: $0.placeholderPrice,
-                      monthlyEquivalent: $0 == .yearly ? "$1.67" : nil, trialDays: $0 == .yearly ? 7 : nil)
+                      monthlyEquivalent: $0 == .yearly ? "$1.67" : nil, trialDays: $0 == .yearly ? 3 : nil)
         }
     }
 
