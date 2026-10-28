@@ -1,0 +1,25 @@
+[0/1] Planning build
+[1/1] Compiling plugin GenerateManual
+[2/2] Compiling plugin GenerateDoccReference
+Building for debugging...
+[2/4] Write swift-version-7974D3F7F03D5E95.txt
+Build complete! (3.08s)
+Test Suite 'Selected tests' started at 2026-10-28 09:44:04.406.
+Test Suite 'MurmurKitPackageTests.xctest' started at 2026-10-28 09:44:04.407.
+Test Suite 'WhisperEndToEndTests' started at 2026-10-28 09:44:04.407.
+Test Case '-[MurmurWhisperTests.WhisperEndToEndTests testTinyModelTranscribesGeneratedSpeech]' started.
+Test Case '-[MurmurWhisperTests.WhisperEndToEndTests testTinyModelTranscribesGeneratedSpeech]' passed (26.177 seconds).
+Test Suite 'WhisperEndToEndTests' passed at 2026-10-28 09:44:30.585.
+	 Executed 1 test, with 0 failures (0 unexpected) in 26.177 (26.178) seconds
+Test Suite 'MurmurKitPackageTests.xctest' passed at 2026-10-28 09:44:30.585.
+	 Executed 1 test, with 0 failures (0 unexpected) in 26.177 (26.178) seconds
+Test Suite 'Selected tests' passed at 2026-10-28 09:44:30.585.
+	 Executed 1 test, with 0 failures (0 unexpected) in 26.177 (26.179) seconds
+E2E transcript: quick brown fox jumps over the lazy dog.
+Merma Returns speech into text on your device.
+E2E segment 0.0-2.879999876022339: quick brown fox jumps over the lazy dog.
+E2E segment 2.879999876022339-5.119999885559082: Merma Returns speech into text on your device.
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

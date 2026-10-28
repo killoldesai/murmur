@@ -1,0 +1,175 @@
+	 Executed 1 test, with 0 failures (0 unexpected) in 26.177 (26.178) seconds
+	 Executed 1 test, with 0 failures (0 unexpected) in 26.177 (26.178) seconds
+	 Executed 1 test, with 0 failures (0 unexpected) in 26.177 (26.179) seconds
+E2E transcript: quick brown fox jumps over the lazy dog.
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Tests/MurmurCoreTests/ExportImportTests.swift:167:24: warning: conformance of 'ExportError' to protocol 'Equatable' was already stated in the type's module 'MurmurCore'
+    |                        `- warning: conformance of 'ExportError' to protocol 'Equatable' was already stated in the type's module 'MurmurCore'
+/Users/runner/work/murmur/murmur/Tests/MurmurCoreTests/SummaryTests.swift:18:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Tests/MurmurCoreTests/SummaryTests.swift:22:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Tests/MurmurCoreTests/SummaryTests.swift:18:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Tests/MurmurCoreTests/SummaryTests.swift:22:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Tests/MurmurCoreTests/SummaryTests.swift:18:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Tests/MurmurCoreTests/SummaryTests.swift:22:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Tests/MurmurCoreTests/SummaryTests.swift:18:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Tests/MurmurCoreTests/SummaryTests.swift:22:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Tests/MurmurCoreTests/SummaryTests.swift:18:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Tests/MurmurCoreTests/SummaryTests.swift:22:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+    |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Tests/MurmurCoreTests/ExportImportTests.swift:167:24: warning: conformance of 'ExportError' to protocol 'Equatable' was already stated in the type's module 'MurmurCore'
+    |                        `- warning: conformance of 'ExportError' to protocol 'Equatable' was already stated in the type's module 'MurmurCore'
+/Users/runner/work/murmur/murmur/Tests/MurmurCoreTests/ExportImportTests.swift:167:24: warning: conformance of 'ExportError' to protocol 'Equatable' was already stated in the type's module 'MurmurCore'
+    |                        `- warning: conformance of 'ExportError' to protocol 'Equatable' was already stated in the type's module 'MurmurCore'
+/Users/runner/work/murmur/murmur/Tests/MurmurCoreTests/ExportImportTests.swift:167:24: warning: conformance of 'ExportError' to protocol 'Equatable' was already stated in the type's module 'MurmurCore'
+    |                        `- warning: conformance of 'ExportError' to protocol 'Equatable' was already stated in the type's module 'MurmurCore'
+/Users/runner/work/murmur/murmur/Tests/MurmurCoreTests/ExportImportTests.swift:167:24: warning: conformance of 'ExportError' to protocol 'Equatable' was already stated in the type's module 'MurmurCore'
+    |                        `- warning: conformance of 'ExportError' to protocol 'Equatable' was already stated in the type's module 'MurmurCore'
+/Users/runner/work/murmur/murmur/Tests/MurmurCoreTests/ExportImportTests.swift:167:24: warning: conformance of 'ExportError' to protocol 'Equatable' was already stated in the type's module 'MurmurCore'
+    |                        `- warning: conformance of 'ExportError' to protocol 'Equatable' was already stated in the type's module 'MurmurCore'
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.012 (0.013) seconds
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.003 (0.003) seconds
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.626 (0.626) seconds
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.060 (0.062) seconds
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.016 (0.016) seconds
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.086 (0.087) seconds
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.013 (0.014) seconds
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.003 (0.004) seconds
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.040 (0.042) seconds
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.155 (0.156) seconds
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.068 (0.070) seconds
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.038 (0.039) seconds
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.015 (0.016) seconds
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.017 (0.018) seconds
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+	 Executed 11 tests, with 0 failures (0 unexpected) in 0.091 (0.093) seconds
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.007 (0.007) seconds
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.745 (0.748) seconds
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.003 (0.004) seconds
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.006 (0.006) seconds
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.055 (0.056) seconds
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.005 (0.006) seconds
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.003 (0.005) seconds
+	 Executed 12 tests, with 0 failures (0 unexpected) in 0.132 (0.134) seconds
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.016 (0.016) seconds
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.013 (0.014) seconds
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.005 (0.005) seconds
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+	 Executed 252 tests, with 1 test skipped and 0 failures (0 unexpected) in 2.260 (2.303) seconds
+	 Executed 252 tests, with 1 test skipped and 0 failures (0 unexpected) in 2.260 (2.304) seconds
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+error: 'LSSupportsOpeningDocumentsInPlace = NO' is not supported on macOS. Either remove the entry or set it to YES, and also ensure that the application does open documents in place on macOS. (in target 'MurmurMac' from project 'Murmur')
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Audio/AACRecorderEngine.swift:17:45: warning: 'requestRecordPermission' was deprecated in watchOS 10.0: Please use AVAudioApplication requestRecordPermissionWithCompletionHandler
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Export/ExportService.swift:46:13: warning: code after 'throw' will never be executed
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Audio/AACRecorderEngine.swift:17:45: warning: 'requestRecordPermission' was deprecated in watchOS 10.0: Please use AVAudioApplication requestRecordPermissionWithCompletionHandler
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Export/ExportService.swift:46:13: warning: code after 'throw' will never be executed
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+/Users/runner/work/murmur/murmur/Sources/MurmurCore/Entitlements/EntitlementController.swift:142:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+2026-10-28 09:47:04.864 appintentsmetadataprocessor[9085:30313] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+commit 857f59922cbc566efe9e1d9bf7e780aa3d11b49e

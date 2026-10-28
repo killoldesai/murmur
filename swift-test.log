@@ -1,0 +1,600 @@
+Test Case '-[MurmurCoreTests.EntitlementControllerTests testRestoreWithNothingToRestore]' started.
+Test Case '-[MurmurCoreTests.EntitlementControllerTests testRestoreWithNothingToRestore]' passed (0.001 seconds).
+Test Case '-[MurmurCoreTests.EntitlementControllerTests testStartLoadsOffersAndOwnedPlans]' started.
+Test Case '-[MurmurCoreTests.EntitlementControllerTests testStartLoadsOffersAndOwnedPlans]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.EntitlementControllerTests testStartsFreeWithPlaceholderOffers]' started.
+Test Case '-[MurmurCoreTests.EntitlementControllerTests testStartsFreeWithPlaceholderOffers]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.EntitlementControllerTests testUpdatesFromOutsideChangeStatus]' started.
+Test Case '-[MurmurCoreTests.EntitlementControllerTests testUpdatesFromOutsideChangeStatus]' passed (0.080 seconds).
+Test Suite 'EntitlementControllerTests' passed at 2026-10-28 09:43:53.408.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.086 (0.087) seconds
+Test Suite 'ExportServiceTests' started at 2026-10-28 09:43:53.408.
+Test Case '-[MurmurCoreTests.ExportServiceTests testAudioWithoutFileThrows]' started.
+Test Case '-[MurmurCoreTests.ExportServiceTests testAudioWithoutFileThrows]' passed (0.004 seconds).
+Test Case '-[MurmurCoreTests.ExportServiceTests testCopyReturnsText]' started.
+Test Case '-[MurmurCoreTests.ExportServiceTests testCopyReturnsText]' passed (0.003 seconds).
+Test Case '-[MurmurCoreTests.ExportServiceTests testTextAndSubtitlesWriteNamedFiles]' started.
+Test Case '-[MurmurCoreTests.ExportServiceTests testTextAndSubtitlesWriteNamedFiles]' passed (0.006 seconds).
+Test Suite 'ExportServiceTests' passed at 2026-10-28 09:43:53.422.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.013 (0.014) seconds
+Test Suite 'ExporterTests' started at 2026-10-28 09:43:53.422.
+Test Case '-[MurmurCoreTests.ExporterTests testFallsBackToPlainTranscript]' started.
+Test Case '-[MurmurCoreTests.ExporterTests testFallsBackToPlainTranscript]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.ExporterTests testFileName]' started.
+Test Case '-[MurmurCoreTests.ExporterTests testFileName]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.ExporterTests testFormats]' started.
+Test Case '-[MurmurCoreTests.ExporterTests testFormats]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.ExporterTests testSRT]' started.
+Test Case '-[MurmurCoreTests.ExporterTests testSRT]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.ExporterTests testSRTTime]' started.
+Test Case '-[MurmurCoreTests.ExporterTests testSRTTime]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.ExporterTests testSRTWithoutSpeakersSkipsEmptyAndFixesBadEnd]' started.
+Test Case '-[MurmurCoreTests.ExporterTests testSRTWithoutSpeakersSkipsEmptyAndFixesBadEnd]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.ExporterTests testSummaryOptionIgnoredWhenNoSummary]' started.
+Test Case '-[MurmurCoreTests.ExporterTests testSummaryOptionIgnoredWhenNoSummary]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.ExporterTests testTextPlain]' started.
+Test Case '-[MurmurCoreTests.ExporterTests testTextPlain]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.ExporterTests testTextWithEverything]' started.
+Test Case '-[MurmurCoreTests.ExporterTests testTextWithEverything]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.ExporterTests testUnnamedSpeakerGetsDefaultName]' started.
+Test Case '-[MurmurCoreTests.ExporterTests testUnnamedSpeakerGetsDefaultName]' passed (0.000 seconds).
+Test Suite 'ExporterTests' passed at 2026-10-28 09:43:53.425.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.003 (0.004) seconds
+Test Suite 'FindReplaceTests' started at 2026-10-28 09:43:53.425.
+Test Case '-[MurmurCoreTests.FindReplaceTests testCountsAndStepping]' started.
+Test Case '-[MurmurCoreTests.FindReplaceTests testCountsAndStepping]' passed (0.004 seconds).
+Test Case '-[MurmurCoreTests.FindReplaceTests testDictionaryAddHonoursToggle]' started.
+Test Case '-[MurmurCoreTests.FindReplaceTests testDictionaryAddHonoursToggle]' passed (0.013 seconds).
+Test Case '-[MurmurCoreTests.FindReplaceTests testEmptyAndNoMatches]' started.
+Test Case '-[MurmurCoreTests.FindReplaceTests testEmptyAndNoMatches]' passed (0.002 seconds).
+Test Case '-[MurmurCoreTests.FindReplaceTests testReplaceAll]' started.
+Test Case '-[MurmurCoreTests.FindReplaceTests testReplaceAll]' passed (0.005 seconds).
+Test Case '-[MurmurCoreTests.FindReplaceTests testReplaceCurrentMovesOnAndSaves]' started.
+Test Case '-[MurmurCoreTests.FindReplaceTests testReplaceCurrentMovesOnAndSaves]' passed (0.004 seconds).
+Test Case '-[MurmurCoreTests.FindReplaceTests testReplaceLastWrapsToFirst]' started.
+Test Case '-[MurmurCoreTests.FindReplaceTests testReplaceLastWrapsToFirst]' passed (0.005 seconds).
+Test Case '-[MurmurCoreTests.FindReplaceTests testReplacementContainingFindIsNotMatchedAgain]' started.
+Test Case '-[MurmurCoreTests.FindReplaceTests testReplacementContainingFindIsNotMatchedAgain]' passed (0.004 seconds).
+Test Case '-[MurmurCoreTests.FindReplaceTests testSpansMarkCurrent]' started.
+Test Case '-[MurmurCoreTests.FindReplaceTests testSpansMarkCurrent]' passed (0.003 seconds).
+Test Suite 'FindReplaceTests' passed at 2026-10-28 09:43:53.467.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.040 (0.042) seconds
+Test Suite 'FolderTextTests' started at 2026-10-28 09:43:53.467.
+Test Case '-[MurmurCoreTests.FolderTextTests testDuration]' started.
+Test Case '-[MurmurCoreTests.FolderTextTests testDuration]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.FolderTextTests testMeta]' started.
+Test Case '-[MurmurCoreTests.FolderTextTests testMeta]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.FolderTextTests testSubtitle]' started.
+Test Case '-[MurmurCoreTests.FolderTextTests testSubtitle]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.FolderTextTests testWatchBannerText]' started.
+Test Case '-[MurmurCoreTests.FolderTextTests testWatchBannerText]' passed (0.000 seconds).
+Test Suite 'FolderTextTests' passed at 2026-10-28 09:43:53.469.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'FreeTierTests' started at 2026-10-28 09:43:53.469.
+Test Case '-[MurmurCoreTests.FreeTierTests testFreeUsersSeeOnlyFirstTwoMinutes]' started.
+Test Case '-[MurmurCoreTests.FreeTierTests testFreeUsersSeeOnlyFirstTwoMinutes]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.FreeTierTests testLockedText]' started.
+Test Case '-[MurmurCoreTests.FreeTierTests testLockedText]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.FreeTierTests testProSeesEverything]' started.
+Test Case '-[MurmurCoreTests.FreeTierTests testProSeesEverything]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.FreeTierTests testShortNoteIsNeverLimited]' started.
+Test Case '-[MurmurCoreTests.FreeTierTests testShortNoteIsNeverLimited]' passed (0.000 seconds).
+Test Suite 'FreeTierTests' passed at 2026-10-28 09:43:53.471.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'ImportQueueTests' started at 2026-10-28 09:43:53.471.
+Test Case '-[MurmurCoreTests.ImportQueueTests testClearFinished]' started.
+Test Case '-[MurmurCoreTests.ImportQueueTests testClearFinished]' passed (0.049 seconds).
+Test Case '-[MurmurCoreTests.ImportQueueTests testDeleteSourceAfterImport]' started.
+Test Case '-[MurmurCoreTests.ImportQueueTests testDeleteSourceAfterImport]' passed (0.016 seconds).
+Test Case '-[MurmurCoreTests.ImportQueueTests testFailureDoesNotStopTheQueue]' started.
+Test Case '-[MurmurCoreTests.ImportQueueTests testFailureDoesNotStopTheQueue]' passed (0.038 seconds).
+Test Case '-[MurmurCoreTests.ImportQueueTests testFormats]' started.
+Test Case '-[MurmurCoreTests.ImportQueueTests testFormats]' passed (0.003 seconds).
+Test Case '-[MurmurCoreTests.ImportQueueTests testImportsFilesInOrderAsQueuedNotes]' started.
+Test Case '-[MurmurCoreTests.ImportQueueTests testImportsFilesInOrderAsQueuedNotes]' passed (0.049 seconds).
+Test Suite 'ImportQueueTests' passed at 2026-10-28 09:43:53.627.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.155 (0.156) seconds
+Test Suite 'LegalLinksTests' started at 2026-10-28 09:43:53.627.
+Test Case '-[MurmurCoreTests.LegalLinksTests testLinksAreSecureAndDistinct]' started.
+Test Case '-[MurmurCoreTests.LegalLinksTests testLinksAreSecureAndDistinct]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.LegalLinksTests testSubscriptionNoticeMentionsRenewalAndCancellation]' started.
+Test Case '-[MurmurCoreTests.LegalLinksTests testSubscriptionNoticeMentionsRenewalAndCancellation]' passed (0.000 seconds).
+Test Suite 'LegalLinksTests' passed at 2026-10-28 09:43:53.628.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'LibraryExtrasTests' started at 2026-10-28 09:43:53.628.
+Test Case '-[MurmurCoreTests.LibraryExtrasTests testAudioFormatAndWatchCounterPersist]' started.
+Test Case '-[MurmurCoreTests.LibraryExtrasTests testAudioFormatAndWatchCounterPersist]' passed (0.008 seconds).
+Test Case '-[MurmurCoreTests.LibraryExtrasTests testAudioIsReplacedByM4A]' started.
+Test Case '-[MurmurCoreTests.LibraryExtrasTests testAudioIsReplacedByM4A]' passed (0.016 seconds).
+Test Case '-[MurmurCoreTests.LibraryExtrasTests testEmptyConversionOutputKeepsOriginalAudio]' started.
+Test Case '-[MurmurCoreTests.LibraryExtrasTests testEmptyConversionOutputKeepsOriginalAudio]' passed (0.012 seconds).
+Test Case '-[MurmurCoreTests.LibraryExtrasTests testFailedConversionKeepsOriginalAudio]' started.
+Test Case '-[MurmurCoreTests.LibraryExtrasTests testFailedConversionKeepsOriginalAudio]' passed (0.009 seconds).
+Test Case '-[MurmurCoreTests.LibraryExtrasTests testFolderCards]' started.
+Test Case '-[MurmurCoreTests.LibraryExtrasTests testFolderCards]' passed (0.005 seconds).
+Test Case '-[MurmurCoreTests.LibraryExtrasTests testNoWatchCardWithoutWatchNotes]' started.
+Test Case '-[MurmurCoreTests.LibraryExtrasTests testNoWatchCardWithoutWatchNotes]' passed (0.004 seconds).
+Test Case '-[MurmurCoreTests.LibraryExtrasTests testOriginalFormatIsLeftAlone]' started.
+Test Case '-[MurmurCoreTests.LibraryExtrasTests testOriginalFormatIsLeftAlone]' passed (0.008 seconds).
+Test Case '-[MurmurCoreTests.LibraryExtrasTests testRenameFolder]' started.
+Test Case '-[MurmurCoreTests.LibraryExtrasTests testRenameFolder]' passed (0.007 seconds).
+Test Suite 'LibraryExtrasTests' passed at 2026-10-28 09:43:53.698.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.068 (0.070) seconds
+Test Suite 'LibraryStoreTests' started at 2026-10-28 09:43:53.698.
+Test Case '-[MurmurCoreTests.LibraryStoreTests testApplyEditUpdatesTranscript]' started.
+Test Case '-[MurmurCoreTests.LibraryStoreTests testApplyEditUpdatesTranscript]' passed (0.004 seconds).
+Test Case '-[MurmurCoreTests.LibraryStoreTests testCreateFolder]' started.
+Test Case '-[MurmurCoreTests.LibraryStoreTests testCreateFolder]' passed (0.004 seconds).
+Test Case '-[MurmurCoreTests.LibraryStoreTests testDeleteRemovesAudio]' started.
+Test Case '-[MurmurCoreTests.LibraryStoreTests testDeleteRemovesAudio]' passed (0.003 seconds).
+Test Case '-[MurmurCoreTests.LibraryStoreTests testMoveAndDeleteFolderKeepsNote]' started.
+Test Case '-[MurmurCoreTests.LibraryStoreTests testMoveAndDeleteFolderKeepsNote]' passed (0.008 seconds).
+Test Case '-[MurmurCoreTests.LibraryStoreTests testRenameIgnoresBlank]' started.
+Test Case '-[MurmurCoreTests.LibraryStoreTests testRenameIgnoresBlank]' passed (0.006 seconds).
+Test Case '-[MurmurCoreTests.LibraryStoreTests testSpeakers]' started.
+Test Case '-[MurmurCoreTests.LibraryStoreTests testSpeakers]' passed (0.012 seconds).
+Test Suite 'LibraryStoreTests' passed at 2026-10-28 09:43:53.737.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.038 (0.039) seconds
+Test Suite 'MacLibraryLogicTests' started at 2026-10-28 09:43:53.737.
+Test Case '-[MurmurCoreTests.MacLibraryLogicTests testDictionaryImportExport]' started.
+Test Case '-[MurmurCoreTests.MacLibraryLogicTests testDictionaryImportExport]' passed (0.008 seconds).
+Test Case '-[MurmurCoreTests.MacLibraryLogicTests testMacSettings]' started.
+Test Case '-[MurmurCoreTests.MacLibraryLogicTests testMacSettings]' passed (0.002 seconds).
+Test Case '-[MurmurCoreTests.MacLibraryLogicTests testQueueStats]' started.
+Test Case '-[MurmurCoreTests.MacLibraryLogicTests testQueueStats]' passed (0.003 seconds).
+Test Case '-[MurmurCoreTests.MacLibraryLogicTests testRecentAndFromWatch]' started.
+Test Case '-[MurmurCoreTests.MacLibraryLogicTests testRecentAndFromWatch]' passed (0.002 seconds).
+Test Suite 'MacLibraryLogicTests' passed at 2026-10-28 09:43:53.753.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.015 (0.016) seconds
+Test Suite 'MarkdownExportTests' started at 2026-10-28 09:43:53.753.
+Test Case '-[MurmurCoreTests.MarkdownExportTests testMarkdownHasSummaryTasksAndTranscript]' started.
+Test Case '-[MurmurCoreTests.MarkdownExportTests testMarkdownHasSummaryTasksAndTranscript]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.MarkdownExportTests testMarkdownOptionsOff]' started.
+Test Case '-[MurmurCoreTests.MarkdownExportTests testMarkdownOptionsOff]' passed (0.000 seconds).
+Test Suite 'MarkdownExportTests' passed at 2026-10-28 09:43:53.754.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'MeterLevelTests' started at 2026-10-28 09:43:53.754.
+Test Case '-[MurmurCoreTests.MeterLevelTests testBadInputIsZero]' started.
+Test Case '-[MurmurCoreTests.MeterLevelTests testBadInputIsZero]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.MeterLevelTests testMapping]' started.
+Test Case '-[MurmurCoreTests.MeterLevelTests testMapping]' passed (0.000 seconds).
+Test Suite 'MeterLevelTests' passed at 2026-10-28 09:43:53.755.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'ModelTests' started at 2026-10-28 09:43:53.755.
+Test Case '-[MurmurCoreTests.ModelTests testDefaults]' started.
+Test Case '-[MurmurCoreTests.ModelTests testDefaults]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.ModelTests testDictionaryWordKinds]' started.
+Test Case '-[MurmurCoreTests.ModelTests testDictionaryWordKinds]' passed (0.005 seconds).
+Test Case '-[MurmurCoreTests.ModelTests testFolderRelationshipAndDeleteKeepsNotes]' started.
+Test Case '-[MurmurCoreTests.ModelTests testFolderRelationshipAndDeleteKeepsNotes]' passed (0.007 seconds).
+Test Case '-[MurmurCoreTests.ModelTests testIndexPlayingAt]' started.
+Test Case '-[MurmurCoreTests.ModelTests testIndexPlayingAt]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.ModelTests testJoinedText]' started.
+Test Case '-[MurmurCoreTests.ModelTests testJoinedText]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.ModelTests testNoteRoundTripsThroughStore]' started.
+Test Case '-[MurmurCoreTests.ModelTests testNoteRoundTripsThroughStore]' passed (0.004 seconds).
+Test Case '-[MurmurCoreTests.ModelTests testUnknownRawValuesFallBackSafely]' started.
+Test Case '-[MurmurCoreTests.ModelTests testUnknownRawValuesFallBackSafely]' passed (0.000 seconds).
+Test Suite 'ModelTests' passed at 2026-10-28 09:43:53.773.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.017 (0.018) seconds
+Test Suite 'NoteSearchTests' started at 2026-10-28 09:43:53.773.
+Test Case '-[MurmurCoreTests.NoteSearchTests testBlankQueryGivesNothing]' started.
+Test Case '-[MurmurCoreTests.NoteSearchTests testBlankQueryGivesNothing]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.NoteSearchTests testFindsHitsWithTimestampsAndCounts]' started.
+Test Case '-[MurmurCoreTests.NoteSearchTests testFindsHitsWithTimestampsAndCounts]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.NoteSearchTests testNotesWithoutMatchesAreSkippedAndOrderKept]' started.
+Test Case '-[MurmurCoreTests.NoteSearchTests testNotesWithoutMatchesAreSkippedAndOrderKept]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.NoteSearchTests testNoteWithOnlyPlainTranscriptIsSearched]' started.
+Test Case '-[MurmurCoreTests.NoteSearchTests testNoteWithOnlyPlainTranscriptIsSearched]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.NoteSearchTests testScopes]' started.
+Test Case '-[MurmurCoreTests.NoteSearchTests testScopes]' passed (0.001 seconds).
+Test Case '-[MurmurCoreTests.NoteSearchTests testSummaryHitIsNotCrowdedOut]' started.
+Test Case '-[MurmurCoreTests.NoteSearchTests testSummaryHitIsNotCrowdedOut]' passed (0.000 seconds).
+Test Suite 'NoteSearchTests' passed at 2026-10-28 09:43:53.776.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'NoteSummaryTests' started at 2026-10-28 09:43:53.776.
+Test Case '-[MurmurCoreTests.NoteSummaryTests testEmptyIsNil]' started.
+Test Case '-[MurmurCoreTests.NoteSummaryTests testEmptyIsNil]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.NoteSummaryTests testExportUsesPlainText]' started.
+Test Case '-[MurmurCoreTests.NoteSummaryTests testExportUsesPlainText]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.NoteSummaryTests testPlainTextShowsChecklist]' started.
+Test Case '-[MurmurCoreTests.NoteSummaryTests testPlainTextShowsChecklist]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.NoteSummaryTests testPlainTextSummaryStillLoads]' started.
+Test Case '-[MurmurCoreTests.NoteSummaryTests testPlainTextSummaryStillLoads]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.NoteSummaryTests testRoundTrip]' started.
+Test Case '-[MurmurCoreTests.NoteSummaryTests testRoundTrip]' passed (0.000 seconds).
+Test Suite 'NoteSummaryTests' passed at 2026-10-28 09:43:53.777.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'OnboardingControllerTests' started at 2026-10-28 09:43:53.777.
+Test Case '-[MurmurCoreTests.OnboardingControllerTests testPageCanBeWordedForIPad]' started.
+Test Case '-[MurmurCoreTests.OnboardingControllerTests testPageCanBeWordedForIPad]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.OnboardingControllerTests testPagesHaveCopy]' started.
+Test Case '-[MurmurCoreTests.OnboardingControllerTests testPagesHaveCopy]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.OnboardingControllerTests testSelectJumpsToPageAndIgnoresOutOfRange]' started.
+Test Case '-[MurmurCoreTests.OnboardingControllerTests testSelectJumpsToPageAndIgnoresOutOfRange]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.OnboardingControllerTests testSkipStillShowsMicrophoneStep]' started.
+Test Case '-[MurmurCoreTests.OnboardingControllerTests testSkipStillShowsMicrophoneStep]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.OnboardingControllerTests testStartIndexIsClamped]' started.
+Test Case '-[MurmurCoreTests.OnboardingControllerTests testStartIndexIsClamped]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.OnboardingControllerTests testWalksThroughPagesThenMicrophone]' started.
+Test Case '-[MurmurCoreTests.OnboardingControllerTests testWalksThroughPagesThenMicrophone]' passed (0.000 seconds).
+Test Suite 'OnboardingControllerTests' passed at 2026-10-28 09:43:53.779.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'PlanTests' started at 2026-10-28 09:43:53.779.
+Test Case '-[MurmurCoreTests.PlanTests testPlaceholderOffers]' started.
+Test Case '-[MurmurCoreTests.PlanTests testPlaceholderOffers]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.PlanTests testProductIDsAreUnique]' started.
+Test Case '-[MurmurCoreTests.PlanTests testProductIDsAreUnique]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.PlanTests testYearlyWithoutTrial]' started.
+Test Case '-[MurmurCoreTests.PlanTests testYearlyWithoutTrial]' passed (0.000 seconds).
+Test Suite 'PlanTests' passed at 2026-10-28 09:43:53.781.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'PlaybackControllerTests' started at 2026-10-28 09:43:53.781.
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testDemoEngineAdvances]' started.
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testDemoEngineAdvances]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testLoadFailureDisablesPlayback]' started.
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testLoadFailureDisablesPlayback]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testLoadSetsDuration]' started.
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testLoadSetsDuration]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testNoPlayingLineBeforeFirstSegment]' started.
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testNoPlayingLineBeforeFirstSegment]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testPlayingFromTheEndRestarts]' started.
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testPlayingFromTheEndRestarts]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testPlaySegmentSeeksAndPlays]' started.
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testPlaySegmentSeeksAndPlays]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testSeekClampsAndSkips]' started.
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testSeekClampsAndSkips]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testSpeedCycles]' started.
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testSpeedCycles]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testToggleAndTick]' started.
+Test Case '-[MurmurCoreTests.PlaybackControllerTests testToggleAndTick]' passed (0.000 seconds).
+Test Suite 'PlaybackControllerTests' passed at 2026-10-28 09:43:53.783.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'RealtimeFactorTests' started at 2026-10-28 09:43:53.783.
+Test Case '-[MurmurCoreTests.RealtimeFactorTests testFactorIsAudioOverElapsed]' started.
+Test Case '-[MurmurCoreTests.RealtimeFactorTests testFactorIsAudioOverElapsed]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.RealtimeFactorTests testNoFactorUntilThereIsSomethingToMeasure]' started.
+Test Case '-[MurmurCoreTests.RealtimeFactorTests testNoFactorUntilThereIsSomethingToMeasure]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.RealtimeFactorTests testText]' started.
+Test Case '-[MurmurCoreTests.RealtimeFactorTests testText]' passed (0.000 seconds).
+Test Suite 'RealtimeFactorTests' passed at 2026-10-28 09:43:53.784.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'RecordShortcutTests' started at 2026-10-28 09:43:53.784.
+Test Case '-[MurmurCoreTests.RecordShortcutTests testDefaultDisplay]' started.
+Test Case '-[MurmurCoreTests.RecordShortcutTests testDefaultDisplay]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.RecordShortcutTests testNeedsAModifier]' started.
+Test Case '-[MurmurCoreTests.RecordShortcutTests testNeedsAModifier]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.RecordShortcutTests testSettingsSaveAndIgnoreInvalid]' started.
+Test Case '-[MurmurCoreTests.RecordShortcutTests testSettingsSaveAndIgnoreInvalid]' passed (0.002 seconds).
+Test Suite 'RecordShortcutTests' passed at 2026-10-28 09:43:53.787.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'RecordingControllerTests' started at 2026-10-28 09:43:53.787.
+Test Case '-[MurmurCoreTests.RecordingControllerTests testBookmarksAreSavedImmediately]' started.
+Test Case '-[MurmurCoreTests.RecordingControllerTests testBookmarksAreSavedImmediately]' passed (0.006 seconds).
+Test Case '-[MurmurCoreTests.RecordingControllerTests testCancelDeletesNoteAndAudio]' started.
+Test Case '-[MurmurCoreTests.RecordingControllerTests testCancelDeletesNoteAndAudio]' passed (0.007 seconds).
+Test Case '-[MurmurCoreTests.RecordingControllerTests testElapsedSkipsPausedTime]' started.
+Test Case '-[MurmurCoreTests.RecordingControllerTests testElapsedSkipsPausedTime]' passed (0.005 seconds).
+Test Case '-[MurmurCoreTests.RecordingControllerTests testEngineFailureDiscardsTheNote]' started.
+Test Case '-[MurmurCoreTests.RecordingControllerTests testEngineFailureDiscardsTheNote]' passed (0.007 seconds).
+Test Case '-[MurmurCoreTests.RecordingControllerTests testInterruptionPauses]' started.
+Test Case '-[MurmurCoreTests.RecordingControllerTests testInterruptionPauses]' passed (0.004 seconds).
+Test Case '-[MurmurCoreTests.RecordingControllerTests testLevelsStayFixedLengthAndFollowTheMic]' started.
+Test Case '-[MurmurCoreTests.RecordingControllerTests testLevelsStayFixedLengthAndFollowTheMic]' passed (0.005 seconds).
+Test Case '-[MurmurCoreTests.RecordingControllerTests testPermissionDeniedFailsWithoutCreatingNote]' started.
+Test Case '-[MurmurCoreTests.RecordingControllerTests testPermissionDeniedFailsWithoutCreatingNote]' passed (0.004 seconds).
+Test Case '-[MurmurCoreTests.RecordingControllerTests testRecoveryQueuesNotesWithAudioAndFailsOnesWithout]' started.
+Test Case '-[MurmurCoreTests.RecordingControllerTests testRecoveryQueuesNotesWithAudioAndFailsOnesWithout]' passed (0.034 seconds).
+Test Case '-[MurmurCoreTests.RecordingControllerTests testStartCreatesNoteAndStartsEngine]' started.
+Test Case '-[MurmurCoreTests.RecordingControllerTests testStartCreatesNoteAndStartsEngine]' passed (0.012 seconds).
+Test Case '-[MurmurCoreTests.RecordingControllerTests testStopBeforeStartDoesNothing]' started.
+Test Case '-[MurmurCoreTests.RecordingControllerTests testStopBeforeStartDoesNothing]' passed (0.002 seconds).
+Test Case '-[MurmurCoreTests.RecordingControllerTests testStopQueuesNoteWithDuration]' started.
+Test Case '-[MurmurCoreTests.RecordingControllerTests testStopQueuesNoteWithDuration]' passed (0.005 seconds).
+Test Suite 'RecordingControllerTests' passed at 2026-10-28 09:43:53.880.
+	 Executed 11 tests, with 0 failures (0 unexpected) in 0.091 (0.093) seconds
+Test Suite 'RecordingTimelineTests' started at 2026-10-28 09:43:53.880.
+Test Case '-[MurmurCoreTests.RecordingTimelineTests testBookmarks]' started.
+Test Case '-[MurmurCoreTests.RecordingTimelineTests testBookmarks]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.RecordingTimelineTests testElapsedAcrossPauses]' started.
+Test Case '-[MurmurCoreTests.RecordingTimelineTests testElapsedAcrossPauses]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.RecordingTimelineTests testStartAndPauseAreIdempotent]' started.
+Test Case '-[MurmurCoreTests.RecordingTimelineTests testStartAndPauseAreIdempotent]' passed (0.000 seconds).
+Test Suite 'RecordingTimelineTests' passed at 2026-10-28 09:43:53.881.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'SearchContextTests' started at 2026-10-28 09:43:53.881.
+Test Case '-[MurmurCoreTests.SearchContextTests testEmptyQueryOrNoMatchGivesNothing]' started.
+Test Case '-[MurmurCoreTests.SearchContextTests testEmptyQueryOrNoMatchGivesNothing]' passed (0.002 seconds).
+Test Case '-[MurmurCoreTests.SearchContextTests testLimitsMatches]' started.
+Test Case '-[MurmurCoreTests.SearchContextTests testLimitsMatches]' passed (0.002 seconds).
+Test Case '-[MurmurCoreTests.SearchContextTests testMatchesGetNeighbourLines]' started.
+Test Case '-[MurmurCoreTests.SearchContextTests testMatchesGetNeighbourLines]' passed (0.002 seconds).
+Test Suite 'SearchContextTests' passed at 2026-10-28 09:43:53.888.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.007 (0.007) seconds
+Test Suite 'SpeakersTests' started at 2026-10-28 09:43:53.888.
+Test Case '-[MurmurCoreTests.SpeakersTests testCount]' started.
+Test Case '-[MurmurCoreTests.SpeakersTests testCount]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.SpeakersTests testNames]' started.
+Test Case '-[MurmurCoreTests.SpeakersTests testNames]' passed (0.000 seconds).
+Test Suite 'SpeakersTests' passed at 2026-10-28 09:43:53.889.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+Test Suite 'SpeechModelManagerTests' started at 2026-10-28 09:43:53.889.
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testCancelIgnoresLateResult]' started.
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testCancelIgnoresLateResult]' passed (0.454 seconds).
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testDefaults]' started.
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testDefaults]' passed (0.002 seconds).
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testDeleteRemovesModel]' started.
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testDeleteRemovesModel]' passed (0.031 seconds).
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testDownloadBecomesReady]' started.
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testDownloadBecomesReady]' passed (0.041 seconds).
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testFailureShowsMessageAndCanRetry]' started.
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testFailureShowsMessageAndCanRetry]' passed (0.108 seconds).
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testMobileDataAllowedWhenToggleOff]' started.
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testMobileDataAllowedWhenToggleOff]' passed (0.059 seconds).
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testReadyStatePersistsAcrossLaunches]' started.
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testReadyStatePersistsAcrossLaunches]' passed (0.042 seconds).
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testSelectionPersistsAndIsBlockedWhileDownloading]' started.
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testSelectionPersistsAndIsBlockedWhileDownloading]' passed (0.006 seconds).
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testWifiOnlyBlocksMobileData]' started.
+Test Case '-[MurmurCoreTests.SpeechModelManagerTests testWifiOnlyBlocksMobileData]' passed (0.002 seconds).
+Test Suite 'SpeechModelManagerTests' passed at 2026-10-28 09:43:54.637.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.745 (0.748) seconds
+Test Suite 'SpeechModelTests' started at 2026-10-28 09:43:54.637.
+Test Case '-[MurmurCoreTests.SpeechModelTests testByteText]' started.
+Test Case '-[MurmurCoreTests.SpeechModelTests testByteText]' passed (0.001 seconds).
+Test Case '-[MurmurCoreTests.SpeechModelTests testChoicesAndLookup]' started.
+Test Case '-[MurmurCoreTests.SpeechModelTests testChoicesAndLookup]' passed (0.001 seconds).
+Test Case '-[MurmurCoreTests.SpeechModelTests testETA]' started.
+Test Case '-[MurmurCoreTests.SpeechModelTests testETA]' passed (0.001 seconds).
+Test Case '-[MurmurCoreTests.SpeechModelTests testETAText]' started.
+Test Case '-[MurmurCoreTests.SpeechModelTests testETAText]' passed (0.001 seconds).
+Test Suite 'SpeechModelTests' passed at 2026-10-28 09:43:54.640.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.003 (0.004) seconds
+Test Suite 'SummarizerTests' started at 2026-10-28 09:43:54.641.
+Test Case '-[MurmurCoreTests.SummarizerTests testEmptyTranscriptThrows]' started.
+Test Case '-[MurmurCoreTests.SummarizerTests testEmptyTranscriptThrows]' passed (0.001 seconds).
+Test Case '-[MurmurCoreTests.SummarizerTests testLongTranscriptIsSummarizedInPartsThenCombined]' started.
+Test Case '-[MurmurCoreTests.SummarizerTests testLongTranscriptIsSummarizedInPartsThenCombined]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.SummarizerTests testShortTranscriptUsesOneRequest]' started.
+Test Case '-[MurmurCoreTests.SummarizerTests testShortTranscriptUsesOneRequest]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.SummarizerTests testTemplatesUseDifferentInstructions]' started.
+Test Case '-[MurmurCoreTests.SummarizerTests testTemplatesUseDifferentInstructions]' passed (0.000 seconds).
+Test Suite 'SummarizerTests' passed at 2026-10-28 09:43:54.643.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'SummaryControllerTests' started at 2026-10-28 09:43:54.643.
+Test Case '-[MurmurCoreTests.SummaryControllerTests testEmptySegmentsFail]' started.
+Test Case '-[MurmurCoreTests.SummaryControllerTests testEmptySegmentsFail]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.SummaryControllerTests testFailureKeepsMessage]' started.
+Test Case '-[MurmurCoreTests.SummaryControllerTests testFailureKeepsMessage]' passed (0.001 seconds).
+Test Case '-[MurmurCoreTests.SummaryControllerTests testGenerateReturnsSummaryAndReturnsToIdle]' started.
+Test Case '-[MurmurCoreTests.SummaryControllerTests testGenerateReturnsSummaryAndReturnsToIdle]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.SummaryControllerTests testUnavailableReportsReason]' started.
+Test Case '-[MurmurCoreTests.SummaryControllerTests testUnavailableReportsReason]' passed (0.000 seconds).
+Test Suite 'SummaryControllerTests' passed at 2026-10-28 09:43:54.645.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'SummaryParserTests' started at 2026-10-28 09:43:54.645.
+Test Case '-[MurmurCoreTests.SummaryParserTests testBulletTemplateIgnoresActionItems]' started.
+Test Case '-[MurmurCoreTests.SummaryParserTests testBulletTemplateIgnoresActionItems]' passed (0.001 seconds).
+Test Case '-[MurmurCoreTests.SummaryParserTests testMarkersAreCaseInsensitive]' started.
+Test Case '-[MurmurCoreTests.SummaryParserTests testMarkersAreCaseInsensitive]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.SummaryParserTests testNoneMeansNoItems]' started.
+Test Case '-[MurmurCoreTests.SummaryParserTests testNoneMeansNoItems]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.SummaryParserTests testParsesSummaryAndActionItems]' started.
+Test Case '-[MurmurCoreTests.SummaryParserTests testParsesSummaryAndActionItems]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.SummaryParserTests testReplyWithoutMarkersIsKeptWhole]' started.
+Test Case '-[MurmurCoreTests.SummaryParserTests testReplyWithoutMarkersIsKeptWhole]' passed (0.000 seconds).
+Test Suite 'SummaryParserTests' passed at 2026-10-28 09:43:54.648.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'SummaryStoreTests' started at 2026-10-28 09:43:54.648.
+Test Case '-[MurmurCoreTests.SummaryStoreTests testSetAndToggleActionItem]' started.
+Test Case '-[MurmurCoreTests.SummaryStoreTests testSetAndToggleActionItem]' passed (0.006 seconds).
+Test Suite 'SummaryStoreTests' passed at 2026-10-28 09:43:54.654.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.006 (0.006) seconds
+Test Suite 'SwipeRevealTests' started at 2026-10-28 09:43:54.654.
+Test Case '-[MurmurCoreTests.SwipeRevealTests testOffsetFollowsFingerAndStopsAtClosed]' started.
+Test Case '-[MurmurCoreTests.SwipeRevealTests testOffsetFollowsFingerAndStopsAtClosed]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.SwipeRevealTests testOffsetResistsPastFullyOpen]' started.
+Test Case '-[MurmurCoreTests.SwipeRevealTests testOffsetResistsPastFullyOpen]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.SwipeRevealTests testSettle]' started.
+Test Case '-[MurmurCoreTests.SwipeRevealTests testSettle]' passed (0.000 seconds).
+Test Suite 'SwipeRevealTests' passed at 2026-10-28 09:43:54.655.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'SyncGuardTests' started at 2026-10-28 09:43:54.655.
+Test Case '-[MurmurCoreTests.SyncGuardTests testAudioAvailability]' started.
+Test Case '-[MurmurCoreTests.SyncGuardTests testAudioAvailability]' passed (0.011 seconds).
+Test Case '-[MurmurCoreTests.SyncGuardTests testOrphanedAudioIsRemovedOnlyWhenOldAndUnused]' started.
+Test Case '-[MurmurCoreTests.SyncGuardTests testOrphanedAudioIsRemovedOnlyWhenOldAndUnused]' passed (0.010 seconds).
+Test Case '-[MurmurCoreTests.SyncGuardTests testRecoveryLeavesRemoteRecordingAlone]' started.
+Test Case '-[MurmurCoreTests.SyncGuardTests testRecoveryLeavesRemoteRecordingAlone]' passed (0.007 seconds).
+Test Case '-[MurmurCoreTests.SyncGuardTests testRecoveryWithoutSyncFailsMissingAudio]' started.
+Test Case '-[MurmurCoreTests.SyncGuardTests testRecoveryWithoutSyncFailsMissingAudio]' passed (0.005 seconds).
+Test Case '-[MurmurCoreTests.SyncGuardTests testStaleTranscribingNoteFromAnotherDeviceIsNotRequeued]' started.
+Test Case '-[MurmurCoreTests.SyncGuardTests testStaleTranscribingNoteFromAnotherDeviceIsNotRequeued]' passed (0.009 seconds).
+Test Case '-[MurmurCoreTests.SyncGuardTests testSyncedQueuedNoteFromAnotherDeviceIsLeftAlone]' started.
+Test Case '-[MurmurCoreTests.SyncGuardTests testSyncedQueuedNoteFromAnotherDeviceIsLeftAlone]' passed (0.007 seconds).
+Test Case '-[MurmurCoreTests.SyncGuardTests testWithoutSyncMissingAudioStillFails]' started.
+Test Case '-[MurmurCoreTests.SyncGuardTests testWithoutSyncMissingAudioStillFails]' passed (0.005 seconds).
+Test Suite 'SyncGuardTests' passed at 2026-10-28 09:43:54.712.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.055 (0.056) seconds
+Test Suite 'SyncStateTests' started at 2026-10-28 09:43:54.712.
+Test Case '-[MurmurCoreTests.SyncStateTests testBackupCopiesStoreAndSideFiles]' started.
+Test Case '-[MurmurCoreTests.SyncStateTests testBackupCopiesStoreAndSideFiles]' passed (0.003 seconds).
+Test Case '-[MurmurCoreTests.SyncStateTests testBackupWithNoStoreDoesNothing]' started.
+Test Case '-[MurmurCoreTests.SyncStateTests testBackupWithNoStoreDoesNothing]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.SyncStateTests testDecide]' started.
+Test Case '-[MurmurCoreTests.SyncStateTests testDecide]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.SyncStateTests testMessages]' started.
+Test Case '-[MurmurCoreTests.SyncStateTests testMessages]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.SyncStateTests testSettingPersistsAndTakesEffectOnRestart]' started.
+Test Case '-[MurmurCoreTests.SyncStateTests testSettingPersistsAndTakesEffectOnRestart]' passed (0.002 seconds).
+Test Suite 'SyncStateTests' passed at 2026-10-28 09:43:54.717.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.005 (0.006) seconds
+Test Suite 'TalkTimeTests' started at 2026-10-28 09:43:54.717.
+Test Case '-[MurmurCoreTests.TalkTimeTests testNoSpeakersGivesNoShares]' started.
+Test Case '-[MurmurCoreTests.TalkTimeTests testNoSpeakersGivesNoShares]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TalkTimeTests testSharesAddUpAndSortLongestFirst]' started.
+Test Case '-[MurmurCoreTests.TalkTimeTests testSharesAddUpAndSortLongestFirst]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TalkTimeTests testUnnamedSpeakersGetDefaultNames]' started.
+Test Case '-[MurmurCoreTests.TalkTimeTests testUnnamedSpeakersGetDefaultNames]' passed (0.000 seconds).
+Test Suite 'TalkTimeTests' passed at 2026-10-28 09:43:54.718.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'TextSearchTests' started at 2026-10-28 09:43:54.718.
+Test Case '-[MurmurCoreTests.TextSearchTests testEmptyQueryFindsNothing]' started.
+Test Case '-[MurmurCoreTests.TextSearchTests testEmptyQueryFindsNothing]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TextSearchTests testFindsIgnoringCaseAndAccents]' started.
+Test Case '-[MurmurCoreTests.TextSearchTests testFindsIgnoringCaseAndAccents]' passed (0.001 seconds).
+Test Case '-[MurmurCoreTests.TextSearchTests testOffsets]' started.
+Test Case '-[MurmurCoreTests.TextSearchTests testOffsets]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TextSearchTests testReplacingAllDoesNotRematchReplacement]' started.
+Test Case '-[MurmurCoreTests.TextSearchTests testReplacingAllDoesNotRematchReplacement]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TextSearchTests testReplacingOneOccurrence]' started.
+Test Case '-[MurmurCoreTests.TextSearchTests testReplacingOneOccurrence]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TextSearchTests testSnippetCutsLongTextAtWordBoundaries]' started.
+Test Case '-[MurmurCoreTests.TextSearchTests testSnippetCutsLongTextAtWordBoundaries]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TextSearchTests testSnippetKeepsShortTextWhole]' started.
+Test Case '-[MurmurCoreTests.TextSearchTests testSnippetKeepsShortTextWhole]' passed (0.000 seconds).
+Test Suite 'TextSearchTests' passed at 2026-10-28 09:43:54.721.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'ThemeTests' started at 2026-10-28 09:43:54.721.
+Test Case '-[MurmurUITests.ThemeTests testPaletteMatchesSpec]' started.
+Test Case '-[MurmurUITests.ThemeTests testPaletteMatchesSpec]' passed (0.000 seconds).
+Test Case '-[MurmurUITests.ThemeTests testStaggerIsWithinSpecRange]' started.
+Test Case '-[MurmurUITests.ThemeTests testStaggerIsWithinSpecRange]' passed (0.000 seconds).
+Test Case '-[MurmurUITests.ThemeTests testTapTargetMeetsMinimum]' started.
+Test Case '-[MurmurUITests.ThemeTests testTapTargetMeetsMinimum]' passed (0.000 seconds).
+Test Case '-[MurmurUITests.ThemeTests testTextIsReadableOnItsBackgrounds]' started.
+Test Case '-[MurmurUITests.ThemeTests testTextIsReadableOnItsBackgrounds]' passed (0.000 seconds).
+Test Suite 'ThemeTests' passed at 2026-10-28 09:43:54.723.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'TimecodeTests' started at 2026-10-28 09:43:54.723.
+Test Case '-[MurmurCoreTests.TimecodeTests testBadInputClampsToZero]' started.
+Test Case '-[MurmurCoreTests.TimecodeTests testBadInputClampsToZero]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TimecodeTests testHoursSwitchFormat]' started.
+Test Case '-[MurmurCoreTests.TimecodeTests testHoursSwitchFormat]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TimecodeTests testMinutesAndSeconds]' started.
+Test Case '-[MurmurCoreTests.TimecodeTests testMinutesAndSeconds]' passed (0.000 seconds).
+Test Suite 'TimecodeTests' passed at 2026-10-28 09:43:54.723.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'TranscriptChunkerTests' started at 2026-10-28 09:43:54.723.
+Test Case '-[MurmurCoreTests.TranscriptChunkerTests testEmptyInputGivesNoChunks]' started.
+Test Case '-[MurmurCoreTests.TranscriptChunkerTests testEmptyInputGivesNoChunks]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TranscriptChunkerTests testFormatterNamesSpeakersAndSkipsBlankLines]' started.
+Test Case '-[MurmurCoreTests.TranscriptChunkerTests testFormatterNamesSpeakersAndSkipsBlankLines]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TranscriptChunkerTests testKeepsShortTranscriptInOneChunk]' started.
+Test Case '-[MurmurCoreTests.TranscriptChunkerTests testKeepsShortTranscriptInOneChunk]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TranscriptChunkerTests testSplitsBetweenLines]' started.
+Test Case '-[MurmurCoreTests.TranscriptChunkerTests testSplitsBetweenLines]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TranscriptChunkerTests testSplitsOverlongLineAtSpaces]' started.
+Test Case '-[MurmurCoreTests.TranscriptChunkerTests testSplitsOverlongLineAtSpaces]' passed (0.000 seconds).
+Test Suite 'TranscriptChunkerTests' passed at 2026-10-28 09:43:54.725.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'TranscriptEditorTests' started at 2026-10-28 09:43:54.725.
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testDeleteAndUndo]' started.
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testDeleteAndUndo]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testEditingAnotherSegmentStartsNewUndoStep]' started.
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testEditingAnotherSegmentStartsNewUndoStep]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testMergeWithNext]' started.
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testMergeWithNext]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testSetSpeaker]' started.
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testSetSpeaker]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testSetTextAndUndo]' started.
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testSetTextAndUndo]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testSplitInterpolatesTime]' started.
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testSplitInterpolatesTime]' passed (0.001 seconds).
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testSplitRejectsEdgesAndEmptyHalves]' started.
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testSplitRejectsEdgesAndEmptyHalves]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testTypingInOneSegmentIsOneUndoStep]' started.
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testTypingInOneSegmentIsOneUndoStep]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testUnknownIDIsIgnored]' started.
+Test Case '-[MurmurCoreTests.TranscriptEditorTests testUnknownIDIsIgnored]' passed (0.000 seconds).
+Test Suite 'TranscriptEditorTests' passed at 2026-10-28 09:43:54.730.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.003 (0.005) seconds
+Test Suite 'TranscriptionQueueTests' started at 2026-10-28 09:43:54.730.
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testAudioIsDeletedAfterTranscribingWhenEnabled]' started.
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testAudioIsDeletedAfterTranscribingWhenEnabled]' passed (0.008 seconds).
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testAudioIsKeptByDefault]' started.
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testAudioIsKeptByDefault]' passed (0.007 seconds).
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testCancellationReturnsNoteToQueueAndStops]' started.
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testCancellationReturnsNoteToQueueAndStops]' passed (0.008 seconds).
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testDictionaryTermsArePassedAsVocabulary]' started.
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testDictionaryTermsArePassedAsVocabulary]' passed (0.009 seconds).
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testEngineFailureMarksFailed]' started.
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testEngineFailureMarksFailed]' passed (0.008 seconds).
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testLanguageSettingIsPassedToTheEngine]' started.
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testLanguageSettingIsPassedToTheEngine]' passed (0.011 seconds).
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testMissingAudioMarksFailed]' started.
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testMissingAudioMarksFailed]' passed (0.006 seconds).
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testOldestFirstAndOnlyQueuedNotes]' started.
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testOldestFirstAndOnlyQueuedNotes]' passed (0.011 seconds).
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testQueuedNoteBecomesReady]' started.
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testQueuedNoteBecomesReady]' passed (0.008 seconds).
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testStaleTranscribingNoteIsRequeuedAndFinished]' started.
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testStaleTranscribingNoteIsRequeuedAndFinished]' passed (0.008 seconds).
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testStartRunsInBackground]' started.
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testStartRunsInBackground]' passed (0.043 seconds).
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testWithoutEngineNotesStayQueued]' started.
+Test Case '-[MurmurCoreTests.TranscriptionQueueTests testWithoutEngineNotesStayQueued]' passed (0.005 seconds).
+Test Suite 'TranscriptionQueueTests' passed at 2026-10-28 09:43:54.864.
+	 Executed 12 tests, with 0 failures (0 unexpected) in 0.132 (0.134) seconds
+Test Suite 'WatchInboxTests' started at 2026-10-28 09:43:54.864.
+Test Case '-[MurmurCoreTests.WatchInboxTests testFailedConversionCanBeRetried]' started.
+Test Case '-[MurmurCoreTests.WatchInboxTests testFailedConversionCanBeRetried]' passed (0.003 seconds).
+Test Case '-[MurmurCoreTests.WatchInboxTests testReceiveCreatesQueuedWatchNote]' started.
+Test Case '-[MurmurCoreTests.WatchInboxTests testReceiveCreatesQueuedWatchNote]' passed (0.007 seconds).
+Test Case '-[MurmurCoreTests.WatchInboxTests testSameIdTwiceMakesOneNote]' started.
+Test Case '-[MurmurCoreTests.WatchInboxTests testSameIdTwiceMakesOneNote]' passed (0.006 seconds).
+Test Suite 'WatchInboxTests' passed at 2026-10-28 09:43:54.881.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.016 (0.016) seconds
+Test Suite 'WatchOutboxTests' started at 2026-10-28 09:43:54.881.
+Test Case '-[MurmurCoreTests.WatchOutboxTests testAddPersistsAndReloads]' started.
+Test Case '-[MurmurCoreTests.WatchOutboxTests testAddPersistsAndReloads]' passed (0.002 seconds).
+Test Case '-[MurmurCoreTests.WatchOutboxTests testChangeCallback]' started.
+Test Case '-[MurmurCoreTests.WatchOutboxTests testChangeCallback]' passed (0.001 seconds).
+Test Case '-[MurmurCoreTests.WatchOutboxTests testDeleteRemovesAudio]' started.
+Test Case '-[MurmurCoreTests.WatchOutboxTests testDeleteRemovesAudio]' passed (0.001 seconds).
+Test Case '-[MurmurCoreTests.WatchOutboxTests testNotesTodayAndSnapshot]' started.
+Test Case '-[MurmurCoreTests.WatchOutboxTests testNotesTodayAndSnapshot]' passed (0.001 seconds).
+Test Case '-[MurmurCoreTests.WatchOutboxTests testOldDeliveredRecordingsAreTrimmed]' started.
+Test Case '-[MurmurCoreTests.WatchOutboxTests testOldDeliveredRecordingsAreTrimmed]' passed (0.005 seconds).
+Test Case '-[MurmurCoreTests.WatchOutboxTests testSnapshotSaveAndLoad]' started.
+Test Case '-[MurmurCoreTests.WatchOutboxTests testSnapshotSaveAndLoad]' passed (0.002 seconds).
+Test Case '-[MurmurCoreTests.WatchOutboxTests testWaitingCountAndDelivery]' started.
+Test Case '-[MurmurCoreTests.WatchOutboxTests testWaitingCountAndDelivery]' passed (0.002 seconds).
+Test Suite 'WatchOutboxTests' passed at 2026-10-28 09:43:54.894.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.013 (0.014) seconds
+Test Suite 'WatchRecordingControllerTests' started at 2026-10-28 09:43:54.894.
+Test Case '-[MurmurCoreTests.WatchRecordingControllerTests testCancelRemovesFile]' started.
+Test Case '-[MurmurCoreTests.WatchRecordingControllerTests testCancelRemovesFile]' passed (0.001 seconds).
+Test Case '-[MurmurCoreTests.WatchRecordingControllerTests testPauseDoesNotCountTowardsDuration]' started.
+Test Case '-[MurmurCoreTests.WatchRecordingControllerTests testPauseDoesNotCountTowardsDuration]' passed (0.001 seconds).
+Test Case '-[MurmurCoreTests.WatchRecordingControllerTests testPermissionDenied]' started.
+Test Case '-[MurmurCoreTests.WatchRecordingControllerTests testPermissionDenied]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.WatchRecordingControllerTests testRecordAndStopSavesToOutbox]' started.
+Test Case '-[MurmurCoreTests.WatchRecordingControllerTests testRecordAndStopSavesToOutbox]' passed (0.001 seconds).
+Test Case '-[MurmurCoreTests.WatchRecordingControllerTests testTooShortIsDiscarded]' started.
+Test Case '-[MurmurCoreTests.WatchRecordingControllerTests testTooShortIsDiscarded]' passed (0.001 seconds).
+Test Suite 'WatchRecordingControllerTests' passed at 2026-10-28 09:43:54.900.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.005 (0.005) seconds
+Test Suite 'WatchTransferTests' started at 2026-10-28 09:43:54.900.
+Test Case '-[MurmurCoreTests.WatchTransferTests testBadMetadataIsRejected]' started.
+Test Case '-[MurmurCoreTests.WatchTransferTests testBadMetadataIsRejected]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.WatchTransferTests testMetadataRoundTrip]' started.
+Test Case '-[MurmurCoreTests.WatchTransferTests testMetadataRoundTrip]' passed (0.000 seconds).
+Test Case '-[MurmurCoreTests.WatchTransferTests testMetaLine]' started.
+Test Case '-[MurmurCoreTests.WatchTransferTests testMetaLine]' passed (0.000 seconds).
+Test Suite 'WatchTransferTests' passed at 2026-10-28 09:43:54.901.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'WhisperEndToEndTests' started at 2026-10-28 09:43:54.901.
+Test Case '-[MurmurWhisperTests.WhisperEndToEndTests testTinyModelTranscribesGeneratedSpeech]' started.
+/Users/runner/work/murmur/murmur/Tests/MurmurWhisperTests/WhisperEndToEndTests.swift:12: -[MurmurWhisperTests.WhisperEndToEndTests testTinyModelTranscribesGeneratedSpeech] : Test skipped - Set MURMUR_E2E=1 to run the end-to-end transcription test.
+Test Case '-[MurmurWhisperTests.WhisperEndToEndTests testTinyModelTranscribesGeneratedSpeech]' skipped (0.001 seconds).
+Test Suite 'WhisperEndToEndTests' passed at 2026-10-28 09:43:54.902.
+	 Executed 1 test, with 1 test skipped and 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'MurmurKitPackageTests.xctest' passed at 2026-10-28 09:43:54.902.
+	 Executed 252 tests, with 1 test skipped and 0 failures (0 unexpected) in 2.260 (2.303) seconds
+Test Suite 'All tests' passed at 2026-10-28 09:43:54.902.
+	 Executed 252 tests, with 1 test skipped and 0 failures (0 unexpected) in 2.260 (2.304) seconds
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.
