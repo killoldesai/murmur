@@ -86,12 +86,8 @@ jobs:
             -authenticationKeyPath "$ASC_KEY_PATH" \
             -authenticationKeyID "$ASC_KEY_ID" \
             -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
-            DEVELOPMENT_TEAM="$TEAM" CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="-" \
-            PROVISIONING_PROFILE_SPECIFIER="" \
+            DEVELOPMENT_TEAM="$TEAM" CODE_SIGN_STYLE=Automatic \
             CURRENT_PROJECT_VERSION="${{ github.run_number }}" 2>&1 | tee build/archive.log
-          # The archive is ad-hoc signed (this keeps the entitlements). Archiving normally asks Apple for
-          # development profiles, which needs a registered device. The export step below re-signs with
-          # cloud-managed distribution profiles, which do not.
 
       - name: Export and upload to App Store Connect
         env:
