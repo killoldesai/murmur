@@ -67,14 +67,14 @@ struct MacOnboardingView: View {
 
     private var microphone: some View {
         page(symbol: "mic.fill", title: "Let Murmur hear you",
-             body: "Murmur records from the microphone so it can transcribe. Audio never leaves your Mac. You can also skip this and only import files.",
+             body: "Murmur records from the microphone so it can transcribe. Audio never leaves your Mac.",
              extra: {
                  if micAllowed {
                      Label("Microphone allowed", systemImage: "checkmark.circle.fill")
                          .foregroundStyle(MurmurTheme.Colors.accent).font(MurmurTheme.Mac.bodyBold)
                  }
              },
-             primary: micAllowed ? "Continue" : "Allow microphone") {
+             primary: "Continue") {
             if micAllowed {
                 step = 2
             } else {

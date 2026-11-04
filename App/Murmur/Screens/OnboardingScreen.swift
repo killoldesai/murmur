@@ -265,7 +265,8 @@ struct OnboardingScreen: View {
             }
             Spacer(minLength: 0)
             VStack(spacing: 8) {
-                PrimaryButton(asking ? "Waiting…" : "Allow microphone") {
+                // App Review 5.1.1(iv): the button must say "Continue" and there is no way to skip the system prompt.
+                PrimaryButton(asking ? "Waiting…" : "Continue") {
                     guard !asking else { return }
                     asking = true
                     Task { @MainActor in
@@ -274,10 +275,6 @@ struct OnboardingScreen: View {
                         onFinish()
                     }
                 }
-                Button("Not now", action: onFinish)
-                    .font(MurmurTheme.Fonts.body)
-                    .foregroundStyle(MurmurTheme.Colors.textSecondary)
-                    .frame(minHeight: MurmurTheme.Metrics.minTapTarget)
             }
             .murmurEntrance(index: 3)
         }
