@@ -1,0 +1,103 @@
+Mac app: DerivedDataMac/Build/Products/Debug/Murmur.app
+total 24928
+-rwxr-xr-x  1 runner  staff     16752 Nov 11 04:16 __preview.dylib
+drwxr-xr-x  5 runner  staff       160 Nov 11 04:17 .
+drwxr-xr-x  6 runner  staff       192 Nov 11 04:16 ..
+-rwxr-xr-x  1 runner  staff     40344 Nov 11 04:17 Murmur
+-rwxr-xr-x  1 runner  staff  12698976 Nov 11 04:17 Murmur.debug.dylib
+Executable=/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/MacOS/Murmur
+Identifier=Murmur
+Format=app bundle with Mach-O thin (arm64)
+CodeDirectory v=20400 size=415 flags=0x20002(adhoc,linker-signed) hashes=10+0 location=embedded
+Signature=adhoc
+Aqua
+runner
+main: exit 0
+-rw-r--r--  1 runner  staff  175835 Nov 11 04:17 build/mac-main.png
+Sampling process 47923 for 2 seconds with 1 millisecond of run time between samples
+Sampling completed, processing symbols...
+Sample analysis of process 47923 written to file build/mac-live-sample.txt
+Sampling process 49084 for 2 seconds with 1 millisecond of run time between samples
+Sampling completed, processing symbols...
+Sample analysis of process 49084 written to file build/mac-sample-note-locked.txt
+note-locked: still running after 20 s
+ls: build/mac-note-locked.png: No such file or directory
+no snapshot for note-locked
+Sampling process 52484 for 2 seconds with 1 millisecond of run time between samples
+Sampling completed, processing symbols...
+Sample analysis of process 52484 written to file build/mac-sample-queue.txt
+queue: still running after 20 s
+ls: build/mac-queue.png: No such file or directory
+no snapshot for queue
+Sampling process 53864 for 2 seconds with 1 millisecond of run time between samples
+Sampling completed, processing symbols...
+Sample analysis of process 53864 written to file build/mac-sample-drop.txt
+drop: still running after 20 s
+ls: build/mac-drop.png: No such file or directory
+no snapshot for drop
+Sampling process 56280 for 2 seconds with 1 millisecond of run time between samples
+Sampling completed, processing symbols...
+Sample analysis of process 56280 written to file build/mac-sample-export.txt
+export: still running after 20 s
+ls: build/mac-export.png: No such file or directory
+no snapshot for export
+Sampling process 58890 for 2 seconds with 1 millisecond of run time between samples
+Sampling completed, processing symbols...
+Sample analysis of process 58890 written to file build/mac-sample-paywall.txt
+paywall: still running after 20 s
+ls: build/mac-paywall.png: No such file or directory
+no snapshot for paywall
+Sampling process 59975 for 2 seconds with 1 millisecond of run time between samples
+Sampling completed, processing symbols...
+Sample analysis of process 59975 written to file build/mac-sample-recording.txt
+recording: still running after 20 s
+ls: build/mac-recording.png: No such file or directory
+no snapshot for recording
+Sampling process 62292 for 2 seconds with 1 millisecond of run time between samples
+Sampling completed, processing symbols...
+Sample analysis of process 62292 written to file build/mac-sample-menubar.txt
+menubar: still running after 20 s
+ls: build/mac-menubar.png: No such file or directory
+no snapshot for menubar
+Sampling process 65310 for 2 seconds with 1 millisecond of run time between samples
+Sampling completed, processing symbols...
+Sample analysis of process 65310 written to file build/mac-sample-settings.txt
+settings: still running after 20 s
+ls: build/mac-settings.png: No such file or directory
+no snapshot for settings
+Sampling process 67206 for 2 seconds with 1 millisecond of run time between samples
+Sampling completed, processing symbols...
+Sample analysis of process 67206 written to file build/mac-sample-dictionary.txt
+dictionary: still running after 20 s
+ls: build/mac-dictionary.png: No such file or directory
+no snapshot for dictionary
+Sampling process 68631 for 2 seconds with 1 millisecond of run time between samples
+Sampling completed, processing symbols...
+Sample analysis of process 68631 written to file build/mac-sample-account.txt
+account: still running after 20 s
+ls: build/mac-account.png: No such file or directory
+no snapshot for account
+Sampling process 69843 for 2 seconds with 1 millisecond of run time between samples
+Sampling completed, processing symbols...
+Sample analysis of process 69843 written to file build/mac-sample-onboarding.txt
+onboarding: still running after 20 s
+ls: build/mac-onboarding.png: No such file or directory
+no snapshot for onboarding
+Sampling process 71485 for 2 seconds with 1 millisecond of run time between samples
+Sampling completed, processing symbols...
+Sample analysis of process 71485 written to file build/mac-sample-onboarding-mic.txt
+onboarding-mic: still running after 20 s
+ls: build/mac-onboarding-mic.png: No such file or directory
+no snapshot for onboarding-mic
+Sampling process 72870 for 2 seconds with 1 millisecond of run time between samples
+Sampling completed, processing symbols...
+Sample analysis of process 72870 written to file build/mac-sample-onboarding-shortcut.txt
+onboarding-shortcut: still running after 20 s
+ls: build/mac-onboarding-shortcut.png: No such file or directory
+no snapshot for onboarding-shortcut
+Sampling process 74010 for 2 seconds with 1 millisecond of run time between samples
+Sampling completed, processing symbols...
+Sample analysis of process 74010 written to file build/mac-sample-onboarding-model.txt
+onboarding-model: still running after 20 s
+ls: build/mac-onboarding-model.png: No such file or directory
+no snapshot for onboarding-model

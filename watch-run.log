@@ -1,0 +1,60 @@
+-- watchOS 26.2 --
+    Apple Watch Series 11 (46mm) (BF27CDA7-D9FE-4874-94AE-3E545EEFC7A7) (Shutdown) 
+    Apple Watch Series 11 (42mm) (DD0C6B9E-0BC1-4506-8CE1-B83155A72687) (Shutdown) 
+    Apple Watch Ultra 3 (49mm) (D1E2E9EB-FCDE-4DAB-81D3-1705C565DC8E) (Shutdown) 
+    Apple Watch SE 3 (44mm) (14D65B29-F2A3-4D3C-968C-9FF1A8092064) (Shutdown) 
+watch sim: 7F940202-2A2E-4192-80F3-FF20F7731A28
+Monitoring boot status for Apple Watch Series 11 (46mm) (7F940202-2A2E-4192-80F3-FF20F7731A28).
+[2026-11-11 04:41:15 +0000] Status=4, isTerminal=NO, Elapsed=03:00.
+	Waiting on System App
+
+[2026-11-11 04:41:28 +0000] Status=4, isTerminal=NO, Elapsed=03:00.
+	Waiting on System App
+
+[2026-11-11 04:41:28 +0000] Status=4, isTerminal=NO, Elapsed=03:02.
+	Waiting on System App
+
+[2026-11-11 04:41:28 +0000] Status=4, isTerminal=NO, Elapsed=03:03.
+	Waiting on System App
+
+[2026-11-11 04:41:28 +0000] Status=4, isTerminal=NO, Elapsed=03:04.
+	Waiting on System App
+
+[2026-11-11 04:41:28 +0000] Status=4, isTerminal=NO, Elapsed=03:07.
+	Waiting on System App
+
+[2026-11-11 04:41:28 +0000] Status=4, isTerminal=NO, Elapsed=03:10.
+	Waiting on System App
+
+[2026-11-11 04:41:28 +0000] Status=4294967295, isTerminal=YES, Elapsed=03:11.
+	Finished
+
+app: DerivedDataWatch/Build/Products/Debug-watchsimulator/MurmurWatch.app
+com.appyzone.murmur.watchkitapp: 12228
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 897D8B55-5069-4E50-8B30-618BC7E2631E (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/runner/work/murmur/murmur/build/watch-home.png
+com.appyzone.murmur.watchkitapp: 13217
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 897D8B55-5069-4E50-8B30-618BC7E2631E (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/runner/work/murmur/murmur/build/watch-recording.png
+com.appyzone.murmur.watchkitapp: 14849
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 897D8B55-5069-4E50-8B30-618BC7E2631E (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/runner/work/murmur/murmur/build/watch-saved.png
+com.appyzone.murmur.watchkitapp: 15861
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 897D8B55-5069-4E50-8B30-618BC7E2631E (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/runner/work/murmur/murmur/build/watch-recent.png
+com.appyzone.murmur.watchkitapp: 16431
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 897D8B55-5069-4E50-8B30-618BC7E2631E (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/runner/work/murmur/murmur/build/watch-playback.png
+com.appyzone.murmur.watchkitapp: 16656
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 897D8B55-5069-4E50-8B30-618BC7E2631E (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/runner/work/murmur/murmur/build/watch-locked.png
+com.appyzone.murmur.watchkitapp: 17368
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 897D8B55-5069-4E50-8B30-618BC7E2631E (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/runner/work/murmur/murmur/build/watch-complications.png

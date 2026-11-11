@@ -1,0 +1,600 @@
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/SourcePackages/checkouts/argmax-oss-swift/Sources/WhisperKit/Core/Text/SegmentSeeker.swift (in target 'WhisperKit' from project 'argmax-oss-swift')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/SourcePackages/checkouts/argmax-oss-swift/Sources/WhisperKit/Core/Text/TokenSampler.swift (in target 'WhisperKit' from project 'argmax-oss-swift')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/SourcePackages/checkouts/argmax-oss-swift/Sources/WhisperKit/Core/TextDecoder.swift (in target 'WhisperKit' from project 'argmax-oss-swift')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/SourcePackages/checkouts/argmax-oss-swift/Sources/WhisperKit/Core/TranscribeTask.swift (in target 'WhisperKit' from project 'argmax-oss-swift')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/SourcePackages/checkouts/argmax-oss-swift/Sources/WhisperKit/Core/WhisperKit.swift (in target 'WhisperKit' from project 'argmax-oss-swift')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/SourcePackages/checkouts/argmax-oss-swift/Sources/WhisperKit/Utilities/Concurrency.swift (in target 'WhisperKit' from project 'argmax-oss-swift')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftMergeGeneratedHeaders /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/GeneratedModuleMaps/MurmurUI-Swift.h /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI-Swift.h (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur
+    builtin-swiftHeaderTool -arch arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI-Swift.h -o /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/GeneratedModuleMaps/MurmurUI-Swift.h
+
+SwiftDriverJobDiscovery normal arm64 Compiling Extensions+Internal.swift, Extensions+Public.swift, Logging.swift, ModelUtilities.swift, ResultWriter.swift, TextUtilities.swift, TranscriptionUtilities.swift, WhisperError.swift (in target 'WhisperKit' from project 'argmax-oss-swift')
+
+Copy /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurUI.swiftmodule/arm64-apple-macos.swiftmodule /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI.swiftmodule (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI.swiftmodule /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurUI.swiftmodule/arm64-apple-macos.swiftmodule
+
+Copy /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurUI.swiftmodule/arm64-apple-macos.swiftdoc /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI.swiftdoc (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI.swiftdoc /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurUI.swiftmodule/arm64-apple-macos.swiftdoc
+
+Copy /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurUI.swiftmodule/arm64-apple-macos.abi.json /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI.abi.json (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI.abi.json /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurUI.swiftmodule/arm64-apple-macos.abi.json
+
+Copy /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurUI.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI.swiftsourceinfo (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI.swiftsourceinfo /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurUI.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo
+
+SwiftCompile normal arm64 Compiling\ ComponentGallery.swift,\ MacTheme.swift,\ Motion.swift,\ MurmurTheme.swift,\ WatchTheme.swift /Users/runner/work/murmur/murmur/Sources/MurmurUI/Gallery/ComponentGallery.swift /Users/runner/work/murmur/murmur/Sources/MurmurUI/Theme/MacTheme.swift /Users/runner/work/murmur/murmur/Sources/MurmurUI/Theme/Motion.swift /Users/runner/work/murmur/murmur/Sources/MurmurUI/Theme/MurmurTheme.swift /Users/runner/work/murmur/murmur/Sources/MurmurUI/Theme/WatchTheme.swift (in target 'MurmurUI' from project 'MurmurKit')
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurUI/Gallery/ComponentGallery.swift (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurUI/Theme/MacTheme.swift (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurUI/Theme/Motion.swift (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurUI/Theme/MurmurTheme.swift (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurUI/Theme/WatchTheme.swift (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling AudioChunker.swift, AudioProcessor+IncrementalLoading.swift, AudioProcessor.swift, AudioStreamTranscriber.swift, EnergyVAD.swift, VoiceActivityDetector.swift, AudioEncoder.swift, Configurations.swift, FeatureExtractor.swift (in target 'WhisperKit' from project 'argmax-oss-swift')
+
+SwiftCompile normal arm64 Compiling\ Buttons.swift,\ FlowLayout.swift,\ NoteCard.swift,\ PlanCard.swift,\ PlaybackBar.swift,\ PlaybackPanel.swift /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/Buttons.swift /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/FlowLayout.swift /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/NoteCard.swift /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/PlanCard.swift /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/PlaybackBar.swift /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/PlaybackPanel.swift (in target 'MurmurUI' from project 'MurmurKit')
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/Buttons.swift (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/FlowLayout.swift (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/NoteCard.swift (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/PlanCard.swift (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/PlaybackBar.swift (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/PlaybackPanel.swift (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling Buttons.swift, FlowLayout.swift, NoteCard.swift, PlanCard.swift, PlaybackBar.swift, PlaybackPanel.swift (in target 'MurmurUI' from project 'MurmurKit')
+
+SwiftCompile normal arm64 Compiling\ RecordingControls.swift,\ SettingsRow.swift,\ SwipeToDelete.swift,\ TranscriptRow.swift,\ Waveform.swift /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/RecordingControls.swift /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/SettingsRow.swift /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/SwipeToDelete.swift /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/TranscriptRow.swift /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/Waveform.swift (in target 'MurmurUI' from project 'MurmurKit')
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/RecordingControls.swift (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/SettingsRow.swift (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/SwipeToDelete.swift (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/TranscriptRow.swift (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurUI/Components/Waveform.swift (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling Models.swift, LogitsFilter.swift, SegmentSeeker.swift, TokenSampler.swift, TextDecoder.swift, TranscribeTask.swift, WhisperKit.swift, Concurrency.swift (in target 'WhisperKit' from project 'argmax-oss-swift')
+
+SwiftDriver\ Compilation WhisperKit normal arm64 com.apple.xcode.tools.swift.compiler (in target 'WhisperKit' from project 'argmax-oss-swift')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    builtin-Swift-Compilation -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name WhisperKit -Onone @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/Objects-normal/arm64/WhisperKit.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -DXcode -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-library-evolution -Xfrontend -alias-module-names-in-module-interface -plugin-path /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos13.0 -g -module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -suppress-warnings -index-store-path /Users/runner/work/murmur/murmur/DerivedDataMac/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -Isystem /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -F /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/SDKStatCaches.noindex/macosx26.5-25F70-688ef53f1462e2c8f657fdc38a81448fee0e6409aa6676c5e6c013d148225433.sdkstatcache -output-file-map /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/Objects-normal/arm64/WhisperKit-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/Objects-normal/arm64/WhisperKit.swiftmodule -user-module-version 1.1.1 -validate-clang-modules-once -clang-build-session-file /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Session.modulevalidation -package-name argmax_oss_swift -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/Objects-normal/arm64/WhisperKit_const_extract_protocols.json -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/include -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/Objects-normal/arm64/WhisperKit-Swift.h -working-directory /Users/runner/work/murmur/murmur/Murmur.xcodeproj -experimental-emit-module-separately -disable-cmo
+
+Ld /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/WhisperKit.o normal (in target 'WhisperKit' from project 'argmax-oss-swift')
+    cd /Users/runner/work/murmur/murmur/DerivedDataMac/SourcePackages/checkouts/argmax-oss-swift
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos13.0 -r -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -O0 -w -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -iframework /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -filelist /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/Objects-normal/arm64/WhisperKit.LinkFileList -nostdlib -Xlinker -object_path_lto -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/Objects-normal/arm64/WhisperKit_lto.o -Xlinker -no_deduplicate -Xlinker -dependency_info -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/Objects-normal/arm64/WhisperKit_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/Objects-normal/arm64/WhisperKit.swiftmodule @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/Objects-normal/arm64/WhisperKit-linker-args.resp -o /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/WhisperKit.o
+
+ExtractAppIntentsMetadata (in target 'WhisperKit' from project 'argmax-oss-swift')
+    cd /Users/runner/work/murmur/murmur/DerivedDataMac/SourcePackages/checkouts/argmax-oss-swift
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v17.6.109.0.PPAySu/Metal.xctoolchain --module-name WhisperKit --sdk-root /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk --xcode-version 17F113 --platform-family macOS --deployment-target 13.0 --bundle-identifier argmax-oss-swift.WhisperKit --output /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/WhisperKit.appintents --target-triple arm64-apple-macos13.0 --binary-file /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/WhisperKit.o --dependency-file /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/Objects-normal/arm64/WhisperKit_dependency_info.dat --stringsdata-file /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/Objects-normal/arm64/WhisperKit.SwiftFileList --metadata-file-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/WhisperKit.DependencyMetadataFileList --static-metadata-file-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/WhisperKit.DependencyStaticMetadataFileList --swift-const-vals-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/Objects-normal/arm64/WhisperKit.SwiftConstValuesFileList --force --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-11-11 04:16:39.527 appintentsmetadataprocessor[45499:131436] Starting appintentsmetadataprocessor export
+2026-11-11 04:16:39.559 appintentsmetadataprocessor[45499:131436] Extracted no relevant App Intents symbols, skipping writing output
+
+SwiftDriver MurmurWhisper normal arm64 com.apple.xcode.tools.swift.compiler (in target 'MurmurWhisper' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    builtin-SwiftDriver -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name MurmurWhisper -Onone @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -DXcode -plugin-path /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos15.0 -g -module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/work/murmur/murmur/DerivedDataMac/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -Isystem /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -F /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/SDKStatCaches.noindex/macosx26.5-25F70-688ef53f1462e2c8f657fdc38a81448fee0e6409aa6676c5e6c013d148225433.sdkstatcache -output-file-map /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Session.modulevalidation -package-name murmur -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper_const_extract_protocols.json -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/include -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper-Swift.h -working-directory /Users/runner/work/murmur/murmur/Murmur.xcodeproj -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Compiling RecordingControls.swift, SettingsRow.swift, SwipeToDelete.swift, TranscriptRow.swift, Waveform.swift (in target 'MurmurUI' from project 'MurmurKit')
+
+RegisterExecutionPolicyException /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/WhisperKit.o (in target 'WhisperKit' from project 'argmax-oss-swift')
+    cd /Users/runner/work/murmur/murmur/DerivedDataMac/SourcePackages/checkouts/argmax-oss-swift
+    builtin-RegisterExecutionPolicyException /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/WhisperKit.o
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/CoreML-D2KO3TOG988PKAP9EJ59GH1IS.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Accelerate-6SFK5A1PILUOKNH6S0IMUZR1Q.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/NaturalLanguage-44F0FFKZTDYH8ZS5VOTD9IC32.pcm
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ MurmurWhisper (in target 'MurmurWhisper' from project 'MurmurKit')
+
+EmitSwiftModule normal arm64 (in target 'MurmurWhisper' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 Compiling\ WhisperKitDownloader.swift /Users/runner/work/murmur/murmur/Sources/MurmurWhisper/WhisperKitDownloader.swift (in target 'MurmurWhisper' from project 'MurmurKit')
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurWhisper/WhisperKitDownloader.swift (in target 'MurmurWhisper' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftCompile normal arm64 Compiling\ WhisperKitEngine.swift /Users/runner/work/murmur/murmur/Sources/MurmurWhisper/WhisperKitEngine.swift (in target 'MurmurWhisper' from project 'MurmurKit')
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/Sources/MurmurWhisper/WhisperKitEngine.swift (in target 'MurmurWhisper' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for MurmurWhisper (in target 'MurmurWhisper' from project 'MurmurKit')
+
+SwiftDriver\ Compilation\ Requirements MurmurWhisper normal arm64 com.apple.xcode.tools.swift.compiler (in target 'MurmurWhisper' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name MurmurWhisper -Onone @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -DXcode -plugin-path /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos15.0 -g -module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/work/murmur/murmur/DerivedDataMac/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -Isystem /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -F /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/SDKStatCaches.noindex/macosx26.5-25F70-688ef53f1462e2c8f657fdc38a81448fee0e6409aa6676c5e6c013d148225433.sdkstatcache -output-file-map /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Session.modulevalidation -package-name murmur -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper_const_extract_protocols.json -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/include -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper-Swift.h -working-directory /Users/runner/work/murmur/murmur/Murmur.xcodeproj -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Compiling WhisperKitDownloader.swift (in target 'MurmurWhisper' from project 'MurmurKit')
+
+SwiftMergeGeneratedHeaders /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/GeneratedModuleMaps/MurmurWhisper-Swift.h /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper-Swift.h (in target 'MurmurWhisper' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur
+    builtin-swiftHeaderTool -arch arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper-Swift.h -o /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/GeneratedModuleMaps/MurmurWhisper-Swift.h
+
+Copy /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurWhisper.swiftmodule/arm64-apple-macos.swiftmodule /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.swiftmodule (in target 'MurmurWhisper' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.swiftmodule /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurWhisper.swiftmodule/arm64-apple-macos.swiftmodule
+
+Copy /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurWhisper.swiftmodule/arm64-apple-macos.swiftdoc /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.swiftdoc (in target 'MurmurWhisper' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.swiftdoc /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurWhisper.swiftmodule/arm64-apple-macos.swiftdoc
+
+Copy /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurWhisper.swiftmodule/arm64-apple-macos.abi.json /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.abi.json (in target 'MurmurWhisper' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.abi.json /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurWhisper.swiftmodule/arm64-apple-macos.abi.json
+
+Copy /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurWhisper.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.swiftsourceinfo (in target 'MurmurWhisper' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.swiftsourceinfo /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurWhisper.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo
+
+MkDir /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_output/unthinned (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    /bin/mkdir -p /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_output/unthinned
+
+MkDir /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_output/thinned (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    /bin/mkdir -p /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_output/thinned
+
+GenerateAssetSymbols /Users/runner/work/murmur/murmur/App/MurmurMac/Assets.xcassets (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    /Applications/Xcode_26.6.app/Contents/Developer/usr/bin/actool /Users/runner/work/murmur/murmur/App/MurmurMac/Assets.xcassets --compile /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/Resources --output-format human-readable-text --notices --warnings --export-dependency-info /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_dependencies --output-partial-info-plist /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_generated_info.plist --app-icon AppIcon --enable-on-demand-resources NO --development-region en --target-device mac --minimum-deployment-target 15.0 --platform macosx --bundle-identifier com.appyzone.murmur --generate-swift-asset-symbol-extensions NO --generate-swift-asset-symbols /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources/GeneratedAssetSymbols.swift --generate-objc-asset-symbols /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources/GeneratedAssetSymbols.h --generate-asset-symbol-index /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/* com.apple.actool.compilation-results */
+/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources/GeneratedAssetSymbols.h
+/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources/GeneratedAssetSymbols.swift
+
+
+SwiftDriverJobDiscovery normal arm64 Compiling WhisperKitEngine.swift (in target 'MurmurWhisper' from project 'MurmurKit')
+
+CompileAssetCatalogVariant thinned /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/Resources /Users/runner/work/murmur/murmur/App/MurmurMac/Assets.xcassets (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    /Applications/Xcode_26.6.app/Contents/Developer/usr/bin/actool /Users/runner/work/murmur/murmur/App/MurmurMac/Assets.xcassets --compile /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_dependencies_thinned --output-partial-info-plist /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_generated_info.plist_thinned --app-icon AppIcon --enable-on-demand-resources NO --development-region en --target-device mac --minimum-deployment-target 15.0 --platform macosx
+/* com.apple.actool.compilation-results */
+/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_generated_info.plist_thinned
+/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_output/thinned/AppIcon.icns
+/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_output/thinned/Assets.car
+
+
+SwiftDriver\ Compilation MurmurWhisper normal arm64 com.apple.xcode.tools.swift.compiler (in target 'MurmurWhisper' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    builtin-Swift-Compilation -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name MurmurWhisper -Onone @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -DXcode -plugin-path /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos15.0 -g -module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/work/murmur/murmur/DerivedDataMac/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -Isystem /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -F /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/SDKStatCaches.noindex/macosx26.5-25F70-688ef53f1462e2c8f657fdc38a81448fee0e6409aa6676c5e6c013d148225433.sdkstatcache -output-file-map /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Session.modulevalidation -package-name murmur -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper_const_extract_protocols.json -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/include -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper-Swift.h -working-directory /Users/runner/work/murmur/murmur/Murmur.xcodeproj -experimental-emit-module-separately -disable-cmo
+
+Ld /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurWhisper.o normal (in target 'MurmurWhisper' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos15.0 -r -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -O0 -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -iframework /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -filelist /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.LinkFileList -nostdlib -Xlinker -object_path_lto -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper_lto.o -Xlinker -no_deduplicate -Xlinker -dependency_info -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.swiftmodule @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper-linker-args.resp -o /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurWhisper.o
+
+SwiftDriver MurmurMac normal arm64 com.apple.xcode.tools.swift.compiler (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    builtin-SwiftDriver -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Murmur -Onone @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos15.0 -g -module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/work/murmur/murmur/DerivedDataMac/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/SDKStatCaches.noindex/macosx26.5-25F70-688ef53f1462e2c8f657fdc38a81448fee0e6409aa6676c5e6c013d148225433.sdkstatcache -output-file-map /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/MurmurMac-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/MurmurMac_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-generated-files.hmap -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-own-target-headers.hmap -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/Murmur-1d57bbe91edca00d5c5c4efdac7e190d-VFS/all-product-headers.yaml -Xcc -iquote -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-project-headers.hmap -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/include -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur-Swift.h -working-directory /Users/runner/work/murmur/murmur -experimental-emit-module-separately -disable-cmo
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/ptrcheck-83NPKVYIV0M0CBFBEL23VC85G.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/DeveloperToolsSupport-6X7P8F12W2ZJK5YC6I0APXGE4.pcm
+
+SwiftDriverJobDiscovery normal arm64 Compiling ComponentGallery.swift, MacTheme.swift, Motion.swift, MurmurTheme.swift, WatchTheme.swift (in target 'MurmurUI' from project 'MurmurKit')
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/SwiftShims-1S91Y9YT0XONXMRW44MMGE5SO.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/_SwiftConcurrencyShims-SHDAL5DRUNU3RGYTQ47E6VKO.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/_AvailabilityInternal-3STISEN6T9F1197L5HS3VDACN.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/_Builtin_stddef-DSZOZ9KQ2UBTV6O9YVGI49WRO.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/_Builtin_stdbool-14N4CQN0XJQ6B6UJ67NHT6K25.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/_Builtin_stdarg-CIE7KDDX7TMRZ4CQ58O15PKZZ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/_DarwinFoundation1-DX6ZWRCU8255YH4Z6TU4LYDKJ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/ptrauth-B5JBL8MNKHIPW7Z97FLNHMBL1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/_Builtin_float-8RLY3PBJPLUSTKTL5Q4NNLQRN.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/_DarwinFoundation2-U1FZZKF1DT77Y1CJUB3IHVPE.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/ExtensionFoundation-BVNTA011DA3CNAFP024X9WCH0.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/_Builtin_limits-APQFFUGTPRFGMNJ3SOLXD126K.pcm
+
+ExtractAppIntentsMetadata (in target 'MurmurWhisper' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v17.6.109.0.PPAySu/Metal.xctoolchain --module-name MurmurWhisper --sdk-root /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk --xcode-version 17F113 --platform-family macOS --deployment-target 15.0 --bundle-identifier murmur.MurmurWhisper --output /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurWhisper.appintents --target-triple arm64-apple-macos15.0 --binary-file /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurWhisper.o --dependency-file /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper_dependency_info.dat --stringsdata-file /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.SwiftFileList --metadata-file-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/MurmurWhisper.DependencyMetadataFileList --static-metadata-file-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/MurmurWhisper.DependencyStaticMetadataFileList --swift-const-vals-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.SwiftConstValuesFileList --force --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-11-11 04:16:49.002 appintentsmetadataprocessor[46063:132788] Starting appintentsmetadataprocessor export
+2026-11-11 04:16:49.038 appintentsmetadataprocessor[46063:132788] Extracted no relevant App Intents symbols, skipping writing output
+
+SwiftDriver\ Compilation MurmurUI normal arm64 com.apple.xcode.tools.swift.compiler (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur/Murmur.xcodeproj
+    builtin-Swift-Compilation -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name MurmurUI -Onone @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -DXcode -plugin-path /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos15.0 -g -module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/work/murmur/murmur/DerivedDataMac/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -Isystem /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -F /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/SDKStatCaches.noindex/macosx26.5-25F70-688ef53f1462e2c8f657fdc38a81448fee0e6409aa6676c5e6c013d148225433.sdkstatcache -output-file-map /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Session.modulevalidation -package-name murmur -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI_const_extract_protocols.json -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/include -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI-Swift.h -working-directory /Users/runner/work/murmur/murmur/Murmur.xcodeproj -experimental-emit-module-separately -disable-cmo
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/sys_types-CDQ8J5DVVGM6UEI3WTHMMA9G5.pcm
+
+Ld /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurUI.o normal (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos15.0 -r -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -O0 -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -iframework /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -filelist /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI.LinkFileList -nostdlib -Xlinker -object_path_lto -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI_lto.o -Xlinker -no_deduplicate -Xlinker -dependency_info -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI.swiftmodule @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI-linker-args.resp -o /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurUI.o
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/_Builtin_tgmath-3WYI47DWAGT43FSFQ1NV6O9UI.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/_Builtin_stdint-DKBV5MS0QS3O4YC163DAI0O6F.pcm
+
+ExtractAppIntentsMetadata (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v17.6.109.0.PPAySu/Metal.xctoolchain --module-name MurmurUI --sdk-root /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk --xcode-version 17F113 --platform-family macOS --deployment-target 15.0 --bundle-identifier murmur.MurmurUI --output /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurUI.appintents --target-triple arm64-apple-macos15.0 --binary-file /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurUI.o --dependency-file /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI_dependency_info.dat --stringsdata-file /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI.SwiftFileList --metadata-file-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/MurmurUI.DependencyMetadataFileList --static-metadata-file-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/MurmurUI.DependencyStaticMetadataFileList --swift-const-vals-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI.SwiftConstValuesFileList --force --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-11-11 04:16:49.247 appintentsmetadataprocessor[46103:132876] Starting appintentsmetadataprocessor export
+2026-11-11 04:16:49.274 appintentsmetadataprocessor[46103:132876] Extracted no relevant App Intents symbols, skipping writing output
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/_Builtin_intrinsics-8FLIM86KCJBEV7VLS2OWR0OZ9.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/_Builtin_stdatomic-8SUHZXMTDVUXMU0QQF71Y6SBO.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/libDER-2481UE7UCOIQ01GHC665QZTR5.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/OpenGL-6EPUSTZ5RPOKBEGQKZEUX194I.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/_DarwinFoundation3-E3OHM7CN9P6503KKY1YHMUMU5.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/simd-3TJON09TFNT9NRDP3GUR2EK9K.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/_Builtin_inttypes-1324UOZ0ZHG4G8KGU5CPUZPFV.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Darwin-87PZPWO9V21W7XYRDFEC6VNS1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Spatial-C6J89THOXHR1AKATDA1P0YKWY.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/CUPS-DRJWIW990S6IC8JFTEPE6P64E.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/MachO-D3N8PVCA5FA1ZCUCLZQ1P7UQ9.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/libkern-3GY6KABD1B64SVCZ7XK8FT8GC.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/launch-26P0XQ2ZQ5693FB3K4AIIFVGC.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/ObjectiveC-DZQB8K8XFGP0WIV78G99YWRQU.pcm
+
+RegisterExecutionPolicyException /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurWhisper.o (in target 'MurmurWhisper' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur
+    builtin-RegisterExecutionPolicyException /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurWhisper.o
+
+RegisterExecutionPolicyException /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurUI.o (in target 'MurmurUI' from project 'MurmurKit')
+    cd /Users/runner/work/murmur/murmur
+    builtin-RegisterExecutionPolicyException /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/MurmurUI.o
+
+Ld /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/MacOS/__preview.dylib normal (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos15.0 -dynamiclib -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -O0 -L/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -install_name @rpath/Murmur.debug.dylib -rdynamic -Xlinker -no_deduplicate -Xlinker -dependency_info -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur_dependency_info.dat -o /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/MacOS/__preview.dylib
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/os_object-DU3NW92QR7M09HSR9UTU9QBRH.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/os_workgroup-6YSVJEPAGRSKYUQ30JLN18SSJ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Dispatch-B20PG9KTU1BCM8QPC9CJV2KII.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/XPC-QYD969QR37O8X9ZELEVTLKJE.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/CoreFoundation-36MZ412TB62CA57F9QUBF7WS0.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/dnssd-2YVQRVCSBDJHNEOH1BS4QA8YU.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/os-855BRV8MHMJ4KLDB6LR5FIB9V.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/IOKit-4QGJKCHX9ZELV51JKFQGPW72W.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/CFNetwork-1POUZFVFU60D2CPT5XFLEFMKI.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Security-8EXR8FL1K30FT112I5CPJ89CL.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/CoreAudioTypes-CXYFZXVFNNDIOV2Q3UKTJGJ2O.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/ColorSync-4IKYMOLQ1QLVNKD97ROJ88QYA.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/CoreGraphics-3EOFNIXY4MNOVCMQKT8YTFIUN.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/DiskArbitration-3MQI0ORYERK88900PXJCZE9EI.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/CoreServices-8Z0UUMN8ZCHI49ULBM20JELEH.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/ImageIO-E16692AB93HTJWI7JAXFLXI72.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/CoreText-7JO0O7T0VXJ4EUTGP4GFA2TZ5.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Foundation-A3AXRF0TTLG0V7T5KX17JB05D.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/IOSurface-C9MGUIQV179TD3UXR4KKNDHQR.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/LocalAuthentication-5LMF1LQJ9JGV0I1HCS427I3FK.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/NaturalLanguage-5FIN6U24JXNPDBNQUK2Q7D9N5.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/ApplicationServices-2JD8QURWPYFZ79HQL58ADE1IO.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/CoreData-9X5CQC0ILUPFQ37DF3JZD1NIP.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/CoreAudio-DCRXZ8PIPE4GJY53LM3I5O4BP.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Network-820B7VTSLV58Z3UUZGTNJALL6.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Symbols-B0LB4I7YZ2FFGH0BH8Q5A3PRH.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/OSLog-651BBPL1P2O9Q02YGU73JOHGA.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/ServiceManagement-2UDOSQA8KG1JIXY6C0L4RZONO.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Carbon-60W66GDMSPQ5WQSWQZV36VSVO.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Metal-65WXSECUWL36ZH8JGLWB32H7M.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/UniformTypeIdentifiers-92S19FWP7Z7IAOFRVZ9CCBG7O.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/CoreTransferable-E6FVT0DUGWCWOYDOSKD4QL56T.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/CoreMIDI-EUGGUBFGL7XQK00KU5GZ4Q6QF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/DataDetection-6EIVT31HAKAYCUZU21UAQSR38.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Accessibility-CRALAO41RN6KUVC2WVIBAH1PX.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/CoreVideo-5UZ702N73BBTIDSMAMEQRPLMX.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/AudioToolbox-AYKPRJ5VKLH7DAKCA1EC38ZWZ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/BackgroundAssets-94ZISYE2ELPIDKRZWTDSVZJ9W.pcm
+
+LinkAssetCatalog /Users/runner/work/murmur/murmur/App/MurmurMac/Assets.xcassets (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    builtin-linkAssetCatalog --thinned /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_output/thinned --thinned-dependencies /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_dependencies_thinned --thinned-info-plist-content /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_generated_info.plist_thinned --unthinned /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_output/unthinned --unthinned-dependencies /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_dependencies_unthinned --unthinned-info-plist-content /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_generated_info.plist_unthinned --output /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/Resources --plist-output /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_generated_info.plist
+note: Emplaced /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/Resources/Assets.car (in target 'MurmurMac' from project 'Murmur')
+note: Emplaced /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/Resources/AppIcon.icns (in target 'MurmurMac' from project 'Murmur')
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/QuartzCore-82VGYB85LEDUG58O899R65OO5.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/CoreImage-8O4ZE78HLQIK7BPRYO1L510FT.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Accelerate-9NVPSSCTJWGBCZYZH6ITAVJN6.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/CoreMedia-9V5RQD28X44GUZAWBUDP9I2J4.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/CoreML-3SFBADQGQ679GAH6PKLLV64W5.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/AppKit-A7MBF9U53FQCYNOPZC96NSNZO.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/SwiftUICore-ALJZDYWCOCBOCK7GBC4T96JBD.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/MediaToolbox-8QNG1BK1LSGA2TOYJCSWM697O.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/AVFAudio-CEJD4HFHGL3CPGRC9CGN74OXS.pcm
+
+ProcessInfoPlistFile /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/Info.plist /Users/runner/work/murmur/murmur/App/MurmurMac/Info.plist (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    builtin-infoPlistUtility /Users/runner/work/murmur/murmur/App/MurmurMac/Info.plist -producttype com.apple.product-type.application -genpkginfo /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/PkgInfo -expandbuildsettings -platform macosx -additionalcontentfile /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/assetcatalog_generated_info.plist -o /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/Info.plist
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/AVFoundation-EZHJS5UKE9OL2C7FGKAX7F4OR.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/SwiftUI-A9MTK8KT67CFYWLIDD1QWMPWO.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/StoreKit-DAUJ83YDTA0TN9HR4EJLRVO6B.pcm
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ Murmur (in target 'MurmurMac' from project 'Murmur')
+
+EmitSwiftModule normal arm64 (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 Compiling\ MacMainView.swift,\ MacNoteView.swift,\ MacOnboardingView.swift,\ MacPaywallView.swift,\ MacQueueView.swift,\ MacRecordingViews.swift /Users/runner/work/murmur/murmur/App/MurmurMac/MacMainView.swift /Users/runner/work/murmur/murmur/App/MurmurMac/MacNoteView.swift /Users/runner/work/murmur/murmur/App/MurmurMac/MacOnboardingView.swift /Users/runner/work/murmur/murmur/App/MurmurMac/MacPaywallView.swift /Users/runner/work/murmur/murmur/App/MurmurMac/MacQueueView.swift /Users/runner/work/murmur/murmur/App/MurmurMac/MacRecordingViews.swift (in target 'MurmurMac' from project 'Murmur')
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/App/MurmurMac/MacMainView.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/App/MurmurMac/MacNoteView.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/App/MurmurMac/MacOnboardingView.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/App/MurmurMac/MacPaywallView.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/App/MurmurMac/MacQueueView.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/App/MurmurMac/MacRecordingViews.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 Compiling\ AppServices.swift,\ DemoData.swift,\ GlobalHotKey.swift,\ InputDevices.swift,\ LibraryDependencies.swift,\ MacExportSheet.swift /Users/runner/work/murmur/murmur/App/Shared/AppServices.swift /Users/runner/work/murmur/murmur/App/Shared/DemoData.swift /Users/runner/work/murmur/murmur/App/MurmurMac/GlobalHotKey.swift /Users/runner/work/murmur/murmur/App/MurmurMac/InputDevices.swift /Users/runner/work/murmur/murmur/App/Shared/LibraryDependencies.swift /Users/runner/work/murmur/murmur/App/MurmurMac/MacExportSheet.swift (in target 'MurmurMac' from project 'Murmur')
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/App/Shared/AppServices.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/App/Shared/DemoData.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/App/MurmurMac/GlobalHotKey.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/App/MurmurMac/InputDevices.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/App/Shared/LibraryDependencies.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/App/MurmurMac/MacExportSheet.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 Compiling\ MacRoot.swift,\ MacSession.swift,\ MacSettingsViews.swift,\ MurmurMacApp.swift,\ GeneratedAssetSymbols.swift /Users/runner/work/murmur/murmur/App/MurmurMac/MacRoot.swift /Users/runner/work/murmur/murmur/App/MurmurMac/MacSession.swift /Users/runner/work/murmur/murmur/App/MurmurMac/MacSettingsViews.swift /Users/runner/work/murmur/murmur/App/MurmurMac/MurmurMacApp.swift /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'MurmurMac' from project 'Murmur')
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/App/MurmurMac/MacRoot.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/App/MurmurMac/MacSession.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/App/MurmurMac/MacSettingsViews.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/App/MurmurMac/MurmurMacApp.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftCompile normal arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for Murmur (in target 'MurmurMac' from project 'Murmur')
+
+SwiftDriver\ Compilation\ Requirements MurmurMac normal arm64 com.apple.xcode.tools.swift.compiler (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Murmur -Onone @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos15.0 -g -module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/work/murmur/murmur/DerivedDataMac/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/SDKStatCaches.noindex/macosx26.5-25F70-688ef53f1462e2c8f657fdc38a81448fee0e6409aa6676c5e6c013d148225433.sdkstatcache -output-file-map /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/MurmurMac-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/MurmurMac_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-generated-files.hmap -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-own-target-headers.hmap -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/Murmur-1d57bbe91edca00d5c5c4efdac7e190d-VFS/all-product-headers.yaml -Xcc -iquote -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-project-headers.hmap -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/include -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur-Swift.h -working-directory /Users/runner/work/murmur/murmur -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Compiling AppServices.swift, DemoData.swift, GlobalHotKey.swift, InputDevices.swift, LibraryDependencies.swift, MacExportSheet.swift (in target 'MurmurMac' from project 'Murmur')
+
+SwiftMergeGeneratedHeaders /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources/Murmur-Swift.h /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur-Swift.h (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    builtin-swiftHeaderTool -arch arm64 /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur-Swift.h -o /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources/Murmur-Swift.h
+
+Copy /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.swiftmodule/arm64-apple-macos.swiftmodule /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.swiftmodule (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.swiftmodule /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.swiftmodule/arm64-apple-macos.swiftmodule
+
+Copy /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.swiftmodule/arm64-apple-macos.swiftdoc /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.swiftdoc (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.swiftdoc /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.swiftmodule/arm64-apple-macos.swiftdoc
+
+Copy /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.swiftmodule/arm64-apple-macos.abi.json /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.abi.json (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.abi.json /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.swiftmodule/arm64-apple-macos.abi.json
+
+Copy /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.swiftsourceinfo (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.swiftsourceinfo /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo
+
+SwiftDriverJobDiscovery normal arm64 Compiling MacRoot.swift, MacSession.swift, MacSettingsViews.swift, MurmurMacApp.swift, GeneratedAssetSymbols.swift (in target 'MurmurMac' from project 'Murmur')
+
+SwiftDriverJobDiscovery normal arm64 Compiling MacMainView.swift, MacNoteView.swift, MacOnboardingView.swift, MacPaywallView.swift, MacQueueView.swift, MacRecordingViews.swift (in target 'MurmurMac' from project 'Murmur')
+
+SwiftDriver\ Compilation MurmurMac normal arm64 com.apple.xcode.tools.swift.compiler (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    builtin-Swift-Compilation -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Murmur -Onone @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos15.0 -g -module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/work/murmur/murmur/DerivedDataMac/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/SDKStatCaches.noindex/macosx26.5-25F70-688ef53f1462e2c8f657fdc38a81448fee0e6409aa6676c5e6c013d148225433.sdkstatcache -output-file-map /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/MurmurMac-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/murmur/murmur/DerivedDataMac/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/MurmurMac_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-generated-files.hmap -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-own-target-headers.hmap -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/Murmur-1d57bbe91edca00d5c5c4efdac7e190d-VFS/all-product-headers.yaml -Xcc -iquote -Xcc /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-project-headers.hmap -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/include -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur-Swift.h -working-directory /Users/runner/work/murmur/murmur -experimental-emit-module-separately -disable-cmo
+
+Ld /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/MacOS/Murmur.debug.dylib normal (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos15.0 -dynamiclib -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -O0 -L/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -L/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -filelist /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.LinkFileList -install_name @rpath/Murmur.debug.dylib -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/../Frameworks -Xlinker -object_path_lto -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -dependency_info -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.swiftmodule @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur-linker-args.resp -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Xlinker -alias -Xlinker _main -Xlinker ___debug_main_executable_dylib_entry_point -o /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/MacOS/Murmur.debug.dylib -Xlinker -add_ast_path -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI.swiftmodule @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurUI.build/Objects-normal/arm64/MurmurUI-linker-args.resp -Xlinker -add_ast_path -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurCore.build/Objects-normal/arm64/MurmurCore.swiftmodule @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurCore.build/Objects-normal/arm64/MurmurCore-linker-args.resp -Xlinker -add_ast_path -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper.swiftmodule @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/MurmurKit.build/Debug/MurmurWhisper.build/Objects-normal/arm64/MurmurWhisper-linker-args.resp -Xlinker -add_ast_path -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/Objects-normal/arm64/WhisperKit.swiftmodule @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/WhisperKit.build/Objects-normal/arm64/WhisperKit-linker-args.resp -Xlinker -add_ast_path -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/ArgmaxCore.build/Objects-normal/arm64/ArgmaxCore.swiftmodule @/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/argmax-oss-swift.build/Debug/ArgmaxCore.build/Objects-normal/arm64/ArgmaxCore-linker-args.resp
+
+ConstructStubExecutorLinkFileList /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-ExecutorLinkFileList-normal-arm64.txt (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    construct-stub-executor-link-file-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/MacOS/Murmur.debug.dylib /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/libPreviewsJITStubExecutor_no_swift_entry_point.a /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/libPreviewsJITStubExecutor.a --output /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-ExecutorLinkFileList-normal-arm64.txt
+note: Using stub executor library with Swift entry point. (in target 'MurmurMac' from project 'Murmur')
+
+Ld /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/MacOS/Murmur normal (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos15.0 -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -O0 -L/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -F/Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug -Xlinker -rpath -Xlinker @executable_path -Xlinker -rpath -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/../Frameworks -rdynamic -Xlinker -no_deduplicate -e ___debug_blank_executor_main -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_dylib -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-DebugDylibPath-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_instlnm -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-DebugDylibInstallName-normal-arm64.txt -Xlinker -filelist -Xlinker /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur-ExecutorLinkFileList-normal-arm64.txt /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/MacOS/Murmur.debug.dylib -o /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/MacOS/Murmur
+
+ExtractAppIntentsMetadata (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v17.6.109.0.PPAySu/Metal.xctoolchain --module-name Murmur --sdk-root /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk --xcode-version 17F113 --platform-family macOS --deployment-target 15.0 --bundle-identifier com.appyzone.murmur --output /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/Resources --target-triple arm64-apple-macos15.0 --binary-file /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/MacOS/Murmur --dependency-file /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur_dependency_info.dat --stringsdata-file /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.SwiftFileList --metadata-file-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur.DependencyMetadataFileList --static-metadata-file-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Murmur.DependencyStaticMetadataFileList --swift-const-vals-list /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/Objects-normal/arm64/Murmur.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-11-11 04:17:07.647 appintentsmetadataprocessor[47259:135363] Starting appintentsmetadataprocessor export
+2026-11-11 04:17:07.659 appintentsmetadataprocessor[47259:135363] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CopySwiftLibs /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/MacOS/Murmur.debug.dylib --scan-folder /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/Frameworks --scan-folder /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/PlugIns --scan-folder /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/Library/SystemExtensions --scan-folder /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/Extensions --platform macosx --toolchain /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v17.6.109.0.PPAySu/Metal.xctoolchain --toolchain /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app/Contents/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Intermediates.noindex/Murmur.build/Debug/MurmurMac.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os --back-deploy-swift-span
+Ignoring --strip-bitcode because --sign was not passed
+
+RegisterExecutionPolicyException /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    builtin-RegisterExecutionPolicyException /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app
+
+Validate /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    builtin-validationUtility /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app -no-validate-extension -infoplist-subpath Contents/Info.plist
+
+Touch /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    /usr/bin/touch -c /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app
+
+RegisterWithLaunchServices /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app (in target 'MurmurMac' from project 'Murmur')
+    cd /Users/runner/work/murmur/murmur
+    /System/Library/Frameworks/CoreServices.framework/Versions/Current/Frameworks/LaunchServices.framework/Versions/Current/Support/lsregister -f -R -trusted /Users/runner/work/murmur/murmur/DerivedDataMac/Build/Products/Debug/Murmur.app
+
+** BUILD SUCCEEDED **
+

@@ -1,0 +1,6 @@
+snapshot: waiting 4.0s, windows now: 2
+snapshot: woke up
+window Murmur visible=true frame=(0.0, -55.0, 1180.0, 792.0) content=true
+window  visible=false frame=(0.0, 0.0, 500.0, 500.0) content=true
+window  visible=false frame=(821.0, 429.0, 312.0, 237.0) content=true
+snapshot: wrote /Users/runner/work/murmur/murmur/build/mac-main.png (175835 bytes)
