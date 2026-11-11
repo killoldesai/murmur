@@ -62,16 +62,24 @@ public struct PlanOffer: Equatable, Identifiable, Sendable {
                   trialDays: plan == .yearly ? 3 : nil, isAvailable: false)
     }
 
-    /// Second line on the plan card.
+    /// Second line on the plan card. App Review 3.1.2(c): the billed amount is the most prominent
+    /// price, so this line never shows a per-month figure, and the trial is only a small note.
     public var detail: String {
         switch plan {
         case .yearly:
-            var parts: [String] = []
-            if let monthlyEquivalent { parts.append("\(monthlyEquivalent) a month") }
-            if let trialDays { parts.append("\(trialDays)-day free trial") }
-            return parts.isEmpty ? "Billed yearly" : parts.joined(separator: " · ")
+            if let trialDays { return "\(trialDays)-day free trial, then billed yearly" }
+            return "Billed yearly"
         case .lifetime: return "Pay once, yours forever"
-        case .monthly: return "Cancel anytime"
+        case .monthly: return "Billed monthly, cancel anytime"
+        }
+    }
+
+    /// Small text under the price on the plan card: what the billed amount covers.
+    public var priceUnit: String {
+        switch plan {
+        case .yearly: "per year"
+        case .lifetime: "one time"
+        case .monthly: "per month"
         }
     }
 
@@ -86,11 +94,9 @@ public struct PlanOffer: Equatable, Identifiable, Sendable {
     /// Text on the main button.
     public var callToAction: String {
         switch plan {
-        case .yearly:
-            if let trialDays { return "Start \(trialDays)-day free trial" }
-            return "Subscribe · \(displayPrice)/year"
+        case .yearly: return "Subscribe · \(displayPrice)/year"
         case .lifetime: return "Unlock forever · \(displayPrice)"
-        case .monthly: return "Continue · \(displayPrice)/month"
+        case .monthly: return "Subscribe · \(displayPrice)/month"
         }
     }
 }

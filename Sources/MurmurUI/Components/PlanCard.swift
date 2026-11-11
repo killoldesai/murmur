@@ -5,6 +5,7 @@ public struct PlanCard: View {
     let name: String
     let price: String
     let detail: String
+    let unit: String?
     let badge: String?
     let isSelected: Bool
     let action: () -> Void
@@ -12,6 +13,7 @@ public struct PlanCard: View {
     public init(
         name: String,
         price: String,
+        unit: String? = nil,
         detail: String,
         badge: String? = nil,
         isSelected: Bool,
@@ -19,6 +21,7 @@ public struct PlanCard: View {
     ) {
         self.name = name
         self.price = price
+        self.unit = unit
         self.detail = detail
         self.badge = badge
         self.isSelected = isSelected
@@ -63,9 +66,18 @@ public struct PlanCard: View {
                         .foregroundStyle(MurmurTheme.Colors.textSecondary)
                 }
                 Spacer(minLength: 0)
-                Text(price)
-                    .font(MurmurTheme.Fonts.headline.monospacedDigit())
-                    .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                // The billed amount is the largest, boldest text on the card (App Review 3.1.2(c)).
+                VStack(alignment: .trailing, spacing: 1) {
+                    Text(price)
+                        .font(.title3.weight(.heavy).monospacedDigit())
+                        .foregroundStyle(MurmurTheme.Colors.textPrimary)
+                    if let unit {
+                        Text(unit)
+                            .font(MurmurTheme.Fonts.caption)
+                            .foregroundStyle(MurmurTheme.Colors.textSecondary)
+                    }
+                }
+                .fixedSize()
             }
             .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)

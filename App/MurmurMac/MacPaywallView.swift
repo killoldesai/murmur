@@ -42,7 +42,7 @@ struct MacPaywallView: View {
                 } else {
                     ForEach(Plan.allCases) { plan in
                         let offer = entitlements.offers.first { $0.plan == plan } ?? .placeholder(plan)
-                        PlanCard(name: plan.title, price: offer.displayPrice, detail: offer.detail,
+                        PlanCard(name: plan.title, price: offer.displayPrice, unit: plan.priceUnit, detail: offer.detail,
                                  badge: offer.badge, isSelected: entitlements.selected == plan) {
                             entitlements.selected = plan
                         }

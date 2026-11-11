@@ -191,6 +191,7 @@ struct PaywallScreen: View {
                 PlanCard(
                     name: offer.plan.title,
                     price: offer.displayPrice,
+                    unit: offer.plan.priceUnit,
                     detail: offer.detail,
                     badge: offer.badge,
                     isSelected: controller.selected == offer.plan

@@ -40,11 +40,13 @@ final class PlanTests: XCTestCase {
     func testPlaceholderOffers() {
         let yearly = PlanOffer.placeholder(.yearly)
         XCTAssertFalse(yearly.isAvailable)
-        XCTAssertEqual(yearly.detail, "$1.67 a month · 3-day free trial")
-        XCTAssertEqual(yearly.callToAction, "Start 3-day free trial")
+        XCTAssertEqual(yearly.detail, "3-day free trial, then billed yearly")
+        XCTAssertFalse(yearly.detail.contains("a month"))
+        XCTAssertEqual(yearly.callToAction, "Subscribe · $19.99/year")
+        XCTAssertEqual(yearly.plan.priceUnit, "per year")
         XCTAssertEqual(yearly.badge, "BEST VALUE")
         XCTAssertEqual(PlanOffer.placeholder(.lifetime).callToAction, "Unlock forever · $39.99")
-        XCTAssertEqual(PlanOffer.placeholder(.monthly).callToAction, "Continue · $3.99/month")
+        XCTAssertEqual(PlanOffer.placeholder(.monthly).callToAction, "Subscribe · $3.99/month")
         XCTAssertNil(PlanOffer.placeholder(.monthly).badge)
     }
 
@@ -152,8 +154,8 @@ final class EntitlementControllerTests: XCTestCase {
     func testCallToActionFollowsSelection() async {
         let controller = EntitlementController(store: DemoPurchaseStore())
         await controller.start()
-        XCTAssertEqual(controller.callToAction, "Start 3-day free trial")
+        XCTAssertEqual(controller.callToAction, "Subscribe · $19.99/year")
         controller.selected = .monthly
-        XCTAssertEqual(controller.callToAction, "Continue · $3.99/month")
+        XCTAssertEqual(controller.callToAction, "Subscribe · $3.99/month")
     }
 }
