@@ -18,6 +18,15 @@ public enum Plan: String, CaseIterable, Identifiable, Sendable {
 
     public var isSubscription: Bool { self != .lifetime }
 
+    /// Small text under the price on the plan card: what the billed amount covers.
+    public var priceUnit: String {
+        switch self {
+        case .yearly: "per year"
+        case .lifetime: "one time"
+        case .monthly: "per month"
+        }
+    }
+
     /// Shown until the App Store returns the real price.
     public var placeholderPrice: String {
         switch self {
@@ -71,15 +80,6 @@ public struct PlanOffer: Equatable, Identifiable, Sendable {
             return "Billed yearly"
         case .lifetime: return "Pay once, yours forever"
         case .monthly: return "Billed monthly, cancel anytime"
-        }
-    }
-
-    /// Small text under the price on the plan card: what the billed amount covers.
-    public var priceUnit: String {
-        switch plan {
-        case .yearly: "per year"
-        case .lifetime: "one time"
-        case .monthly: "per month"
         }
     }
 
