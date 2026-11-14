@@ -1,0 +1,32 @@
+
+=== iOS and macOS versions ===
+MAC_OS 1.0 id=e51e7d79-d7b7-4821-b7ca-e7b90bf06237 state=WAITING_FOR_REVIEW / WAITING_FOR_REVIEW build=3 buildState=VALID encryptionKnown=False
+IOS 1.0 id=3ee2add6-9a46-49cc-9e38-0df5f96808c4 state=READY_FOR_SALE / READY_FOR_DISTRIBUTION build=3 buildState=VALID encryptionKnown=False
+
+=== App info (age rating, privacy, category) ===
+appInfo id=d4be94c9-f9d6-45b1-9b0b-cd53fdc5466b state=READY_FOR_SALE ageRating=FOUR_PLUS
+appInfo id=1ae8ff51-25fb-4c5f-ba32-990708057670 state=WAITING_FOR_REVIEW ageRating=FOUR_PLUS
+
+=== Subscription groups and subscriptions ===
+group Murmur Pro id=22521438
+  subscription app.murmur.pro.monthly id=6827878106 state=APPROVED
+  subscription app.murmur.pro.yearly id=6827877717 state=APPROVED
+  group localization en-US state=APPROVED
+
+=== In-app purchases ===
+  app.murmur.pro.lifetime id=6827878251 type=NON_CONSUMABLE state=APPROVED
+
+=== Review submissions ===
+submission id=481903b0-5cf4-486a-9084-7fa10155e127 platform=MAC_OS state=WAITING_FOR_REVIEW items=1
+submission id=7db7d4bc-805a-4da5-afe9-339f14c94fe5 platform=MAC_OS state=COMPLETE items=1
+submission id=aa324e80-cafb-4e6d-a170-dcd3415e178f platform=MAC_OS state=COMPLETE items=1
+submission id=fdec6d3b-3885-476b-8421-c39e74210a2d platform=IOS state=COMPLETE items=5
+  item id=NDgxOTAzYjAtNWNmNC00ODZhLTkwODQtN2ZhMTAxNTVlMTI3fDZ8ODk0MDUyMDYy state=READY_FOR_REVIEW -> {}
+  item id=N2RiN2Q0YmMtODA1YS00ZGE1LWFmZTktMzM5ZjE0Yzk0ZmU1fDZ8ODk0MDUyMDYy state=REMOVED -> {}
+  item id=YWEzMjRlODAtY2FmYi00ZTZkLWExNzAtZGNkMzQxNWUxNzhmfDZ8ODk0MDUyMDYy state=REMOVED -> {}
+  item id=ZmRlYzZkM2ItMzg4NS00NzZiLTg0MjEtYzM5ZTc0MjEwYTJkfDE4fDkyMGRmYzE3LTMxNWUtNDdmNi1hOWRjLWRiNDhjNTExNDlmYw state=APPROVED -> {}
+  item id=ZmRlYzZkM2ItMzg4NS00NzZiLTg0MjEtYzM5ZTc0MjEwYTJkfDE5fGRkNjlmOGEzLTE2NDgtNDNhNi1hZWFmLTNmNGQwNTJhZDE0Zg state=APPROVED -> {}
+  item id=ZmRlYzZkM2ItMzg4NS00NzZiLTg0MjEtYzM5ZTc0MjEwYTJkfDE4fDhlMTExMzFlLWVjNmItNDlhYy1iYzFkLTQ4NTBhMmJhNjhkZA state=APPROVED -> {}
+  item id=ZmRlYzZkM2ItMzg4NS00NzZiLTg0MjEtYzM5ZTc0MjEwYTJkfDE3fGE1YzdlYjQ1LTAxOGMtNDlmMy1hYmE1LWJhNDRmNmQ4NDA1NA state=APPROVED -> {}
+  item id=ZmRlYzZkM2ItMzg4NS00NzZiLTg0MjEtYzM5ZTc0MjEwYTJkfDZ8ODk0MDUyMDYx state=APPROVED -> {}
+action check commit 5d6ff63d103924ae8dfd588bda8aa45d024b422d
